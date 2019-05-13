@@ -9,8 +9,18 @@ Page({
    * 页面的初始数据
    */
   data: {
+    info: '',
     bindName: 'article',
     article_content: ''
+  },
+
+  getExplain() {
+    let that = this
+    let params = {}
+    postRequest('/main/cardInfo', params, true).then(res => {
+      // console.log(res)
+      WxParse.wxParse('article', 'html', res.info, that, 20);
+    })
   },
 
   /**
@@ -18,11 +28,7 @@ Page({
    */
   onLoad: function (options) {
     let that = this
-    let params = {}
-    postRequest('/main/cardInfo', params, true).then(res => {
-      console.log(res)
-      WxParse.wxParse('article', 'html', res.info, that, 20);
-    })
+    that.getExplain()
   },
 
   /**

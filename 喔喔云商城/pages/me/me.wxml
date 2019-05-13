@@ -14,7 +14,7 @@
       <view class='clear'></view>
     </view>
     <view class='me_order' bindtap='rebateLog'>
-      <view class='m_morder'>返利日志</view>
+      <view class='m_morder'>分享返利</view>
       <view class='m_all_order'>
         <image src='../../images/right.png'></image>
       </view>
@@ -54,19 +54,31 @@
             <text style='float: right;'>{{item.send_day}}</text>
             <view class='clear'></view>
           </view>
-          <view class='mlist_shop' wx:if="{{item.goods_info.length != 0}}">
-            <view style='margin-bottom: 10rpx;' wx:for="{{item.goods_info}}" wx:for-item="items" wx:key="items">
-              <text class='shop_name'>{{items.title}}</text>
-              <text class='shop_pn'>
-                <text class='pn_price'>￥{{items.price}}</text>
-                <text class='pn_num'>x{{items.num}}</text>
-              </text>
-              <view class='clear'></view>
+          <view class='mlist_shop'>
+            <view wx:if="{{item.goods_info.length != 0}}">
+              <view wx:for="{{item.goods_info}}" wx:for-item="infos" wx:key="infos" style='margin-bottom: 20rpx;'>
+                <view class='list_text' wx:if="{{item.egg_type == 1}}">您好，您需要的 {{item.egg_number}} 枚土鸡蛋、{{infos.num}} 件 {{infos.title}},我们将于 {{item.send_day}}
+                  <view wx:if='{{item.send_time == 1}}' class='view_inline'>上午 8:00~15:00 之间为您配送到家，请耐心等待。</view>
+                  <view wx:if='{{item.send_time == 2}}' class='view_inline'>下午 13:00~20:00 之间为您配送到家，请耐心等待。</view>
+                </view>
+                <view class='list_text' wx:if="{{item.egg_type == 2}}">您好，您需要的 {{item.egg_number}} 枚乌鸡蛋、{{infos.num}} 件 {{infos.title}},我们将于 {{item.send_day}}
+                  <view wx:if='{{item.send_time == 1}}' class='view_inline'>上午 8:00~15:00 之间为您配送到家，请耐心等待。</view>
+                  <view wx:if='{{item.send_time == 2}}' class='view_inline'>下午 13:00~20:00 之间为您配送到家，请耐心等待。</view>
+                </view>
+              </view>
             </view>
-          </view>
-          <view class='mlist_bot'>
-            <text wx:if="{{item.egg_type == 1}}">配送：土鸡蛋{{item.egg_number}}枚</text>
-            <text wx:if="{{item.egg_type == 2}}">配送：乌鸡蛋{{item.egg_number}}枚</text>
+            <view wx:if="{{item.goods_info.length == 0}}">
+              <view style='margin-bottom: 20rpx;'>
+                <view class='list_text' wx:if="{{item.egg_type == 1}}">您好，您需要的 {{item.egg_number}} 枚土鸡蛋,我们将于 {{item.send_day}}
+                  <view wx:if='{{item.send_time == 1}}' class='view_inline'>上午 8:00~15:00 之间为您配送到家，请耐心等待。</view>
+                  <view wx:if='{{item.send_time == 2}}' class='view_inline'>下午 13:00~20:00 之间为您配送到家，请耐心等待。</view>
+                </view>
+                <view class='list_text' wx:if="{{item.egg_type == 2}}">您好，您需要的 {{item.egg_number}} 枚乌鸡蛋,我们将于 {{item.send_day}}
+                  <view wx:if='{{item.send_time == 1}}' class='view_inline'>上午 8:00~15:00 之间为您配送到家，请耐心等待。</view>
+                  <view wx:if='{{item.send_time == 2}}' class='view_inline'>下午 13:00~20:00 之间为您配送到家，请耐心等待。</view>
+                </view>
+              </view>
+            </view>
           </view>
         </view>
       </block>

@@ -4,13 +4,18 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 const router = new Router({
-  // mode: 'history',
+  mode: 'history',
   // base: process.env.BASE_URL,
   routes: [
     {
       path: '/enter/:id',
       name: 'enter',
       component: () => import ('./views/enter.vue')
+    },
+    {
+      path: '/payenter/:id',
+      name: 'payenter',
+      component: () => import ('./views/PayList.vue')
     },
     {
       path: '/detail/:id',
@@ -26,10 +31,6 @@ const router = new Router({
       path: '/auth',
       name: 'auth',
       component: () => import('./views/Auth.vue')
-    },
-    {
-      path: '/',
-      redirect: '/enter/:id'
     }
   ]
 })
@@ -38,12 +39,14 @@ const router = new Router({
 const auth_url = 'http://ymmsign.zhaodaka.vip/oauth'
 
 router.beforeEach((to, from, next) => {
-  const token = localStorage.getItem('token')
-  if (to.name == 'enter') {
+  if (to.name == 'enter' || to.name == 'payenter') {
+    console.log(to.name)
     localStorage.setItem('url', window.location.href)
     localStorage.setItem('paths', to.fullPath)
   }
-  if (!token && to.name !== 'auth') {
+  const tokenns = localStorage.getItem('tokenns')
+  if (!tokenns && to.name !== 'auth') {
+    console.log('去授权')
     window.location.href = auth_url;
   } else {
     next()

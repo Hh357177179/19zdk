@@ -36,7 +36,7 @@
     <div class="apply" @click="applyBtn">点击报名</div>
     <van-dialog v-model="show" title="报名信息" show-cancel-button :before-close="beforeCloses">
       <van-field v-model="userName" label="姓名" placeholder="请输入姓名"/>
-      <van-field v-model="userTel" label="手机号码" placeholder="请输入手机号码"/>
+      <van-field v-model="userTel" type="tel" maxlength='11' label="手机号码" placeholder="请输入手机号码"/>
     </van-dialog>
   </div>
 </template>
@@ -70,12 +70,12 @@ export default {
         done(false); //不关闭弹框
         if (this.userName == "") {
           this.$toast("请输入姓名");
-        } else if (this.userTel == "") {
-          this.$toast("请输入手机号码");
+        } else if (!(/^1[3456789]\d{9}$/.test(this.userTel))) {
+          this.$toast("请输入正确手机号码");
         } else {
           console.log("验证通过");
           let params = {
-            token: localStorage.getItem("token"),
+            token: localStorage.getItem("tokenns"),
             activity_id: this.activity_id,
             name: this.userName,
             phone: this.userTel
@@ -88,13 +88,12 @@ export default {
               this.$router.push("/success");
             } else {
               let param = {
-                token: localStorage.getItem("token"),
+                token: localStorage.getItem("tokenns"),
                 order_id: resOrder.order_id
               };
               payOrder(param).then(resPay => {
-                console.log(1111,resPay);
                 const config = JSON.parse(resPay.config);
-                console.log(123,config)
+                console.log('config回调',config)
                 WeixinJSBridge.invoke("getBrandWCPayRequest", config, res => {
                   if (res.err_msg === "get_brand_wcpay_request:ok") {
                     // 使用以上方式判断前端返回,微信团队郑重提示：
@@ -121,7 +120,7 @@ export default {
       DetailClass(params).then(res => {
         // console.log(res)
         this.detailObj = { ...res };
-        console.log(this.detailObj);
+        // console.log(this.detailObj);
       });
     }
   },

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>服务内容</title>
+  <link rel="stylesheet" href="css/public.css">
+  <link rel="stylesheet" href="css/service.css">
+</head>
+
+<body>
+  <div class="head clearfix">
+    <div class="head_left">
+      <span class="logo">
+        <img src="img/logo.png" alt>
+      </span>
+      <span class="compony_name">上海科新管理咨询有限公司</span>
+    </div>
+    <div class="right_top clearfix">
+      <div class="nav_bar">
+        <p class="nav_list">
+          <a href="home.html">首页</a>
+        </p>
+        <p class="nav_list">
+          <a href="policy.html">政策资讯</a>
+        </p>
+        <p class="nav_list choose_nav">服务内容</p>
+        <p class="nav_list">
+          <a href="classroom.html">科科讲堂</a>
+        </p>
+        <p class="nav_list">
+          <a href="about.html">关于科新</a>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="service_banner">
+    <img src="img/gsjjbanner.jpg" alt>
+  </div>
+  <div class="service_main clearfix">
+    <p class="service_title">服务内容</p>
+    <div class="service_list">
+      <p class="service_list_nav isActive_li">项目申报</p>
+      <p class="service_list_nav">加计扣除</p>
+      <p class="service_list_nav">融资服务</p>
+    </div>
+    <div class="right_main">
+      <div class="main_right">
+        <div class="main_card">
+          <p class="card_serve_title">
+            <span class="radius"></span>
+            <span>服务内容</span>
+          </p>
+          <p class="card_serve_content">
+            近年，国家和地方政府不断制订、完善和落实科技政策，通过财政无偿资助、贷款贴息、税收减免以及产业政策等，最大限度地鼓励和支持企业创新发展。目前，与企业相关的科技项目主要来自于国家的科技部、工信部、发改委和地方政府（上海市科委、市经信委、市发改委，知识产权局、质监局以及企业所注册区），项目类别主要为资质认定和无偿资助。</p>
+        </div>
+      </div>
+      <div>
+        <div class="right_title">
+          <p class="declare">
+            <span class="radius"></span>
+            <span>科新咨询可以为科技型企业提供如下服务</span>
+          </p>
+          <p class="declare_content">
+            <p class="declare_title">申报项目主要类别</p>
+            <div class="declare_pic">
+              <img src="img/zh1.png" alt="">
+            </div>
+            <p class="declare_title">对企业申报项目而言，首先必须满足基本申报条件，同时判断项目符合程度，对于各类项目，主要与以下几个因素有关</p>
+            <div class="declare_pic">
+              <img src="img/q.png" alt="">
+            </div>
+          </p>
+        </div>
+        <div class="right_title nones">
+          <p class="declare">
+            <span class="radius"></span>
+            <span>加计扣除</span>
+          </p>
+          <p class="declare_content">
+            加计扣除加计扣除加计扣除加计扣除加计扣除加计扣除加计扣除加计扣除加计扣除加计扣除加计扣除加计扣除加计扣除加计扣除加计扣除加计扣除加计扣除加计扣除加计扣除加计扣除加计扣除加计扣除加计扣除加计扣除加计扣除加计扣除加计扣除加计扣除加计扣除加计扣除
+          </p>
+        </div>
+        <div class="right_title nones">
+          <p class="declare">
+            <span class="radius"></span>
+            <span>融资服务</span>
+          </p>
+          <p class="declare_content">
+            融资服务融资服务融资服务融资服务融资服务融资服务融资服务融资服务融资服务融资服务融资服务融资服务融资服务融资服务融资服务融资服务融资服务融资服务融资服务融资服务融资服务融资服务融资服务融资服务融资服务融资服务融资服务融资服务融资服务融资服务融资服务融资服务融资服务
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
+
+<script src="js/jquery-3.2.1.min.js"></script>
+<script>
+  $(document).ready(function () {
+    $('.service_list_nav').on('click', function () {
+      $(this).addClass('isActive_li').siblings().removeClass('isActive_li')
+      $('.right_title').eq($(this).index()).show().siblings().hide()
+    })
+  });
+</script>

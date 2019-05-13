@@ -59,8 +59,8 @@ page{
 .me_order{
   margin-top: 18rpx;
   background: #fff;
-  padding: 20rpx 30rpx;
-  font-size: 24rpx;
+  padding: 30rpx;
+  font-size: 28rpx;
   border-bottom: 1px solid rgba(25,31,37,0.12);
 }
 .m_morder{
@@ -254,7 +254,7 @@ page{
   padding-bottom: 10rpx;
 }
 .mlist_shop{
-  padding: 20rpx 0;
+  padding: 20rpx 0 0;
 }
 .shop_name{
   float: left;
@@ -272,4 +272,7 @@ page{
 .pn_price{
   font-size: 30rpx;
   margin-right: 40rpx;
+}
+.view_inline{
+  display: inline;
 }

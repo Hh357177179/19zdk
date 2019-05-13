@@ -18,20 +18,18 @@ Page({
     cardList: [],
     buyNum: 15,
     shopArr: [],
-
     card_id: '',
     send_day: '',
     send_time: '',
-
     eggNum: '',
     eggCard: {},
-
     visible1: false,
     frameArr: ['8:00~15:00', '13:00~20:00'],
     cText: '',
     dayList: [],
     type: '',
-    dateArr: []
+    dateArr: [],
+    eggNum: ''
   },
   
 
@@ -98,16 +96,17 @@ Page({
   },
 
   ctype(e) {
-    console.log(e)
+    console.log(e.currentTarget.dataset.nums)
     let that = this
     that.setData({
+      eggNum: e.currentTarget.dataset.nums,
       type: e.currentTarget.dataset.type
     })
   },
 
   cRadioId(e) {
     let that = this
-    console.log(e.detail.value)
+    // console.log(e.detail.value)
     that.setData({
       card_id: e.detail.value
     })
@@ -134,7 +133,9 @@ Page({
       util.showMsg('未选择配送日期')
     } else if (that.data.send_time == '') {
       util.showMsg('未选择配送时段')
-    } else {
+    } else if (that.data.buyNum > that.data.eggNum) {
+      util.showMsg('很抱歉，您的鸡蛋数量不够，请重新选择配送数量')
+    }else {
       let params = {
         token: app.globalData.userInfo.openid,
         address_id: that.data.localObj.id,
@@ -184,10 +185,6 @@ Page({
     }
   },
 
-  // // 选择时段
-  // cframe () {
-
-  // },
 
   // 获取有效年卡
   getCardlist() {
@@ -239,6 +236,18 @@ Page({
     })
   },
 
+  // 删除商品
+  deleteList (e) {
+    let that = this
+    console.log(e.target.dataset.id)
+    console.log('已选商品', app.globalData.itemArr)
+    let deleteIndex = app.globalData.itemArr.findIndex(x => x.id == e.target.dataset.id)
+    app.globalData.itemArr.splice(deleteIndex, 1)
+    that.setData({
+      shopArr: app.globalData.itemArr
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -258,7 +267,7 @@ Page({
    */
   onShow: function() {
     let that = this
-    console.log('选择商品的id', app.globalData.cid)
+    // console.log('选择商品的id', app.globalData.cid)
     that.setData({
       shopArr: app.globalData.itemArr
     })

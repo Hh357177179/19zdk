@@ -26,6 +26,20 @@ Page({
     })
   },
 
+  // 客服
+  handleContact(e) {
+    console.log(e.path)
+    console.log(e.query)
+  },
+
+  // 轮播跳转详情
+  bannerDetail (e) {
+    console.log(e.currentTarget.dataset.id)
+    wx.navigateTo({
+      url: `/pages/bannerDetail/bannerDetail?bId=${e.currentTarget.dataset.id}`,
+    })
+  },
+
   // 获取banner
   getBanner () {
     let that = this

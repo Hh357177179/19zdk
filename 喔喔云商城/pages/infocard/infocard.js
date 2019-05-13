@@ -10,7 +10,9 @@ Page({
   data: {
     dCardObj: {},
     maskShow: false,
-    givePic: ''
+    givePic: '',
+    userName: '',
+    dialogText: ''
   },
 
   // 转赠
@@ -42,7 +44,7 @@ Page({
   btnActivate () {
     wx.showModal({
       title: '提示信息',
-      content: '确认激活年卡吗？',
+      content: `确认激活${this.data.dialogText}吗？`,
       cancelColor: '#666',
       confirmColor: '#98cdc6',
       confirmText: '激活',
@@ -122,8 +124,26 @@ Page({
     let cardObj = JSON.parse(options.str)
     console.log(cardObj)
     let that = this
+    if (cardObj.egg_type == 1 || cardObj.egg_type == 2) {
+      that.setData({
+        dialogText: '年卡'
+      })
+    } else {
+      that.setData({
+        dialogText: '季卡'
+      })
+    }
+    // else if (cardObj.egg_type == 2) {
+    //   that.setData({
+    //     dialogText: '年卡'
+    //   })
+    // }
     that.setData({
-      dCardObj: cardObj
+      dCardObj: cardObj,
+      userName: app.globalData.userInfo.nickname,
+    })
+    wx.setNavigationBarTitle({
+      title: cardObj.title
     })
   },
 

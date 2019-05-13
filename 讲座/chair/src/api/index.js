@@ -11,7 +11,7 @@ Ax.interceptors.response.use(
   res => {
     if (res.data.code) {
       if (res.data.code === "200") return Promise.resolve(res.data.data);
-      else app.$toast(response.data.msg)
+      else app.$toast(res.data.msg)
     }
     else return Promise.resolve(res.data);
   },

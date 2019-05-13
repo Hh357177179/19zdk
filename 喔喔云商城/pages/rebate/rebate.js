@@ -11,7 +11,15 @@ Page({
     page: 1,
     pagesize: 10,
     counts: 0,
-    rebateArr: []
+    rebateArr: [],
+    noDatas: false
+  },
+
+  // 跳转返利说明
+  explainR () {
+    wx.navigateTo({
+      url: '/pages/explain/explain',
+    })
   },
 
   // 获取列表
@@ -23,7 +31,12 @@ Page({
       pagesize: that.data.pagesize
     }
     postRequest('/main/myBalanceLog', params, true).then(res => {
-      console.log(res)
+      if (res.list.length == 0) {
+        console.log(213)
+        that.setData({
+          noDatas: true
+        })
+      }
       that.setData({
         rebateArr: that.data.rebateArr.concat(res.list),
         counts: res.count

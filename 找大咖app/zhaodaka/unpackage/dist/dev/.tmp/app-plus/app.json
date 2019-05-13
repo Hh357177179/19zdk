@@ -1,0 +1,56 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/login/login",
+    "pages/register/register",
+    "pages/project/project",
+    "pages/bazaar/bazaar",
+    "pages/me/me"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8",
+    "bounce": "none"
+  },
+  "tabBar": {
+    "color": "#333333",
+    "selectedColor": "#1F5ADD",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "static/img/home.png",
+        "selectedIconPath": "static/img/homec.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/project/project",
+        "iconPath": "static/img/project.png",
+        "selectedIconPath": "static/img/projectc.png",
+        "text": "项目"
+      },
+      {
+        "pagePath": "pages/bazaar/bazaar",
+        "iconPath": "static/img/bazaar.png",
+        "selectedIconPath": "static/img/bazaarc.png",
+        "text": "应用市场"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "iconPath": "static/img/me.png",
+        "selectedIconPath": "static/img/mec.png",
+        "text": "个人中心"
+      }
+    ]
+  },
+  "splashscreen": {
+    "alwaysShowBeforeRender": true,
+    "autoclose": false
+  },
+  "appname": "找大咖",
+  "compilerVersion": "1.9.4",
+  "usingComponents": {}
+}

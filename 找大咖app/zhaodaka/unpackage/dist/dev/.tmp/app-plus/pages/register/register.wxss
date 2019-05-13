@@ -1,0 +1,101 @@
+.register {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: url('http://project.zhaodaka.cn/static/regback.png') no-repeat;
+  background-size: 100% 100%;
+}
+.register .status_bar {
+  height: var(--status-bar-height);
+  width: 100%;
+}
+.register .register_nav {
+  width: 100%;
+  position: relative;
+  margin-top: 20px;
+}
+.register .register_nav .back_icon {
+  position: absolute;
+  left: 24px;
+  width: 50rpx;
+  height: 50rpx;
+}
+.register .register_nav .back_icon image {
+  width: 100%;
+  height: 100%;
+}
+.register .register_nav .register_title {
+  font-size: 36rpx;
+  color: #fff;
+  text-align: center;
+}
+.register .join_tel {
+  width: 380rpx;
+  border-bottom: 1px solid #fff;
+  margin: 380rpx auto 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  line-height: 50rpx;
+  padding: 0 40rpx 20rpx;
+}
+.register .join_tel .en_area {
+  font-size: 36rpx;
+  color: #fff;
+}
+.register .join_tel .input_tel {
+  font-size: 32rpx;
+  color: #fff;
+  margin-left: 40rpx;
+}
+.register .join_code {
+  width: 380rpx;
+  border-bottom: 1px solid #fff;
+  padding: 0 40rpx 20rpx;
+  margin: 60rpx auto 0;
+  font-size: 38rpx;
+  color: #fff;
+  text-align: center;
+  font-weight: 300;
+}
+.register .join_btn {
+  width: 400rpx;
+  height: 100rpx;
+  font-size: 44rpx;
+  color: #c3c3c3;
+  line-height: 100rpx;
+  border-radius: 50rpx;
+  -webkit-box-shadow: 0px 1px 12px 0px rgba(0, 0, 0, 0.17);
+          box-shadow: 0px 1px 12px 0px rgba(0, 0, 0, 0.17);
+  background: #e1e1e1;
+  margin-top: 180rpx;
+}
+.register .join_btn .join_icon {
+  width: 56rpx;
+  height: 56rpx;
+  float: right;
+  margin-top: 22rpx;
+  margin-right: 10rpx;
+}
+.register .bot_text {
+  width: 100%;
+  position: fixed;
+  text-align: center;
+  bottom: 27px;
+}
+.register .bot_text .join_small_text {
+  font-size: 22rpx;
+  color: #C7D8FE;
+  margin-bottom: 18rpx;
+  opacity: 0.7;
+}
+.register .bot_text .join_big_text {
+  font-size: 24rpx;
+  color: #C7D8FE;
+}
+

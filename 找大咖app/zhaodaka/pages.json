@@ -1,0 +1,85 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				"titleNView": false,
+				"navigationStyle": "custom"
+			}
+		}, {
+			"path": "pages/login/login",
+			"style": {
+				"titleNView": false,
+				"navigationStyle": "custom"
+			}
+		}, {
+			"path": "pages/register/register",
+			"style": {
+				"titleNView": false,
+				"navigationStyle": "custom"
+			}
+		}, {
+			"path": "pages/project/project",
+			"style": {}
+		}, {
+			"path": "pages/bazaar/bazaar",
+			"style": {
+				"navigationBarBackgroundColor": "#76A1FF",
+				"navigationBarTextStyle": "white",
+				"navigationBarTitleText": "找大咖应用市场",
+				"backgroundColorTop": "#76A1FF"
+			}
+		}, {
+			"path": "pages/me/me",
+			"style": {
+				"titleNView": false,
+				"navigationStyle": "custom"
+			}
+		}
+	],
+
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8",
+		"bounce": "none"
+	},
+
+	"tabBar": {
+		"color": "#333333",
+		"selectedColor": "#1F5ADD",
+		// "borderStyle": "#1F5ADD",
+		"backgroundColor": "#ffffff",
+		"list": [{
+			"pagePath": "pages/index/index",
+			"iconPath": "static/img/home.png",
+			"selectedIconPath": "static/img/homec.png",
+			"text": "首页"
+		}, {
+			"pagePath": "pages/project/project",
+			"iconPath": "static/img/project.png",
+			"selectedIconPath": "static/img/projectc.png",
+			"text": "项目"
+		}, {
+			"pagePath": "pages/bazaar/bazaar",
+			"iconPath": "static/img/bazaar.png",
+			"selectedIconPath": "static/img/bazaarc.png",
+			"text": "应用市场"
+		}, {
+			"pagePath": "pages/me/me",
+			"iconPath": "static/img/me.png",
+			"selectedIconPath": "static/img/mec.png",
+			"text": "个人中心"
+		}]
+	},
+
+	"condition": { //模式配置，仅开发期间生效
+		"current": 0, //当前激活的模式(list 的索引项)
+		"list": [{
+			"name": "", //模式名称
+			"path": "", //启动页面，必选
+			"query": "" //启动参数，在页面的onLoad函数里面得到
+		}]
+	}
+}

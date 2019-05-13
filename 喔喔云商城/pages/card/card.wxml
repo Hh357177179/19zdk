@@ -33,9 +33,11 @@
           <text class='allNum'>总数：{{item.egg_surplus}}枚</text>
           <view class='clear'></view>
         </view>
-        <view class='create_date' wx:if="{{item.use_id != 0}}">到期时间：{{item.expire_time}}</view>
-        <view class='create_date' wx:else>未激活（可激活或转赠）</view>
-        <view class='end_toast' wx:if="{{showDate == 1}}">您的年卡即将到期，请尽快发起配送</view>
+        <view class='bottom_text_card'>
+          <view class='create_date' wx:if="{{item.use_id != 0}}">到期时间：{{item.expire_time}}</view>
+          <view class='create_date' wx:else>未激活（可激活或转赠）</view>
+          <view class='end_toast' wx:if="{{showDate == 1}}">您的年卡即将到期，请尽快发起配送</view>
+        </view>
       </view>
     </block>
   </view>
@@ -49,9 +51,12 @@
         <radio-group class="radio-group" bindchange="radioChange">
           <block wx:for="{{buyArr}}" wx:key="index">
             <radio value="{{item.id}}" color='#98cdc6' class='radio_list'>
-              <view class='radio_title'>{{item.title}}</view>
-              <view class='radio_info' wx:if="{{item.id == 1}}">{{item.money}}元/年，共{{item.egg_number}}枚新鲜土鸡蛋</view>
-              <view class='radio_info' wx:if="{{item.id == 2}}">{{item.money}}元/年，共{{item.egg_number}}枚新鲜乌鸡蛋</view>
+              <view class='radio_title'>{{item.title}}<view wx:if='{{item.status == 2}}' class='promotion'>（促销）</view></view>
+              <view class='radio_info' wx:if="{{item.id == 1}}">{{item.egg_number}}枚，{{item.money}}元/年</view>
+              <view class='radio_info' wx:if="{{item.id == 2}}">{{item.egg_number}}枚，{{item.money}}元/年</view>
+              <view class='radio_info' wx:if="{{item.id == 3}}">{{item.egg_number}}枚，{{item.money}}元/季</view>
+              <view class='radio_info' wx:if="{{item.id == 4}}">{{item.egg_number}}枚，{{item.money}}元/季</view>
+              <view class='promotion_text' wx:if='{{item.status == 2}}'>购买该卡，赠送{{item.cx_goods_number}}只{{item.cx_goods_title}}</view>
             </radio>
           </block>
         </radio-group>

@@ -17,7 +17,9 @@
     "pages/cardinfo/cardinfo",
     "pages/rebate/rebate",
     "pages/nowdelivery/nowdelivery",
-    "pages/accomplish/accomplish"
+    "pages/accomplish/accomplish",
+    "pages/explain/explain",
+    "pages/bannerDetail/bannerDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -48,5 +50,6 @@
         "selectedIconPath": "images/meIconc.png"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

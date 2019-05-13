@@ -18,6 +18,10 @@
         <div class="info_teacher overflowText">讲座地点：{{item.address}}</div>
       </div>
     </div>
+    <div class="er_code">
+      <img src="../assets/img/ercode.jpeg" alt="">
+    </div>
+    <div class="er_text">如果要详细了解“渔妈妈家庭教育”，请扫码关注公众号</div>
   </div>
 </template>
 
@@ -63,7 +67,7 @@ export default {
     .success_result{
       width: 100%;
       background: #fff;
-      padding-top: 30px;
+      padding-top: 20px;
       .s_pic{
         margin: 0 auto 20px;
         width: 64px;
@@ -86,11 +90,11 @@ export default {
       background: #cba787;
       color: #fff;
       font-size: 18px;
-      margin: 40px auto 0;
+      margin: 20px auto 0;
       text-align: center;
     }
     .pay_class{
-      margin-top: 40px;
+      margin-top: 20px;
       .pay_title{
         padding: 0 20px;
         font-size: 16px;
@@ -128,6 +132,21 @@ export default {
         font-size: 14px;
         color:rgba(25,31,37,0.72);
       }
+    }
+    .er_code{
+      width: 100px;
+      height: 100px;
+      margin: 0 auto;
+      img{
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .er_text{
+      font-size: 13px;
+      color: #333;
+      text-align: center;
+      margin-top: 5px;
     }
   }
 </style>

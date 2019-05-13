@@ -9,7 +9,7 @@
     <view class='create_date' wx:if="{{dCardObj.use_id != 0}}">到期时间：{{dCardObj.expire_time}}</view>
     <view class='create_date' wx:else>未激活（可激活或转赠）</view>
   </view>
-  <view class='infocard_label'>温馨提示：</view>
+  <view class='infocard_label'>{{userName}}。您好</view>
   <view class='infocard_text'>
     年卡激活成功后，开始生效，有效期一年，请在有效期内提取完鸡蛋，以免过期后给您带来不必要的损失。此卡不激活，也可以选择转赠他人使用</view>
   <view class='handleBtn' wx:if="{{dCardObj.use_id == 0}}">

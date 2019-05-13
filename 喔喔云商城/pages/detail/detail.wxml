@@ -22,7 +22,7 @@
           <text>￥{{detailObj.price}}</text>
         </view>
         <view class='dc_storage'>库存 {{detailObj.stock}}</view>
-        <view class='delivery'>不单独配送，和鸡蛋一起配送</view>
+        <view class='delivery'>下单后24小时内送到家</view>
         <view class='clear'></view>
       </view>
     </view>

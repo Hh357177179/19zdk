@@ -1,7 +1,5 @@
 <template>
-  <div class="author">
-    
-  </div>
+  <div class="author"></div>
 </template>
 
 <script>
@@ -11,8 +9,9 @@ export default {
   },
   created () {
     console.log(this.$route.query.token)
-    localStorage.setItem('token',this.$route.query.token)
-    if (localStorage.getItem('token')) {
+    localStorage.setItem('tokenns',this.$route.query.token)
+    const tokenns = localStorage.getItem('tokenns')
+    if (tokenns) {
       this.$router.push(`${localStorage.getItem('paths')}`)
     } else {
       this.$toast.fail({

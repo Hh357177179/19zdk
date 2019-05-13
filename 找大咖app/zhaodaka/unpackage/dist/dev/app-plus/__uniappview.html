@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+    <head>
+        <meta charset="UTF-8" />
+        <script>
+            var coverSupport = 'CSS' in window && typeof CSS.supports === 'function' && (CSS.supports('top: env(a)') || CSS.supports('top: constant(a)'))
+            document.write('<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0' + (coverSupport ? ', viewport-fit=cover' : '') + '" />')
+        </script>
+        <title>View</title>
+        <style>
+            * {
+                -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+                -webkit-tap-highlight-color: transparent;
+            }
+
+            input[type="search"i]::-webkit-search-cancel-button {
+                display: none;
+            }
+
+        </style>
+        <script>
+            var __wxConfig = {"debug":false,"appname":"找大咖","entryPagePath":"pages/index/index.html","page":{"pages/index/index.html":{"window":{"titleNView":false,"navigationStyle":"custom","usingComponents":{}}},"pages/login/login.html":{"window":{"titleNView":false,"navigationStyle":"custom","usingComponents":{}}},"pages/register/register.html":{"window":{"titleNView":false,"navigationStyle":"custom","usingComponents":{}}},"pages/project/project.html":{"window":{"usingComponents":{}}},"pages/bazaar/bazaar.html":{"window":{"navigationBarBackgroundColor":"#76A1FF","navigationBarTextStyle":"white","navigationBarTitleText":"找大咖应用市场","backgroundColorTop":"#76A1FF","usingComponents":{}}},"pages/me/me.html":{"window":{"titleNView":false,"navigationStyle":"custom","usingComponents":{}}}},"global":{"window":{"navigationBarTextStyle":"black","navigationBarTitleText":"uni-app","navigationBarBackgroundColor":"#F8F8F8","backgroundColor":"#F8F8F8","bounce":"none"}},"tabBar":{"color":"#333333","selectedColor":"#1F5ADD","backgroundColor":"#ffffff","borderStyle":"black","list":[{"pagePath":"pages/index/index.html","iconPath":"static/img/home.png","selectedIconPath":"static/img/homec.png","text":"首页"},{"pagePath":"pages/project/project.html","iconPath":"static/img/project.png","selectedIconPath":"static/img/projectc.png","text":"项目"},{"pagePath":"pages/bazaar/bazaar.html","iconPath":"static/img/bazaar.png","selectedIconPath":"static/img/bazaarc.png","text":"应用市场"},{"pagePath":"pages/me/me.html","iconPath":"static/img/me.png","selectedIconPath":"static/img/mec.png","text":"个人中心"}],"position":"bottom"},"networkTimeout":{"request":60000,"connectSocket":60000,"uploadFile":60000,"downloadFile":60000},"platform":"devtools","pages":["pages/index/index","pages/login/login","pages/register/register","pages/project/project","pages/bazaar/bazaar","pages/me/me"],"subPackages":[],"splashscreen":{"alwaysShowBeforeRender":true,"autoclose":false},"compilerVersion":"1.9.4","usingComponents":{}}
+
+        </script>
+        <script>
+            var __id__ = '';
+            window.__dispatchGenerateFunc__ = function(page) {
+                __id__ = page;
+                document.title = page;
+                // window.history.pushState('', '', page);
+                plus.webview.currentWebview().setJsFile('_www/' + page.replace('.html', '.js'));
+            };
+
+        </script>
+        <script src="__uniappes6.js"></script>
+        <script src="uniapp://ready"></script>
+    </head>
+
+    <body>
+        <div></div>
+    </body>
+
+</html>

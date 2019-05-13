@@ -1,6 +1,7 @@
 <!--pages/rebate/rebate.wxml-->
 <wxs module="dateFr" src="../../utils/dateFr.wxs"></wxs>
 <view class='rebate'>
+ <view class='explain' bindtap='explainR'>返利说明</view>
   <block wx:for="{{rebateArr}}" wx:key="index">
     <view class='rebate_list'>
       <text class='rebate_text'>{{item.note}}</text>
@@ -8,4 +9,5 @@
       <view class='clear'></view>
     </view>
   </block>
+  <view class='noData' wx:if="{{noDatas}}">亲，您还没有获得分享返利，打开返利说明，了解我们的分享规则，还要继续努力哦</view>
 </view>

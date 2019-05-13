@@ -113,7 +113,7 @@ Page({
       postRequest('/main/withdraw', params, false).then(res => {
         console.log(res)
         wx.showToast({
-          title: '您的提现申请已经提交，我们将在3个工作日内处理，请耐心等待',
+          title: '您的提现请求已提交，资金将在三个工作日内到账。',
           icon: 'none',
           duration: 2000
         })

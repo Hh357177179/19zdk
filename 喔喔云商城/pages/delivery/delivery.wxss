@@ -157,6 +157,9 @@ page{
 }
 .comityr_info{
   margin-top: 35rpx;
+  /* background: #f00; */
+  width: 300rpx;
+  float: left;
 }
 .comityr_price{
   font-size: 36rpx;
@@ -399,4 +402,16 @@ page{
   float: left;
   line-height: 48rpx;
   font-size: #666;
+}
+.delete_btn{
+  float: right;
+  width: 100rpx;
+  height: 52rpx;
+  text-align: center;
+  font-size: 24rpx;
+  margin-top: 35rpx;
+  background: #98cdc6;
+  line-height: 52rpx;
+  color: #fff;
+  border-radius: 8rpx;
 }

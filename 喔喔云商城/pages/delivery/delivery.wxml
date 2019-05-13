@@ -60,6 +60,7 @@
         <text class='comityr_price'>￥{{item.good_price}}</text>
         <text class='comityr_num'>x{{item.num}}</text>
       </view>
+      <view class='delete_btn' bindtap='deleteList' data-id='{{item.id}}'>删除</view>
     </view>
     <view class='clear'></view>
   </view>
@@ -69,7 +70,7 @@
     <view class='year_list'>
       <radio-group class='cy_l' bindchange="cRadioId">
         <block wx:for="{{cardList}}" wx:key="index">
-          <radio value='{{item.id}}' color='#98cdc6' class="radio" bindtap='ctype' data-type="{{item.egg_type}}">
+          <radio value='{{item.id}}' color='#98cdc6' class="radio" data-nums="{{item.egg_surplus}}" bindtap='ctype' data-type="{{item.egg_type}}">
             <text class='radio_text'>{{item.title}}</text>
             <view class='card_info'>
               <text>到期时间：{{item.expire_time}}</text>
@@ -100,7 +101,7 @@
     <view class='cho_entries'>
       <view class='entries_left'>
         <view class='entries_text'>选择个数：</view>
-        <view class='entries_des'>每份15个起送，每份15个</view>
+        <view class='entries_des'>每次配送鸡蛋为15枚的倍数</view>
       </view>
       <view class='buynum_add'>
         <view class='buy_subtract' bindtap='buySubtract'>
@@ -134,7 +135,7 @@
         <view class='clear'></view>
       </view>
       <view class='allb_text'>含配送费</view> -->
-      <view class='info_text'>不单独配送，和鸡蛋一起配送</view>
+      <!-- <view class='info_text'>不单独配送，和鸡蛋一起配送</view> -->
     </view>
     <view class='bot_sub' bindtap='submitOrder'>提交订单</view>
   </view>

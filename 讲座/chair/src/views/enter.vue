@@ -1,5 +1,7 @@
 <template>
   <div class="home">
+    <p class="school_name">{{school}}</p>
+    <p class="main_info">报名须知：每个用户仅可报名一个讲座</p>
     <div class="card_list" v-for="(item, index) in listArr" :key="index" @click="detailPage(item.id)">
       <!-- <div class="card_pic">
         <img src="../assets/img/c1.jpg" alt="">
@@ -21,7 +23,8 @@ export default {
     return {
       channel_id: '',
       type: 1,
-      listArr: []
+      listArr: [],
+      school: ''
     }
   },
   created () {
@@ -36,7 +39,9 @@ export default {
         type: this.type
       }
       allList(params).then(res => {
-        this.listArr = [...res]
+        console.log(res)
+        this.school = res.school.title
+        this.listArr = [...res.activity]
       })
     },
     // 详情
@@ -57,6 +62,18 @@ export default {
     min-height: 100vh;
     background: #F6F6F6;
     padding-top: 16px;
+    .school_name{
+      font-size: 16px;
+      color: #cba787;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .main_info{
+      font-size: 14px;
+      color: #cba787;
+      margin-left: 20px;
+      margin-bottom: 10px;
+    }
     .card_list{
       margin-bottom: 16px;
       background: #fff;
@@ -72,8 +89,7 @@ export default {
         }
       }
       .card_info{
-        margin-left: 15px;
-        width: 300px;
+        width: 330px;
       }
       .info_title{
         font-size: 18px;

@@ -3,7 +3,7 @@
   <view class='home_leading'>
     <swiper style='width: 100%;height:100%;' circular="{{circular}}" interval="{{interval}}" autoplay="{{autoplay}}" duration="{{duration}}">
       <block wx:for="{{imgUrls}}" wx:key="index">
-        <swiper-item>
+        <swiper-item bindtap="bannerDetail" data-id="{{item.id}}">
           <image src="{{item.picurl}}" class="slide-image" width="100%" height="100%" />
         </swiper-item>
       </block>
@@ -29,4 +29,7 @@
     <view class='clear'></view>
   </view>
   <view class='noData' wx:if="{{noDataShow}}">已经到底了哦</view>
+  <button class='customer' open-type="contact" bindcontact="handleContact">
+    <image src='../../images/customer.png'></image>
+  </button>
 </view>

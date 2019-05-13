@@ -1,0 +1,7 @@
+<!--pages/explain/explain.wxml-->
+<import src="../../wxParse/wxParse.wxml"/>
+<view class='explain_info'>
+  <view class='info_text'>
+    <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+  </view>
+</view>

@@ -73,7 +73,7 @@ page {
 }
 
 .main_shop {
-  padding: 20rpx 30rpx;
+  padding: 30rpx;
   border-bottom: 1rpx solid rgba(25, 31, 37, 0.12);
 }
 
@@ -89,12 +89,13 @@ page {
 }
 
 .ms_right {
-  float: left;
   margin-left: 20rpx;
+  width: 100%;
 }
 
 .msr_text {
-  width: 510rpx;
+  float: left;
+  width: 400rpx;
   height: 80rpx;
   font-size: 28rpx;
   color: #191f25;
@@ -106,7 +107,7 @@ page {
   -webkit-box-orient: vertical;
 }
 .msr_price{
-  margin-top: 34rpx;
+  float: right;
 }
 .msr_pnum{
   color: rgba(25,31,37,0.72);
@@ -194,4 +195,11 @@ page {
   color: #666;
   /* text-align: right; */
   padding: 0 30rpx;
+}
+.list_text{
+  font-size: 30rpx;
+  color: #333;
+}
+.view_inline{
+  display: inline;
 }

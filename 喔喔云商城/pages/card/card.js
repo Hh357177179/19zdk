@@ -1,4 +1,4 @@
-// pages/yearcard/yearcard.js
+{{}}// pages/yearcard/yearcard.js
 const app = getApp()
 const util = require('../../utils/util.js')
 import { postRequest } from '../../utils/httpRequest.js'
@@ -102,7 +102,10 @@ Page({
     let that = this
     let params = {}
     postRequest('/main/cardList', params, true).then(res => {
-      console.log(res)
+      console.log(123,res)
+      for (let i = 0;i < res.length; i++) {
+        res[i].money = res[i].money.split('.')[0]
+      }
       that.setData({
         buyArr: res,
         buyShow: true
