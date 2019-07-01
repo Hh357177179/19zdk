@@ -28,11 +28,19 @@
         </view>
         <view class='mos_text'>待领取</view>
       </view>
+      <view class='mo_card' bindtap='waitSend'>
+        <view class='mo_stayPic'>
+          <image src='../../images/waitPic.png'></image>
+        </view>
+        <view class='mos_text'>①正在配送</view>
+        <view class='mos_info'>(普通商品)</view>
+      </view>
       <view class='mo_card' bindtap='distribution'>
         <view class='mo_stayPic'>
           <image src='../../images/distribution.png'></image>
         </view>
-        <view class='mos_text'>正在配送</view>
+        <view class='mos_text'>②正在配送</view>
+        <view class='mos_info'>(年卡、季卡)</view>
       </view>
       <view class='mo_card' bindtap='achieve'>
         <view class='mo_stayPic'>

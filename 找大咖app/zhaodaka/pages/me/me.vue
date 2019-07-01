@@ -29,7 +29,7 @@
 			</view>
 		</view>
 		<view class="me_card">
-			<view class="me_card_list">
+			<view class="me_card_list" @click="meKa">
 				<view class="me_card_pic">
 					<image src="../../static/img/kapoint.png" mode=""></image>
 				</view>
@@ -57,6 +57,13 @@
 			return {
 
 			};
+		},
+		methods: {
+			meKa () {
+				uni.navigateTo({
+					url: "/pages/meka/meka"
+				})
+			}
 		}
 	}
 </script>

@@ -86,7 +86,7 @@ page{
 }
 .mo_card{
   padding: 47rpx 0 42rpx;
-  width: 33.33%;
+  width: 25%;
   float: left;
   text-align: center;
 }
@@ -105,6 +105,11 @@ page{
   font-weight: 400;
   font-size: 24rpx;
   margin-top: 15rpx;
+}
+.mos_info{
+  color: rgba(25,31,37,0.72);
+  font-weight: 400;
+  font-size: 24rpx;
 }
 .year_card{
   margin-top: 20rpx;

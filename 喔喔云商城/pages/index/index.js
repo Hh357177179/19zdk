@@ -17,7 +17,8 @@ Page({
     autoplay: true,
     duration: 1000,
     interval: 2500,
-    circular: true
+    circular: true,
+    topShow: false
   },
 
   rCard () {
@@ -65,10 +66,17 @@ Page({
     let that = this
     let params = {}
     postRequest('/main/goodsListStick', params, true).then(res => {
-      // console.log(res)
-      that.setData({
-        // topObj: res[0]
-      })
+      console.log(11111,res)
+      if (res.length == 0) {
+        that.setData({
+          topShow: false
+        })
+      } else {
+        that.setData({
+          topShow: true,
+          topObj: res[0]
+        })
+      }
     })
   },
 
@@ -80,7 +88,7 @@ Page({
       pagesize: that.data.pagesize
     }
     postRequest('/main/goodsList', params, true).then(res => {
-      // console.log(res)
+      console.log(res)
       that.setData({
         counts: res.count,
         commodityArr: that.data.commodityArr.concat(res.list)

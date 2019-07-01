@@ -143,6 +143,11 @@ Page({
       url: '/pages/meorder/meorder?type=' + 3,
     })
   },
+  waitSend () {
+    wx.navigateTo({
+      url: '/pages/meorder/meorder?type=' + 4,
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载

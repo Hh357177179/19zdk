@@ -19,7 +19,8 @@
     "pages/nowdelivery/nowdelivery",
     "pages/accomplish/accomplish",
     "pages/explain/explain",
-    "pages/bannerDetail/bannerDetail"
+    "pages/bannerDetail/bannerDetail",
+    "pages/shopage/shopage"
   ],
   "window": {
     "backgroundTextStyle": "light",

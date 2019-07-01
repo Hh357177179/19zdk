@@ -76,7 +76,7 @@
         </view>
         <view class='clear'></view>
       </view>
-      <view class='buy_order_submit' bindtap='buyOrder'>立即购买</view>
+      <view class='buy_order_submit' data-shop='' bindtap='buyOrder'>立即购买</view>
     </view>
   </wux-popup>
 </view>

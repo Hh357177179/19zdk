@@ -36,7 +36,15 @@
 				"navigationStyle": "custom"
 			}
 		}
-	],
+	    ,{
+            "path" : "pages/meka/meka",
+            "style" : {
+							"navigationBarBackgroundColor": "#76A1FF",
+							"navigationBarTextStyle": "white",
+							"navigationBarTitleText": "咖点"
+						}
+        }
+    ],
 
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

@@ -13,6 +13,17 @@
     <view class='hr_title'>喔喔云推荐</view>
   </view>
   <view class='hl_card'>
+    <view wx:if="{{topShow}}" class='hl_list' bindtap='skipDetail' data-id='{{topObj.id}}'>
+      <view class='hl_pic'>
+        <image src='{{topObj.logo}}'></image>
+      </view>
+      <view class='hf_title'>{{topObj.title}}</view>
+      <view class='hfs_tit'>
+        <text class='hf_price'>￥{{topObj.price}}</text>
+        <text class='hf_keep'>库存 {{topObj.stock}}</text>
+        <view class='clear'></view>
+      </view>
+      </view>
     <block wx:for="{{commodityArr}}" wx:key="index">
       <view class='hl_list' bindtap='skipDetail' data-id='{{item.id}}'>
         <view class='hl_pic'>

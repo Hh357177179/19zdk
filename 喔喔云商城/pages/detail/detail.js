@@ -17,12 +17,20 @@ Page({
     buyShow: false,
     buyNum: 1,
     bindName: 'article',
-    article_content: ''
+    article_content: '',
+    orderIds: ''
+
   },
   handleContact(e) {
     console.log(e.path)
     console.log(e.query)
   },
+
+  // buyOrder () {
+  //   wx.navigateTo({
+  //     url: '/pages/shopage/shopage'
+  //   })
+  // },
 
   // 下单购买
   buyOrder () {
@@ -35,6 +43,9 @@ Page({
     console.log(params)
     postRequest('/main/goodOrderCreate', params, true).then(res => {
       console.log(res)
+      that.setData({
+        orderIds: res.order_id
+      })
       let parOrder = {
         token: app.globalData.userInfo.openid,
         order_id: res.order_id
@@ -54,7 +65,7 @@ Page({
               buyShow: false
             })
             wx.redirectTo({
-              url: '/pages/payment/payment'
+              url: `/pages/shopage/shopage?orderIds=${that.data.orderIds}`,
             })
           },
           'fail': function (res) {

@@ -1,16 +1,16 @@
 <template>
   <div class="home_pay">
     <p class="school_name">{{school}}</p>
-    <p class="main_info">报名须知：每个用户仅可报名一个讲座</p>
+    <p class="main_info">报名须知：每个用户仅可报名一个讲座/辅导</p>
     <div class="card_list" v-for="(item, index) in listArr" :key="index" @click="detailPage(item.id)">
       <!-- <div class="card_pic">
         <img src="../assets/img/c1.jpg" alt="">
       </div> -->
       <div class="card_info">
         <div class="info_title overflowText">{{item.title}}</div>
-        <div class="info_teacher overflowText">讲座老师：{{item.teacher_name}}</div>
-        <div class="info_teacher overflowText">讲座时间：{{item.start_time}}</div>
-        <div class="info_teacher overflowText">讲座地点：{{item.address}}</div>
+        <div class="info_teacher overflowText">讲座/辅导老师：{{item.teacher_name}}</div>
+        <div class="info_teacher overflowText">讲座/辅导时间：{{item.start_time}}</div>
+        <div class="info_teacher overflowText">讲座/辅导地点：{{item.address}}</div>
       </div>
     </div>
   </div>

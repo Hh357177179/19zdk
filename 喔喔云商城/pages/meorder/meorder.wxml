@@ -3,20 +3,36 @@
 <view class='meorder'>
   <view class='meorder_tab'>
     <view class='top_tab {{num == 1 ? "actives":""}}' data-num='1' bindtap='changeTop'>
-      <text class='tab_text {{num == 1 ? "active_bot":""}}'>待领取</text>
+      <view class='tab_text {{num == 1 ? "active_bot":""}}'>
+        <view>待领取</view>
+        <!-- <view class='color_none text_infos'>待领取</view> -->
+      </view>
+    </view>
+    <view class='top_tab {{num == 4 ? "actives":""}}' data-num='4' bindtap='changeTop'>
+      <view class='tab_text {{num == 4 ? "active_bot":""}}'>
+        <view>①正在配送</view>
+        <view class='text_infos'>(普通商品)</view>
+      </view>
     </view>
     <view class='top_tab {{num == 2 ? "actives":""}}' data-num='2' bindtap='changeTop'>
-      <text class='tab_text {{num == 2 ? "active_bot":""}}'>正在配送</text>
+      <view class='tab_text {{num == 2 ? "active_bot":""}}'>
+        <view>②正在配送</view>
+        <view class='text_infos'>(年卡、季卡)</view>
+      </view>
     </view>
     <view class='top_tab {{num == 3 ? "actives":""}}' data-num='3' bindtap='changeTop'>
-      <text class='tab_text {{num == 3 ? "active_bot":""}}'>已完成</text>
+      <view class='tab_text {{num == 3 ? "active_bot":""}}'>
+        <view>已完成</view>
+        <!-- <view class='color_none text_infos'>已完成</view> -->
+      </view>
     </view>
   </view>
   <block wx:if='{{num == 1}}'>
-    <view style='margin-top:100rpx;'>
+    <view style='margin-top:180rpx;'>
       <view class='hasCard' wx:for='{{hasCard}}' wx:key="index" bindtap='buyOrder'>
-        <text class='hasleft'>您还有未领取的{{item.title}}</text>
-        <text class='hasnum'>{{item.egg_surplus}}枚</text>
+        <view class='left_text'>
+          <text class='hasleft'>您还有未领取的{{item.title}}     {{item.egg_surplus}}枚</text>
+        </view>
         <text class='hasbtn'>领取</text>
         <view class='clear'></view>
       </view>
@@ -33,30 +49,38 @@
           <view class='clear'></view>
         </view>
         <view class='main_shop' data-ordId='{{item.id}}' bindtap='sOrders'>
-          <!-- <view class='ms_left'>
-            <image src='{{item.good_logo}}'></image>
-          </view> -->
-          <!-- <view class='ms_right'>
-            <view class='msr_text'>{{item.good_title}}</view>
-            <view class='msr_price'>
-              <text class='msr_pnum'>¥{{item.good_price}}</text>
-              <text class='msr_nums'>x{{item.num}}</text>
-            </view>
-          </view> -->
-          <!-- <view class='clear'></view> -->
           <view class='list_text'>您好，您有{{item.num}}件{{item.good_title}}待领取。</view>
-          <!-- <view class='all_shop'>共{{item.num}}件商品 合计：¥{{item.num * item.good_price}}</view> -->
         </view>
-        <view class='mb_btn' wx:if="{{num == 1}}" data-item='{{item}}' data-index='{{index}}' data-id='{{item.id}}' bindtap='rDelivery'>
-          <view class='mbp_order'>发起配送</view>
+        <view class='mb_btn' wx:if="{{num == 1}}">
+          <view class='mbp_order' data-item='{{item}}' data-index='{{index}}' data-id='{{item.id}}' bindtap='aloneSend'>单独配送</view>
+          <view class='mbp_order' wx:if='{{haveCard}}' data-item='{{item}}' data-index='{{index}}' data-id='{{item.id}}' bindtap='rDelivery'>与鸡蛋一起配送</view>
           <view class='clear'></view>
+        </view>
+      </view>
+    </block>
+
+    <!-- 等待配送 -->
+    <block wx:if="{{num == 4}}">
+      <view style='margin-top: 180rpx;'>
+        <view style='background: #fff;' wx:for="{{orderArr}}" wx:key="index" data-ordId='{{item.id}}'>
+          <view class='main_top'>
+            <view class='order_num'>订单编号：{{item.order_sn}}</view>
+            <view class='await_label'>等待配送</view>
+            <view class='clear'></view>
+          </view>
+          <view class='main_shop'>
+            <view style='margin-bottom: 20rpx;'>
+              <view class='list_text'>您好，您需要的 {{item.num}} 只 {{item.good_title}}，正在准备配送，请您耐心等待。
+              </view>
+            </view>
+          </view>
         </view>
       </view>
     </block>
 
     <!-- 正在配送 -->
     <block wx:if="{{num == 2}}">
-      <view style='margin-top: 100rpx;'>
+      <view style='margin-top: 180rpx;'>
         <view style='background: #fff;' wx:for="{{distributionArr}}" wx:key="index" data-ordId='{{item.id}}' bindtap='rNowDetail'>
           <view class='main_top'>
             <view class='order_num'>订单编号：OR{{item.create_time}}{{item.id}}</view>
@@ -66,25 +90,25 @@
           <view class='main_shop'>
             <view wx:if="{{item.goods_info.length != 0}}">
               <view wx:for="{{item.goods_info}}" wx:for-item="infos" wx:key="infos" style='margin-bottom: 20rpx;'>
-                <view class='list_text' wx:if="{{item.egg_type == 1}}">您好，您需要的 {{item.egg_number}} 枚土鸡蛋、{{infos.num}} 件 {{infos.title}},我们将于 {{item.send_day}} 
-                <view wx:if='{{item.send_time == 1}}' class='view_inline'>上午 8:00~15:00 之间为您配送到家，请耐心等待。</view>
-                <view wx:if='{{item.send_time == 2}}' class='view_inline'>下午 13:00~20:00 之间为您配送到家，请耐心等待。</view>
+                <view class='list_text' wx:if="{{item.egg_type == 1}}">您好，您需要的 {{item.egg_number}} 枚土鸡蛋、{{infos.num}} 件 {{infos.title}},我们将于 {{item.send_day}}
+                  <view wx:if='{{item.send_time == 1}}' class='view_inline'>上午 8:00~15:00 之间为您配送到家，请耐心等待。</view>
+                  <view wx:if='{{item.send_time == 2}}' class='view_inline'>下午 13:00~20:00 之间为您配送到家，请耐心等待。</view>
                 </view>
                 <view class='list_text' wx:if="{{item.egg_type == 2}}">您好，您需要的 {{item.egg_number}} 枚乌鸡蛋、{{infos.num}} 件 {{infos.title}},我们将于 {{item.send_day}}
-                <view wx:if='{{item.send_time == 1}}' class='view_inline'>上午 8:00~15:00 之间为您配送到家，请耐心等待。</view>
-                <view wx:if='{{item.send_time == 2}}' class='view_inline'>下午 13:00~20:00 之间为您配送到家，请耐心等待。</view>
+                  <view wx:if='{{item.send_time == 1}}' class='view_inline'>上午 8:00~15:00 之间为您配送到家，请耐心等待。</view>
+                  <view wx:if='{{item.send_time == 2}}' class='view_inline'>下午 13:00~20:00 之间为您配送到家，请耐心等待。</view>
                 </view>
               </view>
             </view>
             <view wx:if="{{item.goods_info.length == 0}}">
               <view style='margin-bottom: 20rpx;'>
                 <view class='list_text' wx:if="{{item.egg_type == 1}}">您好，您需要的 {{item.egg_number}} 枚土鸡蛋,我们将于 {{item.send_day}}
-                <view wx:if='{{item.send_time == 1}}' class='view_inline'>上午 8:00~15:00 之间为您配送到家，请耐心等待。</view>
-                <view wx:if='{{item.send_time == 2}}' class='view_inline'>下午 13:00~20:00 之间为您配送到家，请耐心等待。</view>
+                  <view wx:if='{{item.send_time == 1}}' class='view_inline'>上午 8:00~15:00 之间为您配送到家，请耐心等待。</view>
+                  <view wx:if='{{item.send_time == 2}}' class='view_inline'>下午 13:00~20:00 之间为您配送到家，请耐心等待。</view>
                 </view>
                 <view class='list_text' wx:if="{{item.egg_type == 2}}">您好，您需要的 {{item.egg_number}} 枚乌鸡蛋,我们将于 {{item.send_day}}
-                <view wx:if='{{item.send_time == 1}}' class='view_inline'>上午 8:00~15:00 之间为您配送到家，请耐心等待。</view>
-                <view wx:if='{{item.send_time == 2}}' class='view_inline'>下午 13:00~20:00 之间为您配送到家，请耐心等待。</view>
+                  <view wx:if='{{item.send_time == 1}}' class='view_inline'>上午 8:00~15:00 之间为您配送到家，请耐心等待。</view>
+                  <view wx:if='{{item.send_time == 2}}' class='view_inline'>下午 13:00~20:00 之间为您配送到家，请耐心等待。</view>
                 </view>
               </view>
             </view>
@@ -95,7 +119,7 @@
 
     <!-- 已完成 -->
     <block wx:if="{{num == 3}}">
-      <view style='margin-top:100rpx;'>
+      <view style='margin-top:180rpx;'>
         <view style='background: #fff;' wx:for="{{finishArr}}" wx:key="index" data-ordId='{{item.id}}' bindtap='rfinish'>
           <view class='main_top'>
             <view class='order_num'>订单编号：OR{{item.create_time}}{{item.id}}</view>
@@ -105,25 +129,30 @@
           <view class='main_shop'>
             <view wx:if="{{item.goods_info.length != 0}}">
               <view wx:for="{{item.goods_info}}" wx:for-item="infos" wx:key="infos" style='margin-bottom: 20rpx;'>
-                <view class='list_text' wx:if="{{item.egg_type == 1}}">您好，您需要的 {{item.egg_number}} 枚土鸡蛋、{{infos.num}} 只 {{infos.title}},我们已经于 {{item.send_day}} 
-                <view wx:if='{{item.send_time == 1}}' class='view_inline'>上午为您配送完成。</view>
-                <view wx:if='{{item.send_time == 2}}' class='view_inline'>下午为您配送完成。</view>
+                <view class='list_text' wx:if="{{item.egg_type == 1 && item.egg_number != 0}}">您好，您需要的 {{item.egg_number}} 枚土鸡蛋、{{infos.num}} 只 {{infos.title}},我们已经于 {{item.send_day}}
+                  <view wx:if='{{item.send_time == 1}}' class='view_inline'>上午为您配送完成。</view>
+                  <view wx:if='{{item.send_time == 2}}' class='view_inline'>下午为您配送完成。</view>
                 </view>
-                <view class='list_text' wx:if="{{item.egg_type == 2}}">您好，您需要的 {{item.egg_number}} 枚乌鸡蛋、{{infos.num}} 只 {{infos.title}},我们已经于 {{item.send_day}}
-                <view wx:if='{{item.send_time == 1}}' class='view_inline'>上午为您配送完成。</view>
-                <view wx:if='{{item.send_time == 2}}' class='view_inline'>下午为您配送完成。</view>
+                <view class='list_text' wx:if="{{item.egg_type == 2 && item.egg_number != 0}}">您好，您需要的 {{item.egg_number}} 枚乌鸡蛋、{{infos.num}} 只 {{infos.title}},我们已经于 {{item.send_day}}
+                  <view wx:if='{{item.send_time == 1}}' class='view_inline'>上午为您配送完成。</view>
+                  <view wx:if='{{item.send_time == 2}}' class='view_inline'>下午为您配送完成。</view>
+                </view>
+                <view class='list_text' wx:if="{{item.egg_number == 0}}">您好，您需要的 {{infos.num}} 只 {{infos.title}} 已经送达
+                <!-- ,我们已经于 {{item.send_day}} -->
+                  <!-- <view wx:if='{{item.send_time == 1}}' class='view_inline'>上午为您配送完成。</view>
+                  <view wx:if='{{item.send_time == 2}}' class='view_inline'>下午为您配送完成。</view> -->
                 </view>
               </view>
             </view>
             <view wx:if="{{item.goods_info.length == 0}}">
               <view style='margin-bottom: 20rpx;'>
                 <view class='list_text' wx:if="{{item.egg_type == 1}}">您好，您需要的 {{item.egg_number}} 枚土鸡蛋,我们已经于 {{item.send_day}}
-                <view wx:if='{{item.send_time == 1}}' class='view_inline'>上午为您配送完成。</view>
-                <view wx:if='{{item.send_time == 2}}' class='view_inline'>下午为您配送完成。</view>
+                  <view wx:if='{{item.send_time == 1}}' class='view_inline'>上午为您配送完成。</view>
+                  <view wx:if='{{item.send_time == 2}}' class='view_inline'>下午为您配送完成。</view>
                 </view>
                 <view class='list_text' wx:if="{{item.egg_type == 2}}">您好，您需要的 {{item.egg_number}} 枚乌鸡蛋,我们已经于 {{item.send_day}}
-                <view wx:if='{{item.send_time == 1}}' class='view_inline'>上午为您配送完成。</view>
-                <view wx:if='{{item.send_time == 2}}' class='view_inline'>下午为您配送完成。</view>
+                  <view wx:if='{{item.send_time == 1}}' class='view_inline'>上午为您配送完成。</view>
+                  <view wx:if='{{item.send_time == 2}}' class='view_inline'>下午为您配送完成。</view>
                 </view>
               </view>
             </view>

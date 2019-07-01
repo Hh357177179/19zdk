@@ -38,7 +38,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 16,
+			"current": 17,
 			"list": [
 				{
 					"id": -1,
@@ -141,6 +141,13 @@
 					"name": "分享",
 					"pathName": "pages/index/index",
 					"query": ""
+				},
+				{
+					"id": 17,
+					"name": "单独商品配送",
+					"pathName": "pages/shopage/shopage",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

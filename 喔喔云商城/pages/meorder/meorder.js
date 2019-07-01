@@ -22,7 +22,8 @@ Page({
     nowDate: '',
     hasCard: [],
     distributionArr: [],
-    finishArr:[]
+    finishArr:[],
+    haveCard: false
   },
 
   sOrders (e) {
@@ -63,6 +64,8 @@ Page({
       that.getCardList()
     } else if (nums == 2) {
       that.getNowList()
+    } else if (nums == 4) {
+      that.waitMeOrder()
     } else {
       that.getFinish()
     }
@@ -111,9 +114,23 @@ Page({
     }
     postRequest('/main/myYearCard', params, true).then(res => {
       console.log(res)
-      that.setData({
-        hasCard: res
-      })
+      if (res.length == 0) {
+        that.setData({
+          haveCard: false
+        })
+      } else {
+        that.setData({
+          hasCard: res,
+          haveCard: true
+        })
+      }
+    })
+  },
+
+  // 商品单独配送
+  aloneSend (e) {
+    wx.navigateTo({
+      url: `/pages/shopage/shopage?orderIds=${e.target.dataset.id}`
     })
   },
 
@@ -156,7 +173,36 @@ Page({
       pagesize: that.data.pagesize
     }
     postRequest('/main/goodOrderList', params, true).then(res => {
-      console.log(res)
+      console.log('待领取商品',res)
+      if (res.list.length != 0) {
+        that.setData({
+          meorderShow: true,
+          noDataShow: false
+        })
+      } else {
+        that.setData({
+          meorderShow: false,
+          noDataShow: true
+        })
+      }
+      that.setData({
+        orderArr: that.data.orderArr.concat(res.list),
+        counts: res.count
+      })
+    })
+  },
+  
+  // 等待配送
+  waitMeOrder() {
+    let that = this
+    let params = {
+      token: app.globalData.userInfo.openid,
+      type: 4,
+      page: that.data.page,
+      pagesize: that.data.pagesize
+    }
+    postRequest('/main/goodOrderList', params, true).then(res => {
+      console.log('等待配送', res)
       if (res.list.length != 0) {
         that.setData({
           meorderShow: true,
@@ -217,13 +263,18 @@ Page({
         num: options.type
       })
       that.getNowList()
-      console.log('正在配送')
+      // console.log('正在配送')
     } else if (options.type == 3) {
       that.setData({
         num: options.type
       })
-      console.log('已完成')
+      // console.log('已完成')
       that.getFinish()
+    } else if (options.type == 4) {
+      that.setData({
+        num: options.type
+      })
+      that.waitMeOrder()
     } else {
       that.getMeOrder()
       that.getCardList()
@@ -284,6 +335,9 @@ Page({
       } else if (that.data.num == 3) {
         console.log('已经完成')
         that.getFinish()
+      } else if (that.data.num == 4) {
+        console.log('等待配送')
+        that.waitMeOrder()
       }
     } else {
       util.showMsg('无更多数据')
