@@ -1,0 +1,39 @@
+/* pages/success/success.wxss */
+.success{
+  width: 100%;
+  height: 100vh;
+  background: #f6f6f6;
+  padding-top: 100rpx;
+}
+.success_icon{
+  width: 180rpx;
+  height: 180rpx;
+  margin: 0 auto;
+}
+.success_icon image{
+  width: 100%;
+  height: 100%;
+}
+.success_text{
+  font-size: 30rpx;
+  color: #e47e64;
+  text-align: center;
+  font-weight: bold;
+  margin: 20rpx 0 80rpx 0;
+}
+.success_desc{
+  font-size: 24rpx;
+  text-align: center;
+  margin-top: 10rpx;
+  color: #666;
+}
+.search_order{
+  width: 550rpx;
+  background: #e47e64;
+  border-radius: 10rpx;
+  font-size: 32rpx;
+  color: #fff;
+  text-align: center;
+  margin: 0 auto 150rpx;
+  line-height: 96rpx;
+}

@@ -58,7 +58,10 @@ export default {
           // console.log(this.page)
           this.getList()
         } else {
-          this.$toast('没有更多了')
+          this.$toast({
+            duration: 1000,
+            message: '没有更多了'
+          })
         }
       }
     },

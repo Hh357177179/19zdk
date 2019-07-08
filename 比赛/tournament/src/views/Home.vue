@@ -86,7 +86,7 @@
     <!-- 选择开始时间 -->
     <van-popup v-model="startShow" position="bottom">
       <van-datetime-picker
-        v-model="start_time"
+        v-model="start_times"
         type="time"
         @cancel="startCancel"
         @confirm="startConfirm"
@@ -96,7 +96,7 @@
     <!-- 结束时间 -->
     <van-popup v-model="endShow" position="bottom">
       <van-datetime-picker
-        v-model="end_time"
+        v-model="end_times"
         type="time"
         @cancel="endCancel"
         @confirm="endConfirm"
@@ -111,6 +111,8 @@ import Calendar from 'vue-calendar-component';
 export default {
   data () {
     return {
+      start_times: '',
+      end_times: '',
       note: '',
       sendEndTime: '',
       sendStartTime: '',
@@ -131,7 +133,8 @@ export default {
       columns: ['大课', '私教', '体能', '自主练习', '比赛'],
       types: '',
       nowList: [],
-      arr:[]
+      arr:[],
+      statusNum: 0
     }
   },
   methods: {
@@ -145,13 +148,37 @@ export default {
       this.start_time = ''
       this.end_time = ''
     },
+    getNowDate () {
+      var nowDates = new Date()
+      let hh = nowDates.getHours()
+      let mm = nowDates.getMinutes()
+      console.log(hh,mm)
+      if (hh < 10) {
+        hh = '0' + hh
+      }
+      if (mm < 10) {
+        mm = '0' + mm
+      }
+      this.start_times = `${hh}:${mm}`
+      this.end_times = `${hh}:${mm}`
+    },
     addSubmit () {
       if (this.drillTypeVal == '') {
-        this.$toast('请选择训练类型')
+        this.$toast({
+          duration: 1000,
+          message: '请选择训练类型'
+        })
+        
       } else if (this.start_time == '') {
-        this.$toast('请选择开始时间')
+        this.$toast({
+          duration: 1000,
+          message: '请选择开始时间'
+        })
       } else if (this.end_time == '') {
-        this.$toast('请选择结束时间')
+        this.$toast({
+          duration: 1000,
+          message: '请选择结束时间'
+        })
       } else {
         if (this.drillTypeVal == '大课') {
           this.types = 1
@@ -191,7 +218,8 @@ export default {
       }
     },
     endConfirm () {
-      if (this.end_time == '')  this.end_time = '00:00'
+      // if (this.end_time == '')  this.end_time = '00:00'
+      this.end_time = this.end_times
       let startStr = `${this.nowDate} ${this.end_time}:00`
       this.sendEndTime = Date.parse(new Date(startStr))  / 1000
       console.log(this.sendEndTime)
@@ -204,8 +232,10 @@ export default {
       this.startShow = false
     },
     startConfirm () {
-      if (this.start_time == '')  this.start_time = '00:00'
+      // if (this.start_time == '')  this.start_time = '00:00'
+      this.start_time = this.start_times
       let startStr = `${this.nowDate} ${this.start_time}:00`
+      console.log(startStr)
       this.sendStartTime = Date.parse(new Date(startStr))  / 1000
       console.log(this.sendStartTime)
       this.startShow = false
@@ -228,16 +258,21 @@ export default {
       this.typeShow = true
     },
     onClickLeft () {
+      this.statusNum = 0
       this.day = ''
       this.getList()
+      this.nowList = []
       this.showDay = false
     },
     onClickRight () {
       this.addShow = true
+      this.getNowDate()
+      console.log(this.nowDate)
     },
     clickDay (data) {
       this.nowList = []
       this.nowDate = data
+      this.statusNum = 1
       console.log('时间',data)
       let indexArrs = data.split('/')
       this.year = indexArrs[0]
@@ -269,16 +304,23 @@ export default {
         day: this.day
       }
       getCalenderList(params).then(res => {
-        this.calenderItem = res.list
-        this.planNumber = res.today
-        this.nowList = res.list
-        console.log(res.list)
-        let arrs = []
-        res.list.forEach(item => {
-          // console.log(this.dataTime(item.start_time))
-          arrs.push(this.dataTime(item.start_time))
-        });
-        this.arr = arrs
+        if (res.list.length == 0 && this.statusNum == 1) {
+          this.$toast({
+            duration: 1000,
+            message: '今日暂无计划'
+          })
+        } else {
+          this.calenderItem = res.list
+          this.planNumber = res.today
+          this.nowList = res.list
+          console.log(res.list)
+          let arrs = []
+          res.list.forEach(item => {
+            // console.log(this.dataTime(item.start_time))
+            arrs.push(this.dataTime(item.start_time))
+          });
+          this.arr = arrs
+        }
       })
     }
   },

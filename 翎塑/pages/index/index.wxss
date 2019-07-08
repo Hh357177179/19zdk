@@ -1,0 +1,159 @@
+/**index.wxss**/
+.clear{
+  clear: both;
+}
+.home{
+  width: 100%;
+  min-height: 100vh;
+  background: #f6f6f6;
+}
+.top_main{
+  width: 100%;
+  height: 300rpx;
+  background: #333;
+  position: relative;
+}
+.user{
+  width: 700rpx;
+  /* height: 320rpx; */
+  background: #fff;
+  position: absolute;
+  top: 40rpx;
+  left: calc(50% - 350rpx);
+  border-radius: 10rpx;
+  padding-bottom: 36rpx;
+  border-bottom: 14rpx solid #333;
+  box-shadow: #fff 0px 0px 4rpx 4rpx;
+}
+.avatar{
+  position: absolute;
+  left: 40rpx;
+  top: -20rpx;
+  width: 150rpx;
+  height: 150rpx;
+  border-radius: 50%;
+  background: #ccc;
+}
+.user_info{
+  margin-left: 210rpx;
+  width: 450rpx;
+  margin-top: 10rpx;
+}
+.user_name{
+  font-size: 34rpx;
+}
+.user_vip{
+  display: flex;
+  justify-content: flex-start;
+}
+.vip_icon{
+  width: 50rpx;
+  height: 50rpx;
+}
+.vip_icon image{
+  width: 100%;
+  height: 100%;
+}
+.vip_text{
+  font-size: 26rpx;
+  margin: 4rpx 0 0 8rpx;
+}
+.money_main{
+  margin-top: 60rpx;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  font-size: 26rpx;
+  color: #999;
+}
+.money_list{
+  width: 50%;
+}
+.commission_num{
+  font-size: 34rpx;
+  color: #333;
+  margin-bottom: 5rpx;
+  font-weight: 600;
+}
+.discount{
+  font-size: 28rpx;
+  width: 600rpx;
+  margin: 100rpx auto 0;
+  border: 4rpx solid #333;
+  display: flex;
+  line-height: 50rpx;
+  justify-content: space-between;
+  padding: 14rpx 20rpx;
+  border-radius: 6rpx;
+}
+.right_icon{
+  width: 50rpx;
+  height: 50rpx;
+}
+.right_icon image{
+  width: 100%;
+  height: 100%;
+}
+.card_main{
+  /* padding: 0 40rpx; */
+  font-size: 28rpx;
+  color: #333;
+  margin-top: 80rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.card_list{
+  width: 50%;
+  margin-left: 60rpx;
+  border-right: 1px solid #eee;
+  display: flex;
+  justify-content: flex-start;
+}
+.card_list:nth-last-of-type(1){
+  border: none;
+}
+.card_icon{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background: #333;
+  margin-bottom: 10rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20rpx;
+}
+.card_icon image{
+  width: 65rpx;
+  height: 65rpx;
+}
+.card_text{
+  line-height: 100rpx;
+}
+.order_bot{
+  border-top: 1px solid #333;
+  width: 100%;
+  height: 100rpx;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #333;
+}
+.order_tel{
+  position: absolute;
+  width: 110rpx;
+  height: 110rpx;
+  background: #333;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: -30rpx;
+  left: calc(50% - 60rpx);
+  box-shadow: #fff 0px 0px 4rpx 4rpx;
+}
+.order_tel image{
+  width: 80rpx;
+  height: 80rpx;
+}

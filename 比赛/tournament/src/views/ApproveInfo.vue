@@ -117,7 +117,7 @@ export default {
         this.approveFrom.coach = res.coach
         this.approveFrom.club = res.club
         if (res.sex == 1) this.valueSex = '男'
-        else this.valueSex = '女'
+        else if (res.sex == 2) this.valueSex = '女'
       })
     },
     SubmitInfo () {
@@ -125,13 +125,25 @@ export default {
     },
     upDateInfo () {
       if (this.approveFrom.name == '') {
-        this.$toast('请输入姓名')
+        this.$toast({
+          message: '请输入姓名',
+          duration: 1000
+        })
       } else if (this.approveFrom.sex.toString() == '') {
-        this.$toast('请选择性别')
+        this.$toast({
+          message: '请选择性别',
+          duration: 1000
+        })
       } else if (this.approveFrom.idcard == '') {
-        this.$toast('请输入身份证号')
+        this.$toast({
+          message: '请输入身份证号',
+          duration: 1000
+        })
       } else if (!/^1[3456789]\d{9}$/.test(this.approveFrom.phone)) {
-        this.$toast('请输入正确电话号码')
+        this.$toast({
+          message: '请输入正确电话号码',
+          duration: 1000
+        })
       } else {
         let params = {
           token: localStorage.getItem('tokenns'),

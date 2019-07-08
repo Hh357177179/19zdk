@@ -1,0 +1,44 @@
+<!--pages/coupon/coupon.wxml-->
+<view class='coupon'>
+  <view class='coupon_nav'>
+    <view class='nav_list' bindtap='changeNav' data-num='1'>
+      <text class="{{num == 1 ? 'choose_nav' : ''}}">未使用</text>
+    </view>
+    <view class='nav_list' bindtap='changeNav' data-num='2'>
+      <text class="{{num == 2 ? 'choose_nav' : ''}}">已使用/过期</text>
+    </view>
+  </view>
+  <view class='card_main'>
+    <view class='card_list'>
+      <view class='card_info'>
+        <view class='card_money'>
+          <view>
+            <view class='money_text'><text class='money_fh'>￥</text>125</view>
+            <view class='money_use'>满199元可用</view>
+          </view>
+        </view>
+        <view class='card_text'>
+          <view class='card_info_text'>美发理发：洗剪吹</view>
+          <view class='card_info_time'>2019.07.02—2019.07.04</view>
+        </view>
+      </view>
+      <view class='use_coupon'>去使用</view>
+      <view class='top_icon'>未使用</view>
+    </view>
+    <view class='card_list alreadyBack'>
+      <view class='card_info'>
+        <view class='card_money'>
+          <view>
+            <view class='money_text alreadyColor'><text class='money_fh'>￥</text>125</view>
+            <view class='money_use alreadyColor'>满199元可用</view>
+          </view>
+        </view>
+        <view class='card_text'>
+          <view class='card_info_text'>美发理发：洗剪吹</view>
+          <view class='card_info_time'>2019.07.02—2019.07.04</view>
+        </view>
+      </view>
+      <view class='top_icon alreadyLiner'>已使用</view>
+    </view>
+  </view>
+</view>

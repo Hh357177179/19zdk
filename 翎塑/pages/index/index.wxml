@@ -1,0 +1,67 @@
+<!--index.wxml-->
+<!-- // "navigationBarTitleText": "翎塑 - 预约" -->
+<view class='home'>
+  <view class='top_main'>
+    <view class='user'>
+      <view class='avatar'></view>
+      <view class='user_info'>
+          <view class='user_name'>微信昵称</view>
+          <view class='user_vip' bindtap='navVip'>
+            <view class='vip_icon'>
+              <image src='../../images/copperVip.png'></image>
+            </view>
+            <view class='vip_text'>青铜会员</view>
+          </view>
+      </view>
+      <view class='money_main'>
+        <view class='money_list'>
+          <view class='commission_num'>999</view>
+          <view class='commission_text'>可提现佣金</view>
+        </view>
+        <view class='money_list'>
+          <view class='commission_num'>999</view>
+          <view class='commission_text'>可消费余额</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class='discount' bindtap='navCoupon'>
+    <view>您有0张优惠券可用</view>
+    <view class='right_icon'>
+      <image src='../../images/right.png'></image>
+    </view>
+  </view>
+  <view class='card_main'>
+    <view class='card_list' bindtap='navOrder'>
+      <view class='card_icon'>
+        <image src='../../images/order.png'></image>
+      </view>
+      <view class='card_text'>预约服务</view>
+    </view>
+    <view class='card_list' bindtap='navList'>
+      <view class='card_icon'>
+        <image src='../../images/inventory.png'></image>
+      </view>
+      <view class='card_text'>消费清单</view>
+    </view>
+  </view>
+  <view class='card_main'>
+    <view class='card_list' bindtap='navInvite'>
+      <view class='card_icon'>
+        <image src='../../images/invite.png'></image>
+      </view>
+      <view class='card_text'>邀请好友</view>
+    </view>
+    <view class='card_list' bindtap='navLog'>
+      <view class='card_icon'>
+        <image src='../../images/log.png'></image>
+      </view>
+      <view class='card_text'>佣金日志</view>
+    </view>
+  </view>
+  <view class='order_bot'>
+    <view class='order_tel'>
+      <image src='../../images/tel.png'></image>
+    </view>
+  </view>
+</view>

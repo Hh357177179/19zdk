@@ -1,0 +1,44 @@
+<!--pages/consume/consume.wxml-->
+<view class='consume'>
+  <view class='consume_nav'>
+    <view class='consume_nav_list' data-navNum='1' bindtap='chooseNav'>
+      <text class="{{navNum == 1 ? 'choose_nav' : ''}}">预约服务</text>
+    </view>
+    <view class='consume_nav_list' data-navNum='2' bindtap='chooseNav'>
+      <text class="{{navNum == 2 ? 'choose_nav' : ''}}">消费清单</text>
+    </view>
+  </view>
+  <view class='order_main' wx:if="{{navNum == 1}}">
+    <view class='order_list'>
+      <view class='order_info'>
+        <view class='list_title'>我是标题我是标题我是标题我是标题</view>
+        <view class='list_time'>预约时间：2019-09-09 20:00</view>
+        <view class='list_time'>预约技师：Tony老师</view>
+        <view class='list_time'>预约服务：大保健</view>
+      </view>
+      <view class='cancel_order' bindtap='cancelOrder'>取消预约</view>
+      <view class='list_label'>已完成</view>
+    </view>
+  </view>
+  <view class='consume_main' wx:if="{{navNum == 2}}">
+    <view class='consume_card_list'>
+      <view class='list_title consume_title'>
+        <view class='tab_icon'>
+          <image src='../../images/tag.png'></image>
+        </view>
+        <view>我是标题我是标题我是标题我是标题</view>
+        <view class='clear'></view>
+      </view>
+      <view class='consume_time'>
+        <view class='consume_time_icon'>
+          <image src='../../images/clock.png'></image>
+        </view>
+        <view class='consume_time_number'>2019-09-09 18:00</view>
+        <view class='clear'></view>
+      </view>
+      <view class='consume_price'>
+        <text class='price_icon'>¥</text><text class='price_num'>100</text>
+      </view>
+    </view> 
+  </view>
+</view>

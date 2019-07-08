@@ -1,0 +1,27 @@
+<!--pages/invite/invite.wxml-->
+<view class='invite'>
+  <view class='invite_nav'>
+    <view class='nav_list' bindtap='changeNav' data-num='1'>
+      <text class="{{num == 1 ? 'choose_nav' : ''}}">直接邀请（2）</text>
+    </view>
+    <view class='nav_list' bindtap='changeNav' data-num='2'>
+      <text class="{{num == 2 ? 'choose_nav' : ''}}">好友邀请（4）</text>
+    </view>
+  </view>
+  <view class='invite_card'>
+    <view class='invite_list'>
+      <view class='invite_avatar'></view>
+      <view class='invite_info'>
+        <view class='invite_info_name'>微信昵称</view>
+        <view class='vip_info'>
+          <view class='invite_vip'>
+            <image src='../../images/copperVip.png'></image>
+          </view>
+          <view>青铜会员</view>
+        </view>
+      </view>
+      <view class='clear'></view>
+      <view class='invite_time'>2019-09-09 加入</view>
+    </view>
+  </view>
+</view>

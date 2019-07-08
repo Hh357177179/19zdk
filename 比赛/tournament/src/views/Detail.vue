@@ -8,7 +8,8 @@
         <p>活动时间：{{detailObj.time}}</p>
         <p>报名费用：{{detailObj.price}}元</p>
       </div>
-      <div class="apply_btn" @click="ApplySubmit">我要报名</div>
+      <div class="apply_btn" v-if="showPay" @click="ApplySubmit">我要报名</div>
+      <div class="apply_btn already_btn" v-if='alreadyPay'>已报名</div>
     </div>
   </div>
 </template>
@@ -19,7 +20,9 @@ export default {
   data () {
     return {
       id: '',
-      detailObj: {}
+      detailObj: {},
+      showPay: false,
+      alreadyPay: false
     }
   },
   created () {
@@ -34,6 +37,13 @@ export default {
       gameDetail(params).then(res => {
         console.log(res)
         this.detailObj = res
+        if (res.is_pay == true) {
+          this.showPay = false
+          this.alreadyPay = true
+        } else {
+          this.showPay = true
+          this.alreadyPay = false
+        }
       })
     },
     ApplySubmit () {
@@ -112,6 +122,9 @@ export default {
         border-radius: 5px;
         font-size: 16px;
         color: #fff;
+      }
+      .already_btn{
+        opacity: 0.5;
       }
     }
   }

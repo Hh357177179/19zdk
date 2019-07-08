@@ -59,7 +59,8 @@
     </div>
     <div class="apply" @click="applyBtn(detailObj.type)">点击报名</div>
     <van-dialog v-model="show" title="报名信息" show-cancel-button :before-close="beforeCloses">
-      <van-field v-model="userName" label="姓名" label-align="center" placeholder="请输入姓名"/>
+      <div class="true_text">是否确认报名改课程？</div>
+      <!-- <van-field v-model="userName" label="姓名" label-align="center" placeholder="请输入姓名"/>
       <van-field
         v-model="userTel"
         type="tel"
@@ -85,7 +86,7 @@
         autosize
         label="回答"
         :placeholder="placText"
-      />
+      /> -->
       <p class="switch_line clearfix" v-if="showSwitch">
         <span>是否使用免费劵</span>
         <van-switch
@@ -169,23 +170,16 @@ export default {
     // dialog确认
     beforeCloses(action, done) {
       if (action == "cancel") {
-        (this.userName = ""), (this.userTel = "");
         done();
       } else {
         done(false); //不关闭弹框
-        if (this.userName == "") {
-          this.$toast("请输入姓名");
-        } else if (!/^1[3456789]\d{9}$/.test(this.userTel)) {
-          this.$toast("请输入正确手机号码");
-        } else {
-          console.log("验证通过");
           let params = {
             token: localStorage.getItem("tokenns"),
             activity_id: this.activity_id,
-            name: this.userName,
-            phone: this.userTel,
-            note: this.note,
-            question: this.question,
+            // name: this.userName,
+            // phone: this.userTel,
+            // note: this.note,
+            // question: this.question,
             is_free: this.is_free
           };
           const that = this;
@@ -224,7 +218,6 @@ export default {
             .catch(e => {
               // this.$toast.fail(e.msg || "报名失败");
             });
-        }
       }
     },
     // 获取课程详情
@@ -335,6 +328,15 @@ export default {
   .van-dialog__header {
     padding-top: 10px;
     margin-bottom: 20px;
+  }
+  .van-dialog__content{
+    text-align: center;
+    padding: 10px 0;
+    color: #333;
+    font-size: 15px;
+  }
+  .true_text{
+    text-align: center;
   }
 }
 </style>

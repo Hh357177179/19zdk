@@ -27,7 +27,7 @@ export default {
   data() {
     return {
       channel_id: "",
-      type: 1,
+      type: 0,
       listArr: [],
       school: ""
     };

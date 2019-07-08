@@ -1,0 +1,10 @@
+<!--pages/success/success.wxml-->
+<view class='success'>
+  <view class='success_icon'>
+    <image src='../../images/success.png'></image>
+  </view>
+  <view class='success_text'>感谢您的预约!</view>
+  <view class='search_order' bindtap='navOrders'>返回首页</view>
+  <view class='success_desc'>我们会为您预留30分钟预约服务，过期预约将作废，请按时到店。</view>
+  <view class='success_desc'>到店后，报出您预约的手机号即可享受优质预约服务和优惠。</view>
+</view>

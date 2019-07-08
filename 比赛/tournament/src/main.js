@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import Vant from 'vant';
+import '@/assets/font/iconfont.css'
 import 'vant/lib/index.css';
 import 'lib-flexible'
 import './assets/style.css'
@@ -14,7 +15,7 @@ Vue.filter('dateFr', function (val,splict,splicts) {
   let date = new Date (val * 1000)
   let Y = date.getFullYear()
   let M = date.getMonth() + 1
-  let D = date.getDay()
+  let D = date.getDate()
   let h = date.getHours()
   let m = date.getMinutes()
   if (M < 10) {

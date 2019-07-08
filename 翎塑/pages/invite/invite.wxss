@@ -1,0 +1,86 @@
+/* pages/invite/invite.wxss */
+.clear{
+  clear: both;
+}
+.invite{
+  width: 100%;
+  height: 100vh;
+  background: #f6f6f6;
+}
+.invite_nav{
+  background: #fff;
+  font-size: 30rpx;
+  color: #999;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #f0f0f0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+.nav_list{
+  width: 50%;
+  line-height: 80rpx;
+  text-align: center;
+}
+.choose_nav{
+  border-bottom: 2px solid #333;
+  padding: 0 20rpx 14rpx;
+  color: #333;
+  font-weight: 500;
+}
+.invite_card{
+  /* padding: 0 20rpx; */
+  padding-top: 60rpx;
+}
+.invite_list{
+  padding: 30rpx 20rpx 10rpx 40rpx;
+  background: #fff;
+  /* box-shadow: #f0f0f0 0px 0px 4rpx 4rpx; */
+  border-radius: 4rpx;
+  margin-top: 20rpx;
+}
+.invite_avatar{
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  background: #ccc;
+  margin-right: 20rpx;
+  float: left;
+}
+/* .invite_list{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+} */
+.invite_info{
+  font-size: 28rpx;
+  float: left;
+  width: 550rpx;
+}
+.invite_info_name{
+  font-weight: bold;
+  color: #333;
+}
+.invite_vip{
+  width: 50rpx;
+  height: 50rpx;
+}
+.invite_vip image{
+  width: 100%;
+  height: 100%;
+}
+.vip_info{
+  margin-top: 10rpx;
+  display: flex;
+  justify-content: flex-start;
+  font-size: 22rpx;
+  line-height: 46rpx;
+}
+.invite_time{
+  font-size: 24rpx;
+  color: #666;
+  margin-top: 10rpx;
+  text-align: right;
+}

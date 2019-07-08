@@ -1,0 +1,69 @@
+/* pages/journal/journal.wxss */
+.clear{
+  clear: both;
+}
+.journal{
+  width: 100%;
+  height: 100%;
+  background: #f6f6f6;
+}
+.top_text{
+  font-size: 24rpx;
+  text-align: center;
+  color: #333;
+  line-height: 60rpx;
+}
+.text_color{
+  color: #e47e64;
+  font-weight: bold;
+  font-size: 28rpx;
+}
+.journal_card{
+  margin-bottom: 20rpx;
+  padding: 20rpx 40rpx;
+  background: #fff;
+  box-shadow: #f0f0f0 0px 0px 4rpx 4rpx;
+  position: relative;
+}
+.card_icon{
+  width: 60rpx;
+  height: 60rpx;
+  position: absolute;
+  right: 20rpx;
+  top: 0;
+}
+.card_icon image{
+  width: 100%;
+  height: 100%;
+}
+.card_avatar{
+  width: 70rpx;
+  height: 70rpx;
+  background: #ccc;
+  border-radius: 50%;
+  margin-right: 20rpx;
+  margin-left: 20rpx;
+}
+.card_info{
+  display: flex;
+  justify-content: flex-start;
+  font-size: 28rpx;
+  color: #333;
+  align-items: center;
+}
+.card_time{
+  margin-top: 10rpx;
+  font-size: 26rpx;
+  float: right;
+}
+.card_money{
+  font-size: 24rpx;
+  color: #666;
+  margin-top: 10rpx;
+  /* margin-left: 60rpx; */
+}
+.text_money{
+  font-weight: bold;
+  font-size: 32rpx;
+  color: #e47e64;
+}

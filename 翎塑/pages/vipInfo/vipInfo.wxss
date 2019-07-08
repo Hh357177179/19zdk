@@ -1,0 +1,56 @@
+/* pages/vipInfo/vipInfo.wxss */
+.vip_info{
+  /* width: 100%; */
+  height: 100%;
+  padding-left: 60rpx;
+}
+.vip_list{
+  display: flex;
+  justify-content: space-between;
+  padding: 40rpx 40rpx 40rpx 0;
+  align-items: center;
+}
+.vip_icon{
+  width: 60rpx;
+  height: 60rpx;
+}
+.vip_icon image{
+  width: 100%;
+  height: 100%;
+}
+.big_title{
+  font-size: 38rpx;
+  color: #000;
+  font-weight: 500;
+}
+.now_border{
+  border-bottom: 3px solid #333;
+}
+.vip_text{
+  font-size: 28rpx;
+  color: #666;
+  margin-top: 20rpx;
+}
+.vip_welfare{
+  color: #999;
+  font-size: 26rpx;
+  margin-top: 8rpx;
+}
+.copperColor {
+  color: #c18065;
+}
+.copperBorder{
+  border-bottom: 1px solid #c18065;
+}
+.silverColor {
+  color: #98989a;
+}
+.silverBorder {
+  border-bottom: 1px solid #98989a;
+}
+.goldColor {
+  color: #ccb778;
+}
+.goldBorder{
+  border-bottom: 1px solid #ccb778;
+}

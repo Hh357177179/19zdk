@@ -1,0 +1,42 @@
+<!--pages/vipInfo/vipInfo.wxml-->
+<view class='vip_info'>
+  <view class='vip_list now_border'>
+    <view class='vip_text'>
+      <view class='vip_titel big_title'>新标会员</view>
+      <view class='vip_text'>新注册翎塑即成为新标会员</view>
+    </view>
+    <view class='vip_icon'>
+      <image src='../../images/lock.png'></image>
+    </view>
+  </view>
+  <view class='vip_list copperBorder'>
+    <view class='vip_text'>
+      <view class='vip_titel big_title copperColor'>铜牌会员</view>
+      <view class='vip_text'>累计佣金总额满200可升级为铜牌会员</view>
+      <view class='vip_welfare'>铜牌专属折扣、生日礼券</view>
+    </view>
+    <view class='vip_icon'>
+      <image src='../../images/lockcopper.png'></image>
+    </view>
+  </view>
+  <view class='vip_list silverBorder'>
+    <view class='vip_text'>
+      <view class='vip_titel big_title silverColor'>银座会员</view>
+      <view class='vip_text'>累计佣金总额满1000可升级为银座会员</view>
+      <view class='vip_welfare'>银座专属折扣、生日礼券、预约免排</view>
+    </view>
+    <view class='vip_icon'>
+      <image src='../../images/locksilver.png'></image>
+    </view>
+  </view>
+  <view class='vip_list goldBorder'>
+    <view class='vip_text'>
+      <view class='vip_titel big_title goldColor'>金尊会员</view>
+      <view class='vip_text'>累计佣金总额满2000可升级为铜牌会员</view>
+      <view class='vip_welfare'>金尊专属折扣、生日礼券、预约免排、首发体验</view>
+    </view>
+    <view class='vip_icon'>
+      <image src='../../images/lockgold.png'></image>
+    </view>
+  </view>
+</view>
