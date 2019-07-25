@@ -1,8 +1,8 @@
 <template>
   <div class="apply_record">
     <div class="apply_list" v-for="(item,index) in items" :key="index">
-      <p class="apply_name"><span class="label_name">标题：</span>{{item.match_title}}</p>
-      <p class="apply_time"><span class="label_name">报名时间：</span>{{item.order_time | dateFr}}</p>
+      <p class="apply_name"><span class="label_name">{{$t('text34')}}：</span>{{item.match_title}}</p>
+      <p class="apply_time"><span class="label_name">{{$t('text9')}}：</span>{{item.order_time | dateFr}}</p>
     </div>
   </div>
 </template>

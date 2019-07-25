@@ -5,11 +5,11 @@
     <div class="detail_desc" v-html="detailObj.content">{{detailObj.content}}</div>
     <div class="apply_main">
       <div class="apply_info">
-        <p>活动时间：{{detailObj.time}}</p>
-        <p>报名费用：{{detailObj.price}}元</p>
+        <p>{{$t('text9')}}：{{detailObj.time}}</p>
+        <p>{{$t('text10')}}：{{detailObj.price}}￥</p>
       </div>
-      <div class="apply_btn" v-if="showPay" @click="ApplySubmit">我要报名</div>
-      <div class="apply_btn already_btn" v-if='alreadyPay'>已报名</div>
+      <div class="apply_btn" v-if="showPay" @click="ApplySubmit">{{$t('text11')}}</div>
+      <div class="apply_btn already_btn" v-if='alreadyPay'>{{$t('text41')}}</div>
     </div>
   </div>
 </template>

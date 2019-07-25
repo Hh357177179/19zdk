@@ -1,12 +1,12 @@
 <template>
   <div class="approve_info">
     <van-cell-group>
-      <van-field label="姓名" label-width='120px' v-model="approveFrom.name" placeholder="请输入姓名(Name)" />
+      <van-field :label="$t('text16')" label-width='120px' v-model="approveFrom.name" placeholder="请输入姓名(Name)" />
       <van-field
         label-width='120px'
         readonly
         clickable
-        label="性别"
+        :label="$t('text17')"
         :value="valueSex"
         placeholder="请输入性别(Sex)"
         @click="showPicker = true"
@@ -15,36 +15,40 @@
         label-width='120px'
         readonly
         clickable
-        label="生日"
+        :label="$t('text18')"
         :value="approveFrom.birthday"
         placeholder="请输入生日(BirthDay)"
         @click="birthPicker = true"
       />
-      <van-field label="身份证号" label-width='120px' v-model="approveFrom.idcard" placeholder="请输入身份证号(IdCard)" />
-      <van-field label="电话号码" maxlength='11' label-width='120px' v-model="approveFrom.phone" placeholder="请输入电话号码(TelPhone)" />
-      <van-field label="护照" label-width='120px' v-model="approveFrom.passport" placeholder="请输入护照(PassPort)" />
-      <van-field label="国际壁联注册号码" label-width='120px' v-model="approveFrom.spin_no" placeholder="请输入国际壁联注册号码(Spin No.)" />
-      <van-field label="教练" label-width='120px' v-model="approveFrom.coach" placeholder="请输入教练(Coach)" />
-      <van-field label="俱乐部" label-width='120px' v-model="approveFrom.club" placeholder="请输入俱乐部(Club)" />
+      <van-field :label="$t('text19')" label-width='120px' v-model="approveFrom.idcard" placeholder="请输入身份证号(IdCard)" />
+      <van-field :label="$t('text20')" maxlength='11' label-width='120px' v-model="approveFrom.phone" placeholder="请输入电话号码(TelPhone)" />
+      <van-field :label="$t('text21')" label-width='120px' v-model="approveFrom.passport" placeholder="请输入护照(PassPort)" />
+      <van-field :label="$t('text22')" label-width='120px' v-model="approveFrom.spin_no" placeholder="请输入国际壁联注册号码(Spin No.)" />
+      <van-field :label="$t('text23')" label-width='120px' v-model="approveFrom.coach" placeholder="请输入教练(Coach)" />
+      <van-field :label="$t('text24')" label-width='120px' v-model="approveFrom.club" placeholder="请输入俱乐部(Club)" />
     </van-cell-group>
-    <div class="submit_btn" @click="SubmitInfo">提交信息</div>
+    <div class="submit_btn" @click="SubmitInfo">{{$t('text35')}}</div>
     <van-popup v-model="showPicker" position="bottom">
       <van-picker
         show-toolbar
         :columns="columns"
         @cancel="showPicker = false"
         @confirm="onConfirm"
+        :confirm-button-text="$t('text33')"
+        :cancel-button-text="$t('text32')"
       />
     </van-popup>
 
     <van-popup v-model="birthPicker" position="bottom">
       <van-datetime-picker
         type="date"
-        @cancel='closes'
+        @cancel='birthPicker = false'
         v-model="nowDate"
         :min-date='minDate'
         :max-date='maxDate'
         @confirm='nowVal'
+        :confirm-button-text="$t('text33')"
+        :cancel-button-text="$t('text32')"
       />
     </van-popup>
   </div>
@@ -59,7 +63,7 @@ export default {
       minDate: new Date(1950, 10, 1),
       maxDate: new Date(),
       birthPicker: false,
-      columns: ['男', '女'],
+      columns: [this.$t('text36'), this.$t('text37')],
       valueSex: '',
       showPicker: false,
       approveFrom: {
@@ -92,8 +96,9 @@ export default {
       this.show = false
     },
     onConfirm (value) {
+      console.log(value)
       this.valueSex = value
-      if (value == '男') {
+      if (value == '男' || 'Man') {
         this.approveFrom.sex = 1
       } else {
         this.approveFrom.sex = 2
@@ -126,22 +131,22 @@ export default {
     upDateInfo () {
       if (this.approveFrom.name == '') {
         this.$toast({
-          message: '请输入姓名',
+          message: '请输入姓名(Name)',
           duration: 1000
         })
       } else if (this.approveFrom.sex.toString() == '') {
         this.$toast({
-          message: '请选择性别',
+          message: '请选择性别(Sex)',
           duration: 1000
         })
       } else if (this.approveFrom.idcard == '') {
         this.$toast({
-          message: '请输入身份证号',
+          message: '请输入身份证号(IDCard)',
           duration: 1000
         })
       } else if (!/^1[3456789]\d{9}$/.test(this.approveFrom.phone)) {
         this.$toast({
-          message: '请输入正确电话号码',
+          message: '请输入正确电话号码(TelPhone)',
           duration: 1000
         })
       } else {
@@ -160,7 +165,7 @@ export default {
         console.log(params)
         upDateUser(params).then(res => {
           console.log(res)
-          this.$toast.success('提交成功')
+          this.$toast.success(this.$t('text39'))
           this.$router.back(-1)
         })
       }

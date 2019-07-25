@@ -1,4 +1,9 @@
 // pages/invite/invite.js
+const app = getApp()
+const util = require('../../utils/util.js')
+import {
+  postRequest
+} from '../../utils/httpRequest.js'
 Page({
 
   /**

@@ -11,23 +11,65 @@
         <p class="desc">{{item.desc}}</p>
       </div>
     </div>
-    <div class="foot_btn" @click="searchMe">查看我报名的讲座</div>
+    <div class="foot_tab" v-if='personalType == 1'>
+      <div class="tab_list" :class="indexColor == 1 ? 'addColor' : ''" @click="choSchool">学校</div>
+      <div class="tab_list" :class="indexColor == 2 ? 'addColor' : ''" @click="choCommunity">社区</div>
+      <div class="tab_list" :class="indexColor == 3 ? 'addColor' : ''" @click="searchMe">我的</div>
+    </div>
+    <div class="foot_tab" v-if='personalType == 2'>
+      <!-- <div class="tab_list" :class="indexColor == 1 ? 'addColor' : ''" @click="choSchool">学校</div> -->
+      <div class="tab_list" :class="indexColor == 2 ? 'addColor' : ''" @click="choCommunity">社区</div>
+      <div class="tab_list" :class="indexColor == 3 ? 'addColor' : ''" @click="searchMe">我的</div>
+    </div>
   </div>
 </template>
 
 <script>
-import { getSchool, applySuccess } from "@/api/index";
+import { getSchool, applySuccess, getUsers } from "@/api/index";
 export default {
   data() {
     return {
-      schoolArr: []
+      schoolArr: [],
+      indexColor: 1,
+      type: 1,
+      personalType: 0
     };
   },
   created () {
-    
+    let params = {
+      token: localStorage.getItem("tokenns")
+    }
+    getUsers(params).then(res => {
+      console.log(res)
+      localStorage.setItem('perType', res.type)
+      if (res.type == 2) {
+        this.type = 2
+        this.indexColor = 2
+      } else {
+        if (this.$route.params.stateType) {
+          this.type = 2
+          this.indexColor = 2
+        } else {
+          this.type = 1
+          this.indexColor = 1
+        }
+      }
+      this.personalType = res.type
+    })
   },
   methods: {
+    choSchool () {
+      this.indexColor = 1
+      this.type = 1
+      this.schoolList()
+    },
+    choCommunity () {
+      this.indexColor = 2
+      this.type = 2
+      this.schoolList()
+    },
     searchMe () {
+      this.indexColor = 2
       this.$router.push('/myapply')
     },
     classList(id) {
@@ -37,7 +79,8 @@ export default {
     },
     schoolList() {
       let params = {
-        token: localStorage.getItem("tokenns")
+        token: localStorage.getItem("tokenns"),
+        type: this.type
       };
       getSchool(params).then(res => {
         console.log(res);
@@ -66,7 +109,7 @@ export default {
   min-height: 100vh;
   background: #f6f6f6;
   .school_main {
-    padding-bottom: 55px;
+    padding-bottom: 105px;
     .list_card {
       padding: 15px 20px;
       background: #fff;
@@ -88,7 +131,7 @@ export default {
     height: 50px;
     background: #fff;
     position: fixed;
-    bottom: 0;
+    bottom: 50px;
     left: 0;
     color: #cba787;
     font-size: 18px;
@@ -96,6 +139,26 @@ export default {
     line-height: 50px;
     font-weight: 600;
     border-top: 1px solid #f0f0f0;
+  }
+  .foot_tab{
+    display: flex;
+    justify-content:space-between;
+    text-align: center;
+    position: fixed;
+    bottom: 0px;
+    left: 0;
+    width: 100%;
+    .tab_list{
+      width: 50%;
+      background: #fff;
+      font-size: 16px;
+      line-height: 50px;
+      color: #ccc;
+    }
+    .addColor {
+      color: #cba787;
+      font-weight: 600;
+    }
   }
 }
 </style>

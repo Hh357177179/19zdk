@@ -13,7 +13,8 @@ const router = new Router({
       name: 'home',
       component: Home,
       meta: {
-        title: '日历比赛'
+        title: '训练日志',
+        title2: 'Training log'
       }
     },
     {
@@ -21,7 +22,8 @@ const router = new Router({
       name: 'game',
       component: () => import(/* webpackChunkName: "about" */ './views/Game.vue'),
       meta: {
-        title: '赛事日程'
+        title: '赛事报名',
+        title2: 'Event apply'
       }
     },
     {
@@ -29,7 +31,8 @@ const router = new Router({
       name: 'me',
       component: () => import(/* webpackChunkName: "about" */ './views/Me.vue'),
       meta: {
-        title: '个人主页'
+        title: '个人主页',
+        title2: 'Me'
       }
     },
     {
@@ -37,7 +40,8 @@ const router = new Router({
       name: 'approveInfo',
       component: () => import(/* webpackChunkName: "about" */ './views/ApproveInfo.vue'),
       meta: {
-        title: '个人信息认证'
+        title: '个人信息',
+        title2: 'Personal Information'
       }
     },
     {
@@ -45,7 +49,8 @@ const router = new Router({
       name: 'userInfo',
       component: () => import(/* webpackChunkName: "about" */ './views/UserInfo.vue'),
       meta: {
-        title: '个人信息'
+        title: '个人信息',
+        title2: 'Personal Information'
       }
     },
     {
@@ -53,7 +58,8 @@ const router = new Router({
       name: 'auth',
       component: () => import(/* webpackChunkName: "about" */ './views/Auth.vue'),
       meta: {
-        title: '授权'
+        title: '授权',
+        title2: 'Authorization'
       }
     },
     {
@@ -61,7 +67,8 @@ const router = new Router({
       name: 'detail',
       component: () => import(/* webpackChunkName: "about" */ './views/Detail.vue'),
       meta: {
-        title: '比赛详情'
+        title: '比赛详情',
+        title2: 'Events Detail'
       }
     },
     {
@@ -69,7 +76,8 @@ const router = new Router({
       name: 'applyRecord',
       component: () => import(/* webpackChunkName: "about" */ './views/ApplyRecord.vue'),
       meta: {
-        title: '报名记录'
+        title: '报名记录',
+        title2: 'Event Apply records'
       }
     },
     {
@@ -77,7 +85,8 @@ const router = new Router({
       name: 'drill',
       component: () => import(/* webpackChunkName: "about" */ './views/DrillList.vue'),
       meta: {
-        title: '我的训练计划'
+        title: '我的训练计划',
+        title: 'Training log'
       }
     },
     {
@@ -91,7 +100,11 @@ const auth_url = 'http://match.zhaodaka.vip/api/wechat/oauth'
 
 router.beforeEach((to, from, next) => {
   /* 路由发生变化修改页面title */
-  document.title = to.meta.title || '比赛日程'
+  if (localStorage.getItem('lang') == 'en') {
+    document.title = to.meta.title2 || 'Events'
+  } else {
+    document.title = to.meta.title || '比赛日程'
+  }
   const tokenns = localStorage.getItem('tokenns')
   if (!tokenns && to.name !== 'auth') window.location.href = auth_url;
   else next()

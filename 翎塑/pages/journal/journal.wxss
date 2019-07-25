@@ -43,6 +43,12 @@
   border-radius: 50%;
   margin-right: 20rpx;
   margin-left: 20rpx;
+  overflow: hidden;
+}
+.card_avatar image{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
 }
 .card_info{
   display: flex;
@@ -66,4 +72,22 @@
   font-weight: bold;
   font-size: 32rpx;
   color: #e47e64;
+}
+.no_data{
+  width: 100%;
+  margin-top: 220rpx;
+}
+.nd_pic{
+  width: 240rpx;
+  height: 240rpx;
+  margin: 0 auto 10rpx;
+}
+.nd_pic image{
+  width: 100%;
+  height: 100%;
+}
+.nd_text{
+  font-size: 30rpx;
+  color:rgba(25,31,37,0.28);
+  text-align: center;
 }

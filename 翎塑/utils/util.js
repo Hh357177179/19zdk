@@ -1,3 +1,5 @@
+const baseUrl = 'http://lingsu.zhaodaka.vip/api'
+
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -14,6 +16,26 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+// toast提示封装
+const showMsg = function (msg) {
+  wx.showToast({
+    title: msg,
+    mask: true,
+    icon: "none"
+  });
+};
+
+// loading的封装
+const sLoading = function () {
+  wx.showLoading({
+    title: '加载中...',
+    mask: true
+  })
+}
+
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  baseUrl: baseUrl,
+  showMsg: showMsg,
+  sLoading: sLoading
 }

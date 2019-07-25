@@ -10,7 +10,12 @@
         </div>
       </div>
     </div>
-    <div class="foot_btn" @click="searchClass">查看学校</div>
+    <!-- <div class="foot_btn" @click="searchClass">{{searchText}}</div> -->
+    <div class="foot_tab">
+      <div class="tab_list" @click="searchClass">学校</div>
+      <div class="tab_list" @click="searchCommunity">社区</div>
+      <div class="tab_list addColor">我的</div>
+    </div>
   </div>
 </template>
 
@@ -25,9 +30,18 @@ export default {
       page: 1,
       pagesize: 10,
       counts: 0,
+      searchText: ''
     }
   },
   methods: {
+    searchCommunity () {
+      this.$router.push({
+        name: 'school',
+        params: {
+          stateType: 1
+        }
+      })
+    },
     searchClass () {
       this.$router.push('/school')
     },
@@ -128,6 +142,26 @@ export default {
       line-height: 50px;
       font-weight: 600;
       border-top: 1px solid #f0f0f0;
+    }
+    .foot_tab{
+      display: flex;
+      justify-content:space-between;
+      text-align: center;
+      position: fixed;
+      bottom: 0px;
+      left: 0;
+      width: 100%;
+      .tab_list{
+        width: 50%;
+        background: #fff;
+        font-size: 16px;
+        line-height: 50px;
+        color: #ccc;
+      }
+      .addColor {
+        color: #cba787;
+        font-weight: 600;
+      }
     }
   }
 </style>

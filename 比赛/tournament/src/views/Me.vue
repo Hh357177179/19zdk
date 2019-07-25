@@ -7,10 +7,10 @@
       <p class="nickName">{{userObj.nickname}}</p>
     </div>
     <div class="me_list">
-      <p class="list_info" @click="Approve">个人信息</p>
-      <p class="list_info" @click="planRouter">我的训练计划</p>
+      <p class="list_info" @click="Approve">{{$t('text13')}}</p>
+      <p class="list_info" @click="planRouter">{{$t('text14')}}</p>
       <!-- <p class="list_info">我的参赛记录</p> -->
-      <p class="list_info" @click="applyRecord">报名记录</p>
+      <p class="list_info" @click="applyRecord">{{$t('text15')}}</p>
       <!-- <p class="list_info" @click="Approve">申请认证</p> -->
     </div>
   </div>

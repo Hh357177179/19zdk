@@ -101,4 +101,8 @@ export function getCode (param) {
   return Ax.post(`/sign/sms`, param)
 }
 
+export function getUsers (param) {
+  return Ax.post(`/sign/userInfo`, param)
+}
+
 export default Ax

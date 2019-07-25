@@ -1,17 +1,28 @@
 <!--pages/journal/journal.wxml-->
 <view class='journal'>
   <view class='top_text'>历史累计佣金总额：￥<text class='text_color'>99999</text>（距离下一次升级还有￥2000）</view>
-  <view class='journal_card'>
-    <view class='card_icon'>
-      <image src='../../images/silverVip.png'></image>
+  <block wx:for="{{items}}" wx:key="index">
+    <view class='journal_card' wx:if="{{showMain}}">
+      <view class='card_icon'>
+        <image src='../../images/silverVip.png'></image>
+      </view>
+      <view class='card_info'>
+        <view>获得</view>
+        <view class='card_avatar'>
+          <image src='{{item.avatar}}'></image>
+        </view>
+        <view>{{item.nickname}}</view>
+      </view>
+      <view class='card_money'>分佣
+        <text class='text_money'>￥{{item.reward}}</text> </view>
+      <view class='card_time'>{{item.create_time}}</view>
+      <view class='clear'></view>
     </view>
-    <view class='card_info'>
-      <view>获得</view>
-      <view class='card_avatar'></view>
-      <view>微信昵称</view>
-    </view>
-    <view class='card_money'>分佣 <text class='text_money'>￥19</text> </view>
-    <view class='card_time'>2019-09-09 20:00</view>
-    <view class='clear'></view>
+  </block>
+</view>
+<view class='no_data' wx:if="{{noDataShow}}">
+  <view class='nd_pic'>
+    <image src='../../images/noorder.png'></image>
   </view>
+  <view class='nd_text'>暂无数据</view>
 </view>

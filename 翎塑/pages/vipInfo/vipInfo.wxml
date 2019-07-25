@@ -2,40 +2,40 @@
 <view class='vip_info'>
   <view class='vip_list now_border'>
     <view class='vip_text'>
-      <view class='vip_titel big_title'>新标会员</view>
-      <view class='vip_text'>新注册翎塑即成为新标会员</view>
+      <view class='vip_titel big_title'>{{levelItems[0].name}}</view>
+      <view class='vip_text'>新注册翎塑即成为{{levelItems[0].name}}</view>
     </view>
-    <view class='vip_icon'>
+    <view class='vip_icon' wx:if="{{level != 1}}">
       <image src='../../images/lock.png'></image>
     </view>
   </view>
   <view class='vip_list copperBorder'>
     <view class='vip_text'>
-      <view class='vip_titel big_title copperColor'>铜牌会员</view>
-      <view class='vip_text'>累计佣金总额满200可升级为铜牌会员</view>
+      <view class='vip_titel big_title copperColor'>{{levelItems[1].name}}</view>
+      <view class='vip_text'>累计佣金总额满{{levelItems[1].reward}}可升级为{{levelItems[1].name}}</view>
       <view class='vip_welfare'>铜牌专属折扣、生日礼券</view>
     </view>
-    <view class='vip_icon'>
+    <view class='vip_icon' wx:if="{{level != 2}}">
       <image src='../../images/lockcopper.png'></image>
     </view>
   </view>
   <view class='vip_list silverBorder'>
     <view class='vip_text'>
-      <view class='vip_titel big_title silverColor'>银座会员</view>
-      <view class='vip_text'>累计佣金总额满1000可升级为银座会员</view>
+      <view class='vip_titel big_title silverColor'>{{levelItems[2].name}}</view>
+      <view class='vip_text'>累计佣金总额满{{levelItems[2].reward}}可升级为{{levelItems[2].name}}</view>
       <view class='vip_welfare'>银座专属折扣、生日礼券、预约免排</view>
     </view>
-    <view class='vip_icon'>
+    <view class='vip_icon' wx:if="{{level != 3}}">
       <image src='../../images/locksilver.png'></image>
     </view>
   </view>
   <view class='vip_list goldBorder'>
     <view class='vip_text'>
-      <view class='vip_titel big_title goldColor'>金尊会员</view>
-      <view class='vip_text'>累计佣金总额满2000可升级为铜牌会员</view>
+      <view class='vip_titel big_title goldColor'>{{levelItems[3].name}}</view>
+      <view class='vip_text'>累计佣金总额满{{levelItems[3].reward}}可升级为{{levelItems[3].name}}</view>
       <view class='vip_welfare'>金尊专属折扣、生日礼券、预约免排、首发体验</view>
     </view>
-    <view class='vip_icon'>
+    <view class='vip_icon' wx:if="{{level != 4}}">
       <image src='../../images/lockgold.png'></image>
     </view>
   </view>

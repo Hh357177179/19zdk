@@ -5,8 +5,8 @@
       <!-- <div class="card_text">{{item.content}}</div> -->
       <div class="contents" v-html="item.content">{{item.content}}</div>
       <div class="local_info">
-        <p>地点：{{item.address}}</p>
-        <p>时间：{{item.time}}</p>
+        <p>{{$t('text7')}}：{{item.address}}</p>
+        <p>{{$t('text8')}}：{{item.time}}</p>
       </div>
     </div>
   </div>
@@ -57,7 +57,7 @@ export default {
         } else {
           this.$toast({
             duration: 1000,
-            message: '没有更多了'
+            message: this.$t('text38')
           })
         }
       }

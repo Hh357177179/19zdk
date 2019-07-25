@@ -32,12 +32,21 @@
   width: 150rpx;
   height: 150rpx;
   border-radius: 50%;
-  background: #ccc;
+  overflow: hidden;
+}
+.avatar image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
 }
 .user_info{
   margin-left: 210rpx;
   width: 450rpx;
   margin-top: 10rpx;
+}
+.user_login{
+  margin-top: 38rpx;
+  margin-left: 210rpx;
 }
 .user_name{
   font-size: 34rpx;
@@ -156,4 +165,47 @@
 .order_tel image{
   width: 80rpx;
   height: 80rpx;
+}
+
+.author_user{
+  font-size: 30rpx;
+  color: #fff;
+  background: #333;
+  width: 400rpx;
+  border-radius: 40rpx;
+  margin: 20rpx auto;
+}
+.info_text{
+  font-size: 26rpx;
+  line-height: 40rpx;
+}
+.author_img{
+  margin-top: 20rpx;
+  width: 529rpx;
+  height: 455rpx;
+  /* background: #ccc; */
+}
+.author_img image{
+  width: 100%;
+  height: 100%;
+}
+.login_btn{
+  background: none;
+  width: 200rpx;
+  height: 70rpx;
+  float: left;
+  font-size: 28rpx;
+  border-radius: 40rpx;
+  border: 1px solid #333;
+  color: #333;
+  line-height: 70rpx;
+}
+.copper_color{
+  color: #c18065;
+}
+.silver_color{
+  color: #98989a;
+}
+.gold_color{
+  color: #ccb778;
 }

@@ -13,9 +13,9 @@ export default {
     return {
       dataIndex: -1,
       barArr: [
-        { uri: '/home', text: '首页', icons: 'icon-shouye' },
-        { uri: '/game', text: '比赛', icons: 'icon-bisai' },
-        { uri: '/me', text: '我的', icons: 'icon-wode' }
+        { uri: '/home', text: this.$t('text4'), icons: 'icon-rili' },
+        { uri: '/game', text: this.$t('text5'), icons: 'icon-bisai' },
+        { uri: '/me', text: this.$t('text12'), icons: 'icon-wode' }
       ]
     }
   },

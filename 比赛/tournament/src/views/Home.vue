@@ -1,14 +1,15 @@
 <template>
   <div class="home">
-    <p class="top_title">今日有
+    <div class="change_lang" @click="changeLang">{{$t('langs')}}</div>
+    <p class="top_title">{{$t('text1')}}
       <span style="color: #0fc37c;font-weight:600;">{{planNumber}}</span>
-      条计划</p>
+      {{$t('text2')}}</p>
     <Calendar v-on:choseDay="clickDay" :markDate="arr" v-on:changeMonth="changeDate"></Calendar>
 
     <!-- 弹出层 -->
     <van-popup v-model="showDay" position="right" :overlay="false" :style="{ width: '100%', height: '100%' }">
       <div class="prop_mains">
-        <van-nav-bar :title="nowDate" left-text="返回" left-arrow @click-left="onClickLeft" @click-right="onClickRight">
+        <van-nav-bar :title="nowDate" :left-text="$t('text31')" left-arrow @click-left="onClickLeft" @click-right="onClickRight">
           <van-icon name="plus" slot="right" />
         </van-nav-bar>
         <div class="drill_main">
@@ -36,38 +37,38 @@
         <van-field
           readonly
           clickable
-          label="训练类型"
+          :label="$t('text25')"
           :value="drillTypeVal"
-          placeholder="请选择训练类型"
+          placeholder="请选择训练类型(Training Type)"
           @click="DrillType"
         />
         <van-field
           readonly
           clickable
-          label="开始时间"
+          :label="$t('text28')"
           :value="start_time"
-          placeholder="请选择开始时间"
+          placeholder="请选择开始时间(Start Time)"
           @click="StartTime"
         />
         <van-field
           readonly
           clickable
-          label="结束时间"
+          :label="$t('text29')"
           :value="end_time"
-          placeholder="请选择结束时间"
+          placeholder="请选择结束时间(End Time)"
           @click="EndTime"
         />
         <van-field
           v-model="note"
-          label="训练备注"
+          :label="$t('text30')"
           type="textarea"
-          placeholder="请输入备注"
+          placeholder="请输入备注(Mark)"
           rows="1"
           autosize
         />
         <div class="foot_btn">
-          <div class="foot_btns calc_submit" @click="canlSubmit">取消</div>
-          <div class="foot_btns add_submit" @click="addSubmit">确认添加</div>
+          <div class="foot_btns calc_submit" @click="canlSubmit">{{$t('text32')}}</div>
+          <div class="foot_btns add_submit" @click="addSubmit">{{$t('text33')}}</div>
         </div>
       </div>
     </van-popup>
@@ -76,10 +77,12 @@
     <van-popup v-model="typeShow" position="bottom">
       <van-picker
         show-toolbar
-        title="训练类型"
+        :title="$t('text25')"
         :columns="columns"
         @cancel="onCancel"
         @confirm="onConfirm"
+        :confirm-button-text="$t('text33')"
+        :cancel-button-text="$t('text32')"
       />
     </van-popup>
 
@@ -90,6 +93,8 @@
         type="time"
         @cancel="startCancel"
         @confirm="startConfirm"
+        :confirm-button-text="$t('text33')"
+        :cancel-button-text="$t('text32')"
       />
     </van-popup>
 
@@ -100,12 +105,15 @@
         type="time"
         @cancel="endCancel"
         @confirm="endConfirm"
+        :confirm-button-text="$t('text33')"
+        :cancel-button-text="$t('text32')"
       />
     </van-popup>
   </div>
 </template>
 
 <script>
+import app from '@/main'
 import { getCalenderList, addCalender } from '@/api/index.js'
 import Calendar from 'vue-calendar-component';
 export default {
@@ -138,6 +146,13 @@ export default {
     }
   },
   methods: {
+    changeLang() {
+　　　let locales = localStorage.getItem('lang')||'zh';
+　　　let temp = locales === 'zh' ? 'en' : 'zh';
+      app._$lang.lang = temp;//改变当前语言
+　　　　localStorage.lang = temp;
+      location.reload();
+　  },
     canlSubmit () {
       this.addShow = false
       this.types = ''

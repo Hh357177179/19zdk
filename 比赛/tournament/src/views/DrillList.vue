@@ -2,17 +2,17 @@
   <div class="drill">
     <div class="drill_list" v-for="(item, index) in planItem" :key="index">
       <div class="drill_name">
-        <span class="label_name">训练类型：</span>
+        <span class="label_name">{{$t('text25')}}：</span>
         <span>{{item.type_text}}</span>
       </div>
       <div class="drill_time">
-        <span class="label_name">训练时间：</span>
+        <span class="label_name">{{$t('text26')}}：</span>
         <span>{{item.start_time | dateFr}}</span>
-        至
+        一
         <span>{{item.end_time | dateFr}}</span>
       </div>
       <div class="drill_note">
-        <span class="label_name">备注：</span>
+        <span class="label_name">{{$t('text27')}}：</span>
         <span>{{item.note}}</span>
       </div>
     </div>
@@ -60,7 +60,7 @@ export default {
         } else {
           this.$toast({
             duration: 1000,
-            message: '没有更多了'
+            message: this.$t('text38')
           })
         }
       }

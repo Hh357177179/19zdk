@@ -3,23 +3,38 @@
 <view class='home'>
   <view class='top_main'>
     <view class='user'>
-      <view class='avatar'></view>
-      <view class='user_info'>
-          <view class='user_name'>微信昵称</view>
-          <view class='user_vip' bindtap='navVip'>
-            <view class='vip_icon'>
-              <image src='../../images/copperVip.png'></image>
-            </view>
-            <view class='vip_text'>青铜会员</view>
+      <view class='avatar'>
+        <image wx:if="{{userInfo.avatar}}" src='{{userInfo.avatar}}'></image>
+        <image wx:else src='../../images/avatar.png'></image>
+      </view>
+      <view class='user_info' wx:if="{{userInfo.nickname}}">
+        <view class='user_name'>{{userInfo.nickname}}</view>
+        <view class='user_vip' bindtap='navVip'>
+          <view class='vip_icon'>
+            <image wx:if="{{userInfo.level == 1}}" src='../../images/vip.png'></image>
+            <image wx:if="{{userInfo.level == 2}}" src='../../images/copperVip.png'></image>
+            <image wx:if="{{userInfo.level == 3}}" src='../../images/silverVip.png'></image>
+            <image wx:if="{{userInfo.level == 4}}" src='../../images/goldVip.png'></image>
           </view>
+          <view class='vip_text' wx:if="{{userInfo.level == 1}}">新标会员</view>
+          <view class='vip_text copper_color' wx:if="{{userInfo.level == 2}}">铜牌会员</view>
+          <view class='vip_text silver_color' wx:if="{{userInfo.level == 3}}">银座会员</view>
+          <view class='vip_text gold_color' wx:if="{{userInfo.level == 4}}">金尊会员</view>
+        </view>
+      </view>
+      <view class='user_login' wx:else>
+        <button class='login_btn' open-type="getUserInfo" bindgetuserinfo="btnGetUserInfo">点击登录</button>
+        <view class='clear'></view>
       </view>
       <view class='money_main'>
         <view class='money_list'>
-          <view class='commission_num'>999</view>
+          <view class='commission_num' wx:if="{{userInfo.reward}}">{{userInfo.reward}}</view>
+          <view class='commission_num' wx:else>0.00</view>
           <view class='commission_text'>可提现佣金</view>
         </view>
         <view class='money_list'>
-          <view class='commission_num'>999</view>
+          <view class='commission_num' wx:if="{{userInfo.balance}}">{{userInfo.balance}}</view>
+          <view class='commission_num' wx:else>0.00</view>
           <view class='commission_text'>可消费余额</view>
         </view>
       </view>
@@ -64,4 +79,12 @@
       <image src='../../images/tel.png'></image>
     </view>
   </view>
+ <wux-popup visible="{{ visible }}" title="需要您的授权">
+    <view class='info_text'>为了提供更好的服务</view>
+    <view class='info_text'>请在稍后的提示框中点击“允许”</view>
+    <view class='author_img'>
+      <image src='../../images/author.png'></image>
+    </view>
+    <button class='author_user' open-type="getUserInfo" bindgetuserinfo="btnGetUserInfo">我知道了</button>
+</wux-popup>
 </view>
