@@ -40,5 +40,12 @@ export default {
   text38: '没有更多了',
   text39: '提交成功',
   text40: '首页',
-  text41: '已报名'
+  text41: '已报名',
+  text42: '大课',
+  text43: '私教',
+  text44: '体能',
+  text45: '自主训练',
+  text46: '比赛',
+  text47: '视频记录',
+  text48: '播放视频'
 }

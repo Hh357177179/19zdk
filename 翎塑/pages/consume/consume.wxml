@@ -1,4 +1,5 @@
 <!--pages/consume/consume.wxml-->
+<wxs module="dateFr" src="../../utils/dateFr.wxs"></wxs>
 <view class='consume'>
   <view class='consume_nav'>
     <view class='consume_nav_list' data-navNum='1' bindtap='chooseNav'>
@@ -9,36 +10,56 @@
     </view>
   </view>
   <view class='order_main' wx:if="{{navNum == 1}}">
-    <view class='order_list'>
-      <view class='order_info'>
-        <view class='list_title'>我是标题我是标题我是标题我是标题</view>
-        <view class='list_time'>预约时间：2019-09-09 20:00</view>
-        <view class='list_time'>预约技师：Tony老师</view>
-        <view class='list_time'>预约服务：大保健</view>
+    <block wx:for="{{orderItem}}" wx:key="index">
+      <view class='order_list'>
+        <view class='order_info'>
+          <view class='list_title'>{{item.cate_title}}</view>
+          <view class='list_time'>预约时间：{{dateFr.getDate(item.time * 1000,'-',':')}}</view>
+          <view class='list_time' wx:if="{{item.employee_name != null && item.employee_name != 'null' && item.employee_name != ''}}">预约技师：{{item.employee_name}}</view>
+          <view class='list_time' wx:else>预约技师：待定</view>
+          <view class='list_time'>预约服务：{{item.cate_title}}</view>
+          <view class='list_time'>联系电话：{{item.phone}}</view>
+        </view>
+        <view class='cancel_order' bindtap='cancelOrder' wx:if="{{item.status == 1}}" data-appointment_id='{{item.id}}'>取消预约</view>
+        <view class='list_label cancel_color' wx:if="{{item.status == 0}}">已取消</view>
+        <view class='list_label' wx:if="{{item.status == 1}}">预约中</view>
+        <view class='list_label' wx:if="{{item.status == 2}}">已核销</view>
+        <view class='list_label' wx:if="{{item.status == 3}}">已过期</view>
       </view>
-      <view class='cancel_order' bindtap='cancelOrder'>取消预约</view>
-      <view class='list_label'>已完成</view>
-    </view>
+    </block>
   </view>
   <view class='consume_main' wx:if="{{navNum == 2}}">
-    <view class='consume_card_list'>
-      <view class='list_title consume_title'>
-        <view class='tab_icon'>
-          <image src='../../images/tag.png'></image>
+    <block wx:for="{{consumeItem}}" wx:key="index">
+      <view class='consume_card_list'>
+        <view class='list_title consume_title'>
+          <view class='tab_icon'>
+            <image src='../../images/tag.png'></image>
+          </view>
+          <view>{{item.cate_title}}</view>
+          <view class='clear'></view>
         </view>
-        <view>我是标题我是标题我是标题我是标题</view>
-        <view class='clear'></view>
-      </view>
-      <view class='consume_time'>
-        <view class='consume_time_icon'>
-          <image src='../../images/clock.png'></image>
+        <view class='consume_time'>
+          <view class='consume_time_icon'>
+            <image src='../../images/clock.png'></image>
+          </view>
+          <view class='consume_time_number'>消费时间：</view>
+          <view class='consume_time_number'>{{dateFr.getDate(item.create_time * 1000,'-',':')}}</view>
+          <view class='clear'></view>
         </view>
-        <view class='consume_time_number'>2019-09-09 18:00</view>
-        <view class='clear'></view>
-      </view>
-      <view class='consume_price'>
-        <text class='price_icon'>¥</text><text class='price_num'>100</text>
-      </view>
-    </view> 
+        <view class='consume_time'>
+          <view class='consume_time_icon'>
+            <image src='../../images/dingdan.png'></image>
+          </view>
+          <view class='consume_time_number'>订单编号：</view>
+          <view class='consume_time_number'>{{item.order_no}}</view>
+          <view class='clear'></view>
+        </view>
+        <view class='consume_price'>
+          <text class='price_icon'>¥</text><text class='price_num'>{{item.pay_fee}}</text>
+        </view>
+        <view class='state_text noPayColor' wx:if="{{item.status == 1}}">未支付</view>
+        <view class='state_text' wx:if="{{item.status == 2}}">已支付</view>
+      </view> 
+    </block>
   </view>
 </view>

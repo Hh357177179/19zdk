@@ -1,0 +1,13 @@
+<!--pages/transcription/transcription.wxml-->
+<view class="issue">
+  <view class="order_title">逐字稿</view>
+  <view class="evaluate_main">
+    <view class="evaluate_text">
+      <textarea placeholder="逐字稿" maxlength='-1' value="{{transcriptsVal}}" bindinput="onTranscripts" auto-height placeholder-class="color: #ccc;"></textarea>
+    </view>
+  </view>
+  <view class="bot_btn">
+    <view class="submit_evalue" bindtap="subEvalue">保存逐字稿</view>
+    <view class="submit_evalue" bindtap="subEvalueBack">保存并退出</view>
+  </view>
+</view>

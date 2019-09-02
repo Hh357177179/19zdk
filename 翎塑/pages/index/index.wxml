@@ -4,11 +4,11 @@
   <view class='top_main'>
     <view class='user'>
       <view class='avatar'>
-        <image wx:if="{{userInfo.avatar}}" src='{{userInfo.avatar}}'></image>
+        <image wx:if="{{user.avatarUrl}}" src='{{user.avatarUrl}}'></image>
         <image wx:else src='../../images/avatar.png'></image>
       </view>
-      <view class='user_info' wx:if="{{userInfo.nickname}}">
-        <view class='user_name'>{{userInfo.nickname}}</view>
+      <view class='user_info' wx:if="{{user.nickName}}">
+        <view class='user_name'>{{user.nickName}}</view>
         <view class='user_vip' bindtap='navVip'>
           <view class='vip_icon'>
             <image wx:if="{{userInfo.level == 1}}" src='../../images/vip.png'></image>
@@ -27,12 +27,12 @@
         <view class='clear'></view>
       </view>
       <view class='money_main'>
-        <view class='money_list'>
+        <view class='money_list' bindtap='onWithdraw'>
           <view class='commission_num' wx:if="{{userInfo.reward}}">{{userInfo.reward}}</view>
           <view class='commission_num' wx:else>0.00</view>
           <view class='commission_text'>可提现佣金</view>
         </view>
-        <view class='money_list'>
+        <view class='money_list' bindtap='navRecharge'>
           <view class='commission_num' wx:if="{{userInfo.balance}}">{{userInfo.balance}}</view>
           <view class='commission_num' wx:else>0.00</view>
           <view class='commission_text'>可消费余额</view>
@@ -41,7 +41,7 @@
     </view>
   </view>
   <view class='discount' bindtap='navCoupon'>
-    <view>您有0张优惠券可用</view>
+    <view>您的优惠券</view>
     <view class='right_icon'>
       <image src='../../images/right.png'></image>
     </view>
@@ -75,7 +75,7 @@
     </view>
   </view>
   <view class='order_bot'>
-    <view class='order_tel'>
+    <view class='order_tel' bindtap='sendOrder'>
       <image src='../../images/tel.png'></image>
     </view>
   </view>
@@ -86,5 +86,12 @@
       <image src='../../images/author.png'></image>
     </view>
     <button class='author_user' open-type="getUserInfo" bindgetuserinfo="btnGetUserInfo">我知道了</button>
+</wux-popup>
+
+<wux-popup visible="{{ withdrawShow }}" bind:close="onCloseWith" title="提现佣金">
+  <view class='with_label'>
+    <input placeholder='请输入提现金额' type='number' value='{{withVal}}' bindinput='onWith'></input>
+  </view>
+  <view class='with_btn' bindtap='submitWith'>确认提现</view>
 </wux-popup>
 </view>

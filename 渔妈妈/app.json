@@ -1,0 +1,60 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/order/order",
+    "pages/me/me",
+    "pages/course/course",
+    "pages/detail/detail",
+    "pages/success/success",
+    "pages/teacherOrder/teacherOrder",
+    "pages/login/login",
+    "pages/phone/phone",
+    "pages/meOrder/meOrder",
+    "pages/meApply/meApply",
+    "pages/userAuther/userAuther",
+    "pages/sendTeacher/sendTeacher",
+    "pages/teacherList/teacherList",
+    "pages/choTime/choTime",
+    "pages/specialist/specialist",
+    "pages/evaluate/evaluate",
+    "pages/orderDetail/orderDetail",
+    "pages/issue/issue",
+    "pages/teacherEvalue/teacherEvalue",
+    "pages/transcription/transcription",
+    "pages/meSendOrder/meSendOrder",
+    "pages/historyList/historyList"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#6665FF",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "borderStyle": "white",
+    "color": "#A5ADB7",
+    "selectedColor": "#6665FF",
+    "list": [
+      {
+        "selectedIconPath": "images/order.png",
+        "iconPath": "images/noorder.png",
+        "pagePath": "pages/index/index",
+        "text": "专家预约"
+      },
+      {
+        "selectedIconPath": "images/home.png",
+        "iconPath": "images/nohome.png",
+        "pagePath": "pages/order/order",
+        "text": "讲座报名"
+      },
+      {
+        "selectedIconPath": "images/me.png",
+        "iconPath": "images/nome.png",
+        "pagePath": "pages/me/me",
+        "text": "我的"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

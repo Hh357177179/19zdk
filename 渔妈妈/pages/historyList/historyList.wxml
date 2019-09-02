@@ -1,0 +1,20 @@
+<!--pages/historyList/historyList.wxml-->
+<wxs module="dateFr" src="../../utils/dateFr.wxs"></wxs>
+<view class="historyList">
+  <view class="order_title">历史报告</view>
+  <view>
+    <block wx:for="{{items}}" wx:key="index">
+      <view class="card">
+        <view class="card_time">时间：{{dateFr.getDate(item.create_time * 1000,'-',':')}}</view>
+        <view class="teacher">{{item.teacher_note}}</view>
+        <view class="teacher_inside">{{item.teacher_inside_note}}</view>
+      </view>
+    </block>
+  </view>
+  <view class="noData" wx:if="{{noDataShow}}">
+    <view class="noData_img">
+      <image src="../../images/nodata.png"></image>
+    </view>
+    <view class="nodata_text">暂无历史报告</view>
+  </view>
+</view>

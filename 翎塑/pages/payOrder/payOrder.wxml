@@ -1,0 +1,149 @@
+<!--pages/payOrder/payOrder.wxml-->
+<view class='payOrder'>
+  <view class='server_list' bindtap='showServer'>
+    <view class='choServer'>请选择消费项目</view>
+    <view class='serve_list'>
+      <block wx:for="{{chooseArr}}" wx:key="index">
+        <text class='cho_cards'>{{item.title}}</text>
+      </block>
+    </view>
+  </view>
+  <view class='pay_price'>
+    <view class='pay_title'>消费金额</view>
+    <view class='pay_num'>
+      <text class='pay_nuit'>￥</text>
+      <view class='pay_input'>
+        <input value='{{consumeVal}}' bindinput='consumeOn' placeholder='请输入消费金额' type="number" placeholder-style='color: #ccc;'></input>
+      </view>
+      <view class='clear'></view>
+    </view>
+  </view>
+  <view class='pay_coupon'>
+    <view class='coupon' bindtap='choCoupon'>
+      <view class='coupon_icon'>
+        <image src='../../images/youhuiquan.png'></image>
+      </view>
+      <text class='coupon_text'>{{couponText}}</text>
+      <view style='float: right;'>
+        <text class='right_texts'>去选择</text>
+        <view class='icon_right'>
+          <image src='../../images/rightss.png'></image>
+        </view>
+      </view>
+      <view class='clear'></view>
+    </view>
+    <view class='coupon coupon_bot'>
+      <view>
+        <view class='coupon_icon'>
+          <image wx:if="{{userObj.level == 1}}" src='../../images/vip.png'></image>
+          <image wx:if="{{userObj.level == 2}}" src='../../images/copperVip.png'></image>
+          <image wx:if="{{userObj.level == 3}}" src='../../images/silverVip.png'></image>
+          <image wx:if="{{userObj.level == 4}}" src='../../images/goldVip.png'></image>
+        </view>
+        <text style='margin-left: 20rpx;' wx:if="{{userObj.level == 1}}">{{levelItem.name}}不享受折扣</text>
+        <text style='margin-left: 20rpx;' wx:else>{{levelItem.name}}享受 <text style='color:#f00;font-weight: bold;'>{{levelItem.discount * 10}}</text> 折</text>
+      </view>
+      <view class='clear'></view>
+    </view>
+  </view>
+  <view class='result_money'>
+    <view class='coupon_icon'>
+      <image src='../../images/yue.png'></image>
+    </view>
+    <view class='user_money'>账户余额：
+      <text style='font-weight: bold;' wx:if="{{userObj.balance == '' && userObj.balance == null && userObj.balance == 'null'}}">{{balance}}</text>
+      <text style='font-weight: bold;' wx:else>{{balance}}</text>
+     元</view>
+    <view class='clear'></view>
+  </view>
+  <view class='pay_way'>
+    <view class='parWay_list' style='margin-bottom: 40rpx;' data-chopayway='1' bindtap='choosePayWay'>
+      <view class='pay_card_text'>
+        <view class='list_icons'>
+          <image src='../../images/yepay.png'></image>
+        </view>
+        <text>余额支付</text>
+      </view>
+      <view class='choImgs'>
+        <image wx:if="{{chopayway != 1}}" src='../../images/noc.png'></image>
+        <image wx:if="{{chopayway == 1}}" src='../../images/chos.png'></image>
+      </view>
+    </view>
+    <view class='parWay_list' data-chopayway='2' bindtap='choosePayWay'>
+      <view class='pay_card_text'>
+        <view class='list_icons'>
+          <image src='../../images/wxpay.png'></image>
+        </view>
+        <text>微信支付</text>
+      </view>
+      <view class='choImgs'>
+        <image wx:if="{{chopayway != 2}}" src='../../images/noc.png'></image>
+        <image wx:if="{{chopayway == 2}}" src='../../images/chos.png'></image>
+      </view>
+    </view>
+  </view>
+  <view class='pay_bar'>
+    <view class='pay_bar_num'>
+      <text>实际支付：</text>
+      <text class='reality_pay'>{{realityPay}}</text>
+      <text>元</text>
+    </view>
+    <view class='submit_btn' bindtap='submitPay'>确认支付</view>
+  </view>
+
+  <!-- 选择优惠券 -->
+  <wux-popup position="bottom" visible="{{ visibleCoupon }}" bind:close="onCloseCoupon">
+    <view class='popu_head' style='margin-bottom:20rpx;'>
+      <view class='cancel_btn' bindtap='onCloseCoupon'>取消</view>
+      <view>优惠券</view>
+      <view class='true_btn' bindtap='trueBtnCoupon'>确定</view>
+    </view>
+    <view class='teach_main'>
+      <scroll-view scroll-y style="width: 100%;height: 100%;">
+        <block wx:for="{{couponItem}}" wx:key="index">
+          <view class='coupon_list {{couponid == item.id ? "choAddColor" : ""}}' bindtap='chooseCoupon' data-couponid='{{item.id}}' data-items='{{item}}'>
+            <view class='couponl_left'>
+              <view class='coupon_price'>{{item.amount}}</view>
+              <view class='coupon_rule'>满{{item.min_pay_amout}}可用</view>
+            </view>
+            <view class='couponl_right'>
+              <view>{{item.cate_ptitle}}：{{item.cate_title}}</view>
+              <view class='right_text'>{{item.start_date}}-{{item.end_date}}</view>
+            </view>
+          </view>
+        </block>
+      </scroll-view>
+    </view>
+  </wux-popup>
+
+  <wux-popup position="bottom" visible="{{ visible }}" bind:close="onClose">
+    <view class='popu_head'>
+      <view class='cancel_btn' bindtap='onClose'>取消</view>
+      <view>请选择预约项目</view>
+      <view class='true_btn' bindtap='trueBtn'>确定</view>
+    </view>
+    <view class='server_main'>
+      <scroll-view scroll-y style="width: 100%;height: 100%;">
+        <block wx:for="{{firstArr}}" wx:key="index">
+          <view class='big_list {{ids == item.id ? "addColor" : ""}}' bindtap='choBigTitle' data-ids='{{item.id}}'>
+            <view>{{item.title}}</view>
+          </view>
+        </block>
+      </scroll-view>
+    </view>
+    <view class='second_main'>
+      <scroll-view scroll-y style="width: 100%;height: 100%;">
+        <block wx:for="{{secondItem}}" wx:key="index">
+          <view class='second_list {{item.choose == true ? "secondColor" : ""}}' bindtap='choSecond' data-secondindex='{{index}}'>
+            <view class='list_text'>{{item.title}}</view>
+            <view class='cImg' wx:if="{{item.choose == true}}">
+              <image src='../../images/cIcon.png'></image>
+            </view>
+          </view>
+        </block>
+        <view class='noData' wx:if="{{noServer}}">该分类下无服务</view>
+      </scroll-view>
+    </view>
+    <view class='clear'></view>
+  </wux-popup>
+</view>

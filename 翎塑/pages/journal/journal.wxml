@@ -1,6 +1,6 @@
 <!--pages/journal/journal.wxml-->
 <view class='journal'>
-  <view class='top_text'>历史累计佣金总额：￥<text class='text_color'>99999</text>（距离下一次升级还有￥2000）</view>
+  <view class='top_text'>历史累计佣金总额：￥<text class='text_color'>{{totals}}</text>（距离下一次升级还有￥2000）</view>
   <block wx:for="{{items}}" wx:key="index">
     <view class='journal_card' wx:if="{{showMain}}">
       <view class='card_icon'>

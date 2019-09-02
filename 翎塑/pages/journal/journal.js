@@ -15,7 +15,8 @@ Page({
     pagesize: 10,
     counts: 0,
     noDataShow: false,
-    showMain: false
+    showMain: false,
+    totals: ''
   },
 
   // 获取佣金日志列表
@@ -41,6 +42,7 @@ Page({
       }
       that.setData({
         counts: res.count,
+        totals: res.total,
         items: that.data.items.concat(res.list)
       })
     })

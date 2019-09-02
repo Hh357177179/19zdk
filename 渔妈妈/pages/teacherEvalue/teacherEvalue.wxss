@@ -1,0 +1,92 @@
+/* pages/teacherEvalue/teacherEvalue.wxss */
+.teacherEvalue{
+  min-height: 100vh;
+  padding: 0 40rpx;
+  background:linear-gradient(180deg,rgba(255,255,255,1) 0%,rgba(239,241,245,0.74) 100%);
+}
+.order_title{
+  color: #1F314A;
+  font-size: 60rpx;
+  line-height: 80rpx;
+  padding-top: 60rpx;
+  margin-bottom: 40rpx;
+}
+.vip_icon{
+  width: 50rpx;
+  height: 50rpx;
+  margin-right: 10rpx;
+}
+.ipt_teach{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 34rpx;
+  color: #1F314A;
+}
+.local_list{
+  margin-top:40rpx;
+  height: 100rpx;
+  background:rgba(255,255,255,1);
+  box-shadow:0px 12px 12px 0px rgba(52,84,122,0.06);
+  border-radius:100px;
+  border:1px solid rgba(31,49,74,0.11);
+  padding: 0 40rpx;
+  line-height: 100rpx;
+}
+.sub_btn{
+  margin: 60rpx auto 0;
+  width: 520rpx;
+  height: 108rpx;
+  text-align: center;
+  line-height: 108rpx;
+  background: #6665FF;
+  border-radius: 100px;
+  font-size: 38rpx;
+  color: #fff;
+}
+.local_list input{
+  height: 100%;
+}
+.addClass {
+  color: #ccc;
+}
+.place_main{
+  height: 800rpx;
+}
+.place_top{
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20rpx;
+  height: 100rpx;
+  border-bottom: 1px solid #f0f0f0;
+  align-items: center;
+}
+.cancel_btn, .true_btn{
+  padding: 10rpx 20rpx;
+  border: 1px solid #999;
+  border-radius: 3px;
+}
+.true_btn{
+  color: #6665FF;
+  border-color: #6665FF;
+}
+.place_card{
+  height: 680rpx;
+}
+.card_main{
+  padding: 0 40rpx;
+}
+.card_list{
+  margin-top: 10rpx;
+  padding: 30rpx 0;
+  background:rgba(255,255,255,1);
+  box-shadow:0px 2px 4px 0px rgba(31,49,74,0.12);
+  border-radius:5px;
+  border: 1px solid rgba(0,0,0,0);
+}
+.choBorder {
+  border-color: #6665FF;
+}
+.onlines{
+  margin-bottom: 20rpx;
+}

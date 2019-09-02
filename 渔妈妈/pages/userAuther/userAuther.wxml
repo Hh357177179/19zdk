@@ -1,0 +1,19 @@
+<!--pages/userAuther/userAuther.wxml-->
+<wux-calendar id="wux-calendar" />
+<view class="userAuther">
+  <view class="order_title">首次报名</view>
+  <view class="author_main">
+    <view class="child_name">
+      <input bindinput="nameVal" placeholder="请输入孩子姓名" placeholder-style="color: #ccc;"></input>
+    </view>
+    <view class="birth_time">
+      <wux-cell extra="{{ value1 }}" bind:click="openCalendar1">
+        <text>{{birthText}}</text>
+      </wux-cell>
+      <view class="calendar">
+        <image src="../../images/calendar.png"></image>
+      </view>
+    </view>
+    <view class="add_apply" bindtap="submitAdd">确定</view>
+  </view>
+</view>

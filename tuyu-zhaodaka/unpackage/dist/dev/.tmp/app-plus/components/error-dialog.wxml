@@ -1,0 +1,1 @@
+<view class="error_dialog"><view class="mask_mian"><view class="mask_text">{{errorText}}</view><view data-event-opts="{{[['tap',[['hideDialog',['$event']]]]]}}" class="mask_btn" bindtap="__e">确定</view></view></view>

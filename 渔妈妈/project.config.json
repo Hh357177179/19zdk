@@ -1,0 +1,209 @@
+{
+	"description": "项目配置文件",
+	"packOptions": {
+		"ignore": []
+	},
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"coverView": true,
+		"autoAudits": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		}
+	},
+	"compileType": "miniprogram",
+	"libVersion": "2.8.0",
+	"appid": "wx2441718e945e27fa",
+	"projectname": "ymm",
+	"debugOptions": {
+		"hidedInDevtools": []
+	},
+	"isGameTourist": false,
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"currentL": -1,
+			"list": []
+		},
+		"miniprogram": {
+			"current": 21,
+			"list": [
+				{
+					"id": -1,
+					"name": "课程列表",
+					"pathName": "pages/course/course",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 1,
+					"name": "详情",
+					"pathName": "pages/detail/detail",
+					"query": "id=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "报名成功",
+					"pathName": "pages/success/success",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "预约",
+					"pathName": "pages/order/order",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的",
+					"pathName": "pages/me/me",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "授权",
+					"pathName": "pages/login/login",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "注册",
+					"pathName": "pages/phone/phone",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的预约",
+					"pathName": "pages/meOrder/meOrder",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的预约（老师）",
+					"pathName": "pages/teacherOrder/teacherOrder",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 9,
+					"name": "讲座列表",
+					"pathName": "pages/course/course",
+					"query": "id=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "第一次报名",
+					"pathName": "pages/userAuther/userAuther",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "老师发起预约",
+					"pathName": "pages/sendTeacher/sendTeacher",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 12,
+					"name": "选择老师",
+					"pathName": "pages/teacherList/teacherList",
+					"query": "type=0",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "选择时间",
+					"pathName": "pages/choTime/choTime",
+					"query": "type=0&tid=216",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "专家发起预约",
+					"pathName": "pages/specialist/specialist",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "用户评价",
+					"pathName": "pages/evaluate/evaluate",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "评价",
+					"pathName": "pages/evaluate/evaluate",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "发布预约",
+					"pathName": "pages/issue/issue",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "老师评价",
+					"pathName": "pages/issue/issue",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "发布预约老师",
+					"pathName": "pages/teacherEvalue/teacherEvalue",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "逐字稿",
+					"pathName": "pages/transcription/transcription",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "历史记录",
+					"pathName": "pages/historyList/historyList",
+					"scene": null
+				}
+			]
+		}
+	}
+}

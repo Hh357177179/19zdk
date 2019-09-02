@@ -24,7 +24,7 @@
             <view class='card_info_time'>{{item.start_date}} — {{item.end_date}}</view>
           </view>
         </view>
-        <view class='use_coupon'>去使用</view>
+        <view class='use_coupon' bindtap='navPay'>去使用</view>
         <view class='top_icon'>未使用</view>
       </view>
     </block>

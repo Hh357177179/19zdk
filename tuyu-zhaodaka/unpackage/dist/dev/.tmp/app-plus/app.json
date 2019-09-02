@@ -1,0 +1,19 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/login/login",
+    "pages/connect-us/connect-us"
+  ],
+  "window": {
+    "navigationStyle": "custom"
+  },
+  "nvueCompiler": "weex",
+  "renderer": "auto",
+  "splashscreen": {
+    "alwaysShowBeforeRender": true,
+    "autoclose": false
+  },
+  "appname": "tuyu-zhaodaka",
+  "compilerVersion": "2.2.2",
+  "usingComponents": {}
+}

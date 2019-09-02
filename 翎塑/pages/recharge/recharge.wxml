@@ -1,0 +1,26 @@
+<!--pages/recharge/recharge.wxml-->
+<view class='recharge'>
+  <!-- <view class='recharge_input'>
+    <input placeholder='请输入充值金额' type='number' value='{{rechargeVal}}' bindinput='onRecharge'></input>
+  </view> -->
+  <view class='recharge_label'>充值余额</view>
+  <view class='cho_card'>
+    <block wx:for="{{rechargeItem}}" wx:key="index">
+      <view class='list_card {{item.id == recharge_id ? "choColor" : ""}}' bindtap='choTag' data-recharge_id='{{item.id}}' data-price='{{item.money}}'>
+        <view>
+          <text class='recharge_num'>{{item.money}}</text>
+          <text class='recharge_unit'>元</text>
+        </view>
+        <view class='recharge_award {{item.id == recharge_id ? "choText" : ""}}'>奖励{{item.present}}元</view>
+      </view>
+    </block>
+  </view>
+  <view class='submit_bar'>
+    <view class='num_left' wx:if="{{rechargeVal != ''}}">
+      <text class='num_label'>共计</text>
+      <text class='num_unit'>￥</text>
+      <text class='num_nums'>{{rechargeVal}}</text>
+    </view>
+    <view class='submit_btn' bindtap='submitBtn'>立即充值</view>
+  </view>
+</view>

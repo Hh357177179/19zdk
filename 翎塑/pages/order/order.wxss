@@ -1,0 +1,266 @@
+/* pages/order/order.wxss */
+.clear{
+  clear: both;
+}
+.order{
+  width: 100%;
+  min-height: 100vh;
+  background: #f6f6f6;
+  /* padding: 0 30rpx; */
+}
+.order_main{
+  background: #fff;
+  padding: 30rpx;
+}
+.server_main{
+  height: 500rpx;
+  width: 40%;
+  background: #f8f8f8;
+  float: left;
+  padding-bottom: 20rpx;
+}
+.second_main{
+  height: 500rpx;
+  width: 60%;
+  float: left;
+}
+.big_list{
+  width: 100%;
+  text-align: center;
+  padding: 20rpx 0;
+  font-size: 26rpx;
+  color: #999;
+}
+.addColor {
+  /* color: #bb4043; */
+  color: #333;
+  background: #fff;
+  font-size: 28rpx;
+  font-weight: 600;
+}
+.second_list{
+  font-size: 28rpx;
+  position: relative;
+  border-bottom: 1rpx dashed #f0f0f0;
+  width: 90%;
+  float: right;
+}
+.noData{
+  font-size: 26rpx;
+  margin-top: 200rpx;
+}
+.cImg{
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  right: 10rpx;
+  top: calc(50% - 25rpx);
+}
+.cImg image{
+  width: 100%;
+  height: 100%;
+}
+.list_text{
+  width: 70%;
+  margin: 0 auto;
+  text-align: left;
+  padding: 20rpx 0 20rpx 10rpx;
+}
+.secondColor{
+  color: #333;
+  border-color: #333;
+}
+.popu_head{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+  color: #333;
+}
+.cancel_btn{
+  font-size: 26rpx;
+  border: 1px solid #999;
+  padding: 8rpx 20rpx;
+  border-radius: 5rpx;
+  color: #999;
+}
+.true_btn{
+  font-size: 26rpx;
+  border: 1px solid #409EFF;
+  padding: 8rpx 20rpx;
+  border-radius: 5rpx;
+  color: #409EFF;
+}
+.order_list{
+  border-bottom: 1px solid #f0f0f0;
+  padding-bottom: 20rpx;
+}
+.olist_label{
+  font-size: 30rpx;
+  color: #333;
+}
+.olist_icon{
+  width: 30rpx;
+  height: 30rpx;
+}
+.olist_icon image {
+  width: 100%;
+  height: 100%;
+}
+.order_top{
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20rpx 0 20rpx;
+}
+.olist_card{
+  padding: 20rpx 20rpx 0 20rpx;
+  display: flex;
+  justify-content: flex-start;
+}
+.oclist{
+  font-size: 26rpx;
+  color: #666;
+  /* border: 1px solid #666; */
+  box-shadow:0px 8rpx 16rpx 0px #ccc;
+  border-radius: 5rpx;
+  padding: 10rpx 20rpx;
+  margin-right: 20rpx;
+}
+.sub_title{
+  font-size: 30rpx;
+  /* text-align: right; */
+  color: #666;
+  /* width: 350rpx; */
+}
+.page_bd{
+  border-bottom: 1px solid #f0f0f0;
+  height: 100rpx;
+  line-height: 100rpx;
+}
+.teach_main{
+  height: 500rpx;
+  background: #f000;
+  padding-bottom: 20rpx;
+}
+.teach_list{
+  width: 90%;
+  margin: 0 auto;
+  padding: 15rpx 0;
+  border-bottom: 1px solid #f0f0f0;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.teach_info{
+  margin-left: 20rpx;
+  width: 75%;
+}
+.teach_icon{
+  width: 60rpx;
+  height: 60rpx;
+  margin-right: 10rpx;
+  margin-left: 20rpx;
+}
+.teach_icon image {
+  width: 100%;
+  height: 100%;
+}
+.teach_desc{
+  margin-top: 6rpx;
+  color: #666;
+  font-size: 24rpx;
+}
+.teach_name {
+  color: #333;
+  font-weight: 600;
+  font-size: 30rpx;
+}
+.teach_avatar{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #ccc;
+}
+.teach_avatar image{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.borderColor{
+  border-color: #333;
+}
+.numbers{
+  width: 100rpx;
+  height: 46rpx;
+  font-size: 30rpx;
+  border: 1px solid #333;
+  border-radius: 5rpx;
+  text-align: center;
+  line-height: 48rpx;
+  margin: 0 20rpx;
+}
+.per_num{
+  display: flex;
+  align-items: center;
+}
+.click_btn{
+  height: 50rpx;
+  width: 70rpx;
+  padding: 0;
+  line-height: 45rpx;
+  border-radius: 5rpx;
+  border: none !important;
+  background: #333 !important;
+}
+.phone_input{
+  float: left;
+  padding-left: 20rpx;
+}
+.phone_tel{
+  font-size: 30rpx;
+  color: #666;
+  padding-left: 20rpx;
+  height: 41rpx;
+  width: 450rpx;
+}
+button::after {
+  border: 0;
+}
+.textarea_input{
+  font-size: 30rpx;
+  float: left;
+  width: 500rpx;
+  color: #666;
+}
+.foots{
+  height: 98rpx;
+  background: #fff;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.foot_text{
+  font-size: 24rpx;
+  color:rgba(25,31,37,0.28);
+  margin-left: 30rpx;
+}
+.foot_btn{
+  width:300rpx; 
+  height:98rpx;
+  background:#333;
+  color: #fff;
+  font-size: 36rpx;
+  text-align: center;
+  line-height: 98rpx;
+}
+.phoneFlex{
+  display: flex;
+  align-items: center;
+}

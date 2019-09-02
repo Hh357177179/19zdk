@@ -33,6 +33,12 @@ Page({
     that.getCoupon()
   },
 
+  navPay () {
+    wx.navigateTo({
+      url: '/pages/payOrder/payOrder',
+    })
+  },
+
   // 获取优惠券列表
   getCoupon () {
     let that = this
@@ -43,7 +49,7 @@ Page({
       type: that.data.type
     }
     postRequest('/user/couponList', params, true).then(res => {
-      console.log(res)
+      // console.log(res)
       if (that.data.page == 1 && res.list.length == 0) {
         that.setData({
           noDataShow: true

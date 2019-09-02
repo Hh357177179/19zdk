@@ -40,5 +40,12 @@ export default {
   text38: 'No More',
   text39: 'Success',
   text40: 'Home',
-  text41: 'Already'
+  text41: 'Already',
+  text42: 'Group',
+  text43: 'Private',
+  text44: 'Fitness',
+  text45: 'Solo',
+  text46: 'Match',
+  text47: 'Video',
+  text48: 'Play Video'
 }

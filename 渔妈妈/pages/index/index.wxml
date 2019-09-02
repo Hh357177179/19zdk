@@ -1,0 +1,31 @@
+<!--pages/order/order.wxml-->
+<view class='order'>
+  <view class='orderTitle'>请选择你的预约</view>
+  <view class='order_card' style='margin-bottom: 36rpx;' bindtap='navOnline'>
+    <view class='ocard_info'>
+      <view class='ocard_title'>在线服务预约</view>
+      <view class='ocard_desc'>在线一对一辅导，单次辅导时间30分钟 费用80元</view>
+    </view>
+    <view class='right_image'>
+      <image src='../../images/specialistOrder.png'></image>
+    </view>
+  </view>
+  <view class='order_card' bindtap='navTeacher'>
+    <view class='ocard_info'>
+      <view class='ocard_title'>老师面对面预约</view>
+      <view class='ocard_desc'>当面一对一辅导，单次辅导时间为30分钟 费用120元</view>
+    </view>
+    <view class='right_image'>
+      <image src='../../images/teacherOrder.png'></image>
+    </view>
+  </view>
+  <view class='order_card' style='margin-top: 36rpx;' bindtap="navSpecialist">
+    <view class='ocard_info'>
+      <view class='ocard_title'>专家面对面预约</view>
+      <view class='ocard_desc'>当面一对一辅导，单次辅导时间为90分钟 费用600元起</view>
+    </view>
+    <view class='right_image'>
+      <image src='../../images/specialistOrder.png'></image>
+    </view>
+  </view>
+</view>

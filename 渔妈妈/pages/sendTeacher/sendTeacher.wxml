@@ -1,0 +1,19 @@
+<!--pages/sendTeacher/sendTeacher.wxml-->
+<view class="send_teacher">
+  <view class="order_title">发起预约</view>
+  <view class="price">
+    预约费用：{{price}}元
+  </view>
+  <view class="list_place" bindtap="choTeacher">
+    <text>{{teacherName}}</text>
+    <!-- <image class="rights" src="../../images/Rights.png"></image> -->
+  </view>
+  <view class="list_place">
+    <text>{{timeText}}</text>
+    <!-- <image class="rights" src="../../images/Rights.png"></image> -->
+  </view>
+  <view class="send_order" bindtap="sendTeacherOrder">
+    <image class="send_icon" src="../../images/sendIcon.png"></image>
+    <text>发起预约</text>
+  </view>
+</view>

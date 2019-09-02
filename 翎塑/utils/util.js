@@ -1,4 +1,4 @@
-const baseUrl = 'http://lingsu.zhaodaka.vip/api'
+const baseUrl = 'https://ssl.zhaodaka.net/lingsu/api'
 
 const formatTime = date => {
   const year = date.getFullYear()

@@ -1,0 +1,296 @@
+/* pages/payOrder/payOrder.wxss */
+.clear{
+  clear: both;
+}
+.payOrder{
+  padding: 20rpx 40rpx;
+  padding-bottom: 120rpx;
+}
+.server_list{
+  padding: 20rpx;
+  box-shadow:0px 2px 4px 0px rgba(31,49,74,0.12);
+  border-radius: 10rpx;
+}
+.choServer{
+  font-size: 30rpx;
+  color: #333;
+  padding: 20rpx 0 0;
+}
+.pay_price{
+  margin-top: 20rpx;
+  padding: 30rpx 20rpx;
+  box-shadow:0px 2px 4px 0px rgba(31,49,74,0.12);
+  border-radius: 10rpx;
+}
+.pay_title{
+  color: #333;
+  font-size: 30rpx;
+}
+.pay_num{
+  margin-top: 20rpx;
+  display: flex;
+  align-items: center;
+}
+.pay_nuit{
+  float: left;
+  color: #666;
+}
+.pay_input{
+  float: left;
+  font-size: 60rpx;
+  font-weight: bold;
+  color: #333;
+  margin-left: 20rpx;
+}
+.pay_input input{
+  width: 560rpx;
+  height: 70rpx;
+}
+.pay_coupon{
+  margin-top: 20rpx;
+  padding: 30rpx 20rpx;
+  box-shadow:0px 2px 4px 0px rgba(31,49,74,0.12);
+  border-radius: 10rpx;
+}
+.coupon{
+  color: #333;
+  font-size: 30rpx;
+}
+.coupon_icon{
+  width: 50rpx;
+  height: 50rpx;
+  float: left;
+}
+.coupon_icon image{
+  width: 100%;
+  height: 100%;
+}
+.coupon_text{
+  float: left;
+  line-height: 55rpx;
+  margin-left: 20rpx;
+}
+.icon_right{
+  float: left;
+  width: 30rpx;
+  height: 30rpx;
+  margin-top: 10rpx;
+}
+.icon_right image{
+  width: 100%;
+  height: 100%;
+}
+.right_texts{
+  color: #666;
+  font-size: 26rpx;
+  line-height: 55rpx;
+  float: left;
+}
+.coupon_bot{
+  margin-top: 20rpx;
+}
+.result_money{
+  margin-top: 20rpx;
+  padding: 30rpx 20rpx;
+  box-shadow:0px 2px 4px 0px rgba(31,49,74,0.12);
+  border-radius: 10rpx;
+  font-size: 30rpx;
+  color: #333;
+}
+.user_money{
+  margin-left: 20rpx;
+  float: left;
+  line-height: 55rpx;
+}
+.pay_bar{
+  height: 98rpx;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  box-shadow:0px -2px 4px 0px rgba(31,49,74,0.12);
+}
+.pay_bar_num{
+  font-size: 24rpx;
+  color: #666;
+}
+.pay_bar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 20rpx;
+}
+.submit_btn{
+  color: #fff;
+  background: #333;
+  width:300rpx;
+  height:98rpx;
+  font-size:36rpx;
+  text-align:center;
+  line-height:98rpx;
+}
+.reality_pay{
+  font-size: 36rpx;
+  color: #f00;
+  font-weight: bold;
+  margin-right: 10rpx;
+}
+.popu_head{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx;
+  border-bottom: 1rpx solid #f0f0f0;
+  color: #333;
+}
+.cancel_btn{
+  font-size: 26rpx;
+  border: 1px solid #999;
+  padding: 8rpx 20rpx;
+  border-radius: 5rpx;
+  color: #999;
+}
+.true_btn{
+  font-size: 26rpx;
+  border: 1px solid #409EFF;
+  padding: 8rpx 20rpx;
+  border-radius: 5rpx;
+  color: #409EFF;
+}
+.teach_main{
+  height: 500rpx;
+  background: #f000;
+  padding: 0 40rpx 20rpx;
+}
+.server_main{
+  height: 500rpx;
+  width: 40%;
+  background: #f8f8f8;
+  float: left;
+  padding-bottom: 20rpx;
+}
+.second_main{
+  height: 500rpx;
+  width: 60%;
+  float: left;
+}
+.big_list{
+  width: 100%;
+  text-align: center;
+  padding: 20rpx 0;
+  font-size: 26rpx;
+  color: #999;
+}
+.addColor {
+  /* color: #bb4043; */
+  color: #333;
+  background: #fff;
+  font-size: 28rpx;
+  font-weight: 600;
+}
+.second_list{
+  font-size: 28rpx;
+  position: relative;
+  border-bottom: 1rpx dashed #f0f0f0;
+  width: 90%;
+  float: right;
+}
+.noData{
+  font-size: 26rpx;
+  margin-top: 200rpx;
+}
+.cImg{
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  right: 10rpx;
+  top: calc(50% - 25rpx);
+}
+.cImg image{
+  width: 100%;
+  height: 100%;
+}
+.list_text{
+  width: 70%;
+  margin: 0 auto;
+  text-align: left;
+  padding: 20rpx 0 20rpx 10rpx;
+}
+.secondColor{
+  color: #333;
+  border-color: #333;
+}
+.cho_cards{
+  font-size: 26rpx;
+  padding: 10rpx 20rpx;
+  box-shadow:0px 2px 4px 0px rgba(31,49,74,0.12);
+}
+.serve_list{
+  margin-top: 10rpx;
+}
+.coupon_list{
+  padding: 20rpx;
+  box-shadow:0px 2px 4px 0px rgba(31,49,74,0.12);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10rpx;
+  border: 1rpx solid #f0f0f0;
+  margin-bottom: 20rpx;
+}
+.coupon_price{
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #70c4c8;
+}
+.coupon_rule{
+  color: #70c4c8;
+  margin-top: 10rpx;
+  font-size: 26rpx;
+}
+.couponl_right{
+  text-align: center;
+  color: #333;
+  font-size: 28rpx;
+  margin-top: 10rpx;
+}
+.right_text{
+  margin-top: 10rpx;
+}
+.choAddColor {
+  border-color: #70c4c8;
+}
+.pay_way{
+  margin-top: 20rpx;
+  padding: 20rpx;
+  box-shadow:0px 2px 4px 0px rgba(31,49,74,0.12);
+  border-radius: 10rpx;
+  font-size: 30rpx;
+}
+.list_icons{
+  width: 50rpx;
+  height: 50rpx;
+  margin-right: 20rpx;
+}
+.list_icons image{
+  width: 100%;
+  height: 100%;
+}
+.pay_card_text{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.parWay_list{
+  display: flex;
+  justify-content: space-between;
+}
+.choImgs{
+  width: 50rpx;
+  height: 50rpx;
+}
+.choImgs image{
+  width: 100%;
+  height: 100%;
+}

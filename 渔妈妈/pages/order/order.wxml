@@ -1,0 +1,46 @@
+<!--index.wxml-->
+<view class="home">
+  <view class="nav_bar">
+    <view class="nav_list" data-nav="1" bindtap="choNav">
+      <view class="{{nav == 1 ? 'cho_text' : ''}}">学校</view>
+      <view class="nav_bor {{nav == 1 ? 'cho_nav' : ''}}"></view>
+    </view>
+    <view class="nav_list" data-nav="2" bindtap="choNav">
+      <view class="{{nav == 2 ? 'cho_text' : ''}}">社区</view>
+      <view class="nav_bor {{nav == 2 ? 'cho_nav' : ''}}"></view>
+    </view>
+  </view>
+  <!-- 学校 -->
+  <view style="padding-bottom: 60rpx;">
+    <view wx:if="{{nav == 1}}">
+    <block wx:for="{{items}}" wx:key="index">
+      <view class="card_list" bindtap='navCourse' data-channel_id="{{item.channel_id}}">
+        <view class='list_main'>
+          <view class='list_title'>{{item.title}}</view>
+          <view class='list_desc'>{{item.desc}}</view>
+        </view>
+        <view class='heart_icon' catchtap="addHeart" data-channelid="{{item.channel_id}}">
+          <image wx:if="{{item.like == 0}}" src='../../images/noheart.png'></image>
+          <image wx:if="{{item.like == 1}}" src='../../images/heart.png'></image>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <!-- 社区 -->
+  <view wx:if="{{nav == 2}}">
+    <block wx:for="{{items}}" wx:key="index">
+      <view class="card_list" bindtap="navCourse" data-channel_id="{{item.channel_id}}">
+        <view class='list_main'>
+          <view class='list_title'>{{item.title}}</view>
+          <view class='list_desc'>{{item.desc}}</view>
+        </view>
+        <view class='heart_icon' catchtap="addHeart" data-channelid="{{item.channel_id}}">
+          <image wx:if="{{item.like == 0}}" src='../../images/noheart.png'></image>
+          <image wx:if="{{item.like == 1}}" src='../../images/heart.png'></image>
+        </view>
+      </view>
+    </block>
+  </view>
+  </view>
+</view>

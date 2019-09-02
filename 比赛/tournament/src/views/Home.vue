@@ -26,6 +26,9 @@
               <!-- <p class="label_name">备注：</p> -->
               <p>{{item.note}}</p>
             </div>
+            <div class="video_play">
+              <a :href="item.video">{{$t('text48')}}</a>
+            </div>
           </div>
         </div>
       </div>
@@ -65,6 +68,11 @@
           placeholder="请输入备注(Mark)"
           rows="1"
           autosize
+        />
+        <van-field
+          v-model="video"
+          :label="$t('text47')"
+          placeholder="请输入视频地址(Video)"
         />
         <div class="foot_btn">
           <div class="foot_btns calc_submit" @click="canlSubmit">{{$t('text32')}}</div>
@@ -138,11 +146,12 @@ export default {
       day: '',
       calenderItem: [],
       planNumber: 0,
-      columns: ['大课', '私教', '体能', '自主练习', '比赛'],
+      columns: [this.$t('text42'), this.$t('text43'), this.$t('text44'), this.$t('text45'), this.$t('text46')],
       types: '',
       nowList: [],
       arr:[],
-      statusNum: 0
+      statusNum: 0,
+      video: ''
     }
   },
   methods: {
@@ -195,15 +204,15 @@ export default {
           message: '请选择结束时间'
         })
       } else {
-        if (this.drillTypeVal == '大课') {
+        if (this.drillTypeVal == '大课' || this.drillTypeVal == 'Group') {
           this.types = 1
-        } else if (this.drillTypeVal == '私教') {
+        } else if (this.drillTypeVal == '私教' || this.drillTypeVal == 'Private') {
           this.types = 2
-        } else if (this.drillTypeVal == '体能') {
+        } else if (this.drillTypeVal == '体能' || this.drillTypeVal == 'Fitness') {
           this.types = 3
-        } else if (this.drillTypeVal == '自主练习') {
+        } else if (this.drillTypeVal == '自主练习' || this.drillTypeVal == 'Solo') {
           this.types = 4
-        } else if (this.drillTypeVal == '比赛') {
+        } else if (this.drillTypeVal == '比赛' || this.drillTypeVal == 'Match') {
           this.types = 5
         }
         let params = {
@@ -212,7 +221,8 @@ export default {
           type_text: this.drillTypeVal,
           start_time: this.sendStartTime,
           end_time: this.sendEndTime,
-          note: this.note
+          note: this.note,
+          video: this.video
         }
         console.log(params)
         addCalender(params).then(res => {
@@ -228,6 +238,7 @@ export default {
           this.addShow = false
           this.showDay = false
           this.day = ''
+          this.video = ''
           this.getList()
         })
       }
@@ -418,6 +429,19 @@ export default {
         }
         .label_note{
           margin-top: 5px;
+        }
+        .video_play{
+          width: 100px;
+          font-size: 14px;
+          background: #76A1FF;
+          text-align: center;
+          color: #fff;
+          line-height: 30px;
+          border-radius: 3px;
+          margin: 5px auto 0;
+          a{
+            color: #fff;
+          }
         }
       }
     }

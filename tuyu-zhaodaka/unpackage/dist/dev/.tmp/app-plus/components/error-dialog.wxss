@@ -1,0 +1,33 @@
+.error_dialog {
+  position: fixed;
+  width: 100%;
+  min-height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  top: 0;
+  left: 0;
+  z-index: 11;
+}
+.error_dialog .mask_mian {
+  text-align: center;
+  -webkit-box-shadow: 0 0 40rpx rgba(255, 255, 255, 0.4);
+          box-shadow: 0 0 40rpx rgba(255, 255, 255, 0.4);
+  position: absolute;
+  left: calc(50% - 40%);
+  top: calc(50% - 80rpx);
+  width: 80%;
+}
+.error_dialog .mask_mian .mask_text {
+  background: #fff;
+  border: 1px solid #d45f4b;
+  line-height: 80rpx;
+  color: #333;
+  font-size: 32rpx;
+  margin-bottom: 10rpx;
+}
+.error_dialog .mask_mian .mask_btn {
+  color: #fff;
+  background: #d45f4b;
+  font-size: 32rpx;
+  line-height: 80rpx;
+}
+

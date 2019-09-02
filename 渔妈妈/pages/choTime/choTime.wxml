@@ -1,0 +1,19 @@
+<!--pages/choTime/choTime.wxml-->
+<wxs module="dateFr" src="../../utils/dateFr.wxs"></wxs>
+<view class="cho_time">
+  <view class="order_title">请选择时间</view>
+  <block wx:for="{{items}}" wx:key="index">
+    <view class="card_list">
+      <view class="card_time">
+        <view class="card_day">{{dateFr.getDate(item.begin_time * 1000,'-',':')}}</view>
+        <view class="card_hour">时长：{{item.class_time}}分钟</view>
+      </view>
+      <view class="order_btn noaddColor" wx:if="{{item.status == 2}}">
+        <text>已预约</text>
+      </view>
+      <view class="order_btn addColor" data-timeobj="{{item}}" wx:if="{{item.status == 1}}" bindtap="orderTime">
+        <text>预约</text>
+      </view>
+    </view>
+  </block>
+</view>

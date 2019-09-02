@@ -1,0 +1,32 @@
+<!--pages/evaluate/evaluate.wxml-->
+<view class="evaluate">
+  <view class="order_title">评价</view>
+  <view class="evaluate_main">
+    <view class="start">
+      <view class="start_list" bindtap="first">
+        <image wx:if="{{star >= 1}}" src="../../images/xx.png"></image>
+      </view>
+      <view class="start_list" bindtap="second">
+        <image wx:if="{{star >= 2}}" src="../../images/xx.png"></image>
+        <image wx:else src="../../images/nox.png"></image>
+      </view>
+      <view class="start_list" bindtap="thirdly">
+        <image wx:if="{{star >= 3}}" src="../../images/xx.png"></image>
+        <image wx:else src="../../images/nox.png"></image>
+      </view>
+      <view class="start_list" bindtap="fourth">
+        <image wx:if="{{star >= 4}}" src="../../images/xx.png"></image>
+        <image wx:else src="../../images/nox.png"></image>
+      </view>
+      <view class="start_list" bindtap="fifth">
+        <image wx:if="{{star == 5}}" src="../../images/xx.png"></image>
+        <image wx:else src="../../images/nox.png"></image>
+      </view>
+    </view>
+    <view class="star_text">{{starText}}</view>
+    <view class="evaluate_text">
+      <textarea placeholder="评论内容" bindinput="noteVal" maxlength="-1" auto-height placeholder-class="color: #ccc;"></textarea>
+    </view>
+  </view>
+  <view class="submit_evalue" bindtap="subEvalue">提交评价</view>
+</view>

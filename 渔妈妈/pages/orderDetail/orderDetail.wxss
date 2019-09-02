@@ -1,0 +1,43 @@
+/* pages/orderDetail/orderDetail.wxss */
+.order_detail{
+  padding: 0 40rpx;
+  min-height: 100vh;
+  background:linear-gradient(180deg,rgba(255,255,255,1) 0%,rgba(239,241,245,0.74) 100%);
+}
+.order_title{
+  color: #1F314A;
+  font-size: 60rpx;
+  line-height: 80rpx;
+  padding-top: 60rpx;
+  margin-bottom: 40rpx;
+}
+.detail_main{
+  padding: 40rpx;
+  background:rgba(255,255,255,1);
+  box-shadow:0px 2px 4px 0px rgba(31,49,74,0.12);
+  border-radius:10px;
+}
+.title{
+  font-size:40rpx;
+  font-weight:500;
+  color:rgba(31,49,74,1);
+  line-height:56rpx;
+}
+.times{
+  font-size: 28rpx;
+  color: #999;
+}
+.me_eval{
+  margin-top: 40rpx;
+  min-height: 200rpx;
+  background:rgba(243,245,248,1);
+  border-radius:5px;
+  padding: 20rpx;
+  font-size: 28rpx;
+  color: #1F314A;
+}
+.labels{
+  font-size: 26rpx;
+  color: #666;
+  margin-bottom: 10rpx;
+}

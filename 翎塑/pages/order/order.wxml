@@ -1,0 +1,131 @@
+<!--pages/order/order.wxml-->
+<view class='order'>
+  <view class='order_main'>
+    <view class='order_list' bindtap='showServer'>
+      <view class='order_top'>
+        <view class='olist_label'>预约服务项目（可多选）</view>
+        <view class='olist_icon'>
+          <image src='../../images/rightsmall.png'></image>
+        </view>
+      </view>
+      <view class='olist_card' wx:if="{{chooseArr.length != 0}}">
+        <view class='oclist' wx:for="{{chooseArr}}" wx:key="index">{{item.title}}</view>
+      </view>
+    </view>
+    <view class="page_bd" bindtap='showTime'>
+      <view class='order_top'>
+        <view class='olist_label'>预约时间</view>
+        <view class="sub_title">{{ displayValue1 }}</view>
+        <view class='olist_icon'>
+          <image src='../../images/rightsmall.png'></image>
+        </view>
+      </view>
+    </view>
+    <view class="page_bd" bindtap='showTeach'>
+      <view class='order_top'>
+        <view class='olist_label'>预约技师（选填）</view>
+        <view class="sub_title">{{ technician }}</view>
+        <view class='olist_icon'>
+          <image src='../../images/rightsmall.png'></image>
+        </view>
+      </view>
+    </view>
+    <view class="page_bd">
+      <view class='order_top'>
+        <view class='olist_label'>人数</view>
+        <view class='per_num'>
+          <button class='click_btn' type='primary' bindtap='subNum' disabled='{{disSub}}'>-</button>
+          <view class='numbers'>{{nums}}</view>
+          <button class='click_btn' type='primary' bindtap='addNum'>+</button>
+        </view>
+      </view>
+    </view>
+    <view class="page_bd phoneFlex">
+      <view class='phone_input'>
+        <view class='olist_label'>预留手机</view>
+      </view>
+      <view>
+        <input class='phone_tel' maxlength='11' type='number' value='{{phone}}' bindinput='phoneVal' placeholder='请输入预留手机号码'></input>
+      </view>
+    </view>
+    <view class="page_bd phoneFlex">
+      <view class='order_top'>
+        <view class='olist_label'>备注</view>
+      </view>
+      <view>
+        <input class='textarea_input' bindinput='noteVal' value='{{note}}' maxlength='20' placeholder='请输入备注，不超过20字（选填）'></input>
+      </view>
+    </view>
+    <view class='foots'>
+      <view class='foot_text'>到店优先安排</view>
+      <view class='foot_btn' bindtap='sendOrder'>免费预约</view>
+    </view>
+  </view>
+  <wux-popup position="bottom" visible="{{ visible }}" bind:close="onClose">
+    <view class='popu_head'>
+      <view class='cancel_btn' bindtap='onClose'>取消</view>
+      <view>请选择预约项目</view>
+      <view class='true_btn' bindtap='trueBtn'>确定</view>
+    </view>
+    <view class='server_main'>
+      <scroll-view scroll-y style="width: 100%;height: 100%;">
+        <block wx:for="{{options}}" wx:key="index">
+          <view class='big_list {{ids == item.id ? "addColor" : ""}}' bindtap='choBigTitle' data-ids='{{item.id}}'>
+            <view>{{item.title}}</view>
+          </view>
+        </block>
+      </scroll-view>
+    </view>
+    <view class='second_main'>
+      <scroll-view scroll-y style="width: 100%;height: 100%;">
+        <block wx:for="{{secondItem}}" wx:key="index">
+          <view class='second_list {{item.choose == true ? "secondColor" : ""}}' bindtap='choSecond' data-secondindex='{{index}}'>
+            <view class='list_text'>{{item.title}}</view>
+            <view class='cImg' wx:if="{{item.choose == true}}">
+              <image src='../../images/cIcon.png'></image>
+            </view>
+          </view>
+        </block>
+        <view class='noData' wx:if="{{noServer}}">该分类下无服务</view>
+      </scroll-view>
+    </view>
+    <view class='clear'></view>
+  </wux-popup>
+
+  <!-- 时间选择器 -->
+  <wux-popup position="bottom" visible="{{ visibleTime }}" bind:close="onCloseTime">
+    <view class='popu_head'>
+      <view class='cancel_btn' bindtap='onCloseTime'>取消</view>
+      <view>请选择预约时间</view>
+      <view class='true_btn' bindtap='trueBtnTime'>确定</view>
+    </view>
+    <view style='padding-bottom: 20rpx;'>
+      <wux-date-picker-view lang="zh_CN" value="{{ value1 }}" data-index="1" bind:valueChange="onValueChange" />
+    </view>
+  </wux-popup>
+
+  <!-- 预约技师 -->
+  <wux-popup position="bottom" visible="{{ visibleTeach }}" bind:close="onCloseTeach">
+    <view class='popu_head'>
+      <view class='cancel_btn' bindtap='onCloseTeach'>取消</view>
+      <view>请选择预约技师</view>
+      <view class='true_btn' bindtap='trueBtnTeach'>确定</view>
+    </view>
+    <view class='teach_main'>
+      <scroll-view scroll-y style="width: 100%;height: 100%;">
+      <block wx:for="{{teacherItem}}" wx:key="index">
+        <view class='teach_list {{teachindex == item.id ? "borderColor" : ""}}' bindtap='choTeach' data-technician="{{item.name}}" data-teachindex='{{item.id}}'>
+          <view class='teach_avatar'></view>
+          <view class='teach_info'>
+            <view class='teach_name'>{{item.name}}</view>
+            <view class='teach_desc'>{{item.desc}}</view>
+          </view>
+          <view class='teach_icon' wx:if="{{item.id == teachindex}}">
+            <image src='../../images/cIcon.png'></image>
+          </view>
+        </view>
+        </block>
+      </scroll-view>
+    </view>
+  </wux-popup>
+</view>

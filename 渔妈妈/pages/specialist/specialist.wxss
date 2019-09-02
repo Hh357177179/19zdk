@@ -1,0 +1,145 @@
+/* pages/specialist/specialist.wxss */
+.clear{
+  clear: both;
+}
+.specialist{
+  padding: 0 40rpx;
+  min-height: 100vh;
+  background:linear-gradient(180deg,rgba(255,255,255,1) 0%,rgba(239,241,245,1) 100%);
+}
+.order_title{
+  color: #1F314A;
+  font-size: 60rpx;
+  line-height: 80rpx;
+  padding-top: 40rpx;
+  margin-bottom: 40rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.specialist_search{
+  width: 112rpx;
+  height: 112rpx;
+}
+.cho_local{
+  display: flex;
+  justify-content: flex-start;
+  color: #999;
+  font-size: 36rpx;
+  margin-bottom: 40rpx;
+}
+.custom_place{
+  margin-left: 30rpx;
+}
+.custom_place, .specialist_place{
+  border-bottom: 1px solid rgba(0,0,0,0);
+}
+.addClass {
+  color: #6665FF;
+  border-color: #6665FF;
+}
+.list_place{
+  height:128rpx;
+  background:rgba(255,255,255,1);
+  box-shadow:0px 12px 12px 0px rgba(52,84,122,0.06);
+  border-radius:100px;
+  border:1px solid rgba(31,49,74,0.11);
+  padding: 0 50rpx;
+  font-size: 36rpx;
+  color: #1F314A;
+  line-height: 128rpx;
+  margin-bottom: 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.rights{
+  width: 40rpx;
+  height: 40rpx;
+}
+.recommend{
+  font-size: 24rpx;
+  color: #1F314A;
+  margin-bottom: 16rpx;
+}
+.send_order{
+  width: 100%;
+  height: 96rpx;
+  background: #6665FF;
+  color: #fff;
+  font-size: 36rpx;
+  line-height: 96rpx;
+  text-align: center;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.send_icon{
+  width: 42rpx;
+  height: 42rpx;
+  margin-right: 6rpx;
+}
+.price{
+  font-size: 38rpx;
+  color: #1F314A;
+  margin-bottom: 20rpx;
+}
+.search_main{
+  height: 100vh;
+}
+.search_top{
+  height: 100rpx;
+  padding:0 26rpx;
+  background: #fff;
+  box-shadow:0px -1px 22px 0px rgba(52,84,122,0.12);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.search_icon{
+  width: 36rpx;
+  height: 36rpx;
+}
+.search_top_back{
+  background:rgba(243,244,248,1);
+  border-radius:18px;
+  height: 70rpx;
+  display: flex;
+  justify-content: flex-start;
+  padding: 0 30rpx;
+  align-items: center;
+  width: 540rpx;
+}
+.result{
+  padding:130rpx 40rpx 0;
+}
+.result_card{
+  display: flex;
+  justify-content: flex-start;
+}
+.result_label{
+  float: left;
+  font-size: 30rpx;
+  color: #1F314A;
+  margin-bottom: 30rpx;
+}
+.result_card{
+  display: flex;
+  justify-content: flex-start;
+}
+.card_list{
+  background:rgba(223,225,226,.3);
+  font-size: 28rpx;
+  color: #1F314A;
+  border-radius: 15px;
+  padding: 6rpx 40rpx;
+  line-height: 40rpx;
+}

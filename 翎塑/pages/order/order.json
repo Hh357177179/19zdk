@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "预约到店",
+  "usingComponents": {
+    "wux-popup": "../../dist/popup/index",
+    "wux-segmented-control": "../../dist/segmented-control/index",
+    "wux-date-picker-view": "../../dist/date-picker-view/index",
+    "wux-textarea": "../../dist/textarea/index"
+  }
+}

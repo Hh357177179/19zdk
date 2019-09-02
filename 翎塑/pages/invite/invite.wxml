@@ -1,27 +1,44 @@
 <!--pages/invite/invite.wxml-->
+<wxs module="dateFr" src="../../utils/dateFr.wxs"></wxs>
 <view class='invite'>
   <view class='invite_nav'>
     <view class='nav_list' bindtap='changeNav' data-num='1'>
-      <text class="{{num == 1 ? 'choose_nav' : ''}}">直接邀请（2）</text>
+      <text class="{{num == 1 ? 'choose_nav' : ''}}">直接邀请</text>
     </view>
     <view class='nav_list' bindtap='changeNav' data-num='2'>
-      <text class="{{num == 2 ? 'choose_nav' : ''}}">好友邀请（4）</text>
+      <text class="{{num == 2 ? 'choose_nav' : ''}}">好友邀请</text>
     </view>
   </view>
   <view class='invite_card'>
-    <view class='invite_list'>
-      <view class='invite_avatar'></view>
-      <view class='invite_info'>
-        <view class='invite_info_name'>微信昵称</view>
-        <view class='vip_info'>
-          <view class='invite_vip'>
-            <image src='../../images/copperVip.png'></image>
-          </view>
-          <view>青铜会员</view>
+    <block wx:for="{{items}}" wx:key="index">
+      <view class='invite_list'>
+        <view class='invite_avatar'>
+          <image src='{{item.avatar}}'></image>
         </view>
+        <view class='invite_info'>
+          <view class='invite_info_name'>{{item.nickname}}</view>
+          <view class='vip_info'>
+            <view class='invite_vip'>
+              <image wx:if="{{item.level == 1}}" src='../../images/vip.png'></image>
+              <image wx:if="{{item.level == 2}}" src='../../images/copperVip.png'></image>
+              <image wx:if="{{item.level == 3}}" src='../../images/silverVip.png'></image>
+              <image wx:if="{{item.level == 4}}" src='../../images/goldVip.png'></image>
+            </view>
+            <view class='vip_text' wx:if="{{item.level == 1}}">新标会员</view>
+            <view class='vip_text copper_color' wx:if="{{item.level == 2}}">铜牌会员</view>
+            <view class='vip_text silver_color' wx:if="{{item.level == 3}}">银座会员</view>
+            <view class='vip_text gold_color' wx:if="{{item.level == 4}}">金尊会员</view>
+          </view>
+        </view>
+        <view class='clear'></view>
+        <view class='invite_time'>{{dateFr.getDate(item.create_time * 1000,'-','')}} 加入</view>
       </view>
-      <view class='clear'></view>
-      <view class='invite_time'>2019-09-09 加入</view>
+    </block>
+  </view>
+  <view class='no_data' wx:if="{{noDataShow}}">
+    <view class='nd_pic'>
+      <image src='../../images/noorder.png'></image>
     </view>
+    <view class='nd_text'>暂无数据</view>
   </view>
 </view>

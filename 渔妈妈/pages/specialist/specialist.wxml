@@ -1,0 +1,53 @@
+<!--pages/specialist/specialist.wxml-->
+<view class="specialist">
+  <view class="order_title">
+    <text>专家预约</text>
+    <!-- <image bindtap="navSearch" class="specialist_search" src="../../images/search.png"></image> -->
+  </view>
+  <view class="price">
+    预约费用：{{price}}元
+  </view>
+  <view class="cho_local">
+  <view class="specialist_place {{index == 2 ? 'addClass' : ''}}" data-index="2" bindtap="localClick">默认地点</view>
+    <view class="custom_place {{index == 1 ? 'addClass' : ''}}" data-index="1" bindtap="localClick">自定义地点</view>
+  </view>
+  <view class="list_place" wx:if="{{index == 1}}" style="color: #1F314A;">
+    <input placeholder="请输入自定义地址" value="{{localvalue}}" placeholder-style="color: #ccc;" bindinput="localVal"></input>
+  </view>
+  <view class="list_place" bindtap="choTeacher" wx:if="{{index == 2}}">
+    <text>{{addressText}}</text>
+    <!-- <image class="rights" src="../../images/Rights.png"></image> -->
+  </view>
+  <view class="list_place" bindtap="choTeacher">
+    <text>{{teacherText}}</text>
+    <!-- <image class="rights" src="../../images/Rights.png"></image> -->
+  </view>
+  <view class="list_place" bindtap="choTime">
+    <text>{{timeText}}</text>
+    <!-- <image class="rights" src="../../images/Rights.png"></image> -->
+  </view>
+  <view class="send_order" bindtap="sendOrders">
+    <!-- <image class="send_icon" src="../../images/sendIcon.png"></image> -->
+    <text>发起预约</text>
+  </view>
+<wux-popup visible="{{ teacherPopu }}" position="bottom" bind:close="onClose">
+  <view class="search_main">
+    <view class="search_top">
+      <view class="search_top_back">
+        <image class="search_icon" src="../../images/searchs.png"></image>
+        <input style="color: #1F314A;" bindinput="noVal" placeholder="搜索老师姓名"></input>
+      </view>
+      <view style="color: #6665FF;" bindtap="onClose">取消</view>
+    </view>
+    <view class="result">
+      <view class="result_label">搜索发现</view>
+      <view class="clear"></view>
+      <view class="result_card">
+        <block wx:for="{{searchArr}}" wx:key="index">
+          <view class="card_list" data-objs="{{item}}" bindtap="navTeacher">{{item.teacher_name}}</view>
+        </block>
+      </view>
+    </view>
+  </view>
+</wux-popup>
+</view>

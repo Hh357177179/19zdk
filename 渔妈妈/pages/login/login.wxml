@@ -1,0 +1,10 @@
+<!--pages/login/login.wxml-->
+<view class='login'>
+  <view class='logo'>
+    <image src='../../images/login.png'></image>  
+  </view>
+  <view class="big_title">渔妈妈</view>
+  <view class="title_en">motheryu.com</view>
+  <view class="title_desc">家庭育儿指导</view>
+  <button class="login_btn" open-type="getUserInfo" bindgetuserinfo="btnGetUserInfo">快捷登录</button>
+</view>

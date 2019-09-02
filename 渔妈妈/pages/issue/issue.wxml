@@ -1,0 +1,16 @@
+<!--pages/issue/issue.wxml-->
+<view class="issue">
+  <view class="order_title">报告</view>
+  <view class="evaluate_main">
+    <view class="evaluate_text">
+      <textarea placeholder="用户报告" maxlength="-1" bindinput="noteVal" auto-height placeholder-class="color: #ccc;"></textarea>
+    </view>
+    <view class="evaluate_text">
+      <textarea placeholder="内部报告" maxlength="-1" bindinput="includenoteVal" auto-height placeholder-class="color: #ccc;"></textarea>
+    </view>
+    <!-- <view class="evaluate_text">
+      <textarea placeholder="逐字稿" bindinput="transcriptsVal" auto-height placeholder-class="color: #ccc;"></textarea>
+    </view> -->
+  </view>
+  <view class="submit_evalue" bindtap="subEvalue">提交报告</view>
+</view>

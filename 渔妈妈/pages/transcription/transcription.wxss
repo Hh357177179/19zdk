@@ -1,0 +1,64 @@
+/* pages/issue/issue.wxss */
+.issue{
+  padding: 0 40rpx;
+  min-height: 100vh;
+  background:linear-gradient(360deg,rgba(255,255,255,1) 0%,rgba(239,241,245,0.74) 100%);
+}
+.order_title{
+  color: #1F314A;
+  font-size: 60rpx;
+  line-height: 80rpx;
+  padding-top: 60rpx;
+  margin-bottom: 40rpx;
+}
+.evaluate_main{
+  padding: 40rpx;
+  background:rgba(255,255,255,1);
+  box-shadow:0px 2px 4px 0px rgba(31,49,74,0.12);
+  border-radius:10px;
+}
+.start{
+  padding: 0 110rpx;
+  display: flex;
+  justify-content: space-around;
+}
+.start_list{
+  width: 50rpx;
+  height: 50rpx;
+}
+.start_list image{
+  width: 50rpx;
+  height: 50rpx;
+}
+.star_text{
+  color: #F5A623;
+  font-size: 28rpx;
+  text-align: center;
+  margin-top: 20rpx;
+}
+.evaluate_text{
+  background:rgba(243,245,248,1);
+  border-radius:5px;
+  padding: 30rpx;
+  margin-top: 40rpx;
+}
+.evaluate_text textarea{
+  font-size: 28rpx;
+  width: 100%;
+  min-height: 200rpx;
+}
+.bot_btn{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 60rpx;
+}
+.submit_evalue{
+  width:300rpx;
+  height: 90rpx;
+  background:rgba(102,101,255,1);
+  border-radius:100px;
+  color: #fff;
+  line-height: 90rpx;
+  text-align: center;
+  font-size: 30rpx;
+}

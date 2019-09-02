@@ -4,7 +4,7 @@
 }
 .invite{
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   background: #f6f6f6;
 }
 .invite_nav{
@@ -18,6 +18,7 @@
   top: 0;
   left: 0;
   right: 0;
+  z-index: 1111;
 }
 .nav_list{
   width: 50%;
@@ -47,7 +48,13 @@
   border-radius: 50%;
   background: #ccc;
   margin-right: 20rpx;
+  overflow: hidden;
   float: left;
+}
+.invite_avatar image {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
 }
 /* .invite_list{
   display: flex;
@@ -62,6 +69,7 @@
 .invite_info_name{
   font-weight: bold;
   color: #333;
+  font-size: 30rpx;
 }
 .invite_vip{
   width: 50rpx;
@@ -83,4 +91,34 @@
   color: #666;
   margin-top: 10rpx;
   text-align: right;
+}
+.copper_color{
+  color: #c18065;
+}
+.silver_color{
+  color: #98989a;
+}
+.gold_color{
+  color: #ccb778;
+}
+.vip_text{
+  font-size: 24rpx;
+}
+.no_data{
+  width: 100%;
+  margin-top: 220rpx;
+}
+.nd_pic{
+  width: 240rpx;
+  height: 240rpx;
+  margin: 0 auto 10rpx;
+}
+.nd_pic image{
+  width: 100%;
+  height: 100%;
+}
+.nd_text{
+  font-size: 30rpx;
+  color:rgba(25,31,37,0.28);
+  text-align: center;
 }

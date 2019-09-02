@@ -1,0 +1,25 @@
+<wxs module="dateFr" src="../../utils/dateFr.wxs"></wxs>
+<view class="order_detail">
+  <view class="order_title">预约详情</view>
+  <view class="detail_main">
+    <view class="title">预约老师：{{detailObj.teacher_name}}</view>
+    <view class="times">辅导时间：{{dateFr.getDate(detailObj.begin_time * 1000,'-',':')}}</view>
+    <view class="times">辅导地点：{{detailObj.address}}</view>
+    <view class="me_eval" wx:if="{{eValueObj.user_is_evaluate == 1}}">
+      <view class="labels">用户评价</view>
+      <view>{{eValueObj.user_note}}</view>
+    </view>
+    <view class="me_eval" wx:if="{{eValueObj.teacher_is_evaluate == 1}}">
+      <view class="labels">老师报告</view>
+      <view>{{eValueObj.teacher_note}}</view>
+    </view>
+    <view class="me_eval" wx:if="{{eValueObj.teacher_inside_note != null && eValueObj.teacher_inside_note != 'null' && eValueObj.teacher_inside_note != '' && userRole == 2}}">
+      <view class="labels">内部报告</view>
+      <view>{{eValueObj.teacher_inside_note}}</view>
+    </view>
+    <view class="me_eval" wx:if="{{eValueObj.transcripts != null && eValueObj.transcripts != 'null' && eValueObj.transcripts != '' && userRole == 2}}">
+      <view class="labels">逐字稿</view>
+      <view>{{eValueObj.transcripts}}</view>
+    </view>
+  </view>
+</view>

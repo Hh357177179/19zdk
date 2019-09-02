@@ -1,0 +1,28 @@
+<!--pages/meOrder/meOrder.wxml-->
+<wxs module="dateFr" src="../../utils/dateFr.wxs"></wxs>
+<view class="me_order">
+  <view class="order_title">我的预约</view>
+  <block wx:for="{{listItems}}" wx:key="index">
+    <view class="order_list" bindtap="searchDetail" data-detail="{{item}}">
+      <view class="olist_title" wx:if="{{item.name == '' && item.name == null && item.name == 'null'}}">预约人：{{item.nickname}}</view>
+      <view class="olist_title" wx:else>预约人：{{item.name}}</view>
+      <view class="olist_time">辅导时间：{{dateFr.getDate(item.begin_time * 1000,'-',':')}}</view>
+      <view class="olist_time" wx:if="{{item.address != ''}}">辅导地点：{{item.address}}</view>
+      <view class="olist_time" wx:if="{{item.other_address != ''}}">辅导地点：{{item.other_address}}</view>
+      <view class="olist_time">辅导费用：{{item.money}}</view>
+      <view class="olist_time">联系方式：{{item.phone}}</view>
+      <!-- <view class="olist_time">辅导时长：</view> -->
+      <view class="bottom_btn">
+        <view class="evaluate" wx:if="{{item.teacher_is_evaluate == 0}}" data-orderid="{{item.order_id}}" catchtap="navHistory">历史记录</view>
+        <view class="evaluate" data-orderid="{{item.order_id}}" catchtap="navTrans">逐字稿</view>
+        <view class="evaluate" catchtap="navTevalue" wx:if="{{item.teacher_is_evaluate == 0}}" data-orderid="{{item.order_id}}">撰写报告</view>
+      </view>
+    </view>
+  </block>
+  <view class="noData" wx:if="{{noDataShow}}">
+    <view class="noData_img">
+      <image src="../../images/nodata.png"></image>
+    </view>
+    <view class="nodata_text">暂无预约</view>
+  </view>
+</view>

@@ -72,12 +72,14 @@
   border-radius: 4rpx;
   background: #fff;
   box-shadow: #f0f0f0 0px 0px 4rpx 4rpx;
+  position: relative;
 }
 .consume_time_icon{
   width: 40rpx;
   height: 40rpx;
   float: left;
   margin-right: 10rpx;
+  margin-bottom: 10rpx;
 }
 .consume_time_icon image{
   width: 100%;
@@ -94,8 +96,13 @@
   height: 100%;
 }
 .consume_time_number{
+  float: left;
   font-size: 28rpx;
   color: #666;
+}
+.order_text{
+  width: 400rpx;
+  background: #ccc;
 }
 .consume_price{
   text-align: right;
@@ -110,4 +117,22 @@
   font-size: 32rpx;
   font-weight: bold;
   margin-right: 20rpx;
+}
+.cancel_color{
+  background: #ccc;
+}
+.padding_color{
+  background: #e47e64;
+}
+.state_text{
+  position: absolute;
+  right:0;
+  top:0;
+  font-size:22rpx;
+  padding:4rpx 14rpx;
+  background:#00b26a;
+  color:#fff;
+}
+.noPayColor {
+  background: #e47e64;
 }

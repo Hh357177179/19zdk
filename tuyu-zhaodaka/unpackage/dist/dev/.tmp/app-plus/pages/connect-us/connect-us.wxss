@@ -1,0 +1,13 @@
+.connect_us {
+  min-height: 100vh;
+  background: -webkit-gradient(linear, left top, left bottom, from(#d18289), color-stop(20%, #df7261), to(#642c36));
+  background: -o-linear-gradient(top, #d18289 0%, #df7261 20%, #642c36 100%);
+  background: linear-gradient(to bottom, #d18289 0%, #df7261 20%, #642c36 100%);
+}
+.connect_us .connect_pic {
+  width: 300rpx;
+  height: 300rpx;
+  background: #fff;
+  margin: 0 auto 40rpx;
+}
+

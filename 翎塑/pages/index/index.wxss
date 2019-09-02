@@ -209,3 +209,22 @@
 .gold_color{
   color: #ccb778;
 }
+.withdrawText{
+  color: #333;
+  padding: 20rpx 0;
+  font-size: 32rpx;
+}
+.with_label{
+  border-bottom: 1rpx solid #ccc;
+  padding: 20rpx 0;
+}
+.with_btn{
+  margin-top: 20rpx;
+  border-radius: 40rpx;
+  color: #fff;
+  background: #333;
+  font-size: 30rpx;
+  width: 260rpx;
+  line-height: 80rpx;
+  margin: 40rpx auto;
+}

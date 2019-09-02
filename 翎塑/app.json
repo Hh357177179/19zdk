@@ -8,7 +8,10 @@
     "pages/journal/journal",
     "pages/invite/invite",
     "pages/success/success",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/order/order",
+    "pages/recharge/recharge",
+    "pages/payOrder/payOrder"
   ],
   "window": {
     "backgroundTextStyle": "light",

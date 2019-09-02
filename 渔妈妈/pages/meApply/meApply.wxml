@@ -1,0 +1,18 @@
+<!--pages/meApply/meApply.wxml-->
+<view class="me_apply">
+  <view class="apply_title">我的报名</view>
+  <block wx:for="{{listItems}}" wx:key="index">
+     <view class='course_list' bindtap='navDetail' data-channel_id="{{item.id}}">
+        <view class='course_title'>{{item.title}}</view>
+        <view class='course_teacher'>讲座/辅导老师：{{item.teacher_name}}</view>
+        <view class='course_time'>讲座/辅导时间：{{item.start_time}}</view>
+        <view class='course_place'>讲座/辅导地点：{{item.address}}</view>
+      </view>
+  </block>
+  <view class="noData" wx:if="{{noDataShow}}">
+    <view class="noData_img">
+      <image src="../../images/nodata.png"></image>
+    </view>
+    <view class="nodata_text">暂无报名</view>
+  </view>
+</view>

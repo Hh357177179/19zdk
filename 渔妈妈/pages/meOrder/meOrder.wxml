@@ -1,0 +1,26 @@
+<!--pages/meOrder/meOrder.wxml-->
+<wxs module="dateFr" src="../../utils/dateFr.wxs"></wxs>
+<view class="me_order">
+  <view class="order_title">我的预约</view>
+  <block wx:for="{{listItems}}" wx:key="index">
+    <view class="order_list" bindtap="searchDetail" data-detail="{{item}}">
+      <view class="olist_title">预约老师：{{item.teacher_name}}</view>
+      <view class="olist_time">辅导时间：{{dateFr.getDate(item.begin_time * 1000,'-',':')}}</view>
+      <view class="olist_time" wx:if="{{item.address != ''}}">辅导地点：{{item.address}}</view>
+      <view class="olist_time" wx:if="{{item.other_address != ''}}">辅导地点：{{item.other_address}}</view>
+      <!-- <view class="olist_time">辅导时长：</view>
+      <view class="olist_time">辅导金额：</view> -->
+      <view class="evaluate" wx:if="{{item.user_is_evaluate == 0}}" catchtap="userEvaluate" data-orderid="{{item.order_id}}">去评价</view>
+      <view class="clear"></view>
+      <view class="top_icon" wx:if="{{item.is_vip == 1}}">
+        <image src="../../images/VIP.png"></image>
+      </view>
+    </view>
+  </block>
+  <view class="noData" wx:if="{{noDataShow}}">
+    <view class="noData_img">
+      <image src="../../images/nodata.png"></image>
+    </view>
+    <view class="nodata_text">暂无预约</view>
+  </view>
+</view>

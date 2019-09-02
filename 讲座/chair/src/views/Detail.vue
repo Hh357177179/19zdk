@@ -59,7 +59,7 @@
     </div>
     <div class="apply" @click="applyBtn(detailObj.type)">点击报名</div>
     <van-dialog v-model="show" title="报名信息" show-cancel-button :before-close="beforeCloses">
-      <div class="true_text">是否确认报名改课程？</div>
+      <div class="true_text">是否确认报名该课程？</div>
       <!-- <van-field v-model="userName" label="姓名" label-align="center" placeholder="请输入姓名"/>
       <van-field
         v-model="userTel"

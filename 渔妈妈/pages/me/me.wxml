@@ -1,0 +1,54 @@
+<!--pages/me/me.wxml-->
+<view class='me'>
+  <view class='me_card'>
+    <view class='user_avatar'>
+      <image wx:if="{{!wxUser.avatarUrl}}" src='../../images/header.png'></image>
+      <image wx:else src='{{wxUser.avatarUrl}}'></image>
+    </view>
+    <view class='user_info' wx:if="{{showUser}}">
+      <view class='user_title'>{{wxUser.nickName}}</view>
+      <view class='user_identity' wx:if="{{userInfos.role == 1}}">用户</view>
+      <view class='user_identity' wx:if="{{userInfos.role == 2}}">老师</view>
+    </view>
+    <view class='login_btn' wx:if="{{showLogin}}" bindtap="navLogin">点击注册登录</view>
+  </view>
+  <view class='me_list'>
+    <view class='list_info' bindtap="navMeApply" wx:if="{{userInfos.role == 1}}">
+      <view class='list_left_icon'>
+        <image src='../../images/sendTeacher.png'></image>
+      </view>
+      <view class='right_info'>
+        <text>我的报名</text>
+        <image class='right_img' src='../../images/rightss.png'></image>
+      </view>
+    </view>
+    <view class='list_info' bindtap="navMeOrder" wx:if="{{userInfos.role}}">
+      <view class='list_left_icon'>
+        <image src='../../images/my_yuyue.png'></image>
+      </view>
+      <view class='right_info'>
+        <text>我的预约</text>
+        <image class='right_img' src='../../images/rightss.png'></image>
+      </view>
+    </view>
+    <view class='list_info' bindtap="sendTeacher" wx:if="{{userInfos.role == 2}}">
+      <view class='list_left_icon'>
+        <image src='../../images/sendTeacher.png'></image>
+      </view>
+      <view class='right_info'>
+        <text>发布预约</text>
+        <image class='right_img' src='../../images/rightss.png'></image>
+      </view>
+    </view>
+    <view class='list_info' bindtap="navOrderList" wx:if="{{userInfos.role == 2}}">
+      <view class='list_left_icon'>
+        <image src='../../images/me_order.png'></image>
+      </view>
+      <view class='right_info'>
+        <text>我发布的预约</text>
+        <image class='right_img' src='../../images/rightss.png'></image>
+      </view>
+    </view>
+  </view>
+</view>
+

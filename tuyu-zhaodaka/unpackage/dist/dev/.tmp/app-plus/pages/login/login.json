@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "",
+  "navigationBarBackgroundColor": "#d18289",
+  "bounce": "none",
+  "scrollIndicator": "none",
+  "usingComponents": {
+    "error-dialog": "/components/error-dialog"
+  }
+}
