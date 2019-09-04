@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "渔妈妈教育"
+  "navigationBarTitleText": "渔妈妈教育",
+  "usingComponents": {
+    "wux-popup": "../../dist/popup/index"
+  }
 }

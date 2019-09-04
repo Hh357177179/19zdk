@@ -40,7 +40,8 @@ export default new Router({
               component: () => import('./views/Platform/UserManage/UserManage.vue'),
               meta: {
                 title: '用户管理',
-                icon: 'icon-yonghu'
+                icon: 'icon-yonghu',
+                bigTitle: '平台管理'
               },
             },
           ]
@@ -61,7 +62,8 @@ export default new Router({
               component: () => import('./views/Competition/Sportfishing/Sportfishing.vue'),
               meta: {
                 title: '钓场管理',
-                icon: 'icon-yu'
+                icon: 'icon-yu',
+                bigTitle: '钓场赛事'
               }
             },
             {
@@ -70,7 +72,8 @@ export default new Router({
               component: () => import('./views/Competition/GameManger/GameManger.vue'),
               meta: {
                 title: '赛事管理',
-                icon: 'icon-bhjsaishi'
+                icon: 'icon-bhjsaishi',
+                bigTitle: '钓场赛事'
               },
             },
           ]
@@ -91,7 +94,8 @@ export default new Router({
               component: () => import('./views/ShopCenter/OrderManger/OrderManger.vue'),
               meta: {
                 title: '订单管理',
-                icon: 'icon-dingdan'
+                icon: 'icon-dingdan',
+                bigTitle: '商品中心',
               }
             },
             {
@@ -100,7 +104,8 @@ export default new Router({
               component: () => import('./views/ShopCenter/ShopManger/ShopManger.vue'),
               meta: {
                 title: '商品管理',
-                icon: 'icon-shangpin1'
+                icon: 'icon-shangpin1',
+                bigTitle: '商品中心'
               },
             },
           ]
@@ -120,8 +125,9 @@ export default new Router({
               name: 'MemberCenter',
               component: () => import('./views/VipCenter/MemberCenter/MemberCenter.vue'),
               meta: {
-                title: '会员中心',
-                icon: 'icon-huiyuan'
+                title: '会员信息',
+                icon: 'icon-huiyuan',
+                bigTitle: '会员中心'
               }
             }
           ]
@@ -142,7 +148,8 @@ export default new Router({
               component: () => import('./views/FishCoin/VipFish/VipFish.vue'),
               meta: {
                 title: '会员鱼币',
-                icon: 'icon-taojinbi'
+                icon: 'icon-taojinbi',
+                bigTitle: '鱼币中心'
               }
             },
             {
@@ -151,7 +158,8 @@ export default new Router({
               component: () => import('./views/FishCoin/FishRule/FishRule.vue'),
               meta: {
                 title: '鱼币获取规则',
-                icon: 'icon-bianmaguize'
+                icon: 'icon-bianmaguize',
+                bigTitle: '鱼币中心'
               }
             }
           ]
@@ -172,7 +180,8 @@ export default new Router({
               component: () => import('./views/WithDraw/UserWithdraw/UserWithdraw.vue'),
               meta: {
                 title: '用户提现',
-                icon: 'icon-dashujukeshihuaico-'
+                icon: 'icon-dashujukeshihuaico-',
+                bigTitle: '提现审批'
               }
             },
             {
@@ -181,7 +190,8 @@ export default new Router({
               component: () => import ('./views/WithDraw/FishWithdraw/FishWithdraw.vue'),
               meta: {
                 title: '钓场提现',
-                icon: 'icon-changdishebei'
+                icon: 'icon-changdishebei',
+                bigTitle: '提现审批'
               }
             }
           ]

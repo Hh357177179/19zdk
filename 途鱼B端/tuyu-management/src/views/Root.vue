@@ -12,8 +12,6 @@
             router
             :default-active="$route.path"
             class="el-menu-vertical-demo"
-            @open="handleOpen"
-            @close="handleClose"
             background-color="#001529"
             text-color="hsla(0,0%,100%,.65)"
             active-text-color="#fff"
@@ -46,9 +44,11 @@
           </template>
           </el-menu>
         </el-aside>
-        <el-main class="main">
-          <router-view></router-view>
-        </el-main>
+          <el-main class="main">
+            <transition name="el-zoom-in-center">
+              <router-view v-show="showMain" ></router-view>
+            </transition>
+          </el-main>
       </el-container>
     </el-container>
   </div>
@@ -58,20 +58,32 @@
 export default {
   data() {
     return {
-      navList: []
+      navList: [],
+      showMain: false
     };
   },
   created () {
-    console.log(this.$router.options.routes[0].children)
+    // console.log(this.$router.options.routes[0].children)
     this.navList = this.$router.options.routes[0].children
   },
-  methods: {
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath);
-    },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath);
+  watch: {
+    $route: {
+      handler: function(val, oldVal){
+        // console.log(val.path)
+        // if (val.path == '/home') {
+        //   let arr = []
+        //   arr = oldVal.path.split('/')
+        //   console.log(arr)
+        // }
+      },
+      // 深度观察监听
+      deep: true
     }
+  },
+  methods: {
+  },
+  mounted () {
+    this.showMain = true
   }
 };
 </script>
@@ -81,15 +93,19 @@ export default {
   width: 100%;
   height: 100%;
   .header {
+    width: 100%;
     background-color: #364452;
     z-index: 11;
     display: flex;
     align-items: center;
     color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
   }
   .aside {
     background: #ccc;
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0;
     height: 100%;
@@ -104,6 +120,7 @@ export default {
   }
   .main {
     margin-left: 210px;
+    margin-top: 60px;
   }
 }
 </style>

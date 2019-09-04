@@ -54,6 +54,13 @@ Page({
     })
   },
 
+  // 跳转在线评测
+  navEvaluating () {
+    wx.navigateTo({
+      url: '/pages/evaluating/evaluating',
+    })
+  },
+
   // 发布预约
   sendTeacher () {
     let that = this

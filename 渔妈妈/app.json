@@ -23,7 +23,8 @@
     "pages/teacherEvalue/teacherEvalue",
     "pages/transcription/transcription",
     "pages/meSendOrder/meSendOrder",
-    "pages/historyList/historyList"
+    "pages/historyList/historyList",
+    "pages/evaluating/evaluating"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -10,6 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    nav: 2,
     listItems: [],
     page: 1,
     pagesize: 10,
@@ -25,12 +26,25 @@ Page({
     })    
   },
 
+  choNav (e) {
+    let that = this
+    console.log(e)
+    let navs = e.currentTarget.dataset.nav
+    that.setData({
+      listItems: [],
+      nav: navs,
+      page: 1
+    })
+    that.getList()
+  },
+
   getList() {
     let that = this
     let params = {
       token: app.globalData.openid,
       page: that.data.page,
-      pagesize: that.data.pagesize
+      pagesize: that.data.pagesize,
+      type: that.data.nav
     }
     postRequest('/user/teacherAppointment', params, true).then(res => {
       console.log(res)

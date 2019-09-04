@@ -9,38 +9,60 @@
       <view class="{{nav == 2 ? 'cho_text' : ''}}">社区</view>
       <view class="nav_bor {{nav == 2 ? 'cho_nav' : ''}}"></view>
     </view>
+    <view class="searchIcon" bindtap="searchShow">
+      <image src="../../images/search.png"></image>
+    </view>
   </view>
   <!-- 学校 -->
-  <view style="padding-bottom: 60rpx;">
+  <view style="padding-bottom: 60rpx;" wx:if="{{schoolShow}}">
     <view wx:if="{{nav == 1}}">
-    <block wx:for="{{items}}" wx:key="index">
-      <view class="card_list" bindtap='navCourse' data-channel_id="{{item.channel_id}}">
-        <view class='list_main'>
-          <view class='list_title'>{{item.title}}</view>
-          <view class='list_desc'>{{item.desc}}</view>
+      <block wx:for="{{items}}" wx:key="index">
+        <view class="card_list" bindtap='navCourse' data-channel_id="{{item.channel_id}}">
+          <view class='list_main'>
+            <view class='list_title'>{{item.title}}</view>
+            <view class='list_desc'>{{item.desc}}</view>
+          </view>
+          <view class='heart_icon' catchtap="addHeart" data-channelid="{{item.channel_id}}">
+            <image wx:if="{{item.like == 0}}" src='../../images/noheart.png'></image>
+            <image wx:if="{{item.like == 1}}" src='../../images/heart.png'></image>
+          </view>
         </view>
-        <view class='heart_icon' catchtap="addHeart" data-channelid="{{item.channel_id}}">
-          <image wx:if="{{item.like == 0}}" src='../../images/noheart.png'></image>
-          <image wx:if="{{item.like == 1}}" src='../../images/heart.png'></image>
-        </view>
-      </view>
-    </block>
-  </view>
+      </block>
+    </view>
 
-  <!-- 社区 -->
-  <view wx:if="{{nav == 2}}">
-    <block wx:for="{{items}}" wx:key="index">
-      <view class="card_list" bindtap="navCourse" data-channel_id="{{item.channel_id}}">
-        <view class='list_main'>
-          <view class='list_title'>{{item.title}}</view>
-          <view class='list_desc'>{{item.desc}}</view>
-        </view>
-        <view class='heart_icon' catchtap="addHeart" data-channelid="{{item.channel_id}}">
-          <image wx:if="{{item.like == 0}}" src='../../images/noheart.png'></image>
-          <image wx:if="{{item.like == 1}}" src='../../images/heart.png'></image>
-        </view>
+    <!-- 社区 -->
+    <view wx:if="{{communityShow}}">
+      <view wx:if="{{nav == 2}}">
+        <block wx:for="{{items}}" wx:key="index">
+          <view class="card_list" bindtap="navCourse" data-channel_id="{{item.channel_id}}">
+            <view class='list_main'>
+              <view class='list_title'>{{item.title}}</view>
+              <view class='list_desc'>{{item.desc}}</view>
+            </view>
+            <view class='heart_icon' catchtap="addHeart" data-channelid="{{item.channel_id}}">
+              <image wx:if="{{item.like == 0}}" src='../../images/noheart.png'></image>
+              <image wx:if="{{item.like == 1}}" src='../../images/heart.png'></image>
+            </view>
+          </view>
+        </block>
       </view>
-    </block>
+    </view>
   </view>
+  <view class="noData" wx:if="{{noDataShow}}">
+    <view class="noData_img">
+      <image src="../../images/nodata.png"></image>
+    </view>
+    <view class="nodata_text">{{noDataText}}</view>
   </view>
 </view>
+<wux-popup visible="{{ teacherPopu }}" position="top" bind:close="onClose">
+  <view class="search_main">
+    <view class="search_top">
+      <view class="search_top_back">
+        <image class="search_icon" src="../../images/searchs.png"></image>
+        <input style="color: #1F314A;" value="{{keyword}}" bindinput="noVal" placeholder="{{navText}}"></input>
+      </view>
+      <view style="color: #6665FF;" bindtap="searchResult">搜索</view>
+    </view>
+  </view>
+</wux-popup>

@@ -1,7 +1,14 @@
 <!--pages/meOrder/meOrder.wxml-->
 <wxs module="dateFr" src="../../utils/dateFr.wxs"></wxs>
 <view class="me_order">
-  <view class="order_title">我的预约</view>
+  <view class="me_order_nav">
+    <view class="mrn_padding {{nav == 2 ? 'choColor' : ''}}" data-nav="2" bindtap="choNav">
+      <text class="text_border {{nav == 2 ? 'borderColor' : '' }}">进行中</text>
+    </view>
+    <view class="mrn_finish {{nav == 1 ? 'choColor' : ''}}" data-nav="1" bindtap="choNav">
+      <text class="text_border {{nav == 1 ? 'borderColor' : '' }}">已完成</text>
+    </view>
+  </view>
   <block wx:for="{{listItems}}" wx:key="index">
     <view class="order_list" bindtap="searchDetail" data-detail="{{item}}">
       <view class="olist_title" wx:if="{{item.name == '' && item.name == null && item.name == 'null'}}">预约人：{{item.nickname}}</view>

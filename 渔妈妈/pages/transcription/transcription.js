@@ -14,7 +14,8 @@ Page({
     order_id: '',
     transcriptsVal: '',
     cursor: 0,
-    tagIndex: 0
+    tagIndex: 0,
+    showTrue: false
   },
 
   // 轮询
@@ -68,7 +69,15 @@ Page({
       transcripts: that.data.transcriptsVal
     }
     postRequest('/user/transcripts', params, false).then(res => {
-      util.showMsg('发表成功', '../../images/successIcon.png')
+      // util.showMsg('发表成功', '../../images/successIcon.png')
+      that.setData({
+        showTrue: true
+      })
+      setTimeout(() => {
+        that.setData({
+          showTrue: false
+        })
+      }, 1500)
       if (that.data.tagIndex != 0) {
         setTimeout(() => {
           wx.navigateBack()

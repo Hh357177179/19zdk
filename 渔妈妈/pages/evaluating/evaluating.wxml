@@ -1,0 +1,4 @@
+<!--pages/evaluating/evaluating.wxml-->
+<view class="evaluating">
+  <view></view>
+</view>

@@ -14,7 +14,7 @@
   <view class="list_place" wx:if="{{index == 1}}" style="color: #1F314A;">
     <input placeholder="请输入自定义地址" value="{{localvalue}}" placeholder-style="color: #ccc;" bindinput="localVal"></input>
   </view>
-  <view class="list_place" bindtap="choTeacher" wx:if="{{index == 2}}">
+  <view class="list_place morenText" wx:if="{{index == 2}}">
     <text>{{addressText}}</text>
     <!-- <image class="rights" src="../../images/Rights.png"></image> -->
   </view>

@@ -58,11 +58,11 @@
         <view>{{detailObj.question}}</view>
       </view>
     </view>
-    <view class='bot_bar'>
+    <view class='bot_bar' bindtap="sendApply">
       <view class='apply_icon'>
         <image src='../../images/apply.png'></image>
       </view>
-      <view class='apply_text' bindtap="sendApply">点击报名</view>
+      <view class='apply_text'>点击报名</view>
     </view>
   </view>
 </view>

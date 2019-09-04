@@ -18,10 +18,12 @@ a{
 html{
   height: 100%;
   width: 100%;
+  min-width: 1200px;
 }
 body{
   height: 100%;
   width: 100%;
+  min-width: 1200px;
 }
 input{
   border:none;
@@ -49,4 +51,14 @@ button{
   overflow:hidden;
   text-overflow:ellipsis;
   white-space:nowrap
+}
+
+.mt20{
+  margin-top: 20px;
+}
+.mt10{
+  margin-top: 10px;
+}
+.clear{
+  clear: both;
 }

@@ -5,6 +5,11 @@
     <view class="evaluate_text">
       <textarea placeholder="逐字稿" maxlength='-1' value="{{transcriptsVal}}" bindinput="onTranscripts" auto-height placeholder-class="color: #ccc;"></textarea>
     </view>
+    <view class="Toasts" wx:if="{{showTrue}}">
+      <view class="toast_img">
+        <image src="../../images/saveSuccess.png"></image>
+      </view>
+    </view>
   </view>
   <view class="bot_btn">
     <view class="submit_evalue" bindtap="subEvalue">保存逐字稿</view>

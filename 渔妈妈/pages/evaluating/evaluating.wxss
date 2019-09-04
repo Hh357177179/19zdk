@@ -1,0 +1,6 @@
+/* pages/evaluating/evaluating.wxss */
+.evaluating{
+  min-height: 100vh;
+  padding: 0 40rpx 40rpx;
+  background:linear-gradient(180deg,rgba(255,255,255,1) 0%,rgba(239,241,245,0.74) 100%);
+}

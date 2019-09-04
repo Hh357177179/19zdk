@@ -70,3 +70,28 @@
   color:rgba(25,31,37,0.28);
   text-align: center;
 }
+.me_order_nav{
+  height: 100rpx;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  align-items: center;
+  color: #DADADA;
+  font-size: 38rpx;
+}
+.mrn_padding{
+  width: 50%;
+}
+.mrn_finish{
+  width: 50%;
+}
+.choColor{
+  color: #6665FF;
+  font-weight:500;
+}
+.text_border{
+  border-bottom: 6rpx solid #fff;
+}
+.borderColor{
+  border-color: #6665FF;
+}

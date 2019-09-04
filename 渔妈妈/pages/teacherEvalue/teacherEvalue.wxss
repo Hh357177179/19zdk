@@ -25,13 +25,14 @@
 }
 .local_list{
   margin-top:40rpx;
-  height: 100rpx;
+  min-height: 100rpx;
   background:rgba(255,255,255,1);
   box-shadow:0px 12px 12px 0px rgba(52,84,122,0.06);
-  border-radius:100px;
+  border-radius:100rpx;
   border:1px solid rgba(31,49,74,0.11);
   padding: 0 40rpx;
-  line-height: 100rpx;
+  display: flex;
+  align-items: center;
 }
 .sub_btn{
   margin: 60rpx auto 0;
