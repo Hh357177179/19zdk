@@ -24,7 +24,9 @@
     "pages/transcription/transcription",
     "pages/meSendOrder/meSendOrder",
     "pages/historyList/historyList",
-    "pages/evaluating/evaluating"
+    "pages/evaluating/evaluating",
+    "pages/allplace/allplace",
+    "pages/teacherAndTime/teacherAndTime"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -83,6 +83,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 11;
 }
 .search_icon{
   width: 36rpx;
@@ -96,7 +97,8 @@
   justify-content: flex-start;
   padding: 0 30rpx;
   align-items: center;
-  width: 540rpx;
+  /* width: 600rpx; */
+  width: 100%;
 }
 .noData_img{
   width: 240rpx;

@@ -35,21 +35,7 @@ export default {
   name: 'SidebarItem',
   components: { Item, AppLink },
   mixins: [FixiOSBug],
-  props: {
-    // route object
-    item: {
-      type: Object,
-      required: true
-    },
-    isNest: {
-      type: Boolean,
-      default: false
-    },
-    basePath: {
-      type: String,
-      default: ''
-    }
-  },
+  props: ['item', 'isNest', 'basePath'],
   data() {
     // To fix https://github.com/PanJiaChen/vue-admin-template/issues/237
     // TODO: refactor with render function

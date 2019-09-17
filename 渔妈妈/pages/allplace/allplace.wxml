@@ -1,0 +1,17 @@
+<!--pages/allplace/allplace.wxml-->
+<view class="allplace">
+  <view class="search_top">
+      <view class="search_top_back">
+        <image class="search_icon" src="../../images/searchs.png"></image>
+        <input style="color: #1F314A;margin-left:20rpx;width: 100%;" value="{{placeName}}" bindinput="noVal" placeholder="搜索地址"></input>
+      </view>
+    </view>
+  <view class='orderTitle'>请选择预约地址</view>
+  <block wx:for="{{items}}" wx:key="index">
+    <view class="place_list">
+      <view class="place_text">{{item.address}}</view>
+      <view class="order_btn" bindtap="navTeacher" data-address="{{item.address}}">选择</view>
+    </view>
+  </block>
+  <view class="no_text" wx:if="{{noText}}">暂无符合条件的地址</view>
+</view>

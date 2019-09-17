@@ -20,7 +20,8 @@ Page({
     timeText: '时间',
     localvalue: '',
     is_other: '',
-    pirce: ''
+    pirce: '',
+    descText: false
   },
 
   // 获取全部老师
@@ -76,6 +77,15 @@ Page({
       price: ''
     })
     that.getPrice()
+    if (e.currentTarget.dataset.index == 1) {
+      that.setData({
+        descText: true
+      })
+    } else {
+      that.setData({
+        descText: false
+      })
+    }
   },
 
   sendOrders () {
@@ -208,7 +218,8 @@ Page({
     that.dateTime(app.globalData.timeObj.begin_time * 1000)
     let times = that.dateTime(app.globalData.timeObj.begin_time * 1000)
     that.setData({
-      teacherText: app.globalData.teacherObj.teacher_name,
+      teacherText: app.globalData.allObj.teacher_name,
+      // teacherName: app.globalData.allObj.teacher_name,
       timeText: times
     })
     that.getPrice()

@@ -1,6 +1,6 @@
 /* pages/teacherList/teacherList.wxss */
 .teacher_list{
-  padding: 0 40rpx;
+  padding: 0 40rpx 20rpx;
   min-height: 100vh;
   background:linear-gradient(180deg,rgba(255,255,255,1) 0%,rgba(239,241,245,0.74) 100%);
 }
@@ -8,7 +8,7 @@
   color: #1F314A;
   font-size: 60rpx;
   line-height: 80rpx;
-  padding-top: 60rpx;
+  padding-top: 130rpx;
   margin-bottom: 40rpx;
   position: relative;
 }
@@ -55,6 +55,11 @@
 }
 .search_main{
   height: 100rpx;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1111;
 }
 .search_top{
   height: 100rpx;
@@ -81,7 +86,8 @@
   justify-content: flex-start;
   padding: 0 30rpx;
   align-items: center;
-  width: 540rpx;
+  /* width: 6600rpx; */
+  width: 100%;
 }
 .no_text{
   text-align: center;

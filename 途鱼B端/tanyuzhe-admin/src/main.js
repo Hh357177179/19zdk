@@ -15,6 +15,7 @@ import router from './router'
 import '@/icons' // icon
 import '@/permission' // permission control
 
+import * as filters from './filters'
 /**
  * If you don't want to use mock-server
  * you want to use MockJs for mock api
@@ -31,11 +32,18 @@ if (process.env.NODE_ENV === 'production') {
 // set ElementUI lang to EN
 Vue.use(ElementUI, { locale })
 
+// register global utility filters
+Object.keys(filters).forEach(key => {
+  Vue.filter(key, filters[key])
+})
+
 Vue.config.productionTip = false
 
-new Vue({
+const app = new Vue({
   el: '#app',
   router,
   store,
   render: h => h(App)
 })
+
+export default app

@@ -10,9 +10,9 @@ Page({
   data: {
     order_id: '',
     orderDetail: {},
-    star: 1,
-    starText: '非常差',
-    starVal: 10,
+    star: 3,
+    starText: '一般',
+    starVal: 30,
     user_note: ''
   },
 

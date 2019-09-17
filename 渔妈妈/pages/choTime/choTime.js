@@ -25,7 +25,7 @@ Page({
       })
     } else if (that.data.type == 0) {
       wx.navigateTo({
-        url: '/pages/sendTeacher/sendTeacher',
+        url: '/pages/sendTeacher/sendTeacher?ordertype=1',
       })
     }
   },

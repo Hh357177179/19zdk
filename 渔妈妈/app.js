@@ -44,6 +44,7 @@ App({
     is_new: '',
     name: '',
     teacherObj: {},
-    timeObj: {}
+    timeObj: {},
+    allObj: {}
   }
 })

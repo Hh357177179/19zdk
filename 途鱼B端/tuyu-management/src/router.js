@@ -16,7 +16,7 @@ export default new Router({
         // 首页
         {
           path: '/home',
-          name: 'home',
+          name: 'Home',
           component: () => import('./views/Home/Home.vue'),
           meta: {
             title: '首页',
@@ -39,9 +39,41 @@ export default new Router({
               name: 'UserManage',
               component: () => import('./views/Platform/UserManage/UserManage.vue'),
               meta: {
-                title: '用户管理',
+                title: '管理员列表',
                 icon: 'icon-yonghu',
                 bigTitle: '平台管理'
+              },
+            },
+            {
+              path: '/platform/node-list',
+              name: 'NodeList',
+              component: () => import('./views/Platform/NodeList/NodeList.vue'),
+              meta: {
+                title: '页面节点',
+                icon: 'icon-yonghu',
+                bigTitle: '平台管理',
+                un_show: true
+              },
+            },
+            {
+              path: '/platform/user-group',
+              name: 'UserGroup',
+              component: () => import('./views/Platform/UserGroup/UserGroup.vue'),
+              meta: {
+                title: '用户组',
+                icon: 'icon-yonghu',
+                bigTitle: '平台管理'
+              },
+            },
+            {
+              path: '/platform/group-nodes/:id',
+              name: 'GroupNodes',
+              component: () => import('./views/Platform/GroupNodes/GroupNodes.vue'),
+              meta: {
+                title: '当前用户组下节点',
+                icon: 'icon-yonghu',
+                bigTitle: '平台管理',
+                un_show: true
               },
             },
           ]
@@ -65,6 +97,28 @@ export default new Router({
                 icon: 'icon-yu',
                 bigTitle: '钓场赛事'
               }
+            },
+            {
+              path: '/competition/add-fish/:id',
+              name: 'AddFish',
+              component: () => import('./views/Competition/Sportfishing/AddFish.vue'),
+              meta: {
+                title: '添加钓场',
+                icon: 'icon-bhjsaishi',
+                bigTitle: '钓场赛事',
+                un_show: true,
+              },
+            },
+            {
+              path: '/competition/edit-fish/:id',
+              name: 'EditFish',
+              component: () => import('./views/Competition/Sportfishing/EditFish.vue'),
+              meta: {
+                title: '编辑钓场',
+                icon: 'icon-bhjsaishi',
+                bigTitle: '钓场赛事',
+                un_show: true,
+              },
             },
             {
               path: '/competition/game-manger',
@@ -99,13 +153,24 @@ export default new Router({
               }
             },
             {
-              path: '/shopcenter/shop-manger',
-              name: 'ShopManger',
-              component: () => import('./views/ShopCenter/ShopManger/ShopManger.vue'),
+              path: '/shopcenter/commodity_list',
+              name: 'Commodity',
+              component: () => import('./views/ShopCenter/ShopManger/commodity.vue'),
               meta: {
                 title: '商品管理',
                 icon: 'icon-shangpin1',
                 bigTitle: '商品中心'
+              },
+            },
+            {
+              path: '/shopcenter/shop-manger',
+              name: 'ShopManger',
+              component: () => import('./views/ShopCenter/ShopManger/ShopManger.vue'),
+              meta: {
+                title: '分类管理',
+                icon: 'icon-shangpin1',
+                bigTitle: '商品中心',
+                un_show: true
               },
             },
           ]
@@ -153,6 +218,17 @@ export default new Router({
               }
             },
             {
+              path: '/fishcoin/edit-fish',
+              name: 'EditRule',
+              component: () => import('./views/FishCoin/FishRule/editRule.vue'),
+              meta: {
+                title: '编辑鱼币规则',
+                icon: 'icon-bhjsaishi',
+                bigTitle: '鱼币中心',
+                un_show: true,
+              },
+            },
+            {
               path: '/fishcoin/fish-rule',
               name: 'FishRule',
               component: () => import('./views/FishCoin/FishRule/FishRule.vue'),
@@ -191,7 +267,8 @@ export default new Router({
               meta: {
                 title: '钓场提现',
                 icon: 'icon-changdishebei',
-                bigTitle: '提现审批'
+                bigTitle: '提现审批',
+                un_show: true
               }
             }
           ]
@@ -201,7 +278,7 @@ export default new Router({
     // 登录
     {
       path: '/login',
-      name: 'login',
+      name: 'Login',
       component: () => import('./views/Login/Login.vue')
     }
   ]

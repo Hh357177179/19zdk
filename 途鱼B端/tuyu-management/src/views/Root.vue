@@ -64,7 +64,31 @@ export default {
   },
   created () {
     // console.log(this.$router.options.routes[0].children)
-    this.navList = this.$router.options.routes[0].children
+    let list = JSON.parse(sessionStorage.getItem('route'))
+    console.log('符合条件的路由',list)
+    const navList = this.$router.options.routes[0].children;
+    const role_id = sessionStorage.getItem('auth_id');
+    if (role_id - 0 === 0) {
+      this.navList = navList.map((item) => {
+      if (item.children) {
+        item.children = item.children.filter(child => !child.meta.un_show);
+        return item;
+      }
+      return item;
+    });;
+      return;
+    }
+    console.log('本地路由',this.navList)
+    const menu = navList.map((item) => {
+      if (item.children) {
+        item.children = item.children.filter(child => list.includes(child.name) && !child.meta.un_show);
+        return item;
+      }
+      return item;
+    });
+    const sidebar = menu.filter(item => !item.children || item.children.length);
+    console.log(sidebar, '遍历');
+    this.navList = sidebar;
   },
   watch: {
     $route: {

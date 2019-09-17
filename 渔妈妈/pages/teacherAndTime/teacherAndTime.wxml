@@ -1,0 +1,25 @@
+<!--pages/teacherAndTime/teacherAndTime.wxml-->
+<wxs module="dateFr" src="../../utils/dateFr.wxs"></wxs>
+<view class="teacherAndTime">
+  <view class="order_title">
+    <text>选择预约老师</text>
+  </view>
+  <block wx:for="{{items}}" wx:key="index">
+    <view class="list_card">
+      <view class="teacher_avatar">
+        <image src="../../images/teacher.png"></image>
+      </view>
+      <view class="teacher_info">
+        <view class="teacher_name">{{item.teacher_name}}</view>
+        <view class="teacher_desc">{{dateFr.getDate(item.begin_time * 1000,'-',':')}}</view>
+      </view>
+      <view class="cho_time" data-timeobj="{{item}}" bindtap="choTime">选择</view>
+    </view>
+ </block>
+ <view class="noData" wx:if="{{noDataShow}}">
+    <view class="noData_img">
+      <image src="../../images/nodata.png"></image>
+    </view>
+    <view class="nodata_text">暂无可预约老师</view>
+  </view>
+</view>

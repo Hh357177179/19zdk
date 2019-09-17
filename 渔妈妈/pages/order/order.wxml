@@ -1,5 +1,14 @@
 <!--index.wxml-->
 <view class="home">
+ <view class="search_main">
+    <view class="search_top">
+      <view class="search_top_back">
+        <image class="search_icon" src="../../images/searchs.png"></image>
+        <input style="color: #1F314A; padding-left:20px;" value="{{keyword}}" bindinput="noVal" placeholder="{{navText}}"></input>
+      </view>
+      <!-- <view style="color: #6665FF;" bindtap="searchResult">搜索</view> -->
+    </view>
+  </view>
   <view class="nav_bar">
     <view class="nav_list" data-nav="1" bindtap="choNav">
       <view class="{{nav == 1 ? 'cho_text' : ''}}">学校</view>
@@ -8,9 +17,6 @@
     <view class="nav_list" data-nav="2" bindtap="choNav">
       <view class="{{nav == 2 ? 'cho_text' : ''}}">社区</view>
       <view class="nav_bor {{nav == 2 ? 'cho_nav' : ''}}"></view>
-    </view>
-    <view class="searchIcon" bindtap="searchShow">
-      <image src="../../images/search.png"></image>
     </view>
   </view>
   <!-- 学校 -->
@@ -55,14 +61,3 @@
     <view class="nodata_text">{{noDataText}}</view>
   </view>
 </view>
-<wux-popup visible="{{ teacherPopu }}" position="top" bind:close="onClose">
-  <view class="search_main">
-    <view class="search_top">
-      <view class="search_top_back">
-        <image class="search_icon" src="../../images/searchs.png"></image>
-        <input style="color: #1F314A;" value="{{keyword}}" bindinput="noVal" placeholder="{{navText}}"></input>
-      </view>
-      <view style="color: #6665FF;" bindtap="searchResult">搜索</view>
-    </view>
-  </view>
-</wux-popup>

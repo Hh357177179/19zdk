@@ -124,13 +124,13 @@ Page({
     })
   },
 
-  searchResult () {
-    let that = this
-    that.getList()
-    if (app.globalData.openid) {
-      that.getLike()
-    }
-  },
+  // searchResult () {
+  //   let that = this
+  //   that.getList()
+  //   if (app.globalData.openid) {
+  //     that.getLike()
+  //   }
+  // },
 
   onClose() {
     let that = this
@@ -151,6 +151,10 @@ Page({
     that.setData({
       keyword: e.detail.value
     })
+    that.getList()
+    if (app.globalData.openid) {
+      that.getLike()
+    }
   },
   /**
  * 生命周期函数--监听页面加载

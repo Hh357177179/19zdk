@@ -1,13 +1,57 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/game/game",
+    "pages/grow/grow",
+    "pages/other/other",
+    "pages/me/me",
+    "pages/apply/apply",
+    "pages/transfer/transfer",
+    "pages/login/login"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "打出去",
     "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "borderStyle": "white",
+    "color": "#353B50",
+    "selectedColor": "#3E72E0",
+    "list": [
+      {
+        "selectedIconPath": "images/tab_xunlian_pressed.png",
+        "iconPath": "images/tab-normal_xunlian.png",
+        "pagePath": "pages/index/index",
+        "text": "训练"
+      },
+      {
+        "selectedIconPath": "images/tab_bisai_pressed.png",
+        "iconPath": "images/tab_bisai_normal.png",
+        "pagePath": "pages/game/game",
+        "text": "比赛"
+      },
+      {
+        "selectedIconPath": "images/chengzhang.png",
+        "iconPath": "images/chengzhang.png",
+        "pagePath": "pages/grow/grow",
+        "text": "成长"
+      },
+      {
+        "selectedIconPath": "images/tab-ziyuan_pressed.png",
+        "iconPath": "images/tab_ziyuan_normal.png",
+        "pagePath": "pages/other/other",
+        "text": "其他"
+      },
+      {
+        "selectedIconPath": "images/tab_my_pressed.png",
+        "iconPath": "images/tab_my_normal.png",
+        "pagePath": "pages/me/me",
+        "text": "我的"
+      }
+    ]
   },
   "sitemapLocation": "sitemap.json"
 }

@@ -25,12 +25,16 @@ import SidebarItem from './SidebarItem'
 import variables from '@/styles/variables.scss'
 
 export default {
+  data () {
+    return {}
+  },
   components: { SidebarItem, Logo },
   computed: {
     ...mapGetters([
       'sidebar'
     ]),
     routes() {
+      // console.log(this.$router.options.routes)
       return this.$router.options.routes
     },
     activeMenu() {

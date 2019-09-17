@@ -1,3 +1,6 @@
+const baseUrl = 'http://dcq.zhaodaka.vip'
+
+
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1

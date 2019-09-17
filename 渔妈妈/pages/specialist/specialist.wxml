@@ -26,28 +26,9 @@
     <text>{{timeText}}</text>
     <!-- <image class="rights" src="../../images/Rights.png"></image> -->
   </view>
+  <view class="desc_text" wx:if="{{descText}}">此地址超出服务范围，需要专家与您电话确认后订单方可生效</view>
   <view class="send_order" bindtap="sendOrders">
     <!-- <image class="send_icon" src="../../images/sendIcon.png"></image> -->
     <text>发起预约</text>
   </view>
-<wux-popup visible="{{ teacherPopu }}" position="bottom" bind:close="onClose">
-  <view class="search_main">
-    <view class="search_top">
-      <view class="search_top_back">
-        <image class="search_icon" src="../../images/searchs.png"></image>
-        <input style="color: #1F314A;" bindinput="noVal" placeholder="搜索老师姓名"></input>
-      </view>
-      <view style="color: #6665FF;" bindtap="onClose">取消</view>
-    </view>
-    <view class="result">
-      <view class="result_label">搜索发现</view>
-      <view class="clear"></view>
-      <view class="result_card">
-        <block wx:for="{{searchArr}}" wx:key="index">
-          <view class="card_list" data-objs="{{item}}" bindtap="navTeacher">{{item.teacher_name}}</view>
-        </block>
-      </view>
-    </view>
-  </view>
-</wux-popup>
 </view>

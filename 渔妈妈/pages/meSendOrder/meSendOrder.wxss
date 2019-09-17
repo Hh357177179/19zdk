@@ -70,3 +70,34 @@
   color:rgba(25,31,37,0.28);
   text-align: center;
 }
+.delete_btn{
+  font-size: 28rpx;
+  border-top: 1rpx solid #f0f0f0;
+  margin-top: 10rpx;
+}
+.delete_card{
+  margin-top: 20rpx;
+  float: right;
+  color: #6665FF;
+  padding: 10rpx 40rpx;
+  background:rgba(173,172,251,0.18);
+  border-radius:30rpx;
+  border:1px solid rgba(102,101,255,1)
+}
+.top_card{
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.cancelStatus, .alreadyOrder{
+  padding: 8rpx 20rpx;
+  font-size: 26rpx;
+  text-align: center;
+  color: #fff;
+}
+.cancelStatus{
+  background: #ccc;
+}
+.alreadyOrder{
+  background: #6665FF;
+}

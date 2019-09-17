@@ -10,8 +10,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    teacherName: '请选择老师姓名',
-    timeText: '时间'
+    
+    teacherName: '',
+    timeText: '',
+    address: '',
+    appointment_id: ''
   },
 
   sendTeacherOrder() {
@@ -28,7 +31,7 @@ Page({
     } else if (wx.getStorageSync('phone') != '' && app.globalData.userInfo != null) {
       let params = {
         token: app.globalData.openid,
-        appointment_id: app.globalData.timeObj.id,
+        appointment_id: that.data.appointment_id,
         is_other: 0,
         address: ''
       }
@@ -69,11 +72,15 @@ Page({
   getPrice() {
     let that = this
     let params = {
-      appointment_id: app.globalData.timeObj.id
+      appointment_id: that.data.appointment_id
     }
     postRequest('/user/appointmentDetail', params, false).then(res => {
+      console.log(res)
+      let times = that.dateTime(res.begin_time * 1000)
       that.setData({
-        price: Number(res.price)
+        price: Number(res.price),
+        address: res.address,
+        timeText: times
       })
     })
   },
@@ -102,12 +109,18 @@ Page({
    */
   onLoad: function (options) {
     let that = this
-    that.dateTime(app.globalData.timeObj.begin_time * 1000)
-    let times = that.dateTime(app.globalData.timeObj.begin_time * 1000)
-    that.setData({
-      teacherName: app.globalData.teacherObj.teacher_name,
-      timeText: times
-    })
+    console.log(app.globalData.allObj)
+    if (options.ordertype == 1) {
+      that.setData({
+        teacherName: app.globalData.allObj.teacher_name,
+        appointment_id: app.globalData.timeObj.id
+      })
+    } else {
+      that.setData({
+        teacherName: app.globalData.allObj.teacher_name,
+        appointment_id: app.globalData.allObj.id
+      })
+    }
     that.getPrice()
   },
 

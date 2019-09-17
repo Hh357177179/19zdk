@@ -1,0 +1,17 @@
+<!--pages/transfer/transfer.wxml-->
+<view class="transfer">
+  <view class="me_user_info">
+    <view class="user_main">
+      <view class="user_avatar">
+        <image src="../../images/avatar.png"></image>
+      </view>
+      <view class="user_text">
+        <view class="user_name">Hh.</view>
+        <view class="user_balance" bindtap="navTransfer">蜂蜜21</view>
+      </view>
+    </view>
+  </view>
+  <view class="backNav">
+    <image src="../../images/back.png"></image>
+  </view>
+</view>

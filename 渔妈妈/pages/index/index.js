@@ -5,12 +5,35 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    showOnline: false
+  },
+  
+  // 是否隐藏
+  showOrhide () {
+    let that = this
+    wx.request({
+      url: 'https://ssl.zhaodaka.net/ymmsign/api/user/isLock',
+      method: 'POST',
+      data: {},
+      success: res => {
+        console.log(res)
+        if (res.data.code == '200') {
+          that.setData({
+            showOnline: false
+          })
+        } else {
+          that.setData({
+            showOnline: true
+          })
+        }
+      }
+    })
   },
 
   navTeacher () {
     wx.navigateTo({
-      url: `/pages/teacherList/teacherList?type=0&line=0`,
+      url: `/pages/allplace/allplace`,
+      // url: `/pages/teacherList/teacherList?type=0&line=0`,
     })
   },
 
@@ -30,7 +53,38 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.showOrhide()
+    // 用户版本更新
+    if (wx.canIUse("getUpdateManager")) {
+      let updateManager = wx.getUpdateManager();
+      updateManager.onCheckForUpdate((res) => {
+        // 请求完新版本信息的回调
+        console.log(res.hasUpdate);
+      })
+      updateManager.onUpdateReady(() => {
+        wx.showModal({
+          title: '更新提示',
+          content: '新版本已经准备好，是否重启应用？',
+          success: (res) => {
+            if (res.confirm) {
+              // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
+              updateManager.applyUpdate();
+            } else if (res.cancel) {
+              return false;
+            }
+          }
+        })
+      })
+      updateManager.onUpdateFailed(() => {
+        // 新的版本下载失败
+        wx.hideLoading();
+        wx.showModal({
+          title: '升级失败',
+          content: '新版本下载失败，请检查网络！',
+          showCancel: false
+        });
+      });
+    }
   },
 
   /**

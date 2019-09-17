@@ -47,8 +47,12 @@
 			"currentL": -1,
 			"list": []
 		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
 		"miniprogram": {
-			"current": 21,
+			"current": 23,
 			"list": [
 				{
 					"id": -1,
@@ -201,6 +205,27 @@
 					"id": -1,
 					"name": "历史记录",
 					"pathName": "pages/historyList/historyList",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "选择地址",
+					"pathName": "pages/allplace/allplace",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/teacherAndTime/teacherAndTime",
+					"pathName": "pages/teacherAndTime/teacherAndTime",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/meSendOrder/meSendOrder",
+					"pathName": "pages/meSendOrder/meSendOrder",
 					"scene": null
 				}
 			]

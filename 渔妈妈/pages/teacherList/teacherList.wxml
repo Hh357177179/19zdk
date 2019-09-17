@@ -1,8 +1,16 @@
 <!--pages/teacherList/teacherList.wxml-->
 <view class="teacher_list">
+  <view class="search_main">
+    <view class="search_top">
+      <view class="search_top_back">
+        <image class="search_icon" src="../../images/searchs.png"></image>
+        <input style="color: #1F314A;margin-left:20rpx;width: 100%;" value="{{teachName}}" bindinput="noVal" placeholder="搜索老师姓名"></input>
+      </view>
+    </view>
+  </view>
   <view class="order_title">
     <text>请选择老师</text>
-    <image wx:if="{{type == 1}}" bindtap="navSearch" class="specialist_search" src="../../images/search.png"></image>
+    <!-- <image wx:if="{{type == 1}}" bindtap="navSearch" class="specialist_search" src="../../images/search.png"></image> -->
   </view>
   <block wx:for="{{items}}" wx:key="index">
     <view class="list_card">
@@ -15,17 +23,9 @@
       </view>
       <view class="cho_time" data-teacher="{{item}}" bindtap="choTime">选择时间</view>
     </view>
- </block>
- <view class="no_text" wx:if="{{noText}}">该老师暂无可预约课程</view>
- <wux-popup visible="{{ teacherPopu }}" position="top" bind:close="onClose">
-  <view class="search_main">
-    <view class="search_top">
-      <view class="search_top_back">
-        <image class="search_icon" src="../../images/searchs.png"></image>
-        <input style="color: #1F314A;" value="{{teachName}}" bindinput="noVal" placeholder="搜索老师姓名"></input>
-      </view>
-      <view style="color: #6665FF;" bindtap="onClose">取消</view>
-    </view>
-  </view>
-</wux-popup>
+  </block>
+  <view class="no_text" wx:if="{{noText}}">该老师暂无可预约课程</view>
+  <!-- <wux-popup visible="{{ teacherPopu }}" position="top" bind:close="onClose">
+
+  </wux-popup> -->
 </view>

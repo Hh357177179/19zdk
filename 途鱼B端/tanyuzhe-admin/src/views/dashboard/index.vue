@@ -1,6 +1,6 @@
 <template>
   <div class="dashboard-container">
-    <div class="dashboard-text">name: {{ name }}</div>
+    
   </div>
 </template>
 
@@ -8,10 +8,11 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  computed: {
-    ...mapGetters([
-      'name'
-    ])
+  data () {
+    return {}
+  },
+  mounted () {
+    console.log(this.$store)
   }
 }
 </script>

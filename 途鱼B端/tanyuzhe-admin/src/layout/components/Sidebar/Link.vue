@@ -10,12 +10,7 @@
 import { isExternal } from '@/utils/validate'
 
 export default {
-  props: {
-    to: {
-      type: String,
-      required: true
-    }
-  },
+  props: ['to'],
   methods: {
     linkProps(url) {
       if (isExternal(url)) {

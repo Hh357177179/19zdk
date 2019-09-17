@@ -2,8 +2,8 @@
 <view class="teacherEvalue">
   <view class="order_title">发布预约</view>
   <view class="teval_main">
-  <view class="ipt_teach onlines">
-    <image class="vip_icon" src="../../images/online.png"></image>
+    <view class="ipt_teach onlines">
+      <image class="vip_icon" src="../../images/online.png"></image>
       <text>是否启动在线预约</text>
       <view style="margin-left: 10rpx;">
         <switch color='#6665FF' bindchange="onlineSwitch" />
@@ -18,7 +18,15 @@
     </view>
     <view wx:if="{{is_online == 0}}" bindtap="localList" class="local_list {{localText == '地址' ? 'addClass' : ''}}">{{localText}}</view>
     <!-- <view class="sub-title">Use12Hours & datetime {{ displayValue6 }}</view> -->
-    <view bindtap="timeList" class="local_list {{beginTime == '开课时间' ? 'addClass' : ''}}">{{beginTime}}</view>
+    <view bindtap="timeList" class="local_list addClass">请选择开课时间</view>
+    <view class="time_mian">
+      <block wx:for="{{timeArr}}" wx:key="index">
+        <view class="time_list">
+          <text>{{item}}</text>
+          <image class="delete_icons" bindtap="deleteTimes" data-index="{{index}}" src="../../images/deleteicon.png"></image>
+        </view>
+      </block>
+    </view>
     <view class="local_list">
       <input placeholder="课时费用" disabled="{{disInput}}" type="number" value="{{classValue}}" bindinput="classVal" placeholder-style="color: #ccc;"></input>
     </view>
@@ -34,7 +42,13 @@
         <view>选择地址</view>
         <view class="true_btn" bindtap="trueBtn">确定</view>
       </view>
-      <view class="place_card">
+      <view class="search_top">
+        <view class="search_top_back">
+          <image class="search_icon" src="../../images/searchs.png"></image>
+          <input style="color: #1F314A;margin-left:20rpx;width: 100%;" value="{{localName}}" bindinput="noVal" placeholder="搜索地址"></input>
+        </view>
+      </view>
+      <view class="place_card" wx:if="{{showData}}">
         <scroll-view scroll-y style="width: 100%;height: 100%;">
           <view class="card_main">
             <block wx:for="{{placeItem}}" wx:key="index">
@@ -45,14 +59,15 @@
           </view>
         </scroll-view>
       </view>
+      <view class="no_text" wx:if="{{noText}}">暂无符合条件的地址</view>
     </view>
   </wux-popup>
   <wux-popup visible="{{ timePopup }}" position="bottom" bind:close="timeClose">
-      <view class="place_top">
-        <view bindtap="timeClose" class="cancel_btn">取消</view>
-        <view>选择时间</view>
-        <view class="true_btn" bindtap="timeTrue">确定</view>
-      </view>
+    <view class="place_top">
+      <view bindtap="timeClose" class="cancel_btn">取消</view>
+      <view>选择时间</view>
+      <view class="true_btn" bindtap="timeTrue">确定</view>
+    </view>
     <wux-date-picker-view minuteStep='30' mode="datetime" lang="{{ lang }}" value="{{ value6 }}" data-index="6" bind:valueChange="onValueChange" />
   </wux-popup>
 </view>

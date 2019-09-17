@@ -12,15 +12,15 @@
   margin-bottom: 40rpx;
 }
 .list_place{
-  height:128rpx;
+  min-height:128rpx;
   background:rgba(255,255,255,1);
   box-shadow:0px 12px 12px 0px rgba(52,84,122,0.06);
-  border-radius:100px;
+  border-radius:100rpx;
   border:1px solid rgba(31,49,74,0.11);
   padding: 0 50rpx;
   font-size: 36rpx;
   color: #1F314A;
-  line-height: 128rpx;
+  /* line-height: 128rpx; */
   margin-bottom: 30rpx;
   display: flex;
   justify-content: space-between;
@@ -56,4 +56,8 @@
   font-size: 38rpx;
   color: #1F314A;
   margin-bottom: 20rpx;
+}
+
+.morenText{
+  padding: 20rpx 50rpx;
 }

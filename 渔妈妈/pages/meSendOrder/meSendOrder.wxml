@@ -4,7 +4,6 @@
   <view class="order_title">我发布的预约</view>
   <block wx:for="{{items}}" wx:key="index">
     <view class="order_list">
-      <!-- <view class="olist_title">预约人：{{item.nickname}}</view> -->
       <view class="olist_time">辅导时间：{{dateFr.getDate(item.begin_time * 1000,'-',':')}}</view>
       <view class="olist_time" wx:if="{{item.address != ''}}">辅导地点：{{item.address}}</view>
       <!-- <view class="olist_time" wx:if="{{item.other_address != ''}}">辅导地点：{{item.other_address}}</view> -->
@@ -16,6 +15,14 @@
         <view class="evaluate" style="margin-right: 20rpx;" catchtap="navTevalue" data-orderid="{{item.order_id}}" wx:if="{{item.teacher_is_evaluate == 0}}">撰写报告</view>
       </view> -->
       <view class="clear"></view>
+      <view class="delete_btn" wx:if="{{item.status == 1}}" bindtap="deleteCard" data-id="{{item.id}}">
+        <view class="delete_card">删除</view>
+        <view class="clear"></view>
+      </view>
+      <view class="top_card">
+        <view class="cancelStatus" wx:if="{{item.status == 0}}">已取消</view>
+        <view class="alreadyOrder" wx:if="{{item.status == 2}}">已预约</view>
+      </view>
     </view>
   </block>
   <view class="noData" wx:if="{{noDataShow}}">

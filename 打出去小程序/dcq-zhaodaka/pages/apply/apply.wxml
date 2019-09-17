@@ -1,0 +1,49 @@
+<!--pages/apply/apply.wxml-->
+<view class="apply">
+  <view class="apply_header">
+    <view class="header_pic">
+      <image src="../../images/shizhan.png"></image>
+    </view>
+    <view class="header_title">27届男子左手剑实战打出去系列</view>
+    <view class="collect">
+      <image src="../../images/collect.png"></image>
+    </view>
+  </view>
+  <view class="apply_status">
+    <view class="apply_type">各种剑</view>
+    <view class="apply_state_card">
+      <view class="state_list state_make">筹备</view>
+      <!-- <view class="state_list state_padding">进行中</view>
+      <view class="state_list state_endding">结束</view> -->
+    </view>
+  </view>
+  <view class="apply_info">
+    <view class="apply_list">
+      <view class="date_icon">
+        <image src="../../images/rili.png"></image>
+      </view>
+      <view>2019年8月14日</view>
+    </view>
+    <view class="apply_list">
+      <view class="date_icon">
+        <image src="../../images/person.png"></image>
+      </view>
+      <view>U8 U10 U11</view>
+    </view>
+    <view class="apply_list">
+      <view class="date_icon">
+        <image src="../../images/localIcon.png"></image>
+      </view>
+      <view>上海虹桥火车站</view>
+    </view>
+    <view class="apply_list">
+      <view class="date_icon">
+        <image src="../../images/twoPerson.png"></image>
+      </view>
+      <view>27人</view>
+    </view>
+  </view>
+  <view class="apply_desc"></view>
+  <view class="apply_remark"></view>
+  <view class="apply_btn">支付报名</view>
+</view>

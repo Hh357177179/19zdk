@@ -10,13 +10,13 @@
           <el-form-item prop="psw" class="user_input">
             <el-input type="password" prefix-icon="el-icon-unlock" v-model="loginForm.psw" placeholder="请输入密码"></el-input>
           </el-form-item>
-          <el-form-item prop="piccode" class="user_input" style="margin-top: 10px;">
+          <!-- <el-form-item prop="piccode" class="user_input" style="margin-top: 10px;">
             <div class="code_input">
               <el-input type="text" class="code_pic" v-model="loginForm.piccode" placeholder="请输入验证码"></el-input>
               <div class="pic_code"></div>
               <i class="el-icon-refresh-right rush_icon"></i>
             </div>
-          </el-form-item>
+          </el-form-item> -->
           <el-form-item>
             <div class="login_btn">
               <el-button type="primary" :loading="loading" @click="submitForm('loginForm')">立即登录</el-button>
@@ -30,13 +30,14 @@
 
 <script>
 import { loginMixin } from '@/mixin/loginMix'
+import { Login } from '@/api/user/user.js'
 export default {
   mixins: [loginMixin],
   data () {
     return {
       loginForm: {
-        account: '',
-        psw: '',
+        account: 'admin',
+        psw: 'admin',
         piccode: ''
       },
       loading: false
@@ -45,15 +46,33 @@ export default {
   methods: {
     // 登录
     submitForm (loginForm) {
-      // this.$refs[loginForm].validate((valid) => {
-      //     if (valid) {
-      //       console.log(this.loginForm)
-      //     } else {
-      //       console.log('error submit!!');
-      //       return false;
-      //     }
-      //   });
-      this.$router.push('/')
+      this.$refs[loginForm].validate((valid) => {
+          if (valid) {
+            this.loading = true
+            console.log(this.loginForm)
+            let params = {
+              username: this.loginForm.account,
+              password: this.loginForm.psw
+            }
+            Login(params).then(res => {
+              console.log(res)
+              // this.$cookies.set('token', res.token)
+              let routerStr = JSON.stringify(res.nodes)
+              sessionStorage.setItem('route', routerStr)
+              sessionStorage.setItem('token', res.token)
+              sessionStorage.setItem('auth_id', res.auth_id)
+              this.loading = false
+              this.$router.push('/')
+            })
+            .catch(() => {
+              this.loading = false
+            })
+          } else {
+            console.log('error submit!!');
+            return false;
+          }
+        });
+      // this.$router.push('/')
     }
   }
 }

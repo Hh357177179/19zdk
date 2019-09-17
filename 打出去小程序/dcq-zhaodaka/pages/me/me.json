@@ -1,0 +1,6 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "wux-popup": "../../dist/popup/index"
+  }
+}

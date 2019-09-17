@@ -17,6 +17,19 @@ Page({
     noDataShow: false
   },
 
+  deleteCard (e) {
+    let that = this
+    let id = e.currentTarget.dataset.id
+    let params = {
+      token: app.globalData.openid,
+      appointment_id: id
+    }
+    postRequest('/user/cancelPublish', params, true).then(res => {
+      that.setData({ page: 1, items: [] })
+      that.getList()
+    })
+  },
+
   // 获取列表
   getList () {
     let that = this

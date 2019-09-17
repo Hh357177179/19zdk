@@ -1,177 +1,195 @@
 <template>
   <div class="user_manage">
     <Breadcrumb></Breadcrumb>
-    <el-card class="mt10 user_main">
-      <el-form ref="searchForm" inline :model="searchForm" label-width="80px">
-        <el-form-item label="用户姓名" prop="name" class="items">
-          <el-input v-model="searchForm.name" placeholder="请输入用户名"></el-input>
-        </el-form-item>
-        <el-form-item label="创建时间" prop="time" class="items">
-          <el-date-picker v-model="searchForm.time" type="date" placeholder="选择日期"></el-date-picker>
-        </el-form-item>
-        <el-form-item class="items">
-          <el-button
-            type="primary"
-            icon="el-icon-search"
-            @click="submitForm('searchForm')"
-            style="margin-right:20px;"
-          >查 找</el-button>
-          <el-button @click="resetForm('searchForm')" icon="el-icon-close">重 置</el-button>
-        </el-form-item>
-      </el-form>
-    </el-card>
-    <el-card class="mt10">
+    <el-card class="mt20">
       <div>
-        <el-button type="primary" icon="el-icon-plus" style="margin-right:20px;" @click="addUser('新增用户', 'refAddUser')">新 增</el-button>
-        <el-button type="primary" icon="el-icon-delete" @click="deleteList">删 除</el-button>
+        <el-button type="primary" icon="el-icon-plus" style="margin-right:20px;" @click="addUser('新增用户', 'refAddUser')">新增管理员</el-button>
       </div>
       <div class="mt10">
         <el-table
-          ref="multipleTable"
+          v-loading="loadings"
           :data="tableData"
           tooltip-effect="dark"
           style="width: 100%"
           border
-          @selection-change="handleSelectionChange"
         >
-          <el-table-column align='center' type="selection"></el-table-column>
-          <el-table-column align='center' label="用户账户" prop="name"></el-table-column>
-          <el-table-column align='center' prop="name" label="用户姓名"></el-table-column>
-          <el-table-column align='center' prop="address" label="账号类型" show-overflow-tooltip></el-table-column>
-          <el-table-column align='center' prop="name" label="创建时间"></el-table-column>
-          <el-table-column align='center' prop="name" label="创建人"></el-table-column>
+          <el-table-column align='center' prop="username" label="用户名"></el-table-column>
+          <el-table-column align='center' label="最后登录ip">
+            <template slot-scope="scope">
+              <span v-if="scope.row.last_ip == ''">—</span>
+              <span v-else>{{scope.row.last_ip}}</span>
+            </template>
+          </el-table-column>
+          <el-table-column align='center' label="最后登录时间" show-overflow-tooltip>
+            <template slot-scope="scope">
+              <span v-if="scope.row.last_time == 0">—</span>
+              <span v-else>{{scope.row.last_time | fromDate}}</span>
+            </template>
+          </el-table-column>
+          <el-table-column align='center' label="状态">
+            <template slot-scope="scope">
+              <el-tag :type="scope.row.status == 1 ? 'success' : 'danger'">{{scope.row.status == 1 ? '正常' : '禁用'}}</el-tag>
+            </template>
+          </el-table-column>
           <el-table-column align='center' label="操作">
             <template slot-scope="scope">
-              <el-button @click="handleClick('编辑用户', 'refAddUser', scope.row)" size="small" type="warning">编辑</el-button>
+              <el-button @click="handleClick(scope.row)" size="small" type="primary">编辑</el-button>
+              <el-button size="small" :type="scope.row.status == 1 ? 'danger' : 'warning'" @click="handleBidden(scope.row)">{{scope.row.status == 1 ? '禁用' : '解除'}}</el-button>
             </template>
           </el-table-column>
         </el-table>
       </div>
-      <el-pagination
-        class="pagination"
-        @current-change="handleCurrentChange"
-        :current-page.sync="currentPage1"
-        :page-size="10"
-        background
-        layout="total, prev, pager, next, jumper"
-        :total="100">
-      </el-pagination>
-      <div class="clear"></div>
     </el-card>
     <AddEdit ref="refAddUser" :visible.sync="dialogVisible" :title="ModalTitle" @updateAll="updateAll"></AddEdit>
+    <el-dialog title="编辑管理员" :visible.sync="visibleUser" width="600px" :before-close="handleClose">
+      <div class="dialog_main">
+        <el-form ref="editForm" :model="editForm" label-width="90px">
+          <el-form-item label="用户账户:" prop="name">
+            <el-input v-model="editForm.name" placeholder="请输入用户名"></el-input>
+          </el-form-item>
+          <el-form-item label="登录密码:">
+            <el-input type="password" v-model="editForm.psw" placeholder="请输入密码（不填则不修改密码）"></el-input>
+            <!-- <p class="psw_text">不填则不修改密码</p> -->
+          </el-form-item>
+          <el-form-item label="所在用户组">
+            <el-select v-model="editForm.group" placeholder="请选择用户组">
+              <el-option
+                v-for="item in options"
+                :key="item.id"
+                :label="item.title"
+                :value="item.id"
+              ></el-option>
+            </el-select>
+          </el-form-item>
+        </el-form>
+      </div>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="handleClose">取 消</el-button>
+        <el-button type="primary" @click="editUsers">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
 <script>
 import Breadcrumb from "@/components/Breadcrumb";
 import AddEdit from './components/AddEdit'
+import { adminList, forBidden, getGroup, editAdmin } from '@/api/user/user.js'
 export default {
   data() {
     return {
-      dialogVisible: true,
+      item: [{ desc: "超级管理员组",id: 0,title: "超级管理员"}],
+      options: [],
+      dialogVisible: false,
       ModalTitle: '',
-      currentPage1: 1,
-      counts: 0,
-      searchForm: {
-        name: "",
-        time: ""
+      tableData: [],
+      loadings: false,
+      visibleUser: false,
+      editForm: {
+        name: '',
+        psw: '',
+        group: ''
       },
-      multipleSelection: [],
-      tableData: [{
-          date: '2016-05-03',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-04',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-01',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-08',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-06',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }, {
-          date: '2016-05-07',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
-        }],
+      row: {}
     }
   },
+  created () {
+    this.getList()
+    this.getGroupList()
+  },
   methods: {
+     // 获取用户组列表
+    getGroupList () {
+      let params = {
+        token: sessionStorage.getItem('token')
+      }
+      getGroup(params).then(res => {
+        console.log('用户组',res)
+        if (res) {
+          this.options = [...this.item, ...res]
+        }
+      })
+    },
+    editUsers () {
+      let params = {
+        id: this.row.id,
+        auth_id: this.editForm.group,
+        password: this.editForm.psw,
+        token: sessionStorage.getItem('token')
+      }
+      editAdmin(params).then(res => {
+        if (res) {
+          this.$message({
+            message: '修改成功！',
+            type: 'success',
+            duration: 2000
+          });
+          this.handleClose()
+          this.getList()
+        }
+      })
+    },
+    handleClose () {
+      this.editForm.name = ''
+      this.editForm.psw = ''
+      this.editForm.group = ''
+      this.visibleUser = false
+    },
+    // 禁用-解除
+    handleBidden (row) {
+      if (row.status == 1) this.forBiddens(row.id, 'forbidden')
+      else  this.forBiddens(row.id, 'relieve')
+    },
+    forBiddens (id, way) {
+      let params = {
+        id: id,
+        way: way,
+        token: sessionStorage.getItem('token')
+      }
+      forBidden(params).then(res => {
+        if (res) {
+          this.$message({
+            message: '修改成功',
+            type: 'success',
+            duration: 2000
+          });
+          this.getList()
+        }
+      })
+    },
+    // 获取管理员列表
+    getList () {
+      this.loadings = true
+      let params = {
+        token: sessionStorage.getItem('token')
+      }
+      adminList(params).then(res => {
+        if (res) {
+          console.log(res)
+          this.tableData = [...res]
+        }
+        this.loadings = false
+      })
+    },
     // 添加或编辑完成重新请求
     updateAll () {
-      console.log('添加或编辑完成重新请求')
+      this.getList()
     },
     // 编辑
-    handleClick (title, ref, row) {
-      if (this.$refs[ref] && row) {
-        this.$refs[ref].getParentData(row)
-      }
-      this.ModalTitle = title;
-      this.dialogVisible = true;
+    handleClick (row) {
+      console.log(row)
+      this.row = row
+      this.editForm.name = row.username
+      this.editForm.group = row.auth_id
+      this.$nextTick(() => {
+        this.visibleUser = true
+      })
     },
     // 新增
     addUser (title, ref) {
       this.ModalTitle = title;
       this.dialogVisible = true;
     },
-    // 分页
-    handleCurrentChange(val) {
-      console.log(`当前页: ${val}`);
-    },
-    // 查询
-    submitForm(searchForm) {
-      console.log(this.searchForm);
-    },
-    // 重置
-    resetForm(searchForm) {
-      this.$refs[searchForm].resetFields();
-    },
-    // 选中赋值
-    handleSelectionChange(val) {
-      this.multipleSelection = val;
-    },
-    // 删除
-    deleteList () {
-      if (this.multipleSelection.length == 0) {
-        this.$message.error('请勾选删除项');
-      } else {
-        console.log(this.multipleSelection)
-        this.$confirm('此操作将永久删除选中项目, 是否继续?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
-          this.$message({
-            type: 'success',
-            message: '删除成功!'
-          });
-        }).catch(() => {});
-      }
-    }
   },
   components: { Breadcrumb, AddEdit }
 };
@@ -196,6 +214,16 @@ export default {
   .pagination{
     margin-top: 10px;
     float: right;
+  }
+  .dialog_main{
+    padding: 0 50px;
+    .psw_text{
+      color: #ccc;
+      font-size: 12px;
+    }
+    .el-select{
+      width: 100%;
+    }
   }
 }
 </style>

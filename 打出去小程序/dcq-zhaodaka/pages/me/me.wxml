@@ -1,0 +1,44 @@
+<!--pages/me/me.wxml-->
+<view class="me">
+  <view class="me_user_info">
+    <view class="user_main">
+      <view class="user_avatar">
+        <image src="../../images/avatar.png"></image>
+      </view>
+      <view class="user_text" wx:if="{{showUserInfo}}">
+        <view class="user_name">Hh.</view>
+        <view class="user_balance" bindtap="navTransfer">蜂蜜21</view>
+      </view>
+      <view class="login_btn" wx:else bindtap="login">点击注册登录</view>
+    </view>
+    <view class="me_card" wx:if="{{showUserInfo}}">
+      <view class="me_list">
+        <view class="me_list_left">
+          <view class="list_icon">
+            <image src="../../images/my_fengmi.png"></image>
+          </view>
+          <view class="list_text">我的蜂蜜</view>
+        </view>
+        <view class="right_icon">
+          <image src="../../images/material-icon.png"></image>
+        </view>
+      </view>
+      <view class="me_list">
+        <view class="me_list_left">
+          <view class="list_icon">
+            <image src="../../images/my_xinxi.png"></image>
+          </view>
+          <view class="list_text">我的信息</view>
+        </view>
+        <view class="right_icon">
+          <image src="../../images/material-icon.png"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- <view class="login_out" wx:if="{{showUserInfo}}">退出登录</view> -->
+</view>
+
+<wux-popup position="bottom" visible="{{ visible }}" bind:close="onClose">
+  
+</wux-popup>

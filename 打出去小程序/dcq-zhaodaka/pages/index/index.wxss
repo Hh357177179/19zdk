@@ -1,21 +1,133 @@
 /**index.wxss**/
-.userinfo {
+.home{
+  background:#FAFAFA;
+  padding: 0 26rpx;
+  min-height: 100vh;
+}
+.headers{
+  padding-top: 26rpx;
+}
+.search{
+  height: 112rpx;
+  background: #fff;
+  border-radius: 8px;
+  padding: 0 30rpx;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.search_icon{
+  width: 40rpx;
+  height: 40rpx;
+}
+.search_icon image{
+  width: 100%;
+  height: 100%;
+}
+.search_input{
+  width: 500rpx;
+}
+.search_input input{
+  width: 100%;
+  height: 100%;
+}
+.search_card{
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.search_list{
+  margin-top: 24rpx;
+  padding: 12rpx 56rpx;
+  border-radius: 16rpx;
+  font-size: 24rpx;
+  margin-right: 24rpx;
+}
+.first_card{
+  background:rgba(0,219,209,.1);
+  color: #00DBD1;
+}
+.second_card{
+  background:rgba(58,167,255,.1);
+  color: #3AA7FF;
+}
+.third_card{
+  background:rgba(46,90,242,.1);
+  color: #2E5AF2;
+}
+.sort_card{
+  margin-top: 24rpx;
+  display: flex;
+  justify-content: flex-start;
+  font-size: 24rpx;
+}
+.sort_list{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 138rpx;
+  height: 80rpx;
+  color: #353B50;
+  background: #fff;
+  border-radius: 16rpx;
+  padding: 0 12rpx;
+  margin-right: 20rpx;
+}
+.sort_icon{
+  width: 28rpx;
+  height: 28rpx;
+}
+.sort_icon image{
+  width: 100%;
+  height: 100%;
+}
+.chooseNav {
+  background: #3E72E0;
+  box-shadow:2px 3px 6px 0px rgba(53,59,80,0.13);
+  color: #fff;
+}
+.home_main{
+  margin-top: 24rpx;
+  padding-bottom: 20rpx;
+}
+.home_list{
+  margin-top: 24rpx;
+  padding: 50rpx 20rpx;
+  background:rgba(255,255,255,1);
+  box-shadow:0px 3px 17px 0px rgba(0,0,0,0.06);
+  border-radius: 16rpx;
+  display: flex;
+  justify-content: flex-start;
   align-items: center;
 }
-
-.userinfo-avatar {
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+.list_pics{
+  width: 186rpx;
+  height: 136rpx;
 }
-
-.userinfo-nickname {
-  color: #aaa;
+.list_pics image{
+  width: 100%;
+  height: 100%;
 }
-
-.usermotto {
-  margin-top: 200px;
+.list_info{
+  margin-left: 20rpx;
+  width: 460rpx;
+}
+.list_title{
+  font-size: 32rpx;
+  color: #203152;
+  line-height: 44rpx;
+  margin-bottom: 16rpx;
+}
+.info_icon{
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 10rpx;
+}
+.info_text{
+  margin-bottom: 5rpx;
+  color: #203152;
+  font-size: 24rpx;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }

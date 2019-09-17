@@ -1,0 +1,9 @@
+<!--pages/login/login.wxml-->
+<view class="login">
+  <view class="login_logo">
+    <image src="../../images/logos.png"></image>
+  </view>
+  <view class="title">打出去</view>
+  <view class="title_small">Gamels On</view>
+  <view class="auth_btn">快捷登录</view>
+</view>

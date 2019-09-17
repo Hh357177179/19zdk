@@ -4,6 +4,10 @@
   <view class="price">
     预约费用：{{price}}元
   </view>
+  <view class="list_place morenText">
+    <text>{{address}}</text>
+    <!-- <image class="rights" src="../../images/Rights.png"></image> -->
+  </view>
   <view class="list_place" bindtap="choTeacher">
     <text>{{teacherName}}</text>
     <!-- <image class="rights" src="../../images/Rights.png"></image> -->

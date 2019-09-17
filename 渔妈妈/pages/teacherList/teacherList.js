@@ -67,24 +67,24 @@ Page({
     }
     postRequest('/user/allowTeacherList', params, true).then(res => {
       console.log(res)
-      if (res.length > 3) {
-        that.setData({
-          items: res.slice(0, 3),
-          allItems: res
-        })
-      } else {
+      // if (res.length > 3) {
+      //   that.setData({
+      //     items: res.slice(0, 3),
+      //     allItems: res
+      //   })
+      // } else {
         that.setData({
           items: res,
           allItems: res
         })
-      }
+      // }
     })
   },
 
   choTime (e) {
     let that = this
     let obj = e.currentTarget.dataset.teacher
-    app.globalData.teacherObj = obj
+    app.globalData.allObj = obj
     let tid = obj.id
     wx.navigateTo({
       url: `/pages/choTime/choTime?type=${that.data.type}&&tid=${tid}&&line=${that.data.is_online}`,
