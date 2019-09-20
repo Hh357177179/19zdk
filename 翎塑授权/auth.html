@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>翎塑授权</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="main">
+    <div class="logo">
+      <img src="img/logo.png" alt="">
+    </div>
+    <div class="info_desc">您正在使用翎塑Lnsom公众号带来的便利，翎塑Lnsom将获取您的微信昵称与微信头像等信息，此授权邀请旨为你提供更优质的服务，我们将妥善保存您的个人信息。</div>
+    <div class="text_info">将允许 <span class="names">翎塑Lnsom</span><span style="font-size: 16px;">获取以下信息</span></div>
+    <div class="icon_card">
+      <div class="card_list">
+        <p class="icons">
+          <img src="img/headIcon.png" alt="">
+        </p>
+        <p>头像</p>
+      </div>
+      <div class="card_list">
+        <p class="icons">
+          <img src="img/nameIcon.png" alt="">
+        </p>
+        <p>昵称</p>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="deal">
+      <p class="deal_radius">
+        <img class="img_cho" src="img/chos.png" alt="">
+      </p>
+      <p>我接受翎塑Lnsom《使用条款》和《隐私政策》</p>
+    </div>
+    <div class="auth_btn">授 权</div>
+    <div class="bot_text">翎塑Lnsom由思创美发美体店（中国）运营。蜕变，由此与往不同</div>
+    <div class="mask">
+      <p class="mask_text">请勾选协议</p>
+    </div>
+  </div>
+</body>
+</html>
+
+<script src="jquery-1.10.2.js"></script>
+
+<script>
+  $(document).ready(function() {
+    var state = 0
+    // 选中
+    $('.deal').click(function() {
+      if ($('.img_cho').hasClass('block')) {
+        state = 0
+        $('.img_cho').removeClass('block')
+      } else {
+        $('.img_cho').addClass('block')
+        state = 1
+      }
+    })
+
+    // 授权
+    $('.auth_btn').click(function () {
+      console.log(state)
+      if (state == 0) {
+        $('.mask').fadeIn()
+        setTimeout(function () {
+          $('.mask').fadeOut()
+        }, 1500)
+      } else {
+        // 跳转页面
+        window.location.href = "xxxxxxxxx";
+      }
+    })
+  });
+</script>
