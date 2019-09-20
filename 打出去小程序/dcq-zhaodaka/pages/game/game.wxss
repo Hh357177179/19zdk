@@ -8,7 +8,7 @@
   padding-top: 26rpx;
 }
 .search{
-  height: 112rpx;
+  height: 100rpx;
   background: #fff;
   border-radius: 8px;
   padding: 0 30rpx;
@@ -110,10 +110,9 @@
 }
 .list_info{
   margin-left: 20rpx;
-  width: 460rpx;
 }
 .list_title{
-  font-size: 32rpx;
+  font-size: 28rpx;
   color: #203152;
   line-height: 44rpx;
   margin-bottom: 16rpx;
@@ -122,12 +121,27 @@
   width: 30rpx;
   height: 30rpx;
   margin-right: 10rpx;
+  margin-top: 2rpx;
 }
 .info_text{
-  margin-bottom: 5rpx;
+  margin-bottom: 10rpx;
   color: #203152;
   font-size: 24rpx;
   display: flex;
   justify-content: flex-start;
-  align-items: center;
+  /* align-items: center; */
+}
+.card_right{
+  width: 600rpx;
+}
+.chearts{
+  width: 40rpx;
+  height: 40rpx;
+}
+.chearts_num{
+  font-size: 28rpx;
+  margin-left: 10rpx;
+}
+.list_heart{
+  margin-top: 10rpx;
 }

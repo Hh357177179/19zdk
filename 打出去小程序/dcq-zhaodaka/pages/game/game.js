@@ -1,4 +1,7 @@
 // pages/game/game.js
+const app = getApp()
+const util = require('../../utils/util.js')
+import { postRequest } from '../../utils/httpRequest.js'
 Page({
 
   /**
@@ -7,7 +10,40 @@ Page({
   data: {
     showDelete: false,
     searchVal: '',
-    nav: 1
+    nav: 1,
+    token: '',
+    page: 1,
+    pagesize: 10,
+    title: '',
+    count: 0,
+    items: [],
+    sort: 'desc',
+    keyword: ''
+  },
+
+  // 获取首页列表
+  getList() {
+    let that = this
+    if (app.globalData.token == '') {
+      that.setData({ token: app.globalData.fakeToken })
+    } else {
+      that.setData({ token: app.globalData.token })
+    }
+    let params = {
+      page: that.data.page,
+      pagesize: that.data.pagesize,
+      token: that.data.token,
+      sort: that.data.sort,
+      keyword: that.data.keyword
+    }
+    console.log(params)
+    postRequest('/user/matchList', params, true).then(res => {
+      console.log(res)
+      that.setData({
+        count: res.count,
+        items: that.data.items.concat(res.list)
+      })
+    })
   },
 
   // 跳转详情
@@ -31,13 +67,15 @@ Page({
     let that = this
     that.setData({
       searchVal: '',
-      showDelete: false
+      showDelete: false,
+      page: 1
     })
+    that.getList()
   },
 
   // 监听搜索框
   onSearch(e) {
-    console.log(e)
+    // console.log(e)
     let that = this
     let value = e.detail.value
     if (value != '') {
@@ -49,6 +87,8 @@ Page({
         showDelete: false
       })
     }
+    that.setData({ keyword: value, page: 1 })
+    that.getList()
   },
 
   /**
@@ -62,7 +102,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    this.getList()
   },
 
   /**
@@ -97,7 +137,15 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    let that = this
+    if (that.data.page * that.data.pagesize < that.data.count) {
+      that.setData({
+        page: that.data.page += 1
+      })
+      that.getList()
+    } else {
+      util.showMsg('已经到底了')
+    }
   },
 
   /**

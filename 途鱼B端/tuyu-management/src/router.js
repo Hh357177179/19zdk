@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Root from './views/Root.vue'
+import { MessageBox } from 'element-ui';
 
 Vue.use(Router)
 
-export default new Router({
+const router =  new Router({
   mode: 'history',
   // base: process.env.BASE_URL,
   routes: [
@@ -163,6 +164,28 @@ export default new Router({
               },
             },
             {
+              path: '/shopcenter/add-shops',
+              name: 'addShops',
+              component: () => import('./views/ShopCenter/ShopManger/addShops.vue'),
+              meta: {
+                title: '新增商品',
+                icon: 'icon-bhjsaishi',
+                bigTitle: '商品中心',
+                un_show: true,
+              },
+            },
+            {
+              path: '/shopcenter/edit-shops/:id',
+              name: 'editShops',
+              component: () => import('./views/ShopCenter/ShopManger/editShops.vue'),
+              meta: {
+                title: '编辑商品',
+                icon: 'icon-bhjsaishi',
+                bigTitle: '商品中心',
+                un_show: true,
+              },
+            },
+            {
               path: '/shopcenter/shop-manger',
               name: 'ShopManger',
               component: () => import('./views/ShopCenter/ShopManger/ShopManger.vue'),
@@ -283,3 +306,27 @@ export default new Router({
     }
   ]
 })
+
+
+router.beforeEach((to, from, next) => {
+  console.log('当前',to);
+  let token = sessionStorage.getItem('token')
+  if (!token) {
+    if (to.path != '/login') {
+      MessageBox('您的登录已过期，请重新登录。', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        next('/login')
+      }).catch(() => {});
+    } else {
+      next()
+    }
+  } else {
+    next();
+  }
+})
+
+
+export default router

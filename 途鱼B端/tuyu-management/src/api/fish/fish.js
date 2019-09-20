@@ -15,6 +15,18 @@ export const deleteFish = params => api.post('/project/pondDel', params)
 // 更新钓场
 export const uploadFish = params => api.post('/project/pondUpdate', params)
 
+// 赛事管理列表
+export const matchList = params => api.post('/project/matchList', params)
+
+// 赛事详情
+export const matchDetail = params => api.post('/project/matchGet', params)
+
+// 删除赛事
+export const matchDelete = params => api.post('/project/matchEnd', params)
+
+
+
+
 // 鱼币
 
 // 获取会员鱼币列表
@@ -28,3 +40,4 @@ export const getRuleFish = params => api.post('/project/coinInfoDetail', params)
 
 // 更新鱼币规则
 export const rushRuleFish = params => api.post('/project/coinInfoUpdate', params)
+

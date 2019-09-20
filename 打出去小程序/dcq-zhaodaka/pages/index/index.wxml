@@ -1,4 +1,5 @@
 <!--index.wxml-->
+<wxs module="dateFr" src="../../utils/dateFr.wxs"></wxs>
 <view class="home">
   <view class="headers">
     <view class="search">
@@ -6,18 +7,18 @@
         <image src="../../images/chazhao.png"></image>
       </view>
       <view class="search_input">
-        <input placeholder="Search for" value="{{searchVal}}" bindinput="onSearch"></input>
+        <input placeholder="搜索" value="{{searchVal}}" bindinput="onSearch"></input>
       </view>
       <view class="search_icon">
         <image src="../../images/cancel.png" bindtap="deleteSearch" wx:if="{{showDelete}}"></image>
       </view>
     </view>
-    <view class="search_card">
+    <!-- <view class="search_card">
       <view class="search_list first_card">第一个</view>
       <view class="search_list second_card">第二个</view>
       <view class="search_list third_card">第三个</view>
-    </view>
-    <view class="sort_card">
+    </view> -->
+    <!-- <view class="sort_card">
       <view class="sort_list {{nav == 1 ? 'chooseNav' : ''}}" bindtap="navSort" data-nav="1">
         <view class="sort_icon">
           <image wx:if="{{nav == 1}}" src="../../images/clock.png"></image>
@@ -39,24 +40,26 @@
         </view>
         <view>年龄排序</view>
       </view>
-    </view>
+    </view> -->
   </view>
   <view class="home_main">
-    <block>
-      <view class="home_list" bindtap="navApply">
-        <view class="list_pics">
+    <block wx:for="{{items}}" wx:key="index">
+      <view class="home_list" bindtap="navApply" data-id="{{item.id}}">
+        <!-- <view class="list_pics">
           <image src="../../images/shizhan.png"></image>
-        </view>
+        </view> -->
         <view class="list_info">
-          <view class="list_title">27届男子左手剑实战打出去</view>
+          <view class="list_title">{{item.title}}</view>
           <view class="info_text">
             <image class="info_icon" src="../../images/rili.png"></image>
-            <text>12月9日 ~ 10月9日（共51天）</text>
-            <text style="color: #ccc;font-size: 20rpx;">7天后</text>
+            {{dateFr.getDate(item.addtime * 1000,'-',':')}} ~ {{dateFr.getDate(item.endtime * 1000,'-',':')}}
+            <!-- <text style="color: #ccc;font-size: 20rpx;">7天后</text> -->
           </view>
           <view class="info_text">
             <image class="info_icon" src="../../images/localIcon.png"></image>
-            <text>上海虹桥路167号</text>
+            <text wx:if="{{item.stage == 1}}">正在筹备</text>
+            <text wx:if="{{item.stage == 2}}">即将开始</text>
+            <text wx:if="{{item.stage == 3}}">已经结束</text>
           </view>
         </view>
       </view>

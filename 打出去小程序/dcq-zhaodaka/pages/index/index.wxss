@@ -8,7 +8,7 @@
   padding-top: 26rpx;
 }
 .search{
-  height: 112rpx;
+  height: 100rpx;
   background: #fff;
   border-radius: 8px;
   padding: 0 30rpx;
@@ -110,10 +110,10 @@
 }
 .list_info{
   margin-left: 20rpx;
-  width: 460rpx;
+  /* width: 460rpx; */
 }
 .list_title{
-  font-size: 32rpx;
+  font-size: 28rpx;
   color: #203152;
   line-height: 44rpx;
   margin-bottom: 16rpx;

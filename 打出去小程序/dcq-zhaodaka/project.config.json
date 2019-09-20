@@ -63,10 +63,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 1,
 					"name": "报名",
 					"pathName": "pages/apply/apply",
-					"query": "",
+					"query": "id=287",
 					"scene": null
 				},
 				{
@@ -101,6 +101,14 @@
 					"id": -1,
 					"name": "授权",
 					"pathName": "pages/login/login",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "比赛",
+					"pathName": "pages/game/game",
+					"query": "id=287",
 					"scene": null
 				}
 			]

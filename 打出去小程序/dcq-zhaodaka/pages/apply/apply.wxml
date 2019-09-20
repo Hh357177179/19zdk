@@ -1,49 +1,53 @@
 <!--pages/apply/apply.wxml-->
+<wxs module="dateFr" src="../../utils/dateFr.wxs"></wxs>
 <view class="apply">
+  <view class="logo">
+    <image src="{{itemObj.logo}}"></image>
+  </view>
   <view class="apply_header">
-    <view class="header_pic">
-      <image src="../../images/shizhan.png"></image>
-    </view>
-    <view class="header_title">27届男子左手剑实战打出去系列</view>
+    <view class="header_title">{{itemObj.title}}</view>
     <view class="collect">
       <image src="../../images/collect.png"></image>
     </view>
   </view>
   <view class="apply_status">
-    <view class="apply_type">各种剑</view>
+    <view class="apply_type">{{itemObj.swords}}</view>
     <view class="apply_state_card">
-      <view class="state_list state_make">筹备</view>
-      <!-- <view class="state_list state_padding">进行中</view>
-      <view class="state_list state_endding">结束</view> -->
+      <view class="state_list state_make">
+        <text wx:if="{{itemObj.stage == 1}}">正在筹备</text>
+        <text wx:if="{{itemObj.stage == 2}}">即将开始</text>
+        <text wx:if="{{itemObj.stage == 3}}">已经结束</text>
+      </view>
     </view>
   </view>
-  <view class="apply_info">
-    <view class="apply_list">
-      <view class="date_icon">
-        <image src="../../images/rili.png"></image>
+  <view class="info_card">
+    <view class="apply_info">
+      <view class="apply_list">
+        <view class="labels">活动类型：</view>
+        <view class="infos">{{itemObj.type}}</view>
       </view>
-      <view>2019年8月14日</view>
-    </view>
-    <view class="apply_list">
-      <view class="date_icon">
-        <image src="../../images/person.png"></image>
+      <view class="apply_list">
+        <view class="labels">活动时间：</view>
+        <view class="infos">{{dateFr.getDate(itemObj.addtime * 1000,'-',':')}} ~ {{dateFr.getDate(itemObj.endtime * 1000,'-',':')}}</view>
       </view>
-      <view>U8 U10 U11</view>
-    </view>
-    <view class="apply_list">
-      <view class="date_icon">
-        <image src="../../images/localIcon.png"></image>
+      <view class="apply_list">
+        <view class="labels">活动地址：</view>
+        <view class="infos">{{itemObj.address}}</view>
       </view>
-      <view>上海虹桥火车站</view>
-    </view>
-    <view class="apply_list">
-      <view class="date_icon">
-        <image src="../../images/twoPerson.png"></image>
+      <view class="apply_list">
+        <view class="labels">选手要求：</view>
+        <view class="infos">{{itemObj.requirement}}</view>
       </view>
-      <view>27人</view>
+      <view class="apply_list">
+        <view class="labels">形式主题：</view>
+        <view class="infos">{{itemObj.format}}</view>
+      </view>
+      <view class="apply_list">
+        <view class="labels">活动费用：</view>
+        <view class="infos">{{itemObj.money}}</view>
+      </view>
     </view>
   </view>
-  <view class="apply_desc"></view>
-  <view class="apply_remark"></view>
+  <view class="apply_remark">{{itemObj.note}}</view>
   <view class="apply_btn">支付报名</view>
 </view>

@@ -1,4 +1,4 @@
-const baseUrl = 'http://dcq.zhaodaka.vip'
+const baseUrl = 'http://dcq.zhaodaka.vip/api'
 
 
 const formatTime = date => {
@@ -17,6 +17,28 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+// toast提示封装
+const showMsg = function (msg, imgUrl) {
+  wx.showToast({
+    title: msg,
+    mask: true,
+    image: imgUrl,
+    icon: "none",
+    duration: 1500
+  });
+};
+
+// loading的封装
+const sLoading = function () {
+  wx.showLoading({
+    title: '加载中...',
+    mask: true
+  })
+}
+
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  baseUrl: baseUrl,
+  showMsg: showMsg,
+  sLoading: sLoading
 }
