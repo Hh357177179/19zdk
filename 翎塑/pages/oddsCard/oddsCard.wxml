@@ -1,0 +1,23 @@
+<!--pages/oddsCard/oddsCard.wxml-->
+<view class="oddsCard">
+  <view style="padding-bottom:160rpx;">
+    <view class="odds_card">
+      <view class="small_title">Lnsom</view>
+      <view class="card_title">{{obj.title}}</view>
+      <view class="card_price">
+        <text>￥ </text>
+        <text class="money_num"> {{obj.money}} </text>
+        <text>/ {{obj.times}}次</text>
+      </view>
+    </view>
+    <view class="detail_text">详情信息</view>
+    <view class="detail_info">{{obj.content}}</view>
+  </view>
+  <view class="bot">
+    <view class="moneys">
+      <text>￥ </text>
+      <text class="bot_money">{{obj.money}}</text>
+    </view>
+    <view class="open_card" bindtap="buyCard">立即开卡</view>
+  </view>
+</view>

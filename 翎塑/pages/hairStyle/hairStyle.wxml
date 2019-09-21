@@ -1,0 +1,29 @@
+<!--pages/hairStyle/hairStyle.wxml-->
+<view class="hairStyle">
+  <view class="left_nav">
+    <scroll-view class="scroll-view_H" scroll-y style="height: 100%">
+      <view class="nav_list {{num == 0 ? 'choLeft' : ''}}" bindtap="recommend">推荐</view>
+      <block wx:for="{{typeItems}}" wx:key="index">
+        <view bindtap="choType" data-id="{{item.id}}" class="nav_list {{num == item.id ? 'choLeft' : ''}}">{{item.title}}</view>
+      </block>
+    </scroll-view>
+  </view>
+  <view class="right_main">
+    <block wx:for="{{cardItems}}" wx:key="index">
+      <view class="hair_card" data-id="{{item.id}}" bindtap="navDetail">
+        <image src="{{item.image}}"></image>
+        <view class="collect_icon" catchtap="lickClick" data-id="{{item.id}}" data-index="{{index}}" data-status="{{item.is_like}}">
+          <image wx:if="{{item.is_like == true}}" src="../../images/xin.png"></image>
+          <image wx:else src="../../images/noheart.png"></image>
+        </view>
+      </view>
+    </block>
+    <view class="clear"></view>
+  </view>
+<view class='no_data' wx:if="{{noDataShow}}">
+  <view class='nd_pic'>
+    <image src='../../images/noorder.png'></image>
+  </view>
+  <view class='nd_text'>暂无数据</view>
+</view>
+</view>

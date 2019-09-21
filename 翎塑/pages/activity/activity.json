@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "特惠活动",
+  "usingComponents": {
+    "wux-tabs": "../../dist/tabs/index",
+    "wux-tab": "../../dist/tab/index"
+  }
+}

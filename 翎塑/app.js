@@ -7,7 +7,7 @@ App({
     nickname: '',
     code: '',
     pid: '',
-    unionid: '',
+    unionid: "o9N8gxJCtkOvbKbxOGllk7P3TbxA",
     id: '',
     level: ''
   }

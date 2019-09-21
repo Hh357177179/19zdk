@@ -38,6 +38,34 @@ Page({
       url: `/pages/consume/consume?nav=1`,
     })
   },
+
+  // 跳转我的特惠卡
+  navpPreference () {
+    wx.navigateTo({
+      url: '/pages/preference/preference',
+    })
+  },
+
+  // 我的收藏
+  navCollect () {
+    wx.navigateTo({
+      url: '/pages/collect/collect',
+    })
+  },
+
+  // 精选发型
+  navHair () {
+    wx.navigateTo({
+      url: '/pages/hairStyle/hairStyle',
+    })
+  },
+
+  // 特惠活动
+  navActivity () {
+    wx.navigateTo({
+      url: '/pages/activity/activity',
+    })
+  },
   
   navRecharge () {
     wx.navigateTo({

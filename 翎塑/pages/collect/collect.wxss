@@ -1,0 +1,57 @@
+/* pages/collect/collect.wxss */
+.collect_main{
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding: 20rpx;
+}
+.collect_list_main{
+  width: 33.33%;
+  margin-bottom: 20rpx;
+}
+.collect_list{
+  margin: 0 auto;
+  width: 96%;
+  background: #fff;
+  height: 300rpx;
+  box-shadow:0px 8rpx 16rpx 0px #ccc;
+  position: relative;
+}
+.collect_img{
+  width: 100%;
+  height: 100%;
+  background: #ccc;
+}
+.collect_img image{
+  width: 100%;
+  height: 100%;
+}
+.collect_hear{
+  width: 50rpx;
+  height: 50rpx;
+  position: absolute;
+  right: 20rpx;
+  bottom: 20rpx;
+}
+.collect_hear image{
+  width: 100%;
+  height: 100%;
+}
+.no_data{
+  width: 100%;
+  margin-top: 220rpx;
+}
+.nd_pic{
+  width: 240rpx;
+  height: 240rpx;
+  margin: 0 auto 10rpx;
+}
+.nd_pic image{
+  width: 100%;
+  height: 100%;
+}
+.nd_text{
+  font-size: 30rpx;
+  color:rgba(25,31,37,0.28);
+  text-align: center;
+}

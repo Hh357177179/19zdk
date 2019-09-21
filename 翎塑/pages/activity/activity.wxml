@@ -1,0 +1,52 @@
+<!--pages/activity/activity.wxml-->
+<view class="activity">
+  <view class="header_title">特惠活动（特惠活动不与会员折扣优惠券等重叠使用）</view>
+  <view class="small_title">
+    <view class="title_img">
+      <image src="../../images/cardIcon.png"></image>
+    </view>
+    <view class="shop_title">本店优惠卡</view>
+    <view class="right_text">永远不过期价格透明</view>
+    <view class="clear"></view>
+  </view>
+  <view class="card_main">
+    <block wx:for="{{cardItem}}" wx:key="index">
+      <view class="card_list" bindtap="cardDetail" data-id="{{item.id}}">
+        <view class="card_title">{{item.title}}</view>
+        <view class="card_price">
+          <text class="list_price">￥{{item.money}}</text>
+          <text style="margin-left:10rpx;">/ {{item.times}}次</text>
+        </view>
+      </view>
+    </block>
+  </view>
+  <!-- <view class="line"></view> -->
+  <view class="activity_main">
+    <view class="activity_head">
+      <view class="title_img">
+        <image src="../../images/cardIcon.png"></image>
+      </view>
+      <view class="shop_title">活动价目表</view>
+      <view class="right_text">热门活动实时了解</view>
+      <view class="clear"></view>
+    </view>
+    <wux-tabs controlled scroll current="{{ current }}" bindchange="onChange">
+      <block wx:for="{{tabArr}}" wx:key="index">
+        <wux-tab key="{{item.id}}" title="{{item.title}}"></wux-tab>
+      </block>
+    </wux-tabs>
+    <view class="tab_main">
+      <block wx:for="{{listArr}}" wx:key="index">
+        <view class="tab_list">
+          <view class="tab_img">
+            <image src="{{item.image}}"></image>
+          </view>
+          <view class="tab_info">
+            <view class="tab_title">{{item.title}}</view>
+            <view class="tab_price">{{item.price}}元</view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

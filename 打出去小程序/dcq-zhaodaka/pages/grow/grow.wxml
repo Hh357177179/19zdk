@@ -19,58 +19,6 @@
             <wux-timeline-item dotStyle="border-color: #ef473a; color: #ef473a">
               <view>2018-10-24</view>
             </wux-timeline-item>
-            <wux-timeline-item>
-              <view>2018-10-24</view>
-            </wux-timeline-item>
-            <wux-timeline-item custom>
-              <wux-icon slot="dot" type="ios-time" size="23" />
-              <view>2018-10-24</view>
-            </wux-timeline-item>
-            <wux-timeline-item dotStyle="border-color: #33cd5f; color: #33cd5f">
-              <view>2018-10-24</view>
-            </wux-timeline-item>
-            <wux-timeline-item dotStyle="border-color: #ef473a; color: #ef473a">
-              <view>2018-10-24</view>
-            </wux-timeline-item>
-            <wux-timeline-item>
-              <view>2018-10-24</view>
-            </wux-timeline-item>
-            <wux-timeline-item custom>
-              <wux-icon slot="dot" type="ios-time" size="23" />
-              <view>2018-10-24</view>
-            </wux-timeline-item>
-            <wux-timeline-item dotStyle="border-color: #33cd5f; color: #33cd5f">
-              <view>2018-10-24</view>
-            </wux-timeline-item>
-            <wux-timeline-item dotStyle="border-color: #ef473a; color: #ef473a">
-              <view>2018-10-24</view>
-            </wux-timeline-item>
-            <wux-timeline-item>
-              <view>2018-10-24</view>
-            </wux-timeline-item>
-            <wux-timeline-item custom>
-              <wux-icon slot="dot" type="ios-time" size="23" />
-              <view>2018-10-24</view>
-            </wux-timeline-item>
-            <wux-timeline-item dotStyle="border-color: #33cd5f; color: #33cd5f">
-              <view>2018-10-24</view>
-            </wux-timeline-item>
-            <wux-timeline-item dotStyle="border-color: #ef473a; color: #ef473a">
-              <view>2018-10-24</view>
-            </wux-timeline-item>
-            <wux-timeline-item>
-              <view>2018-10-24</view>
-            </wux-timeline-item>
-            <wux-timeline-item custom>
-              <wux-icon slot="dot" type="ios-time" size="23" />
-              <view>2018-10-24</view>
-            </wux-timeline-item>
-            <wux-timeline-item dotStyle="border-color: #33cd5f; color: #33cd5f">
-              <view>2018-10-24</view>
-            </wux-timeline-item>
-            <wux-timeline-item dotStyle="border-color: #ef473a; color: #ef473a">
-              <view>2018-10-24</view>
-            </wux-timeline-item>
           </wux-timeline>
         </view>
       </scroll-view>

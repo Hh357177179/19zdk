@@ -46,37 +46,59 @@
       <image src='../../images/right.png'></image>
     </view>
   </view>
-  <view class='card_main'>
-    <view class='card_list' bindtap='navOrder'>
-      <view class='card_icon'>
-        <image src='../../images/order.png'></image>
+  <view class="lis_main">
+    <view class="list_card"  bindtap='navOrder'>
+      <view class="list_icon">
+        <image src="../../images/order.png"></image>
       </view>
-      <view class='card_text'>预约服务</view>
+      <view>预约服务</view>
     </view>
-    <view class='card_list' bindtap='navList'>
-      <view class='card_icon'>
-        <image src='../../images/inventory.png'></image>
+    <view class="list_card"  bindtap='navList'>
+      <view class="list_icon">
+        <image src="../../images/inventory.png"></image>
       </view>
-      <view class='card_text'>消费清单</view>
+      <view>消费清单</view>
     </view>
-  </view>
-  <view class='card_main'>
-    <view class='card_list' bindtap='navInvite'>
-      <view class='card_icon'>
-        <image src='../../images/invite.png'></image>
+    <view class="list_card"  bindtap='navInvite'>
+      <view class="list_icon">
+        <image src="../../images/invite.png"></image>
       </view>
-      <view class='card_text'>邀请好友</view>
+      <view>邀请好友</view>
     </view>
-    <view class='card_list' bindtap='navLog'>
-      <view class='card_icon'>
-        <image src='../../images/log.png'></image>
+    <view class="list_card"  bindtap='navLog'>
+      <view class="list_icon">
+        <image src="../../images/log.png"></image>
       </view>
-      <view class='card_text'>佣金日志</view>
+      <view>佣金日志</view>
+    </view>
+    <view class="list_card"  bindtap='navpPreference'>
+      <view class="list_icon">
+        <image src="../../images/tehui.png"></image>
+      </view>
+      <view>我的特惠卡</view>
+    </view>
+    <view class="list_card"  bindtap='navCollect'>
+      <view class="list_icon">
+        <image src="../../images/shoucang.png"></image>
+      </view>
+      <view>我的收藏</view>
     </view>
   </view>
   <view class='order_bot'>
+    <view class="jingx bot_card" bindtap="navHair">
+      <view class="jingx_png">
+        <image src="../../images/jingxuan.png"></image>
+      </view>
+      <view>精选发型</view>
+    </view>
     <view class='order_tel' bindtap='sendOrder'>
       <image src='../../images/tel.png'></image>
+    </view>
+    <view class="jingx bot_card" bindtap="navActivity">
+      <view class="jingx_png">
+        <image src="../../images/huodong.png"></image>
+      </view>
+      <view>特惠活动</view>
     </view>
   </view>
  <wux-popup visible="{{ visible }}" title="需要您的授权">

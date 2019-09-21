@@ -1,0 +1,8 @@
+<!--pages/hairDetail/hairDetail.wxml-->
+<view class="hairDetail">
+  <view class="detail_img">
+    <image src="{{obj.image}}"></image>
+  </view>
+  <view class="small_title">详细介绍</view>
+  <view class="content">{{obj.content}}</view>
+</view>

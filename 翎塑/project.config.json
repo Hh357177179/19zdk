@@ -13,7 +13,7 @@
 		"checkInvalidKey": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.7.2",
+	"libVersion": "2.8.3",
 	"appid": "wxc714074e9b00c3d2",
 	"projectname": "%E7%BF%8E%E5%A1%91",
 	"debugOptions": {
@@ -40,7 +40,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 10,
+			"current": 16,
 			"list": [
 				{
 					"id": -1,
@@ -117,6 +117,48 @@
 					"name": "首页",
 					"pathName": "pages/index/index",
 					"query": "scene=1",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的特惠卡",
+					"pathName": "pages/preference/preference",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的收藏",
+					"pathName": "pages/collect/collect",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "特惠活动",
+					"pathName": "pages/activity/activity",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 14,
+					"name": "特惠卡详情",
+					"pathName": "pages/oddsCard/oddsCard",
+					"query": "id=3",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "精选发型",
+					"pathName": "pages/hairStyle/hairStyle",
+					"query": "id=3",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "发型详情",
+					"pathName": "pages/hairDetail/hairDetail",
+					"query": "id=3",
 					"scene": null
 				}
 			]

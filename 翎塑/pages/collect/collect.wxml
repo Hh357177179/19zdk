@@ -1,0 +1,33 @@
+<!--pages/collect/collect.wxml-->
+<view class="collect">
+  <view class="collect_main">
+    <block wx:for="{{items}}" wx:key="index">
+      <view class="collect_list_main">
+        <view class="collect_list">
+          <view class="collect_img">
+            <image src="{{item.image}}"></image>
+          </view>
+          <view class="collect_hear">
+            <image src="../../images/xin.png"></image>
+          </view>
+        </view>
+      </view>
+      <view class="collect_list_main">
+        <view class="collect_list">
+          <view class="collect_img">
+            <image src="{{item.image}}"></image>
+          </view>
+          <view class="collect_hear">
+            <image src="../../images/xin.png"></image>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+<view class='no_data' wx:if="{{noDataShow}}">
+  <view class='nd_pic'>
+    <image src='../../images/noorder.png'></image>
+  </view>
+  <view class='nd_text'>暂无数据</view>
+</view>

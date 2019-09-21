@@ -1,0 +1,31 @@
+<!--pages/preference/preference.wxml-->
+<view class="preference">
+  <view class="headers">
+    <view class="header_left">
+      <view class="card_icon">
+        <image src="../../images/cardIcon.png"></image>
+      </view>
+      <view>卡包</view>
+    </view>
+    <view class="right_text">共{{items.length}}张</view>
+  </view>
+  <view class="list_main">
+    <block wx:for="{{items}}" wx:key="index">
+      <view class="card_list">
+      <view class="head_pic">
+        <image src="{{item.card_image}}"></image>
+      </view>
+      <view class="card_title">{{item.card_title}}</view>
+      <view class="card_num">剩余{{item.card_times}}次</view>
+      <view class="clear"></view>
+    </view>
+    </block>
+  </view>
+</view>
+
+<view class='no_data' wx:if="{{noDataShow}}">
+  <view class='nd_pic'>
+    <image src='../../images/noorder.png'></image>
+  </view>
+  <view class='nd_text'>暂无数据</view>
+</view>

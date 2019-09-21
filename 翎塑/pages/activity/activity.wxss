@@ -1,0 +1,117 @@
+/* pages/activity/activity.wxss */
+.activity{
+  width: 100%;
+  min-height: 100vh;
+  background:linear-gradient(180deg,rgba(255,255,255,1) 0%,rgba(239,241,245,0.74) 100%);
+}
+.header_title{
+  font-size: 24rpx;
+  text-align: center;
+  line-height: 60rpx;
+  background: #fff;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  box-shadow:0px 8rpx 8rpx 0px #f0f0f0;
+}
+.small_title{
+  padding: 70rpx 20rpx 0;
+  line-height: 50rpx;
+}
+.title_img{
+  width: 50rpx;
+  height: 50rpx;
+  float: left;
+}
+.title_img image{
+  width: 100%;
+  height: 100%;
+}
+.shop_title{
+  font-size: 28rpx;
+  font-weight: bold;
+  float: left;
+  margin-left: 20rpx;
+}
+.right_text{
+  font-size: 24rpx;
+  color: #999;
+  float: right;
+}
+.clear{
+  clear: both;
+}
+.card_main{
+  padding: 0 20rpx;
+  margin-top: 20rpx;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.card_list{
+  width: 39%;
+  background: #333;
+  border-top: 10rpx solid #ccb778;
+  border-radius: 10rpx;
+  padding: 30rpx;
+  box-shadow:0px 8rpx 8rpx 0px #ccc;
+  margin-bottom: 20rpx;
+  color: #fff;
+}
+.card_title{
+  font-size: 32rpx;
+  margin-bottom: 40rpx;
+}
+.card_price{
+  font-size: 28rpx;
+}
+.list_price{
+  font-size: 50rpx;
+  font-weight: bold;
+  margin-left: 20rpx;
+  color: #e47e64;
+}
+.line{
+  background: #fff;
+  height: 20rpx;
+  margin-top: 20rpx;
+}
+.activity_main{
+  margin-top: 20rpx;
+}
+.activity_head{
+  padding: 0 20rpx;
+  line-height: 50rpx;
+}
+.tab_main{
+  padding: 0 20rpx;
+}
+.tab_list{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 2rpx solid #f0f0f0;
+}
+.tab_img{
+  width: 110rpx;
+  height: 130rpx;
+  background: #ccc;
+  margin-right: 20rpx;
+}
+.tab_img image{
+  width: 100%;
+  height: 100%;
+}
+.tab_title{
+  font-size: 30rpx;
+  font-weight: 600;
+  width: 550rpx;
+}
+.tab_price{
+  color: #e47e64;
+  font-weight: bold;
+  font-size: 32rpx;
+  margin-top: 20rpx;
+}

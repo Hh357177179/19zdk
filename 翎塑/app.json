@@ -11,7 +11,13 @@
     "pages/login/login",
     "pages/order/order",
     "pages/recharge/recharge",
-    "pages/payOrder/payOrder"
+    "pages/payOrder/payOrder",
+    "pages/preference/preference",
+    "pages/collect/collect",
+    "pages/activity/activity",
+    "pages/oddsCard/oddsCard",
+    "pages/hairStyle/hairStyle",
+    "pages/hairDetail/hairDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,0 +1,78 @@
+/* pages/hairStyle/hairStyle.wxss */
+.left_nav{
+  width: 200rpx;
+  background: #f0f0f0;
+  height: 100vh;
+  font-size: 30rpx;
+  color: #333;
+  text-align: center;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+}
+.nav_list{
+  line-height: 90rpx;
+  border-left: 6rpx solid rgba(0,0,0,0);
+}
+.right_main{
+  margin-left: 200rpx;
+  background: #fff;
+  padding: 20rpx;
+}
+.hair_card{
+  width: 250rpx;
+  height: 300rpx;
+  background: #f0f0f0;
+  float: left;
+  border-radius: 10rpx;
+  overflow: hidden;
+  margin-bottom: 10rpx;
+  position: relative;
+}
+.hair_card:nth-of-type(2n) {
+  float: right;
+}
+.clear{
+  clear: both;
+}
+.hair_card image {
+  width: 100%;
+  height: 100%;
+}
+.choLeft{
+  background: #fff;
+  font-weight: bold;
+  color: #000;
+  border-color: #000;
+}
+.no_data{
+  width: 100%;
+  margin-top: 220rpx;
+  margin-left: 100rpx;
+}
+.nd_pic{
+  width: 240rpx;
+  height: 240rpx;
+  margin: 0 auto 10rpx;
+}
+.nd_pic image{
+  width: 100%;
+  height: 100%;
+}
+.nd_text{
+  font-size: 30rpx;
+  color:rgba(25,31,37,0.28);
+  text-align: center;
+}
+.collect_icon{
+  position: absolute;
+  width: 50rpx;
+  height: 50rpx;
+  right: 20rpx;
+  bottom: 20rpx;
+}
+.collect_icon image {
+  width: 100%;
+  height: 100%;
+}
