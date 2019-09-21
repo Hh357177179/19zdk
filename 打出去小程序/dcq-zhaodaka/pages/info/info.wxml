@@ -1,2 +1,4 @@
 <!--pages/info/info.wxml-->
-<text>pages/info/info.wxml</text>
+<view class="info">
+  
+</view>

@@ -1,1 +1,5 @@
 /* pages/info/info.wxss */
+.info{
+  min-height: 100vh;
+  background:rgba(250,250,250,1);
+}
