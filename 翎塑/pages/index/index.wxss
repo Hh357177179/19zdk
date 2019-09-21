@@ -6,6 +6,7 @@
   width: 100%;
   min-height: 100vh;
   background: #f6f6f6;
+  position: relative;
 }
 .top_main{
   width: 100%;
@@ -104,6 +105,7 @@
   height: 100%;
 }
 .order_bot{
+  z-index: 1111;
   border-top: 1px solid #333;
   width: 100%;
   height: 100rpx;
@@ -237,4 +239,13 @@
 .bot_card{
   width: 33.33%;
   text-align: center;
+}
+.bot_img{
+  width: 100%;
+  position: absolute;
+  top: 100vh;
+  padding-bottom: 130rpx;
+}
+.bot_img image{
+  width: 100%;
 }

@@ -18,7 +18,19 @@ Page({
     count: 0,
     items: [],
     sort: 'desc',
-    keyword: ''
+    keyword: '',
+    visible: true
+  },
+
+  navGame () {
+    let that = this
+    if (app.globalData.isVip == '0') {
+      that.setData({ visible: true })
+    }
+  },
+
+  onClose () {
+    this.setData({ visible: false })
   },
 
   // 获取首页列表
@@ -46,13 +58,6 @@ Page({
     })
   },
 
-  // 跳转详情
-  navApply() {
-    wx.navigateTo({
-      url: '/pages/apply/apply',
-    })
-  },
-
   // 筛选列表
   navSort(e) {
     let that = this
@@ -68,7 +73,8 @@ Page({
     that.setData({
       searchVal: '',
       showDelete: false,
-      page: 1
+      page: 1,
+      items: []
     })
     that.getList()
   },
@@ -87,7 +93,7 @@ Page({
         showDelete: false
       })
     }
-    that.setData({ keyword: value, page: 1 })
+    that.setData({ keyword: value, page: 1, items: [] })
     that.getList()
   },
 
@@ -102,14 +108,14 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    this.getList()
+   
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getList()
   },
 
   /**

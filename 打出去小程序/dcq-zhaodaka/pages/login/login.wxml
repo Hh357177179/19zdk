@@ -5,5 +5,5 @@
   </view>
   <view class="title">打出去</view>
   <view class="title_small">Gamels On</view>
-  <view class="auth_btn">快捷登录</view>
+  <button open-type="getUserInfo" class="auth_btn" bindgetuserinfo="btnGetUserInfo">快捷登录</button>
 </view>

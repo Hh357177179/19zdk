@@ -32,7 +32,6 @@
   border-radius:56rpx;
   color: #fff;
   font-size: 32rpx;
-  padding: 30rpx 0;
   margin: 100rpx auto 0;
   text-align: center;
 }

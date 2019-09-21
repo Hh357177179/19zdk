@@ -8,7 +8,8 @@
     "pages/me/me",
     "pages/apply/apply",
     "pages/transfer/transfer",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/info/info"
   ],
   "window": {
     "backgroundTextStyle": "light",

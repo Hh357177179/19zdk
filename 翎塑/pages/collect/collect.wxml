@@ -12,16 +12,6 @@
           </view>
         </view>
       </view>
-      <view class="collect_list_main">
-        <view class="collect_list">
-          <view class="collect_img">
-            <image src="{{item.image}}"></image>
-          </view>
-          <view class="collect_hear">
-            <image src="../../images/xin.png"></image>
-          </view>
-        </view>
-      </view>
     </block>
   </view>
 </view>

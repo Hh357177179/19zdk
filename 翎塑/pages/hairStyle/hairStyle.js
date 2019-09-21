@@ -59,13 +59,28 @@ Page({
       token: app.globalData.unionid,
       hair_id: id
     }
-    postRequest('/user/likeHair', params, true).then(res => {
-      console.log(res)
-      util.showMsg('点赞成功！')
-      let stateLike = `cardItems[${index}].status`
-      that.setData({
-        [stateLike]: !isLike
-      })
+    wx.request({
+      url: `${util.baseUrl}/user/likeHair`,
+      data: params,
+      method: "POST",
+      success: res => {
+        let stateLike = `cardItems[${index}].is_like`
+        console.log(stateLike)
+        console.log(res)
+        if (res.data.code == 201) {
+          that.setData({
+            [stateLike]: false
+          })
+          util.showMsg('取消收藏！')
+        } else if (res.data.code == 200) {
+          that.setData({
+            [stateLike]: true
+          })
+          util.showMsg('收藏成功！')
+        } else {
+          util.showMsg(res.data.msg)
+        }
+      }
     })
   },
 

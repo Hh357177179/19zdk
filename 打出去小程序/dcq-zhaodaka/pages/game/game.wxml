@@ -43,7 +43,7 @@
   </view>
   <view class="game_main">
     <block wx:for="{{items}}" wx:key="index">
-      <view class="game_list" bindtap="navApply" data-id="{{item.id}}">
+      <view class="game_list" bindtap="navGame" data-id="{{item.id}}">
         <view class="list_info">
           <view class="list_title">{{item.name}}</view>
           <view class="info_text">
@@ -66,5 +66,8 @@
       </view>
     </block>
   </view>
+  <wux-popup hasHeader="false" visible="{{ visible }}" title="提示" bind:close="onClose">
+    <view class="title">提示</view>
+  </wux-popup>
 </view>
 

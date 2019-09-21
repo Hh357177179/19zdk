@@ -17,6 +17,8 @@
   width: 150rpx;
   height: 150rpx;
   margin: 0 auto;
+  overflow: hidden;
+  border-radius: 50%;
 }
 .user_avatar image{
   width: 100%;

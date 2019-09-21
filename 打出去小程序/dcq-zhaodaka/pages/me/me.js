@@ -10,6 +10,8 @@ Page({
   data: {
     visible: false,
     showUserInfo: false,
+    userInfo: {},
+    avatar: ''
   },
 
   onClose () {
@@ -34,6 +36,12 @@ Page({
     })
   },
 
+  navUserInfo() {
+    wx.navigateTo({
+      url: '/pages/info/info',
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -51,11 +59,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    console.log(app.globalData.userInfo)
     let that = this
     if (app.globalData.userInfo == null) {
       that.setData({ showUserInfo: false })
     } else {
-      that.setData({ showUserInfo: true })
+      that.setData({ showUserInfo: true, userInfo: app.globalData.userInfo, avatar: app.globalData.userInfo.avatar })
     }
   },
 

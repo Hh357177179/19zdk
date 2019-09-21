@@ -41,7 +41,8 @@ Page({
     that.setData({
       searchVal: '',
       showDelete: false,
-      page: 1
+      page: 1,
+      items:[]
     })
     that.getList()
   },
@@ -60,7 +61,7 @@ Page({
         showDelete: false
       })
     }
-    that.setData({ title: value, page: 1 })
+    that.setData({ title: value, page: 1, items: [] })
     that.getList()
   },
   
@@ -95,8 +96,12 @@ Page({
       })
     })
   },
+
   
   onLoad: function (options) {
+    
+  },
+  onShow: function () {
     this.getList()
   },
   /**

@@ -3,11 +3,12 @@
   <view class="me_user_info">
     <view class="user_main">
       <view class="user_avatar">
-        <image src="../../images/avatar.png"></image>
+        <image wx:if="{{avatar != ''}}" src="{{userInfo.avatar}}"></image>
+        <image wx:else src="../../images/avatar.png"></image>
       </view>
       <view class="user_text" wx:if="{{showUserInfo}}">
-        <view class="user_name">Hh.</view>
-        <view class="user_balance" bindtap="navTransfer">蜂蜜21</view>
+        <view class="user_name">{{userInfo.nickname}}</view>
+        <view class="user_balance" bindtap="navTransfer">蜂蜜 {{userInfo.coin}}</view>
       </view>
       <view class="login_btn" wx:else bindtap="login">点击注册登录</view>
     </view>
@@ -23,7 +24,7 @@
           <image src="../../images/material-icon.png"></image>
         </view>
       </view>
-      <view class="me_list">
+      <view class="me_list" bindtap="navUserInfo">
         <view class="me_list_left">
           <view class="list_icon">
             <image src="../../images/my_xinxi.png"></image>

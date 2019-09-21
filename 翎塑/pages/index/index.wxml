@@ -116,4 +116,8 @@
   </view>
   <view class='with_btn' bindtap='submitWith'>确认提现</view>
 </wux-popup>
+
+<view class="bot_img">
+  <image src="../../images/bot_img.jpg" mode="widthFix"></image>
+</view>
 </view>
