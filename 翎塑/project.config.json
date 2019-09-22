@@ -39,6 +39,10 @@
 			"currentL": -1,
 			"list": []
 		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
 		"miniprogram": {
 			"current": 16,
 			"list": [
@@ -116,7 +120,7 @@
 					"id": 10,
 					"name": "首页",
 					"pathName": "pages/index/index",
-					"query": "scene=1",
+					"query": "",
 					"scene": null
 				},
 				{

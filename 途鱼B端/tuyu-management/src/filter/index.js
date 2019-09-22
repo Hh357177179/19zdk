@@ -15,7 +15,7 @@ const fromDate = date => {
     if (m < 10) m = '0' + m
     if (s < 10) h = '0' + s
 
-    return `${Y}-${M}-${D} ${h}:${m}:${s}`
+    return `${Y}-${M}-${D} ${h}:${m}`
 
 
   } else {

@@ -16,7 +16,7 @@
         <image src="{{item.card_image}}"></image>
       </view>
       <view class="card_title">{{item.card_title}}</view>
-      <view class="card_num">剩余{{item.card_times}}次</view>
+      <view class="card_num">剩余{{item.allow_times}}次</view>
       <view class="clear"></view>
     </view>
     </block>

@@ -35,7 +35,7 @@
         <el-form-item class="items">
           <el-button type="primary" icon="el-icon-search" @click="submitForm('searchForm')">查 找</el-button>
           <el-button @click="resetForm('searchForm')" icon="el-icon-close">重 置</el-button>
-          <el-button type="primary" icon="el-icon-download">导 出</el-button>
+          <el-button type="primary" icon="el-icon-download" @click="exportExcel">导 出</el-button>
         </el-form-item>
       </el-form>
     </el-card>
@@ -49,7 +49,7 @@
         border
       >
         <el-table-column align="center" label="会员姓名" width="130" prop="name"></el-table-column>
-        <el-table-column align="center" prop="user_phone" label="手机号" width="140"></el-table-column>
+        <el-table-column align="center" prop="user_phone" label="手机号码" width="140"></el-table-column>
         <el-table-column align="center" prop="user_card_no" label="会员卡号" width="200"></el-table-column>
         <el-table-column align="center" prop="user_role" label="会员身份" width="100">
           <template slot-scope="scope">
@@ -62,8 +62,7 @@
         <el-table-column align="center" prop="user_name" label="持卡人" width="140"></el-table-column>
         <el-table-column align="center" prop="status" label="转账状态" width="100">
           <template slot-scope="scope">
-            <p v-if="scope.row.status == 1">待转账</p>
-            <p v-if="scope.row.status == 2">已转账</p>
+            <span>{{scope.row.role == 1 ? '待转账' : '已转账'}}</span>
           </template>
         </el-table-column>
         <el-table-column align="center" label="操作" width="200">
@@ -139,6 +138,45 @@ export default {
     this.getList();
   },
   methods: {
+    exportExcel() {
+      let dateTime = new Date()
+      let y = dateTime.getFullYear()
+      let m = dateTime.getMonth() + 1
+      let d = dateTime.getDate()
+      let hh = dateTime.getHours()
+      let mm = dateTime.getMinutes()
+      let ss = dateTime.getSeconds()
+      let time = `${y}年${m}月${d}日 ${hh}时${mm}分${ss}秒`
+      require.ensure([], () => {
+        const { export_json_to_excel } = require('../../../excel/Export2Excel');
+        const tHeader = ['会员姓名', '手机号码', '会员卡号', '会员身份', '申请提现金额（元）', '提现银行卡号', '所属银行', '持卡人', '转账状态'];
+        // 上面设置Excel的表格第一行的标题
+        // const role = ''
+        const filterVal = ['name', 'user_phone', 'user_card_no', 'user_role', 'money', 'bank_code', 'bank_name', 'user_name', 'status'];
+        // 上面的index、nickName、name是tableData里对象的属性
+        const list = [...this.tableData];  //把data里的tableData存到list
+        const data = this.formatJson(filterVal, list);
+        export_json_to_excel(tHeader, data, `用户提现(${time})`);
+      })
+    },
+
+    formatJson(filterVal, jsonData) {
+      jsonData.forEach(item => {
+        if (item.user_role == 1) {
+          item.user_role = '会员'
+        } else {
+          item.user_role = '钓场主'
+        }
+      });
+      jsonData.forEach(item => {
+        if (item.status == 1) {
+          item.status = '待转账'
+        } else {
+          item.status = '已转账'
+        }
+      });
+      return jsonData.map(v => filterVal.map(j => v[j]))
+    },
     updateAll () {
       this.page = 1
       this.getList()

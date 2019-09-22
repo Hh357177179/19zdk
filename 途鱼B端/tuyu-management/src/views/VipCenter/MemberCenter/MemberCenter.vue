@@ -41,7 +41,7 @@
             @click="submitForm('searchForm')"
           >查 找</el-button>
           <el-button @click="resetForm('searchForm')" icon="el-icon-close">重 置</el-button>
-          <el-button type="primary" icon="el-icon-download">导 出</el-button>
+          <!-- <el-button type="primary" icon="el-icon-download">导 出</el-button> -->
         </el-form-item>
       </el-form>
     </el-card>
@@ -73,6 +73,7 @@
           <template slot-scope="scope">
             <el-button @click="handleClick('编辑','refEdit',scope.row)" size="small" type="warning">编辑</el-button>
             <el-button v-if="scope.row.role == 2" @click="handleAdd(scope.row)" size="small" type="primary">添加钓场</el-button>
+            <el-button v-if="scope.row.role == 2" @click="searchFish(scope.row)" size="small" type="primary">查看钓场</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -136,6 +137,14 @@ export default {
     this.getList()
   },
   methods: {
+    searchFish (row) {
+      this.$router.push({
+        name: 'Sportfishing',
+        params: {
+          phone: row.phone
+        }
+      })
+    },
     handleCurrentChange(val) {
       this.page = val;
       this.getList();

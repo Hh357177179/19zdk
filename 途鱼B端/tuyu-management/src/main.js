@@ -7,6 +7,8 @@ import 'element-ui/lib/theme-chalk/index.css';
 import './assets/style.css'
 import VueCookies from 'vue-cookies'
 import * as filter from './filter/index'
+import Blob from './excel/Blob'
+import Export2Excel from './excel/Export2Excel.js'
 Object.keys(filter).forEach(key => Vue.filter(key, filter[key]))
 
 Vue.config.productionTip = false

@@ -1,0 +1,18 @@
+<!--pages/vip/vip.wxml-->
+<wxs module="dateFr" src="../../utils/dateFr.wxs"></wxs>
+<view class="vip">
+  <view class="title">关于打出去年费会员</view>
+  <view class="desc">打出去击剑社群发布的信息大多由社群志愿者们收集整理。年费不贵，情意宝贵——欢迎用蜂蜜或付费形式加入工蜂团队，为社群发展添砖加瓦！</view>
+  <view class="small_title">会员权益:</view>
+  <view class="desc_s">1、阅读所有“打出去”已发布的赛事信息的完整版。</view>
+  <view class="desc_s">2、参加“打出去”地区实战训练赛享有报名费9折优惠。会员优惠不与折扣码同时享受。</view>
+  <view class="pirce desc_s">费用：20蜂蜜，或 200元人民币</view>
+  <view class="desc_s">有效期：一年</view>
+  <view class="vip_time">VIP到期时间：{{dateFr.getDate(time * 1000,'-','')}}</view>
+  <view class="small_title">支付方式:</view>
+  <view class="card_main">
+    <view class="honey {{index == 1 ? 'back_color' : ''}}" bindtap="honeyClick">蜂蜜</view>
+    <view class="rmb {{index == 2 ? 'back_color' : ''}}" bindtap="rmbClick">人民币</view>
+  </view>
+  <view class="buy_btn" bindtap="buyVip">开通会员</view>
+</view>

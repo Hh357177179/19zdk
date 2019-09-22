@@ -1,0 +1,76 @@
+/* pages/vip/vip.wxss */
+.vip{
+  padding: 20rpx;
+}
+.title{
+  color: #333;
+  font-size: 32rpx;
+  font-weight: bold;
+  text-align: center;
+  line-height: 80rpx;
+}
+.desc{
+  margin-top: 40rpx;
+  color: #666;
+  font-size: 28rpx;
+  line-height: 50rpx;
+}
+.small_title{
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+  margin-top: 60rpx;
+  margin-bottom: 10rpx;
+}
+.desc_s{
+  font-size: 28rpx;
+  color: #666;
+  line-height: 50rpx;
+}
+.pirce{
+  margin-top: 60rpx;
+}
+.vip_time{
+  color: #f00;
+  margin-top: 40rpx;
+  font-size: 28rpx;
+}
+.card_main{
+  font-size: 28rpx;
+  color: #666;
+  width: 350rpx;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20rpx;
+}
+.honey, .rmb{
+  line-height: 70rpx;
+  text-align: center;
+  width: 50%;
+}
+.back_color {
+  background:linear-gradient(115deg,rgba(72,72,220,1) 0%,rgba(50,166,228,1) 100%);
+  color: #fff;
+  font-weight: bold;
+}
+.honey {
+  border-top-left-radius: 10rpx;
+  border-bottom-left-radius: 10rpx;
+  border: 2rpx solid #f0f0f0;
+  border-right: none;
+}
+.rmb{
+  border-top-right-radius: 10rpx;
+  border-bottom-right-radius: 10rpx;
+  border: 2rpx solid #f0f0f0;
+  border-left: none;
+}
+.buy_btn{
+  background:linear-gradient(115deg,rgba(72,72,220,1) 0%,rgba(50,166,228,1) 100%);
+  color: #fff;
+  width: 300rpx;
+  line-height: 80rpx;
+  border-radius: 56rpx;
+  text-align: center;
+  margin: 80rpx auto 0;
+}

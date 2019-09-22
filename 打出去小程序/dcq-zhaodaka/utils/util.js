@@ -1,4 +1,4 @@
-const baseUrl = 'http://dcq.zhaodaka.vip/api'
+const baseUrl = 'https://ssl.zhaodaka.net/dcq/api'
 
 
 const formatTime = date => {

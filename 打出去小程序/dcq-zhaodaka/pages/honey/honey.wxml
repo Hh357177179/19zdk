@@ -1,0 +1,20 @@
+<!--pages/honey/honey.wxml-->
+<view class="honey">
+  <!-- <view class="honey_head"></view> -->
+  <view class="honey_main">
+    <block wx:for="{{items}}" wx:key="index">
+      <view class="honey_list">
+        <view>{{item.note}}</view>
+        <view>蜂蜜点：{{item.number}}</view>
+      </view>
+    </block>
+  </view>
+</view>
+
+
+<view class='no_data' wx:if="{{noDataShow}}">
+  <view class='nd_pic'>
+    <image src='../../images/noorder.png'></image>
+  </view>
+  <view class='nd_text'>暂无数据</view>
+</view>

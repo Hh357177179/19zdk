@@ -14,10 +14,22 @@ Page({
     avatar: ''
   },
 
+  meCollect () {
+    wx.navigateTo({
+      url: '/pages/collect/collect',
+    })
+  },
+
   onClose () {
     let that = this
     that.setData({
       visible: false
+    })
+  },
+
+  navRanking () {
+    wx.navigateTo({
+      url: '/pages/ranking/ranking',
     })
   },
 
@@ -29,10 +41,22 @@ Page({
     })
   },
 
+  navHoney () {
+    wx.navigateTo({
+      url: '/pages/honey/honey',
+    })
+  },
+
   // 登录
   login () {
     wx.navigateTo({
       url: '/pages/login/login',
+    })
+  },
+
+  navVip () {
+    wx.navigateTo({
+      url: '/pages/vip/vip',
     })
   },
 

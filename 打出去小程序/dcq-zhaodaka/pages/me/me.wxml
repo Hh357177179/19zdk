@@ -2,7 +2,7 @@
 <view class="me">
   <view class="me_user_info">
     <view class="user_main">
-      <view class="user_avatar">
+      <view class="user_avatar" bindtap="navUserInfo">
         <image wx:if="{{avatar != ''}}" src="{{userInfo.avatar}}"></image>
         <image wx:else src="../../images/avatar.png"></image>
       </view>
@@ -13,7 +13,51 @@
       <view class="login_btn" wx:else bindtap="login">点击注册登录</view>
     </view>
     <view class="me_card" wx:if="{{showUserInfo}}">
+      <view class="me_list" bindtap="navRanking">
+        <view class="me_list_left">
+          <view class="list_icon">
+            <image src="../../images/paiming.png"></image>
+          </view>
+          <view class="list_text">剑手排名</view>
+        </view>
+        <view class="right_icon">
+          <image src="../../images/material-icon.png"></image>
+        </view>
+      </view>
       <view class="me_list">
+        <view class="me_list_left">
+          <view class="list_icon">
+            <image src="../../images/canyu.png"></image>
+          </view>
+          <view class="list_text">参与的训练赛</view>
+        </view>
+        <view class="right_icon">
+          <image src="../../images/material-icon.png"></image>
+        </view>
+      </view>
+      <view class="me_list">
+        <view class="me_list_left">
+          <view class="list_icon">
+            <image src="../../images/sikao.png"></image>
+          </view>
+          <view class="list_text">正在考虑的训练赛</view>
+        </view>
+        <view class="right_icon">
+          <image src="../../images/material-icon.png"></image>
+        </view>
+      </view>
+      <view class="me_list" bindtap="meCollect">
+        <view class="me_list_left">
+          <view class="list_icon">
+            <image src="../../images/shoucang.png"></image>
+          </view>
+          <view class="list_text">我的收藏</view>
+        </view>
+        <view class="right_icon">
+          <image src="../../images/material-icon.png"></image>
+        </view>
+      </view>
+      <view class="me_list" bindtap="navHoney">
         <view class="me_list_left">
           <view class="list_icon">
             <image src="../../images/my_fengmi.png"></image>
@@ -24,12 +68,12 @@
           <image src="../../images/material-icon.png"></image>
         </view>
       </view>
-      <view class="me_list" bindtap="navUserInfo">
+      <view class="me_list" bindtap="navVip">
         <view class="me_list_left">
           <view class="list_icon">
-            <image src="../../images/my_xinxi.png"></image>
+            <image src="../../images/vip.png"></image>
           </view>
-          <view class="list_text">我的信息</view>
+          <view class="list_text">会员服务</view>
         </view>
         <view class="right_icon">
           <image src="../../images/material-icon.png"></image>
@@ -37,9 +81,10 @@
       </view>
     </view>
   </view>
-  <!-- <view class="login_out" wx:if="{{showUserInfo}}">退出登录</view> -->
 </view>
 
 <wux-popup position="bottom" visible="{{ visible }}" bind:close="onClose">
-  
+  <view class="transfer_main">
+    <view class="label_title">转账</view>
+  </view>
 </wux-popup>

@@ -25,15 +25,15 @@
             </el-form>
           </div>
           <div class="bank">
-            <el-form ref="bankFrom" :model="bankFrom" label-width="90px">
-              <el-form-item label="提现银行卡:" class="input_item">
-                <el-input v-model="bankFrom.bank_code" disabled placeholder="提现银行卡"></el-input>
+            <el-form ref="bankFrom" :model="bankFrom" :rules="bankRule" label-width="90px">
+              <el-form-item label="银行卡号:" prop="bank_code" class="input_item">
+                <el-input v-model="bankFrom.bank_code" placeholder="提现银行卡"></el-input>
               </el-form-item>
-              <el-form-item label="所属银行:" prop="name" class="input_item">
-                <el-input v-model="bankFrom.bank_name" disabled placeholder="所属银行"></el-input>
+              <el-form-item label="所属银行:" prop="bank_name" class="input_item">
+                <el-input v-model="bankFrom.bank_name" placeholder="所属银行"></el-input>
               </el-form-item>
-              <el-form-item label="持卡人:" prop="phone" class="input_item">
-                <el-input v-model="bankFrom.name" disabled placeholder="持卡人"></el-input>
+              <el-form-item label="持卡人:" prop="name" class="input_item">
+                <el-input v-model="bankFrom.name" placeholder="持卡人"></el-input>
               </el-form-item>
             </el-form>
           </div>
@@ -50,14 +50,16 @@
       </div>
       <span slot="footer" class="dialog-footer">
         <el-button @click="handleClose">取 消</el-button>
-        <el-button type="primary" @click="submitAddEdit">确 定</el-button>
+        <!-- <el-button type="primary" @click="submitAll">保存用户信息和银行卡信息</el-button> -->
+        <el-button type="primary" @click="submitAddEdit">保存用户信息</el-button>
+        <el-button type="primary" @click="submitBlank">保存银行卡信息</el-button>
       </span>
     </el-dialog>
   </div>
 </template>
 
 <script>
-import { userGet, userBank, userUpdate } from "@/api/vip/vip.js";
+import { userGet, userBank, userUpdate, userBankUpdate } from "@/api/vip/vip.js";
 export default {
   props: {
     visible: {
@@ -91,6 +93,11 @@ export default {
         ],
         name: [{ required: true, message: "请输入会员姓名", trigger: "blur" }],
         phone: [{ required: true, message: "请输入手机号码", trigger: "blur" }]
+      },
+      bankRule: {
+        name: [{ required: true, message: "请输入持卡人姓名", trigger: "blur" }],
+        bank_name: [{ required: true, message: "请输入所属银行", trigger: "blur" }],
+        bank_code: [{ required: true, message: "请输入银行卡号", trigger: "blur" }]
       }
     };
   },
@@ -134,6 +141,34 @@ export default {
       this.row = row;
       this.userGetList(row.id);
       this.getUserInfos(row.id);
+    },
+    submitBlank () {
+      this.$refs.bankFrom.validate(valid => {
+        if (valid) {
+          let params = {
+            user_id: this.row.id,
+            name: this.bankFrom.name,
+            bank_name: this.bankFrom.bank_name,
+            bank_code: this.bankFrom.bank_code,
+            token: sessionStorage.getItem('token')
+          }
+          console.log(params)
+          userBankUpdate(params).then(res => {
+            if (res) {
+              this.$message({
+                message: '修改成功！',
+                type: 'success',
+                duration: 2000
+              });
+              this.handleClose()
+              this.$emit('updateAll')
+            }
+          })
+        } else {
+          console.log("error submit!!");
+          return false;
+        }
+      });
     },
     submitAddEdit() {
       console.log(this.userForm);

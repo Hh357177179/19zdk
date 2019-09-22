@@ -97,3 +97,9 @@
   color: #8F98A8;
   bottom: 80rpx;
 }
+.transfer_main{
+  padding: 40rpx 30rpx;
+  text-align: left;
+  border-radius: 10rpx;
+  color: #203152;
+}

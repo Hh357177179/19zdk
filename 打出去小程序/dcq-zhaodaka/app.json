@@ -9,7 +9,11 @@
     "pages/apply/apply",
     "pages/transfer/transfer",
     "pages/login/login",
-    "pages/info/info"
+    "pages/info/info",
+    "pages/honey/honey",
+    "pages/vip/vip",
+    "pages/ranking/ranking",
+    "pages/collect/collect"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -35,16 +39,10 @@
         "text": "比赛"
       },
       {
-        "selectedIconPath": "images/chengzhang.png",
-        "iconPath": "images/chengzhang.png",
-        "pagePath": "pages/grow/grow",
-        "text": "成长"
-      },
-      {
         "selectedIconPath": "images/tab-ziyuan_pressed.png",
         "iconPath": "images/tab_ziyuan_normal.png",
-        "pagePath": "pages/other/other",
-        "text": "其他"
+        "pagePath": "pages/grow/grow",
+        "text": "成长"
       },
       {
         "selectedIconPath": "images/tab_my_pressed.png",

@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "wux-popup": "../../dist/popup/index"
+  },
   "navigationBarTitleText": "我的信息"
 }

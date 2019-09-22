@@ -1,0 +1,33 @@
+<!--pages/ranking/ranking.wxml-->
+<view class="ranking">
+  <view class="header">
+    <view class="head_text">打出去剑手区域积分榜</view>
+    <view>
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+        <view class="picker">当前选择：<text style="color: #999;">{{array[index]}}</text></view>
+      </picker>
+    </view>
+  </view>
+  <view class="area_main" wx:if="{{showArea}}">
+    <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+        <view class="area_text {{place == '请选择区域' ? 'noChoColor' : ''}}">{{place}}</view>
+      </picker>
+  </view>
+  <view class="card_main">
+    <block wx:for="{{items}}" wx:key="index">
+      <view class="card_list">
+        <view class="card_img">
+          <image wx:if="{{item.photo != ''}}" src="{{item.photo}}"></image>
+          <image wx:else src="../../images/logos.png"></image>
+        </view>
+        <view class="card_info">{{item.name}}</view>
+        <view class="card_num">{{item.score}}</view>
+        <view class="card_local">{{item.province}}/{{item.city}}/{{item.area}}</view>
+      </view>
+    </block>
+  </view>
+  <view class="me_ranking">
+    <view>我的总排名：{{rankingObj.all}}</view>
+    <view>我的区域排名：{{rankingObj.area}}</view>
+  </view>
+</view>

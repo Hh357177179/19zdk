@@ -1,7 +1,7 @@
 <!--pages/apply/apply.wxml-->
 <wxs module="dateFr" src="../../utils/dateFr.wxs"></wxs>
 <view class="apply">
-  <view class="logo">
+  <view class="logo" wx:if="{{itemObj.logo != ''}}">
     <image src="{{itemObj.logo}}"></image>
   </view>
   <view class="apply_header">
@@ -48,6 +48,53 @@
       </view>
     </view>
   </view>
+  <view class="info_card people_card">
+    <view class="people_title">选手名单 ({{itemObj.member.length}}/限{{itemObj.people_number}})</view>
+    <view class="people_card">
+      <block wx:for="{{itemObj.member}}" wx:key="index">
+        <view class="people_list">
+          <view class="people_phote">
+            <image wx:if="{{item.photo != ''}}" src="{{item.photo}}"></image>
+            <image wx:else src="../../images/logos.png"></image>
+          </view>
+          <view class="people_name">{{item.name}}</view>
+          <view class="people_dateof">{{item.dateof}}</view>
+          <view class="people_icon">
+            <image src="../../images/jj.png"></image>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+  <view class="info_card people_card">
+    <view class="people_title">考虑中 ({{itemObj.consider.length}}人)</view>
+    <view class="people_card consider_card">
+      <block wx:for="{{itemObj.consider}}" wx:key="index">
+        <view class="consider_list">
+          <view class="consider_img">
+            <image wx:if="{{item.photo != ''}}" src="{{item.photo}}"></image>
+            <image wx:else src="../../images/logos.png"></image>
+          </view>
+          <view>{{item.name}}</view>
+        </view>
+      </block>
+    </view>
+  </view>
+  <view class="info_card people_card">
+    <view class="people_title">裁判 ({{itemObj.referee.length}}人)</view>
+    <view class="people_card">
+      <block wx:for="{{itemObj.referee}}" wx:key="index">
+        <view class="people_list">
+          <view class="people_phote">
+            <image wx:if="{{item.photo != ''}}" src="{{item.photo}}"></image>
+            <image wx:else src="../../images/logos.png"></image>
+          </view>
+          <view class="people_name">{{item.name}}</view>
+          <view class="referee_btn" wx:if="{{itemObj.stage == 3}}">评价裁判</view>
+        </view>
+      </block>
+    </view>
+  </view>
   <view class="apply_remark">{{itemObj.note}}</view>
-  <view class="apply_btn">支付报名</view>
+  <!-- <view class="apply_btn">支付报名</view> -->
 </view>

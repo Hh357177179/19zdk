@@ -15,7 +15,7 @@
         <el-form-item class="items">
           <el-button type="primary" icon="el-icon-search" @click="submitForm('searchForm')">查 找</el-button>
           <el-button @click="resetForm('searchForm')" icon="el-icon-close">重 置</el-button>
-          <el-button type="primary" icon="el-icon-download">导 出</el-button>
+          <el-button type="primary" icon="el-icon-download" @click="exportExcel">导 出</el-button>
         </el-form-item>
       </el-form>
     </el-card>
@@ -83,6 +83,31 @@ export default {
     this.getList();
   },
   methods: {
+    exportExcel() {
+      let dateTime = new Date()
+      let y = dateTime.getFullYear()
+      let m = dateTime.getMonth() + 1
+      let d = dateTime.getDate()
+      let hh = dateTime.getHours()
+      let mm = dateTime.getMinutes()
+      let ss = dateTime.getSeconds()
+      let time = `${y}年${m}月${d}日 ${hh}时${mm}分${ss}秒`
+      require.ensure([], () => {
+        const { export_json_to_excel } = require('../../../excel/Export2Excel');
+        const tHeader = ['会员昵称', '会员卡号', '会员姓名', '会员手机号', '鱼币数量'];
+        // 上面设置Excel的表格第一行的标题
+        // const role = ''
+        const filterVal = ['nickname', 'card_no', 'name', 'phone', 'coin'];
+        // 上面的index、nickName、name是tableData里对象的属性
+        const list = this.tableData;  //把data里的tableData存到list
+        const data = this.formatJson(filterVal, list);
+        export_json_to_excel(tHeader, data, `会员鱼币(${time})`);
+      })
+    },
+
+    formatJson(filterVal, jsonData) {
+      return jsonData.map(v => filterVal.map(j => v[j]))
+    },
     updateAll() {
       this.page = 1;
       this.getList();

@@ -9,7 +9,7 @@
           </el-form-item>
            <el-form-item label="商品Logo:">
             <el-upload
-              action="/api/project/upload"
+              action="/admin/project/upload"
               list-type="picture-card"
               :on-preview="handlePictureCardPreviewlogo"
               :on-remove="handleRemovelogo"
@@ -26,7 +26,7 @@
           </el-form-item>
           <el-form-item label="商品图片:">
             <el-upload
-              action="/api/project/upload"
+              action="/admin/project/upload"
               list-type="picture-card"
               :on-preview="handlePictureCardPreview"
               :on-remove="handleRemove"

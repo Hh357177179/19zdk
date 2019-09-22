@@ -2,8 +2,9 @@ module.exports = {
   devServer: {
     port: 9999,                                     // 配置端口
     proxy: {
-      '/admin': {
-        target: 'http://tanyuzhe.zhaodaka.vip/admin',    // 目标 API 地址
+      '/api': {
+        target: 'http://tanyuzhe.zhaodaka.vip/admin',
+        // target: 'http://tanyuzhe.zhaodaka.vip/admin',    // 目标 API 地址
         ws: true,                               // 是否代理 websockets
         changOrigin: true,                      // 跨域配置
         pathRewrite: {

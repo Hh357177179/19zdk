@@ -1,4 +1,162 @@
 <!--pages/info/info.wxml-->
 <view class="info">
-  
+  <view class="title">监护人/选手 完善信息</view>
+  <view class="info_main">
+    <view class="card_title">剑手信息</view>
+    <view class="clear"></view>
+    <view class="swordForm">
+      <view class="list_form">
+        <view class="label_list">
+          <text class="label">*</text> 选手姓名:</view>
+        <view class="inputs">
+          <input bindinput="nameVal" placeholder="请输入选手姓名" value="{{name}}" placeholder-style="color: #999;"></input>
+        </view>
+      </view>
+      <view class="list_form">
+        <view class="label_list">
+          <text class="label">*</text> 国籍:</view>
+        <view class="inputs">
+          <picker style="width:100%;height:100%;" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+            <view class="picker {{country == '请选择国籍' ? 'noChoColor' : ''}}">{{country}}</view>
+          </picker>
+        </view>
+      </view>
+      <view class="list_form">
+        <view class="label_list">
+          <text class="label">*</text> 出生日期:</view>
+        <view class="inputs">
+          <picker mode="date" value="{{dateof}}" end="{{nowDate}}" bindchange="bindDateChange">
+            <view class="picker {{dateof == '请选择出生日期' ? 'noChoColor' : ''}}">{{dateof}}</view>
+          </picker>
+        </view>
+      </view>
+      <view class="list_form">
+        <view class="label_list">
+          <text class="label">*</text> 性别:</view>
+        <view class="inputs">
+          <picker style="width:100%;height:100%;" bindchange="bindPickerChangeGender" value="{{index}}" range="{{genderArr}}">
+            <view class="picker {{genderText == '请选择性别' ? 'noChoColor' : ''}}">{{genderText}}</view>
+          </picker>
+        </view>
+      </view>
+      <view class="list_form">
+        <view class="label_list">
+          <text class="label">*</text> 剑种:</view>
+        <view class="inputs">
+          <picker style="width:100%;height:100%;" bindchange="bindPickerChangeSwords" value="{{index}}" range="{{swordsArr}}">
+            <view class="picker {{swords == '请选择剑种' ? 'noChoColor' : ''}}">{{swords}}</view>
+          </picker>
+        </view>
+      </view>
+      <view class="list_form">
+        <view class="label_list">
+          <text class="label">*</text> 居住地:</view>
+        <view class="inputs">
+          <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+            <view class="picker {{place == '请选择居住地' ? 'noChoColor' : ''}}">{{place}}</view>
+          </picker>
+        </view>
+      </view>
+      <view class="list_form">
+        <view class="label_list">
+          <text class="label">*</text> 详细地址:</view>
+        <view class="inputs">
+          <input bindinput="addressVal" placeholder="请输入详细地址" value="{{address}}" placeholder-style="color: #999;"></input>
+        </view>
+      </view>
+      <view class="list_form">
+        <view class="label_list">
+          <text class="label" style="color:#fff;">*</text> 就读学校:</view>
+        <view class="inputs">
+          <input bindinput="schoolVal" placeholder="请输入就读学校" value="{{school}}" placeholder-style="color: #999;"></input>
+        </view>
+      </view>
+      <view class="list_form">
+        <view class="label_list">
+          <text class="label" style="color:#fff;">*</text> 代表单位:</view>
+        <view class="inputs">
+          <input bindinput="unitVal" placeholder="请输入代表单位" value="{{unit}}" placeholder-style="color: #999;"></input>
+        </view>
+      </view>
+      <view class="photo_list">
+        <view class="label_list">
+          <text class="label">*</text> 选手肖像:</view>
+          <view class="photo" bindtap="upLoadPic">
+            <image wx:if="{{photo == ''}}" class="icon_upload" src="../../images/upload.png"></image>
+            <view wx:else class="avatar_pic">
+              <image src="{{photo}}"></image>
+              <!-- <view class="mask" wx:if="{{showMask}}">
+                <image class="handlePic" src="../../images/bigPic.png"></image>
+                <image class="handlePic" src="../../images/deletePic.png"></image>
+              </view> -->
+            </view>
+          </view>
+      </view>
+      <view class="tip_text">Tip: 护照和身份证号可以二选一</view>
+      <view class="list_form">
+        <view class="label_list">
+          <text class="label">*</text> 身份证号:</view>
+        <view class="inputs">
+          <input bindinput="id_numberVal" type="idcard" placeholder="请输入身份证号" value="{{id_number}}" placeholder-style="color: #999;"></input>
+        </view>
+      </view>
+      <view class="list_form">
+        <view class="label_list">
+          <text class="label">*</text> 护照号码:</view>
+        <view class="inputs">
+          <input bindinput="passport_numberVal" placeholder="请输入护照号码" value="{{passport_number}}" placeholder-style="color: #999;"></input>
+        </view>
+      </view>
+    </view>
+    <view class="card_title">监护人信息</view>
+    <view class="clear"></view>
+    <view class="swordForm">
+      <view class="list_form">
+        <view class="label_list">
+          <text class="label">*</text> 监护人:</view>
+        <view class="inputs">
+          <input bindinput="guardianVal" placeholder="请输入监护人" value="{{guardian}}" placeholder-style="color: #999;"></input>
+        </view>
+      </view>
+      <view class="list_form">
+        <view class="label_list">
+          <text class="label">*</text> 选手关系:</view>
+        <view class="inputs">
+          <input bindinput="relationshipVal" placeholder="请输入选手关系" value="{{relationship}}" placeholder-style="color: #999;"></input>
+        </view>
+      </view>
+      <view class="list_form">
+        <view class="label_list">
+          <text class="label">*</text> 联系电话:</view>
+        <view class="inputs">
+          <input bindinput="phoneVal" type="number" maxlength="11" placeholder="请输入联系电话" value="{{phone}}" placeholder-style="color: #999;"></input>
+        </view>
+      </view>
+      <view class="list_form">
+        <view class="label_list">
+          <text class="label" style="color:#fff;">*</text> 电子邮件:</view>
+        <view class="inputs">
+          <input bindinput="emailVal" placeholder="请输入电子邮件" value="{{email}}" placeholder-style="color: #999;"></input>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="agreement">
+    <view class="agree_list" bindtap="agreeXy">
+      <view class="agreement_icon">
+        <image wx:if="{{num == true}}" src="../../images/checkOn.png"></image>
+        <image wx:else src="../../images/check.png"></image>
+      </view>
+      <view>选手资料真实性承诺</view>
+    </view>
+    <view class="zhuyi" bindtap="showDialog">
+      <image src="../../images/zhuyi.png"></image> 
+    </view>
+  </view>
+  <view class="submit_btn" bindtap="submitForm">提 交</view>
 </view>
+
+<wux-popup visible="{{ visibleTip }}" title="资料真实性承诺">
+  <view class="info_texts">我承诺上述填写信息真实、准确和完整，且当这些信息发生变更时，将在30日内变更。否则登记人承担由此造成的不利后果。</view>
+  <view class="me_btn" bindtap="onClose">我承诺</view>
+</wux-popup>

@@ -99,7 +99,7 @@
       <div class="detail_main">
         <p>赛事名称：{{detailObj.title}}</p>
         <p>赛事性质：{{detailObj.type_title}}</p>
-        <p>赛事时间：{{detailObj.draw_start_time}}—{{detailObj.draw_end_time}}</p>
+        <p>赛事时间：{{detailObj.draw_start_time | fromDate}}—{{detailObj.draw_end_time | fromDate}}</p>
         <p>比赛钓场：{{detailObj.pond_province}}-{{detailObj.pond_city}}  {{detailObj.pond_title}}（可用钓台{{detailObj.position_number}}）</p>
         <p>赛事地址：{{detailObj.pond_address}}</p>
         <!-- <p>抽签制：</p> -->

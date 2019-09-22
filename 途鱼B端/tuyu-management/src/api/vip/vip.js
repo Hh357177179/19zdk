@@ -11,3 +11,6 @@ export const userBank = params => api.post('/project/userBank', params)
 
 // 更新用户信息
 export const userUpdate = params => api.post('/project/userUpdate', params)
+
+// 更新银行卡信息
+export const userBankUpdate = params => api.post('/project/userBankUpdate', params)

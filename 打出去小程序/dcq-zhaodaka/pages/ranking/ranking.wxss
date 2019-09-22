@@ -1,0 +1,75 @@
+/* pages/ranking/ranking.wxss */
+.ranking{
+  min-height: 100vh;
+  background: #FAFAFA;
+}
+.header{
+  font-size: 28rpx;
+  color: #203152;
+  padding: 0 30rpx;
+  display: flex;
+  justify-content: space-between;
+  line-height: 60rpx;
+}
+.head_text{
+  font-weight: bold;
+}
+.picker{
+  padding-left: 40rpx;
+}
+.noChoColor {
+  color: #999;
+}
+.area_main{
+  padding: 0 30rpx;
+  color: #203152;
+}
+.area_text{
+  font-size: 28rpx;
+  border: 2rpx solid #f0f0f0;
+  line-height: 60rpx;
+  padding-left: 20rpx;
+  border-radius: 5px;
+}
+.card_main{
+  padding: 0 20rpx;
+}
+.card_img{
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.card_img image{
+  width: 100%;
+  height: 100%;
+}
+.card_main{
+  margin-top: 15rpx;
+  padding-bottom: 20rpx;
+}
+.card_list{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+  font-size: 28rpx;
+  color: #203152;
+  padding: 20rpx 15rpx;
+  box-shadow:0px 5px 9px 0px rgba(0,0,0,0.05);
+  border-radius: 5rpx;
+}
+.card_info{
+  font-weight: bold;
+}
+.card_local{
+  color: #666;
+}
+.me_ranking{
+  color: #203152;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-around;
+  font-size: 28rpx;
+  padding-bottom: 40rpx;
+}

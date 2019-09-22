@@ -104,6 +104,9 @@ export default {
     };
   },
   created() {
+    if (this.$route.params.phone) {
+      this.searchForm.phone = this.$route.params.phone
+    }
     this.getList();
   },
   methods: {
@@ -188,6 +191,7 @@ export default {
       this.selectedOptions = [];
       this.searchForm.city = "";
       this.$refs[formName].resetFields();
+      this.searchForm.phone = '';
       this.searchForm.page = 1;
       this.$nextTick(() => {
         this.getList();

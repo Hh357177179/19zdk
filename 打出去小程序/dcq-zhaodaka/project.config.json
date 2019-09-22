@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -22,7 +22,7 @@
 		}
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.8.2",
+	"libVersion": "2.8.3",
 	"appid": "wx573ee2e6a905576d",
 	"projectname": "dachuqu",
 	"debugOptions": {
@@ -66,7 +66,7 @@
 					"id": 1,
 					"name": "报名",
 					"pathName": "pages/apply/apply",
-					"query": "id=287",
+					"query": "id=285",
 					"scene": null
 				},
 				{
@@ -115,6 +115,35 @@
 					"id": -1,
 					"name": "我的信息",
 					"pathName": "pages/info/info",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的蜂蜜",
+					"pathName": "pages/honey/honey",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "会员服务",
+					"pathName": "pages/vip/vip",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "剑手排名",
+					"pathName": "pages/ranking/ranking",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的收藏",
+					"pathName": "pages/collect/collect",
+					"query": "id=285",
 					"scene": null
 				}
 			]
