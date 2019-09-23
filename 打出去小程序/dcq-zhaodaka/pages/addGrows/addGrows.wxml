@@ -1,0 +1,80 @@
+<!--pages/addGrows/addGrows.wxml-->
+<view class="addGrows">
+  <view class="add_list">
+    <picker class="pick_time" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+      <view class="picker_time {{typeTitle == '事件类型' ? 'cho_color' : ''}}">{{typeTitle}}</view>
+    </picker>
+  </view>
+  <view class="add_list">
+    <input placeholder="新的成长事件" value="{{title}}" bindinput="titleVal" placeholder-style="color: #999;"></input>
+  </view>
+  <view class="add_list">
+    <picker class="pick_time" mode="date" value="{{time}}" end="{{nowDate}}" bindchange="bindDateChange">
+      <view class="picker_time {{time == '事件时间' ? 'cho_color' : ''}}">{{time}}</view>
+    </picker>
+  </view>
+  <view class="add_list" wx:if="{{num != 4}}">
+    <input placeholder="事件地点" value="{{address}}" bindinput="addressVal" placeholder-style="color: #999;"></input>
+  </view>
+  <view class="add_list" wx:if="{{num != 4}}">
+    <input placeholder="教练 / 指导" value="{{teacher}}" bindinput="teacherVal" placeholder-style="color: #999;"></input>
+  </view>
+  <view class="img_card" wx:if="{{num != 4}}">
+    <block wx:for="{{imgs}}" wx:key="index">
+      <view class="img_list">
+        <image src="{{item}}"></image>
+      </view>
+    </block>
+  </view>
+  <view class="upload_pic" bindtap="upLoadPic" wx:if="{{num != 4}}">上传新照片</view>
+  <!-- <view class="grade_main">
+    <view class="text_title grade_title">我的成绩录入</view>
+    <view class="garde_ranking">
+      <view>最终排名</view>
+      <view class="ranking_input">
+        <input placeholder="最终排名" value="{{extra.rank}}" placeholder-style="color: #999;" bindinput="rankingVal"></input>
+      </view>
+    </view>
+    <view class="group_main">
+      <block wx:for="{{extra.group}}" wx:key="index">
+        <view class="group_title">第 {{index + 1}} 轮小组赛</view>
+        <view class="group_list">
+          <view class="title">排名</view>
+          <view class="title">M#</view>
+          <view class="title">V#</view>
+          <view class="title">HS</view>
+          <view class="title">HR</view>
+          <view class="title">备注</view>
+        </view>
+        <view class="group_list group_list_input">
+          <view class="title_input">
+            <input placeholder="排名" placeholder-style="color: #999;" value="{{item.group_rank}}"></input>
+          </view>
+           <view class="title_input">
+            <input placeholder="M#" placeholder-style="color: #999;" value="{{item.group_m}}"></input>
+          </view>
+           <view class="title_input">
+            <input placeholder="V#" placeholder-style="color: #999;" value="{{item.group_v}}"></input>
+          </view>
+           <view class="title_input">
+            <input placeholder="HS" placeholder-style="color: #999;" value="{{item.group_hs}}"></input>
+          </view>
+           <view class="title_input">
+            <input placeholder="HR" placeholder-style="color: #999;" value="{{item.group_hr}}"></input>
+          </view>
+          <view class="title_input">
+            <input placeholder="备注" placeholder-style="color: #999;" value="{{item.group_note}}"></input>
+          </view>
+        </view>
+        <view class="info_desc">说明：详细得分自得分：对手得分）</view>
+      </block>
+    </view>
+  </view> -->
+  <view class="text_main">
+    <view class="text_title">日记</view>
+    <view class="text_area">
+      <textarea class="write" value="{{note}}" bindinput="noteVal" maxlength="-1" auto-height placeholder="写点什么吧..." placeholder-style="color: #999;"/>
+    </view>
+  </view>
+  <view class="submit" bindtap="submit">确定</view>
+</view>

@@ -60,7 +60,8 @@ export default {
               let routerStr = JSON.stringify(res.nodes)
               sessionStorage.setItem('route', routerStr)
               sessionStorage.setItem('token', res.token)
-              sessionStorage.setItem('auth_id', res.auth_id)
+              sessionStorage.setItem('auth_id', res.auth_id),
+              sessionStorage.setItem('name', this.loginForm.account)
               this.loading = false
               this.$router.push('/')
             })

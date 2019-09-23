@@ -39,3 +39,17 @@
   width: 100%;
   height: 100%;
 }
+.add_grow{
+  width: 100rpx;
+  height: 100rpx;
+  position: absolute;
+  right: 10rpx;
+  bottom: 10rpx;
+}
+.add_grow image{
+  width: 100%;
+  height: 100%;
+}
+.times{
+  font-size: 24rpx;
+}

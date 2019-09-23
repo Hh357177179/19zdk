@@ -1,4 +1,5 @@
 <!--pages/grow/grow.wxml-->
+<wxs module="dateFr" src="../../utils/dateFr.wxs"></wxs>
 <view class="grow">
   <!-- <view class="grow_title">打出去</view> -->
   <view class="mains">
@@ -6,19 +7,25 @@
       <scroll-view scroll-y style="height: 100%;">
         <view style="margin-top: 20rpx;">
           <wux-timeline position="alternate">
-            <wux-timeline-item>
-              <view>2018-10-24</view>
-            </wux-timeline-item>
-            <wux-timeline-item custom>
-              <wux-icon slot="dot" type="ios-time" size="23" />
-              <view>2018-10-24</view>
-            </wux-timeline-item>
-            <wux-timeline-item dotStyle="border-color: #33cd5f; color: #33cd5f">
-              <view>2018-10-24</view>
-            </wux-timeline-item>
-            <wux-timeline-item dotStyle="border-color: #ef473a; color: #ef473a">
-              <view>2018-10-24</view>
-            </wux-timeline-item>
+            <block wx:for="{{items}}" wx:key="index">
+              <wux-timeline-item wx:if="{{item.type == 1}}">
+                <view style="color: #4680ed;" class="times">{{dateFr.getDate(item.time * 1000,'-','')}}</view>
+                <view style="color: #4680ed;">{{item.title}}</view>
+              </wux-timeline-item>
+              <wux-timeline-item custom wx:if="{{item.type == 3}}">
+                <wux-icon slot="dot" type="ios-time" size="23" />
+                <view class="times">{{dateFr.getDate(item.time * 1000,'-','')}}</view>
+                <view>{{item.title}}</view>
+              </wux-timeline-item>
+              <wux-timeline-item wx:if="{{item.type == 2}}" dotStyle="border-color: #33cd5f; color: #33cd5f">
+                <view class="times" style="color: #33cd5f">{{dateFr.getDate(item.time * 1000,'-','')}}</view>
+                <view style="color: #33cd5f">{{item.title}}</view>
+              </wux-timeline-item>
+              <wux-timeline-item wx:if="{{item.type == 4}}" dotStyle="border-color: #ef473a; color: #ef473a">
+                <view style="color: #ef473a" class="times">{{dateFr.getDate(item.time * 1000,'-','')}}</view>
+                <view style="color: #ef473a">{{item.title}}</view>
+              </wux-timeline-item>
+            </block>
           </wux-timeline>
         </view>
       </scroll-view>
@@ -27,6 +34,9 @@
       </view>
       <view class="small_img">
         <image src="../../images/fz2.png"></image>
+      </view>
+      <view class="add_grow" bindtap="addGroup">
+        <image src="../../images/addGroup.png"></image>
       </view>
     </view>
   </view>

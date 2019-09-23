@@ -1,0 +1,152 @@
+/* pages/addGrows/addGrows.wxss */
+Page{
+  background: #fafafa;
+}
+.addGrows{
+  border: 1rpx solid #fafafa;
+  padding:0 30rpx;
+  background: #fafafa;
+}
+.add_list{
+  background: #fff;
+  height: 96rpx;
+  box-shadow:0px 5px 9px 0px rgba(0,0,0,0.05);
+  border-radius: 16rpx;
+  font-size: 30rpx;
+  margin-top: 25rpx;
+}
+.add_list input{
+  width: 100%;
+  height: 100%;
+  padding-left: 30rpx;
+}
+.picker_time{
+  width: 100%;
+  height: 96rpx;
+  padding-left: 30rpx;
+  line-height: 96rpx;
+}
+.cho_color {
+  color: #999;
+}
+.upload_pic{
+  margin-top: 25rpx;
+  border-radius: 16rpx;
+  height: 92rpx;
+  text-align: center;
+  font-size: 30rpx;
+  color: #3570E8;
+  border: 2rpx solid #3570E8;
+  line-height: 92rpx;
+}
+.img_card{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.img_list{
+  margin-top: 30rpx;
+  width: 320rpx;
+  height: 200rpx;
+}
+.img_list image{
+  width: 100%;
+  height: 100%;
+}
+.submit{
+  margin: 80rpx auto;
+  width: 590rpx;
+  height: 110rpx;
+  line-height: 110rpx;
+  color: #fff;
+  text-align: center;
+  font-weight: bold;
+  background:linear-gradient(115deg,rgba(72,72,220,1) 0%,rgba(50,166,228,1) 100%);
+  border-radius:28px;
+}
+.text_main{
+  margin-top: 30rpx;
+}
+.text_title{
+  font-size: 30rpx;
+  color: #203152;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: 10rpx;
+}
+.text_area {
+  border-radius: 16rpx;
+  background: #fff;
+  min-height: 320rpx;
+  padding: 40rpx;
+  box-shadow:0px 5px 9px 0px rgba(0,0,0,0.05);
+}
+.write{
+  width: 100%;
+  min-height: 320rpx;
+  font-size: 30rpx;
+}
+.grade_main{
+  font-size: 30rpx;
+}
+.grade_title{
+  margin-top: 50rpx;
+  margin-bottom: 20rpx;
+}
+.garde_ranking{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.ranking_input{
+  width:520rpx;
+  height:96rpx;
+  background:rgba(255,255,255,1);
+  box-shadow:0px 5px 9px 0px rgba(0,0,0,0.05);
+  border-radius:16rpx;
+}
+.ranking_input input{
+  width: 100%;
+  height: 100%;
+  padding-left: 30rpx;
+}
+.info_desc{
+  font-size:26rpx;
+  color: #666;
+  margin: 10rpx 0;
+  text-align: center;
+}
+.group_main{
+  font-size: 28rpx;
+  background:rgba(255,255,255,1);
+  border-radius: 16rpx;
+  padding: 30rpx 10rpx;
+  margin-top: 30rpx;
+}
+.group_title{
+  text-align: center;
+}
+.title{
+  width: 15%;
+  color: #203152;
+}
+.group_list{
+  margin-top: 40rpx;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+.group_list_input{
+  margin-top: 20rpx;
+}
+.title_input{
+  width: 15%;
+  background:rgba(53,59,80,.05);
+  border-radius: 16rpx;
+  height: 70rpx;
+  font-size: 28rpx;
+}
+.title_input input{
+  width: 100%;
+  height: 100%;
+}

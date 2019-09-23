@@ -24,7 +24,7 @@
           <image src="../../images/material-icon.png"></image>
         </view>
       </view>
-      <view class="me_list">
+      <!-- <view class="me_list">
         <view class="me_list_left">
           <view class="list_icon">
             <image src="../../images/canyu.png"></image>
@@ -45,7 +45,7 @@
         <view class="right_icon">
           <image src="../../images/material-icon.png"></image>
         </view>
-      </view>
+      </view> -->
       <view class="me_list" bindtap="meCollect">
         <view class="me_list_left">
           <view class="list_icon">

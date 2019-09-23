@@ -145,6 +145,12 @@
 					"pathName": "pages/collect/collect",
 					"query": "id=285",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "新增成长",
+					"pathName": "pages/addGrows/addGrows",
+					"scene": null
 				}
 			]
 		}

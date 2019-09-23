@@ -25,16 +25,8 @@ Page({
       wx.navigateTo({
         url: '/pages/login/login',
       })
-    } else if (wx.getStorageSync('phone') != '' && app.globalData.userInfo != null) {
-      if (app.globalData.is_new == 1) {
-        console.log('新用户')
-        wx.navigateTo({
-          url: '/pages/userAuther/userAuther',
-        })
-      } else {
-        console.log('老用户')
-        that.submitApply()
-      }
+    } else {
+      that.submitApply()
     }
   },
 
@@ -69,9 +61,8 @@ Page({
         phone: app.globalData.phone,
         is_free: 0
       }
-      console.log(params)
       postRequest('/sign/orderCreate', params, true).then(res => {
-        console.log(res)
+        console.log('创建订单',res)
         if (res.need_pay) {
           let param = {
             token: app.globalData.openid,

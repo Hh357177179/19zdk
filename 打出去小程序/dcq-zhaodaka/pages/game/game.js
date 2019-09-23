@@ -19,15 +19,15 @@ Page({
     items: [],
     sort: 'desc',
     keyword: '',
-    visible: true
+    visible: false
   },
 
-  navGame () {
-    let that = this
-    if (app.globalData.isVip == '0') {
-      that.setData({ visible: true })
-    }
-  },
+  // navGame () {
+  //   let that = this
+  //   if (app.globalData.isVip == '0') {
+  //     that.setData({ visible: true })
+  //   }
+  // },
 
   onClose () {
     this.setData({ visible: false })

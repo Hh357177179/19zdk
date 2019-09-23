@@ -13,7 +13,8 @@
     "pages/honey/honey",
     "pages/vip/vip",
     "pages/ranking/ranking",
-    "pages/collect/collect"
+    "pages/collect/collect",
+    "pages/addGrows/addGrows"
   ],
   "window": {
     "backgroundTextStyle": "light",

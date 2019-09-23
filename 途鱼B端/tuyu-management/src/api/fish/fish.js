@@ -24,6 +24,10 @@ export const matchDetail = params => api.post('/project/matchGet', params)
 // 删除赛事
 export const matchDelete = params => api.post('/project/matchEnd', params)
 
+// 人员名单
+export const peopleList = params => api.post('/project/matchOrder', params)
+
+
 
 
 

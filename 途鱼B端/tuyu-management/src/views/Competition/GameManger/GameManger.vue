@@ -78,6 +78,7 @@
         <el-table-column align="center" label="操作">
           <template slot-scope="scope">
             <el-button @click="handleClick(scope.row)" size="small" type="primary">查看</el-button>
+            <el-button @click="handlePeopel('refPeople', scope.row)" size="small" type="primary">人员名单</el-button>
             <el-button v-if="scope.row.status == 1 || scope.row.status == 2" @click="handleDelete(scope.row)" size="small" type="danger">删除</el-button>
           </template>
         </el-table-column>
@@ -112,15 +113,18 @@
         <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
       </span>
     </el-dialog>
+    <PeoPleDialog ref="refPeople" :visible.sync="peopleVisible" title="人员名单"></PeoPleDialog>
   </div>
 </template>
 
 <script>
 import Breadcrumb from "@/components/Breadcrumb";
+import PeoPleDialog from './peopleDialog/peopleDialog'
 import { matchList, matchDetail, matchDelete } from '@/api/fish/fish.js'
 export default {
   data() {
     return {
+      peopleVisible: false,
       dialogVisible: false,
       count: 0,
       loading: false,
@@ -160,6 +164,12 @@ export default {
     this.getList()
   },
   methods: {
+    handlePeopel (ref, row) {
+       if (this.$refs[ref] && row) {
+        this.$refs[ref].getParentData(row);
+      }
+      this.peopleVisible = true;
+    },
     handleDelete (row) {
       this.$confirm('报名中、即将开赛状态下课进行删除，删除后赛事状态变为已结束, 是否继续?', '提示', {
           confirmButtonText: '确定',
@@ -214,7 +224,7 @@ export default {
       this.getList()
     },
     resetForm(formName) {
-      this.searchForm.page = 1
+      this.page = 1
       this.$refs[formName].resetFields(); 
       this.$nextTick(() => {
         this.getList()
@@ -247,7 +257,7 @@ export default {
       })
     }
   },
-  components: { Breadcrumb }
+  components: { Breadcrumb, PeoPleDialog }
 };
 </script>
 

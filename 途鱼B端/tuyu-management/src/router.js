@@ -31,7 +31,6 @@ const router =  new Router({
           component: () => import ('./views/Platform/Platform.vue'),
           meta: {
             title: '平台管理',
-            icon: 'icon-pingtai_mokuai',
             icon: 'icon-pingtaiguanli'
           },
           children: [
@@ -292,6 +291,27 @@ const router =  new Router({
                 icon: 'icon-changdishebei',
                 bigTitle: '提现审批',
                 un_show: true
+              }
+            }
+          ]
+        },
+        {
+          path: '/system',
+          name: 'System',
+          component: () => import ('./views/system/system.vue'),
+          meta: {
+            title: '系统设置',
+            icon: 'icon-pingtai_mokuai'
+          },
+          children: [
+            {
+              path: '/system/system-user',
+              name: 'SystemUser',
+              component: () => import('./views/system/systemUser/systemUser.vue'),
+              meta: {
+                title: '系统设置',
+                icon: 'icon-dashujukeshihuaico-',
+                bigTitle: '系统设置'
               }
             }
           ]

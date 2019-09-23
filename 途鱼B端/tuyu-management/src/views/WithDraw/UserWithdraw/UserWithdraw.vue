@@ -1,7 +1,7 @@
 <template>
   <div class="user_withdraw">
     <Breadcrumb></Breadcrumb>
-    <el-card class="mt10" style='border-top: 5px solid #f68b0e;'>
+    <el-card class="mt10" style="border-top: 5px solid #f68b0e;">
       <el-form ref="searchForm" inline :model="searchForm" label-width="80px">
         <el-form-item label="姓名" prop="name" class="items">
           <el-input v-model="searchForm.name" placeholder="请输入姓名" clearable></el-input>
@@ -57,7 +57,13 @@
           </template>
         </el-table-column>
         <el-table-column align="center" prop="money" label="申请提现金额（元）" width="150"></el-table-column>
-        <el-table-column align="center" prop="bank_code" label="提现银行卡号"  show-overflow-tooltip width="240"></el-table-column>
+        <el-table-column
+          align="center"
+          prop="bank_code"
+          label="提现银行卡号"
+          show-overflow-tooltip
+          width="240"
+        ></el-table-column>
         <el-table-column align="center" prop="bank_name" label="所属银行" width="160"></el-table-column>
         <el-table-column align="center" prop="user_name" label="持卡人" width="140"></el-table-column>
         <el-table-column align="center" prop="status" label="转账状态" width="100">
@@ -67,8 +73,17 @@
         </el-table-column>
         <el-table-column align="center" label="操作" width="200">
           <template slot-scope="scope">
-            <el-button @click="handleClick('处理','refHandle',scope.row)" size="small" type="primary" v-if="scope.row.status == 1">处理</el-button>
-            <el-button @click="handleSearch('查看','refSearch',scope.row)" size="small" type="warning">查看</el-button>
+            <el-button
+              @click="handleClick('处理','refHandle',scope.row)"
+              size="small"
+              type="primary"
+              v-if="scope.row.status == 1"
+            >处理</el-button>
+            <el-button
+              @click="handleSearch('查看','refSearch',scope.row)"
+              size="small"
+              type="warning"
+            >查看</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -82,22 +97,27 @@
       ></el-pagination>
       <div class="clear"></div>
     </el-card>
-    <HadnleDialog ref="refHandle" :visible.sync="handleVisible" :title="HandleTitle" @updateAll="updateAll"></HadnleDialog>
+    <HadnleDialog
+      ref="refHandle"
+      :visible.sync="handleVisible"
+      :title="HandleTitle"
+      @updateAll="updateAll"
+    ></HadnleDialog>
     <SearchDialog ref="refSearch" :visible.sync="dialogVisible" :title="ModalTitle"></SearchDialog>
   </div>
 </template>
 
 <script>
 import Breadcrumb from "@/components/Breadcrumb";
-import SearchDialog from './components/searchDialog'
-import HadnleDialog from './components/handleDialog'
+import SearchDialog from "./components/searchDialog";
+import HadnleDialog from "./components/handleDialog";
 import { withList } from "@/api/withdraw/withdraw.js";
 export default {
   data() {
     return {
-      HandleTitle: '',
+      HandleTitle: "",
       handleVisible: false,
-      ModalTitle: '',
+      ModalTitle: "",
       dialogVisible: false,
       count: 0,
       loading: false,
@@ -139,61 +159,98 @@ export default {
   },
   methods: {
     exportExcel() {
-      let dateTime = new Date()
-      let y = dateTime.getFullYear()
-      let m = dateTime.getMonth() + 1
-      let d = dateTime.getDate()
-      let hh = dateTime.getHours()
-      let mm = dateTime.getMinutes()
-      let ss = dateTime.getSeconds()
-      let time = `${y}年${m}月${d}日 ${hh}时${mm}分${ss}秒`
-      require.ensure([], () => {
-        const { export_json_to_excel } = require('../../../excel/Export2Excel');
-        const tHeader = ['会员姓名', '手机号码', '会员卡号', '会员身份', '申请提现金额（元）', '提现银行卡号', '所属银行', '持卡人', '转账状态'];
-        // 上面设置Excel的表格第一行的标题
-        // const role = ''
-        const filterVal = ['name', 'user_phone', 'user_card_no', 'user_role', 'money', 'bank_code', 'bank_name', 'user_name', 'status'];
-        // 上面的index、nickName、name是tableData里对象的属性
-        const list = [...this.tableData];  //把data里的tableData存到list
-        const data = this.formatJson(filterVal, list);
-        export_json_to_excel(tHeader, data, `用户提现(${time})`);
-      })
+      let params = {
+        page: 1,
+        pagesize: 1000,
+        name: this.searchForm.name,
+        phone: this.searchForm.phone,
+        card_no: this.searchForm.card_no,
+        role: this.searchForm.role,
+        status: this.searchForm.status,
+        token: sessionStorage.getItem("token")
+      };
+      withList(params).then(res => {
+        if (res) {
+          console.log('导出')
+          let dateTime = new Date();
+          let y = dateTime.getFullYear();
+          let m = dateTime.getMonth() + 1;
+          let d = dateTime.getDate();
+          let hh = dateTime.getHours();
+          let mm = dateTime.getMinutes();
+          let ss = dateTime.getSeconds();
+          let time = `${y}年${m}月${d}日 ${hh}时${mm}分${ss}秒`;
+          require.ensure([], () => {
+            const {
+              export_json_to_excel
+            } = require("../../../excel/Export2Excel");
+            const tHeader = [
+              "会员姓名",
+              "手机号码",
+              "会员卡号",
+              "会员身份",
+              "申请提现金额（元）",
+              "提现银行卡号",
+              "所属银行",
+              "持卡人",
+              "转账状态"
+            ];
+            // 上面设置Excel的表格第一行的标题
+            // const role = ''
+            const filterVal = [
+              "name",
+              "user_phone",
+              "user_card_no",
+              "user_role",
+              "money",
+              "bank_code",
+              "bank_name",
+              "user_name",
+              "status"
+            ];
+            // 上面的index、nickName、name是tableData里对象的属性
+            const list = [...res.list]; //把data里的tableData存到list
+            const data = this.formatJson(filterVal, list);
+            export_json_to_excel(tHeader, data, `用户提现(${time})`);
+          });
+        }
+      });
     },
 
     formatJson(filterVal, jsonData) {
       jsonData.forEach(item => {
         if (item.user_role == 1) {
-          item.user_role = '会员'
+          item.user_role = "会员";
         } else {
-          item.user_role = '钓场主'
+          item.user_role = "钓场主";
         }
       });
       jsonData.forEach(item => {
         if (item.status == 1) {
-          item.status = '待转账'
+          item.status = "待转账";
         } else {
-          item.status = '已转账'
+          item.status = "已转账";
         }
       });
-      return jsonData.map(v => filterVal.map(j => v[j]))
+      return jsonData.map(v => filterVal.map(j => v[j]));
     },
-    updateAll () {
-      this.page = 1
-      this.getList()
+    updateAll() {
+      this.page = 1;
+      this.getList();
     },
-    handleClick (title, ref, row) {
+    handleClick(title, ref, row) {
       if (this.$refs[ref] && row) {
         this.$refs[ref].getParentData(row);
       }
-      this.handleVisible = true
-      this.HandleTitle = title
+      this.handleVisible = true;
+      this.HandleTitle = title;
     },
-    handleSearch (title, ref, row) {
+    handleSearch(title, ref, row) {
       if (this.$refs[ref] && row) {
         this.$refs[ref].getParentData(row);
       }
-      this.dialogVisible = true
-      this.ModalTitle = title
+      this.dialogVisible = true;
+      this.ModalTitle = title;
     },
     handleCurrentChange(val) {
       this.page = val;
@@ -214,7 +271,7 @@ export default {
         card_no: this.searchForm.card_no,
         role: this.searchForm.role,
         status: this.searchForm.status,
-        token: sessionStorage.getItem('token')
+        token: sessionStorage.getItem("token")
       };
       console.log(params);
       withList(params).then(res => {
@@ -226,7 +283,7 @@ export default {
             this.showPage = false;
           }
           this.tableData = [...res.list];
-          this.count = res.count
+          this.count = res.count;
           this.loading = false;
         }
       });
@@ -245,9 +302,9 @@ export default {
 
 <style lang="less">
 .user_withdraw {
-   .pagination{
-      margin-top: 10px;
-      float: right;
-    }
+  .pagination {
+    margin-top: 10px;
+    float: right;
+  }
 }
 </style>

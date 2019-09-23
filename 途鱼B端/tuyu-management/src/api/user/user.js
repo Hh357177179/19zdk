@@ -41,3 +41,13 @@ export const addAdmin = params => api.post('/user/add', params)
 
 // 编辑管理员
 export const editAdmin = params => api.post('/user/edit', params)
+
+
+// 修改密码
+export const editPsw = params => api.post('/user/passwordUpdate', params)
+
+// 获取系统设置
+export const getSystem = params => api.post('/user/getConfig', params)
+
+// 更新系统设置
+export const setSystem = params => api.post('/user/setConfig', params)

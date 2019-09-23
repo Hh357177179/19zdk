@@ -1,18 +1,38 @@
 // pages/grow/grow.js
+const app = getApp()
+const util = require('../../utils/util.js')
+import { postRequest } from '../../utils/httpRequest.js'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    items: []
+  },
 
+  addGroup () {
+    wx.navigateTo({
+      url: '/pages/addGrows/addGrows',
+    })
+  },
+
+  getList () {
+    let that = this
+    let params = {
+      token: app.globalData.token
+    }
+    postRequest('/mini/timeLine', params, true).then(res => {
+      console.log(res)
+      that.setData({ items: res})
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    
   },
 
   /**
@@ -26,7 +46,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getList()
   },
 
   /**

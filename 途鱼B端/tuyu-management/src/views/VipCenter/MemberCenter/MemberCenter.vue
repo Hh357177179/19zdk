@@ -60,7 +60,7 @@
         <el-table-column align="center" prop="card_no" label="会员卡号" width="220"></el-table-column>
         <el-table-column align="center" prop="name" label="会员姓名" width="150" show-overflow-tooltip></el-table-column>
         <el-table-column align="center" prop="phone" label="手机号" width="200"></el-table-column>
-        <el-table-column align="center" prop="create_time" label="注册时间" width="240"></el-table-column>
+        <el-table-column align="center" prop="create_time" label="注册时间" width="220"></el-table-column>
         <!-- <el-table-column align="center" prop="name" label="性别"></el-table-column> -->
         <!-- <el-table-column align="center" prop="role" label="会员等级"></el-table-column> -->
         <el-table-column align="center" prop="role" label="会员身份">
@@ -69,7 +69,7 @@
           </template>
         </el-table-column>
         <!-- <el-table-column align="center" prop="name" label="会员生日"></el-table-column> -->
-        <el-table-column align="center" label="操作" width="200">
+        <el-table-column align="center" label="操作" width="300">
           <template slot-scope="scope">
             <el-button @click="handleClick('编辑','refEdit',scope.row)" size="small" type="warning">编辑</el-button>
             <el-button v-if="scope.row.role == 2" @click="handleAdd(scope.row)" size="small" type="primary">添加钓场</el-button>
