@@ -69,7 +69,7 @@
         <image wx:if="{{chopayway == 1}}" src='../../images/chos.png'></image>
       </view>
     </view>
-    <view class='parWay_list' data-chopayway='2' bindtap='choosePayWay'>
+    <view class='parWay_list' data-chopayway='2' bindtap='choosePayWay' wx:if="{{realityPay != 0}}">
       <view class='pay_card_text'>
         <view class='list_icons'>
           <image src='../../images/wxpay.png'></image>

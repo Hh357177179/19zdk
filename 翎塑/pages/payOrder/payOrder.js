@@ -179,6 +179,7 @@ Page({
         realityPay: that.data.midVal
       })
     }
+    console.log('需要支付', that.data.realityPay)
   },
 
   chooseCoupon(e) {
