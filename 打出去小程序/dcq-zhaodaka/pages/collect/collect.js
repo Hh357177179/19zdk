@@ -14,6 +14,15 @@ Page({
     noDataShow: false
   },
 
+  navDetail (e) {
+    let that = this
+    console.log(e)
+    let id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: `/pages/detailGame/detailGame?id=${id}`,
+    })
+  },
+
   getList () {
     let that = this
     let params = {

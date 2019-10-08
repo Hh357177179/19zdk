@@ -71,7 +71,7 @@ Page({
 
   choosePayWay(e) {
     let that = this
-    if (that.data.realityPay < that.data.balance) {
+    if (that.data.realityPay <= that.data.balance) {
       let choNums = e.currentTarget.dataset.chopayway
       that.setData({
         chopayway: choNums
@@ -83,7 +83,7 @@ Page({
           chopayway: choNums
         })
       } else {
-        util.showMsg('余额不足')
+        util.showMsg('余额不足~')
       }
     }
   },

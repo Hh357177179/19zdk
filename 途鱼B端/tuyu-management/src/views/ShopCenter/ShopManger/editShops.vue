@@ -17,6 +17,7 @@
               :limit="1"
               :file-list="addFrom.logo"
               :on-exceed="handleExceedlogo"
+              :data="tokens"
             >
               <i class="el-icon-plus"></i>
             </el-upload>
@@ -35,6 +36,7 @@
               :limit="4"
               :file-list="imgArr"
               :on-exceed="handleExceed"
+              :data="tokens"
             >
               <i class="el-icon-plus"></i>
             </el-upload>
@@ -95,6 +97,9 @@ import { shopList, goodsUpdate, searchShop } from '@/api/shop/shop.js'
 export default {
   data() {
     return {
+      tokens: {
+        token: sessionStorage.getItem('token')
+      },
       specsFrom: [
         {
           spec_no: Date.parse(new Date()),
@@ -190,6 +195,10 @@ export default {
           this.logo = this.addFrom.logo[0].url
           console.log(123123,this.logo)
         }
+        let price_sort = ''
+        this.specsFrom.sort(function(a,b){
+          return a.price - b.price
+        })
         let params = {
           id: this.$route.params.id,
           cate_id: this.addFrom.cate_id,
@@ -200,6 +209,7 @@ export default {
           specs: JSON.stringify(this.specsFrom),
           quota: this.addFrom.quota,
           sort: this.addFrom.sort,
+          price_sort: this.specsFrom[0].price,
           token: sessionStorage.getItem('token')
         }
       // console.log(params)

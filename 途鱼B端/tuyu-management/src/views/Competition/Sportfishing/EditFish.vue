@@ -17,6 +17,7 @@
               :limit="4"
               :file-list="uploadImg"
               :on-exceed="handleExceed"
+              :data="tokens"
             >
               <i class="el-icon-plus"></i>
             </el-upload>
@@ -72,6 +73,9 @@ export default {
   mixins: [addfishMixin],
   data() {
     return {
+      tokens: {
+        token: sessionStorage.getItem('token')
+      },
       // options: provinceAndCityDataPlus,
       options: provinceAndCityData,
       selectedOptions: [],

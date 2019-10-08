@@ -2,14 +2,15 @@
 <view class="collect">
   <view class="collect_main">
     <block wx:for="{{items}}" wx:key="index">
-      <view class="collect_list_main">
+      <view class="collect_list_main" bindtap="navDetail" data-id="{{item.id}}">
         <view class="collect_list">
           <view class="collect_img">
             <image src="{{item.image}}"></image>
           </view>
-          <view class="collect_hear">
+          <view class="titles">{{item.title}}</view>
+          <!-- <view class="collect_hear">
             <image src="../../images/xin.png"></image>
-          </view>
+          </view> -->
         </view>
       </view>
     </block>

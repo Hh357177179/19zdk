@@ -66,7 +66,7 @@
 					"id": 1,
 					"name": "报名",
 					"pathName": "pages/apply/apply",
-					"query": "id=285",
+					"query": "id=297",
 					"scene": null
 				},
 				{
@@ -150,6 +150,42 @@
 					"id": -1,
 					"name": "新增成长",
 					"pathName": "pages/addGrows/addGrows",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我参与的",
+					"pathName": "pages/meJoin/meJoin",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "正在考虑",
+					"pathName": "pages/meConsider/meConsider",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 16,
+					"name": "比赛详情",
+					"pathName": "pages/detailGame/detailGame",
+					"query": "id=83",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "添加训练",
+					"pathName": "pages/addDrill/addDrill",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 18,
+					"name": "成长详情",
+					"pathName": "pages/groupDetail/groupDetail",
+					"query": "id=3",
 					"scene": null
 				}
 			]

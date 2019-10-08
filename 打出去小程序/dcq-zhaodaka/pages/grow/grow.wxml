@@ -1,43 +1,71 @@
-<!--pages/grow/grow.wxml-->
+<!--index.wxml-->
 <wxs module="dateFr" src="../../utils/dateFr.wxs"></wxs>
-<view class="grow">
-  <!-- <view class="grow_title">打出去</view> -->
-  <view class="mains">
-    <view class="grow_main">
-      <scroll-view scroll-y style="height: 100%;">
-        <view style="margin-top: 20rpx;">
-          <wux-timeline position="alternate">
-            <block wx:for="{{items}}" wx:key="index">
-              <wux-timeline-item wx:if="{{item.type == 1}}">
-                <view style="color: #4680ed;" class="times">{{dateFr.getDate(item.time * 1000,'-','')}}</view>
-                <view style="color: #4680ed;">{{item.title}}</view>
-              </wux-timeline-item>
-              <wux-timeline-item custom wx:if="{{item.type == 3}}">
-                <wux-icon slot="dot" type="ios-time" size="23" />
-                <view class="times">{{dateFr.getDate(item.time * 1000,'-','')}}</view>
-                <view>{{item.title}}</view>
-              </wux-timeline-item>
-              <wux-timeline-item wx:if="{{item.type == 2}}" dotStyle="border-color: #33cd5f; color: #33cd5f">
-                <view class="times" style="color: #33cd5f">{{dateFr.getDate(item.time * 1000,'-','')}}</view>
-                <view style="color: #33cd5f">{{item.title}}</view>
-              </wux-timeline-item>
-              <wux-timeline-item wx:if="{{item.type == 4}}" dotStyle="border-color: #ef473a; color: #ef473a">
-                <view style="color: #ef473a" class="times">{{dateFr.getDate(item.time * 1000,'-','')}}</view>
-                <view style="color: #ef473a">{{item.title}}</view>
-              </wux-timeline-item>
-            </block>
-          </wux-timeline>
-        </view>
-      </scroll-view>
-      <view class="big_img">
-        <image src="../../images/fz1.png"></image>
+<view class="home">
+  <view class="headers">
+    <view class="search">
+      <view class="search_icon">
+        <image src="../../images/chazhao.png"></image>
       </view>
-      <view class="small_img">
-        <image src="../../images/fz2.png"></image>
+      <view class="search_input">
+        <textarea auto-height placeholder="输入标题中的任意字段搜索" value="{{searchVal}}" bindinput="onSearch"></textarea>
       </view>
-      <view class="add_grow" bindtap="addGroup">
-        <image src="../../images/addGroup.png"></image>
+      <view class="search_icon">
+        <image src="../../images/cancel.png" bindtap="deleteSearch" wx:if="{{showDelete}}"></image>
       </view>
     </view>
+    <!-- <view class="search_card">
+      <view class="search_list first_card">第一个</view>
+      <view class="search_list second_card">第二个</view>
+      <view class="search_list third_card">第三个</view>
+    </view> -->
+    <!-- <view class="sort_card">
+      <view class="sort_list {{nav == 1 ? 'chooseNav' : ''}}" bindtap="navSort" data-nav="1">
+        <view class="sort_icon">
+          <image wx:if="{{nav == 1}}" src="../../images/clock.png"></image>
+          <image wx:else src="../../images/clockC.png"></image>
+        </view>
+        <view>时间排序</view>
+      </view>
+      <view class="sort_list {{nav == 2 ? 'chooseNav' : ''}}" bindtap="navSort" data-nav="2">
+        <view class="sort_icon">
+          <image wx:if="{{nav == 2}}" src="../../images/list.png"></image>
+          <image wx:else src="../../images/listC.png"></image>
+        </view>
+        <view>剑种排序</view>
+      </view>
+      <view class="sort_list {{nav == 3 ? 'chooseNav' : ''}}" bindtap="navSort" data-nav="3">
+        <view class="sort_icon">
+          <image wx:if="{{nav == 3}}" src="../../images/date.png"></image>
+          <image wx:else src="../../images/dateC.png"></image>
+        </view>
+        <view>年龄排序</view>
+      </view>
+    </view> -->
+  </view>
+  <view class="home_main">
+    <block wx:for="{{items}}" wx:key="index">
+      <view class="home_list" bindtap="navApply" data-id="{{item.id}}">
+        <!-- <view class="list_pics">
+          <image src="../../images/shizhan.png"></image>
+        </view> -->
+        <view class="list_info">
+          <view class="list_title">{{item.title}}</view>
+          <view class="info_text">
+            <image class="info_icon" src="../../images/rili.png"></image>
+            {{dateFr.getDate(item.addtime * 1000,'-',':')}} ~ {{dateFr.getDate(item.endtime * 1000,'-',':')}}
+            <!-- <text style="color: #ccc;font-size: 20rpx;">7天后</text> -->
+          </view>
+          <view class="info_text">
+            <image class="info_icon" src="../../images/localIcon.png"></image>
+            <text wx:if="{{item.stage == 1}}">正在筹备</text>
+            <text wx:if="{{item.stage == 2}}">即将开始</text>
+            <text wx:if="{{item.stage == 3}}">已经结束</text>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+  <view class="add_drill" bindtap="addDrill">
+    <image src="../../images/addGroup.png"></image>
   </view>
 </view>

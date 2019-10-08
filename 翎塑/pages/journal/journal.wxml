@@ -1,6 +1,7 @@
 <!--pages/journal/journal.wxml-->
+<wxs module="dateFr" src="../../utils/dateFr.wxs"></wxs>
 <view class='journal'>
-  <view class='top_text'>历史累计佣金总额：￥<text class='text_color'>{{totals}}</text>（距离下一次升级还有￥2000）</view>
+  <view class='top_text'>历史累计佣金总额：￥<text class='text_color'>{{totals}}</text></view>
   <block wx:for="{{items}}" wx:key="index">
     <view class='journal_card' wx:if="{{showMain}}">
       <view class='card_icon'>
@@ -15,7 +16,7 @@
       </view>
       <view class='card_money'>分佣
         <text class='text_money'>￥{{item.reward}}</text> </view>
-      <view class='card_time'>{{item.create_time}}</view>
+      <view class='card_time'>{{dateFr.getDate(item.create_time * 1000,'-',':')}}</view>
       <view class='clear'></view>
     </view>
   </block>

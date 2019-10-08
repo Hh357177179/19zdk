@@ -244,8 +244,8 @@ export default {
         title: this.searchForm.title,
         pond_title: this.searchForm.pond_title,
         type: this.searchForm.type,
-        start_start_time: this.start_start_time,
-        start_end_time: this.start_end_time,
+        start_start_time: this.create_time_start,
+        start_end_time: this.create_time_end,
         token: sessionStorage.getItem('token')
       }
       console.log(params)

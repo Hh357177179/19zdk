@@ -14,7 +14,12 @@
     "pages/vip/vip",
     "pages/ranking/ranking",
     "pages/collect/collect",
-    "pages/addGrows/addGrows"
+    "pages/addGrows/addGrows",
+    "pages/meJoin/meJoin",
+    "pages/meConsider/meConsider",
+    "pages/detailGame/detailGame",
+    "pages/addDrill/addDrill",
+    "pages/groupDetail/groupDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -28,10 +33,10 @@
     "selectedColor": "#3E72E0",
     "list": [
       {
-        "selectedIconPath": "images/tab_xunlian_pressed.png",
-        "iconPath": "images/tab-normal_xunlian.png",
+        "selectedIconPath": "images/tab-ziyuan_pressed.png",
+        "iconPath": "images/tab_ziyuan_normal.png",
         "pagePath": "pages/index/index",
-        "text": "训练"
+        "text": "成长"
       },
       {
         "selectedIconPath": "images/tab_bisai_pressed.png",
@@ -40,10 +45,10 @@
         "text": "比赛"
       },
       {
-        "selectedIconPath": "images/tab-ziyuan_pressed.png",
-        "iconPath": "images/tab_ziyuan_normal.png",
+        "selectedIconPath": "images/tab_xunlian_pressed.png",
+        "iconPath": "images/tab-normal_xunlian.png",
         "pagePath": "pages/grow/grow",
-        "text": "成长"
+        "text": "训练"
       },
       {
         "selectedIconPath": "images/tab_my_pressed.png",

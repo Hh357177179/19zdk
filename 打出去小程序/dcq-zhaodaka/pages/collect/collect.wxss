@@ -4,6 +4,9 @@
   min-height: 100vh;
   background: #FAFAFA;
 }
+.collect_main{
+  padding: 20rpx 0;
+}
 .collect_list{
   padding: 30rpx 20rpx;
   background:rgba(255,255,255,1);

@@ -26,7 +26,7 @@
       <view class="title_img">
         <image src="../../images/cardIcon.png"></image>
       </view>
-      <view class="shop_title">活动价目表</view>
+      <view class="shop_title">套餐活动价目表</view>
       <view class="right_text">热门活动实时了解</view>
       <view class="clear"></view>
     </view>
@@ -37,7 +37,7 @@
     </wux-tabs>
     <view class="tab_main">
       <block wx:for="{{listArr}}" wx:key="index">
-        <view class="tab_list">
+        <view class="tab_list" bindtap="searchDetail" data-id="{{item.id}}">
           <view class="tab_img">
             <image src="{{item.image}}"></image>
           </view>

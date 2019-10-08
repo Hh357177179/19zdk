@@ -6,9 +6,6 @@
   </view>
   <view class="apply_header">
     <view class="header_title">{{itemObj.title}}</view>
-    <view class="collect">
-      <image src="../../images/collect.png"></image>
-    </view>
   </view>
   <view class="apply_status">
     <view class="apply_type">{{itemObj.swords}}</view>
@@ -76,6 +73,7 @@
             <image wx:else src="../../images/logos.png"></image>
           </view>
           <view>{{item.name}}</view>
+          <view class="cancel_consider" bindtap="cancelConsider" wx:if="{{item.user_id == meUserId}}">点击取消</view>
         </view>
       </block>
     </view>
@@ -95,6 +93,11 @@
       </block>
     </view>
   </view>
-  <view class="apply_remark">{{itemObj.note}}</view>
-  <!-- <view class="apply_btn">支付报名</view> -->
+  <view class="apply_remark" wx:if="{{itemObj.note != ''}}">{{itemObj.note}}</view>
+  <view class="apply_btn" bindtap="applyBtn">我要报名</view>
+  <view class="small_main">
+    <view class="consider_btn small_btn" bindtap="clickConsider">考虑中</view>
+    <!-- <view class="voluntary_btn small_btn">认领志愿者</view> -->
+    <view class="player_btn small_btn" bindtap="signIn">选手签到</view>
+  </view>
 </view>

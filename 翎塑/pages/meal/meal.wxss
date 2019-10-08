@@ -1,0 +1,59 @@
+/* pages/meal/meal.wxss */
+.meal{
+  padding: 20rpx;
+  padding-bottom: 120rpx;
+}
+.titles{
+  font-size: 30rpx;
+  color: #333;
+  font-weight: bold;
+}
+.meal_pic{
+  width: 90%;
+  margin: 40rpx auto;
+}
+.content_title{
+  font-size: 30rpx;
+  color: #666;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+}
+.content{
+  padding: 20rpx;
+  border-radius: 10rpx;
+  box-shadow:0px 2px 4px 0px rgba(31,49,74,0.12);
+}
+.content image{
+  width: 100% !important;
+}
+.bottom_buy{
+  height: 98rpx;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-top: 2rpx solid #f0f0f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40rpx;
+}
+.buy_price{
+  color: #e47e64;
+  font-size: 40rpx;
+  font-weight: bold;
+}
+.buy_btn{
+  color: #fff;
+  padding: 15rpx 50rpx;
+  text-align: center;
+  background: #e47e64;
+  font-size: 30rpx;
+  border-radius: 10rpx;
+}
+.unit{
+  font-size: 26rpx;
+  font-weight: normal;
+  margin-right: 10rpx;
+}

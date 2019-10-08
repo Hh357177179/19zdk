@@ -131,6 +131,7 @@
   top: -30rpx;
   left: calc(50% - 60rpx);
   box-shadow: #fff 0px 0px 4rpx 4rpx;
+  z-index: 1111111;
 }
 .order_tel image{
   width: 80rpx;

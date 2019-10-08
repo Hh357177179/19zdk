@@ -8,7 +8,7 @@
   <view class="desc_s">2、参加“打出去”地区实战训练赛享有报名费9折优惠。会员优惠不与折扣码同时享受。</view>
   <view class="pirce desc_s">费用：20蜂蜜，或 200元人民币</view>
   <view class="desc_s">有效期：一年</view>
-  <view class="vip_time">VIP到期时间：{{dateFr.getDate(time * 1000,'-','')}}</view>
+  <view class="vip_time" wx:if="{{showVip}}">VIP到期时间：{{dateFr.getDate(time * 1000,'-','')}}</view>
   <view class="small_title">支付方式:</view>
   <view class="card_main">
     <view class="honey {{index == 1 ? 'back_color' : ''}}" bindtap="honeyClick">蜂蜜</view>

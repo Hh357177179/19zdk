@@ -1,0 +1,31 @@
+<!--pages/buyList/buyList.wxml-->
+<wxs module="dateFr" src="../../utils/dateFr.wxs"></wxs>
+<view class="buyList">
+  <view class="top_nav">
+    <view class="nav_list {{type == 0 ? 'choColor' : ''}}" bindtap="choNav" data-type="0">全部</view>
+    <view class="nav_list {{type == 1 ? 'choColor' : ''}}" bindtap="choNav" data-type="1">未使用</view>
+    <view class="nav_list {{type == 2 ? 'choColor' : ''}}" bindtap="choNav" data-type="2">已使用</view>
+  </view>
+  <view class="list_main">
+    <block wx:for="{{items}}" wx:key="index">
+      <view class="list" bindtap="navDetail" data-id="{{item.price_id}}">
+        <view class="order_no">订单编号：{{item.order_no}}</view>
+        <view class="infos">
+          <view class="info_left">
+            <view class="order_title">{{item.price_title}}</view>
+            <view class="order_time">购买时间：{{dateFr.getDate(item.create_time * 1000,'-',':')}}</view>
+          </view>
+          <view class="price">￥{{item.money}}</view>
+        </view>
+        <view class="statue_text areadly" wx:if="{{item.status == 3}}">已使用</view>
+        <view class="statue_text" wx:if="{{item.status == 2}}">未使用</view>
+      </view>
+    </block>
+  </view>
+</view>
+<view class='no_data' wx:if="{{noDataShow}}">
+  <view class='nd_pic'>
+    <image src='../../images/noorder.png'></image>
+  </view>
+  <view class='nd_text'>暂无数据</view>
+</view>

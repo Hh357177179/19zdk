@@ -16,9 +16,10 @@
       <el-card>
         <el-table :data="tableData" border style="width: 100%">
           <el-table-column prop="order_no" label="订单号" width="220"></el-table-column>
-          <el-table-column prop="phone" label="手机号码" width="180"></el-table-column>
+          <el-table-column prop="phone" label="手机号码" width="120"></el-table-column>
           <el-table-column prop="name" label="会员姓名" width="100"></el-table-column>
           <el-table-column prop="idcard" label="身份证号" width="200"></el-table-column>
+          <el-table-column prop="citys" label="所在城市" width="140"></el-table-column>
           <el-table-column prop="create_time" label="报名时间" width="150">
             <template slot-scope="scope">
               <span>{{scope.row.create_time | fromDate}}</span>
@@ -110,6 +111,9 @@ export default {
         match_id: this.rowObj.id
       }
       peopleList(params).then(res => {
+        res.list.forEach(ele => {
+          ele.citys = `${this.rowObj.pond_province}-${this.rowObj.pond_city}`
+        });
         console.log(res);
         if (res) {
           this.allList = res.list
@@ -123,10 +127,10 @@ export default {
           let time = `${y}年${m}月${d}日 ${hh}时${mm}分${ss}秒`
           require.ensure([], () => {
             const { export_json_to_excel } = require('../../../../excel/Export2Excel');
-            const tHeader = ['订单号', '手机号码', '会员姓名', '身份证号', '报名时间', '回鱼量', '比赛成绩'];
+            const tHeader = ['订单号', '手机号码', '会员姓名', '身份证号', '所在城市', '报名时间', '回鱼量', '比赛成绩'];
             // 上面设置Excel的表格第一行的标题
             // const role = ''
-            const filterVal = ['order_no', 'phone', 'name', 'idcard', 'create_time', 'back', 'score'];
+            const filterVal = ['order_no', 'phone', 'name', 'idcard','citys', 'create_time', 'back', 'score'];
             // 上面的index、nickName、name是tableData里对象的属性
             const list = res.list;  //把data里的tableData存到list
             const data = this.formatJson(filterVal, list);
@@ -180,6 +184,9 @@ export default {
       };
       peopleList(params).then(res => {
         console.log(res);
+        res.list.forEach(ele => {
+          ele.citys = `${this.rowObj.pond_province}-${this.rowObj.pond_city}`
+        });
         if (res) {
           this.count = res.count;
           this.tableData = res.list

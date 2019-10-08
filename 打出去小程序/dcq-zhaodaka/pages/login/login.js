@@ -45,7 +45,7 @@ Page({
                         data: params,
                         method: "POST",
                         success: resUserInfo => {
-                          console.log(resUserInfo.data.data)
+                          // console.log(resUserInfo.data.data)
                           app.globalData.token = resUserInfo.data.data.unionid
                           that.getUserInfo(resUserInfo.data.data.unionid)
                           wx.hideLoading()
@@ -74,6 +74,7 @@ Page({
     }
     postRequest('/user/getMyinfo',params, false).then(res => {
       app.globalData.userInfo = res
+      app.globalData.isVip = res.vip_time
       wx.navigateBack()
     })
   },

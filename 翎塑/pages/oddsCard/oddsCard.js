@@ -4,6 +4,7 @@ const util = require('../../utils/util.js')
 import {
   postRequest
 } from '../../utils/httpRequest.js'
+var WxParse = require('../../wxParse/wxParse.js')
 Page({
 
   /**
@@ -24,6 +25,7 @@ Page({
       that.setData({
         obj: res
       })
+      var temp = WxParse.wxParse('article', 'html', res.content, that, 5);
     })
   },
 

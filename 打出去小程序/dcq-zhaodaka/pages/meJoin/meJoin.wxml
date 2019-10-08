@@ -1,0 +1,18 @@
+<!--pages/meJoin/meJoin.wxml-->
+<wxs module="dateFr" src="../../utils/dateFr.wxs"></wxs>
+<view class="meJoin">
+  <view class="meJoin_main">
+    <block wx:for="{{items}}" wx:key="index">
+      <view class="meJoin_list" bindtap="navApply" data-id="{{item.activity_id}}">
+        <view>{{item.title}}</view>
+        <view class="mejoin_time">{{dateFr.getDate(item.addtime * 1000,'-',':')}} ~ {{dateFr.getDate(item.endtime * 1000,'-',':')}}</view>
+      </view>
+    </block>
+    <view class='no_data' wx:if="{{noDataShow}}">
+      <view class='nd_pic'>
+        <image src='../../images/noorder.png'></image>
+      </view>
+      <view class='nd_text'>暂无数据</view>
+    </view>
+  </view>
+</view>

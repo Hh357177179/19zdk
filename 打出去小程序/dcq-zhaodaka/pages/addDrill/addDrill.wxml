@@ -1,0 +1,168 @@
+<!--pages/addDrill/addDrill.wxml-->
+<view class="addDrill">
+  <view class="title">选手要求</view>
+  <view class="clear"></view>
+  <view class="list_main">
+    <view class="drill_list">
+      <view class="label">
+        <text class="label_text">*</text>最晚出生年龄：</view>
+      <view class="inputs">
+        <picker mode="selector" value="{{dateof}}" bindchange="bindYearChange" range="{{array}}">
+          <view class="picker {{dateof == '请选择最晚出生年龄' ? 'noChoColor' : ''}}">{{dateof}}</view>
+        </picker>
+      </view>
+    </view>
+    <view class="drill_list">
+      <view class="label">
+        <text class="label_text">*</text>最早出生年龄：</view>
+      <view class="inputs">
+        <picker mode="selector" value="{{dateofnow}}" bindchange="bindYearNowChange" range="{{array}}">
+          <view class="picker {{dateofnow == '请选择最早出生年龄' ? 'noChoColor' : ''}}">{{dateofnow}}</view>
+        </picker>
+      </view>
+    </view>
+    <view class="drill_list">
+      <view class="label">
+        <text style="color:#fff;">*</text>其他要求：</view>
+      <view class="inputs">
+        <textarea auto-height placeholder="请输入其他要求（如有）" bindinput="otherAskVal" value="{{otherAsk}}" placeholder-style="color: #999;"></textarea>
+      </view>
+    </view>
+    <view class="drill_list">
+      <view class="label">
+        <text style="color:#fff;">*</text>意向邀请选手：</view>
+      <view class="inputs">
+        <textarea auto-height placeholder="请输入意向邀请选手（如有）" bindinput="otherInviteVal" value="{{otherInvite}}" placeholder-style="color: #999;"></textarea>
+      </view>
+    </view>
+  </view>
+  <view class="title">活动内容</view>
+  <view class="clear"></view>
+  <view class="list_main">
+    <view class="drill_list">
+      <view class="label">
+        <text class="label_text">*</text>活动名称：</view>
+      <view class="inputs">
+        <textarea auto-height placeholder="请输入活动名称" bindinput="activeTitleVal" value="{{activeTitle}}" placeholder-style="color: #999;"></textarea>
+      </view>
+    </view>
+    <view class="drill_list">
+      <view class="label">
+        <text class="label_text">*</text>活动类型：</view>
+      <view class="inputs">
+        <picker mode="selector" value="{{types}}" bindchange="bindTypeChange" range-key="{{'name'}}" range="{{typeArr}}">
+          <view class="picker {{types == '请选择活动类型' ? 'noChoColor' : ''}}">{{types}}</view>
+        </picker>
+      </view>
+    </view>
+    <view class="drill_list">
+      <view class="label">
+        <text style="color: #fff;">*</text>最多限制人数：</view>
+      <view class="inputs">
+        <textarea auto-height placeholder="请输入限制人数" type="number" bindinput="peopleNumberVal" value="{{people_number}}" placeholder-style="color: #999;"></textarea>
+      </view>
+    </view>
+    <view class="drill_list">
+      <view class="label">
+        <text class="label_text">*</text>剑种类型：</view>
+      <view class="inputs">
+        <picker mode="selector" value="{{swords}}" bindchange="bindWeaponChange" range-key="{{'name'}}" range="{{weaponArr}}">
+          <view class="picker {{swords == '请选择剑种类型' ? 'noChoColor' : ''}}">{{swords}}</view>
+        </picker>
+      </view>
+    </view>
+    <view class="drill_list">
+      <view class="label">
+        <text class="label_text">*</text>赛制类型：</view>
+      <view class="inputs">
+        <picker mode="selector" value="{{format}}" bindchange="bindFormatChange" range-key="{{'name'}}" range="{{formatArr}}">
+          <view class="picker {{format == '请选择赛制类型' ? 'noChoColor' : ''}}">{{format}}</view>
+        </picker>
+      </view>
+    </view>
+    <view class="drill_list">
+      <view class="label">
+        <text class="label_text">*</text>活动场地：</view>
+      <view class="inputs">
+        <picker mode="selector" value="{{club}}" bindchange="bindPlaceChange" range-key="{{'name'}}" range="{{placeArr}}">
+          <view class="picker {{club == '请选择活动场地' ? 'noChoColor' : ''}}">{{club}}</view>
+        </picker>
+      </view>
+    </view>
+    <view class="address">
+      <textarea maxlength="-1" auto-height="{{true}}" bindinput="addressVal" placeholder-style="color: #999;" placeholder="请输入详细地址" value="{{address}}"></textarea>
+    </view>
+    <view class="drill_list">
+      <view class="label">
+        <text class="label_text">*</text>开始时间：</view>
+      <view class="inputs">
+        <view class="inputs">
+          <picker mode="date" value="{{addtime}}" bindchange="bindStartChange">
+            <view class="picker {{addtime == '请选择开始时间' ? 'noChoColor' : ''}}">{{addtime}}</view>
+          </picker>
+        </view>
+      </view>
+    </view>
+    <view class="drill_list">
+      <view class="label">
+        <text class="label_text">*</text>结束时间：</view>
+      <view class="inputs">
+        <view class="inputs">
+          <picker mode="date" value="{{endtime}}" bindchange="bindEndChange">
+            <view class="picker {{endtime == '请选择结束时间' ? 'noChoColor' : ''}}">{{endtime}}</view>
+          </picker>
+        </view>
+      </view>
+    </view>
+    <view class="drill_list">
+      <view class="label">
+        <text class="label_text">*</text>报名费用：</view>
+      <view class="inputs">
+        <textarea auto-height placeholder="请输入报名费用" type="number" bindinput="moneyVal" value="{{money}}" placeholder-style="color: #999;"></textarea>
+      </view>
+    </view>
+  </view>
+  <view class="title">发起人信息</view>
+  <view class="clear"></view>
+  <view class="list_main">
+    <view class="drill_list">
+      <view class="label">
+        <text class="label_text">*</text>家长姓名：</view>
+      <view class="inputs">
+        <textarea auto-height placeholder="请输入家长姓名" bindinput="parentNameVal" value="{{parent_name}}" placeholder-style="color: #999;"></textarea>
+      </view>
+    </view>
+    <view class="drill_list">
+      <view class="label">
+        <text class="label_text">*</text>剑手姓名：</view>
+      <view class="inputs">
+        <textarea auto-height placeholder="请输入剑手姓名" bindinput="playerNameVal" value="{{player_name}}" placeholder-style="color: #999;"></textarea>
+      </view>
+    </view>
+    <view class="drill_list">
+      <view class="label">
+        <text class="label_text">*</text>您的电话：</view>
+      <view class="inputs">
+        <textarea auto-height placeholder="请输入您的电话" type="number" maxlength="11" bindinput="parentPhoneVal" value="{{parent_phone}}" placeholder-style="color: #999;"></textarea>
+      </view>
+    </view>
+    <view class="drill_list">
+      <view class="label">
+        <text style="color:#fff;">*</text> 活动图片：</view>
+      <view class="photo" bindtap="upLoadPic">
+        <image wx:if="{{photo == ''}}" class="icon_upload" src="../../images/upload.png"></image>
+        <view wx:else class="avatar_pic">
+          <image src="{{photo}}"></image>
+        </view>
+      </view>
+    </view>
+    <view class="drill_list text_area">
+      <view class="label">
+        <text class="label_text">*</text>备注说明：</view>
+      <view class="inputs">
+        <textarea auto-height="{{true}}" value="{{note}}" bindinput="noteVal" class="note_text" placeholder="请输入备注" placeholder-style="color: #999;"></textarea>
+      </view>
+    </view>
+  </view>
+  <view class="send_active" bindtap="sendActive">发 布</view>
+</view>

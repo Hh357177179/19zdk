@@ -10,7 +10,90 @@ Page({
   data: {
     activity_id: '',
     token: '',
-    itemObj: {}
+    itemObj: {},
+    meUserId: '',
+    code: '',
+    is_deduction: 0,
+    package_id: 0,
+    message: ''
+  },
+
+  // 报名
+  applyBtn () {
+    let that = this
+    console.log('报名')
+    let params = {
+      token: app.globalData.token,
+      activity_id: that.data.itemObj.id,
+      code: that.data.code,
+      is_deduction: that.data.is_deduction,
+      package_id: that.data.package_id,
+      message: that.data.message
+    }
+    postRequest('/activity/orderCreate',params, true).then(res => {
+      console.log(res)
+      let param = {
+        token: app.globalData.token,
+        order_id: res.order_id
+      }
+      postRequest('/mini/activityOrderPayByMini', param, true).then(res => {
+        let configs = JSON.parse(res.config)
+        wx.requestPayment({
+          timeStamp: configs.timeStamp,
+          nonceStr: configs.nonceStr,
+          package: configs.package,
+          signType: configs.signType,
+          paySign: configs.paySign,
+          'success': function (resSuccess) {
+            util.showMsg('支付成功', '../../images/successIcon.png')
+            that.getDetail()
+          },
+          'fail': function (resFail) {
+            console.log(resFail)
+            util.showMsg('支付失败', '../../images/warning.png')
+          },
+        })
+      })
+    })
+  },
+
+  // 取消考虑
+  cancelConsider () {
+    let that = this
+    let params = {
+      token: app.globalData.token,
+      activity_id: that.data.itemObj.id,
+      user_id: app.globalData.userInfo.id
+    }
+    postRequest('/activity/unConsider', params, true).then(res => {
+      console.log(res)
+      that.getDetail()
+    })
+  },
+
+  // 选手签到
+  signIn () {
+    let that = this
+    let params = {
+      token: app.globalData.token,
+      activity_id: that.data.itemObj.id
+    }
+    postRequest('/activity/sign', params, true).then(res => {
+      console.log(res)
+    })
+  },
+
+  // 考虑
+  clickConsider (e) {
+    let that = this
+    let params = {
+      token: app.globalData.token,
+      activity_id: that.data.itemObj.id
+    }
+    postRequest('/activity/consider', params, true).then(res => {
+      console.log(res)
+      that.getDetail()
+    })
   },
 
   // 获取详情
@@ -31,14 +114,12 @@ Page({
    */
   onLoad: function (options) {
     let that = this
-    if (app.globalData.token == '') {
-      that.setData({ token: app.globalData.fakeToken })
-    } else {
-      that.setData({ token: app.globalData.token })
+    if (app.globalData.token != '') {
+      that.setData({
+        activity_id: options.id,
+        meUserId: app.globalData.userInfo.id
+      })
     }
-    that.setData({
-      activity_id: options.id
-    })
     that.getDetail()
   },
 

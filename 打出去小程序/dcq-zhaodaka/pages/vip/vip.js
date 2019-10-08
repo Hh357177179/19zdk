@@ -11,7 +11,8 @@ Page({
    */
   data: {
     time: '',
-    index: 1
+    index: 1,
+    showVip: false,
   },
 
   honeyClick() {
@@ -42,7 +43,7 @@ Page({
   },
 
   // 人民币支付
-  rmbVip () {
+  rmbVip() {
     let that = this
     let params = {
       token: app.globalData.token
@@ -61,11 +62,11 @@ Page({
           package: configs.package,
           signType: configs.signType,
           paySign: configs.paySign,
-          'success': function (resSuccess) {
+          'success': function(resSuccess) {
             util.showMsg('支付成功', '../../images/successIcon.png')
             that.getUserAgain()
           },
-          'fail': function (resFail) {
+          'fail': function(resFail) {
             console.log(resFail)
             util.showMsg('支付失败', '../../images/warning.png')
           },
@@ -75,13 +76,14 @@ Page({
   },
 
   // 重新获取用户信息
-  getUserAgain () {
+  getUserAgain() {
     let that = this
     let params = {
       token: app.globalData.token
     }
     postRequest('/user/getMyinfo', params, false).then(res => {
       app.globalData.userInfo = res
+      app.globalData.isVip = res.vip_time
       setTimeout(() => {
         wx.navigateBack()
       }, 1000)
@@ -90,24 +92,30 @@ Page({
 
   buyVip() {
     let that = this
-    wx.showModal({
-      title: '提示',
-      content: '确认使用当前方式支付吗？',
-      success(res) {
-        if (res.confirm) {
-          console.log(that.data.index)
-          if (that.data.index == 1) {
-            console.log('蜂蜜')
-            that.honeyVip()
-          } else {
-            console.log('人民币')
-            that.rmbVip()
+    if (app.globalData.token != '') {
+      wx.showModal({
+        title: '提示',
+        content: '确认使用当前方式支付吗？',
+        success(res) {
+          if (res.confirm) {
+            console.log(that.data.index)
+            if (that.data.index == 1) {
+              console.log('蜂蜜')
+              that.honeyVip()
+            } else {
+              console.log('人民币')
+              that.rmbVip()
+            }
+          } else if (res.cancel) {
+            console.log('用户点击取消')
           }
-        } else if (res.cancel) {
-          console.log('用户点击取消')
         }
-      }
-    })
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/login/login',
+      })
+    }
   },
 
   /**
@@ -115,9 +123,16 @@ Page({
    */
   onLoad: function(options) {
     let that = this
-    that.setData({
-      time: app.globalData.userInfo.vip_time
-    })
+    if (app.globalData.isVip != 0) {
+      that.setData({
+        time: app.globalData.isVip,
+        showVip: true
+      })
+    } else {
+      that.setData({
+        showVip: false
+      })
+    }
   },
 
   /**

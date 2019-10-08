@@ -151,6 +151,7 @@ export default {
     },
     updateAll () {
       this.page = 1
+      this.count = 0
       this.getList()
     },
     handleClick (title, ref, row) {

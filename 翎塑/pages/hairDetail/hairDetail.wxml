@@ -1,8 +1,14 @@
 <!--pages/hairDetail/hairDetail.wxml-->
 <view class="hairDetail">
   <view class="detail_img">
-    <image src="{{obj.image}}"></image>
+    <image src="{{obj.image}}" mode="widthFix"></image>
   </view>
-  <view class="small_title">详细介绍</view>
+  <view class="small_title">
+    <text>详细介绍</text>
+    <view class="collect_icon" bindtap="collectClick" data-id="{{obj.id}}">
+      <image wx:if="{{obj.is_like == true}}" src="../../images/xin.png"></image>
+      <image wx:else src="../../images/noheart.png"></image>
+    </view>
+  </view>
   <view class="content">{{obj.content}}</view>
 </view>

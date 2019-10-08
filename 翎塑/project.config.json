@@ -164,6 +164,27 @@
 					"pathName": "pages/hairDetail/hairDetail",
 					"query": "id=3",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "套餐详情",
+					"pathName": "pages/meal/meal",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 18,
+					"name": "pages/meal/meal",
+					"pathName": "pages/meal/meal",
+					"query": "id=3",
+					"scene": null
+				},
+				{
+					"id": 19,
+					"name": "我购买的套餐",
+					"pathName": "pages/buyList/buyList",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

@@ -1,3 +1,8 @@
 {
-  "navigationBarTitleText": "精选发型"
+  "navigationBarTitleText": "精选发型",
+  "usingComponents": {
+    "wux-tabs": "../../dist/tabs/index",
+    "wux-tab": "../../dist/tab/index",
+    "brickLayout": "plugin://brickLayout/brickLayout"
+  }
 }

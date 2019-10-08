@@ -126,7 +126,8 @@ export default {
       let params = {
         id: this.rowObj.id,
         express_title: this.sendForm.express_title,
-        express_send_no: this.sendForm.express_send_no
+        express_send_no: this.sendForm.express_send_no,
+        token: sessionStorage.getItem('token')
       };
       console.log(params)
       sendOrEdit(params).then(res => {

@@ -1,19 +1,31 @@
 <!--pages/me/me.wxml-->
+<wxs module="dateFr" src="../../utils/dateFr.wxs"></wxs>
 <view class="me">
   <view class="me_user_info">
     <view class="user_main">
       <view class="user_avatar" bindtap="navUserInfo">
-        <image wx:if="{{avatar != ''}}" src="{{userInfo.avatar}}"></image>
+        <image wx:if="{{avatar != ''}}" src="{{avatar}}"></image>
         <image wx:else src="../../images/avatar.png"></image>
       </view>
       <view class="user_text" wx:if="{{showUserInfo}}">
-        <view class="user_name">{{userInfo.nickname}}</view>
-        <view class="user_balance" bindtap="navTransfer">蜂蜜 {{userInfo.coin}}</view>
+        <view class="info_list m_bottom">
+          <view class="user_identity" wx:if="{{userInfo.status == 1}}">游客</view>
+          <view class="user_identity" wx:if="{{userInfo.status == 2}}">选手</view>
+          <view class="user_identity" wx:if="{{userInfo.status == 3}}">裁判</view>
+          <view class="user_name">{{userInfo.nickname}}</view>
+          <view class="vip {{userInfo.vip_time == 0 ? 'noColor' : ''}}">工蜂会员</view>
+        </view>
+        <view class="approve" wx:if="{{userInfo.status == 1}}">认证身份</view>
+        <view class="info_time m_bottom" wx:if="{{userInfo.vip_time != 0}}">会员到期时间：{{dateFr.getDate(userInfo.vip_time * 1000,'-','')}}</view>
+        <view class="info_list" wx:if="{{userInfo.status != 1}}">
+          <view class="user_balance" bindtap="navTransfer">蜂蜜 {{userInfo.coin}}</view>
+          <view class="user_balance">积分 {{userInfo.score}}</view>
+        </view>
       </view>
       <view class="login_btn" wx:else bindtap="login">点击注册登录</view>
     </view>
     <view class="me_card" wx:if="{{showUserInfo}}">
-      <view class="me_list" bindtap="navRanking">
+      <!-- <view class="me_list" bindtap="navRanking">
         <view class="me_list_left">
           <view class="list_icon">
             <image src="../../images/paiming.png"></image>
@@ -23,8 +35,8 @@
         <view class="right_icon">
           <image src="../../images/material-icon.png"></image>
         </view>
-      </view>
-      <!-- <view class="me_list">
+      </view> -->
+      <!-- <view class="me_list" bindtap="navJoin">
         <view class="me_list_left">
           <view class="list_icon">
             <image src="../../images/canyu.png"></image>
@@ -35,7 +47,7 @@
           <image src="../../images/material-icon.png"></image>
         </view>
       </view>
-      <view class="me_list">
+      <view class="me_list" bindtap="navConsider">
         <view class="me_list_left">
           <view class="list_icon">
             <image src="../../images/sikao.png"></image>
@@ -45,7 +57,7 @@
         <view class="right_icon">
           <image src="../../images/material-icon.png"></image>
         </view>
-      </view> -->
+      </view>
       <view class="me_list" bindtap="meCollect">
         <view class="me_list_left">
           <view class="list_icon">
@@ -56,7 +68,7 @@
         <view class="right_icon">
           <image src="../../images/material-icon.png"></image>
         </view>
-      </view>
+      </view> -->
       <view class="me_list" bindtap="navHoney">
         <view class="me_list_left">
           <view class="list_icon">

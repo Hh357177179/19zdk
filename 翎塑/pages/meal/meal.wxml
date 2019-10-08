@@ -1,0 +1,20 @@
+<!--pages/meal/meal.wxml-->
+<import src="../../wxParse/wxParse.wxml"/>
+<view class="meal">
+  <view class="titles">{{detailObj.title}}</view>
+  <view class="meal_pic">
+    <image src="{{detailObj.image}}" mode="widthFix"></image>
+  </view>
+  <view class="content">
+    <view class="content_title">套餐详情</view>
+ <!-- 这一块是富文本 显示的内容区 -->
+    <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+  </view>
+  <view class="bottom_buy">
+    <view class="buy_price">
+      <text class="unit">￥</text>
+      <text>{{detailObj.price}}</text>
+    </view>
+    <view class="buy_btn" bindtap="buyClick">购买</view>
+  </view>
+</view>

@@ -1,40 +1,42 @@
 /* pages/hairStyle/hairStyle.wxss */
+Page{
+  background: #fafafa;
+}
+.clear{
+  clear: both;
+}
 .left_nav{
-  width: 200rpx;
-  background: #f0f0f0;
-  height: 100vh;
+  height: 90rpx;
   font-size: 30rpx;
   color: #333;
   text-align: center;
-  position: fixed;
-  left: 0;
-  top: 0;
-  bottom: 0;
 }
 .nav_list{
   line-height: 90rpx;
-  border-left: 6rpx solid rgba(0,0,0,0);
+  float: left;
+  /* border-left: 6rpx solid rgba(0,0,0,0); */
 }
 .right_main{
-  margin-left: 200rpx;
-  background: #fff;
-  padding: 20rpx;
+  padding: 20rpx 0;
+}
+.default_list{
+  width: 320rpx;
+  height: 100rpx;
+  background: #ccc;
+  border-radius: 10rpx;
+  margin-right: 30rpx;
+  float: left;
+}
+.brickLayout--list-container{
+  padding: 0;
 }
 .hair_card{
-  width: 250rpx;
-  height: 300rpx;
-  background: #f0f0f0;
-  float: left;
+  width: 320rpx;
+  background: #fff;
   border-radius: 10rpx;
   overflow: hidden;
   margin-bottom: 10rpx;
   position: relative;
-}
-.hair_card:nth-of-type(2n) {
-  float: right;
-}
-.clear{
-  clear: both;
 }
 .hair_card image {
   width: 100%;
@@ -49,7 +51,6 @@
 .no_data{
   width: 100%;
   margin-top: 220rpx;
-  margin-left: 100rpx;
 }
 .nd_pic{
   width: 240rpx;
@@ -75,4 +76,10 @@
 .collect_icon image {
   width: 100%;
   height: 100%;
+}
+.approve-btn_wrapper{
+  color: #ccc !important;
+}
+.brickLayout--approve-btn .brickLayout--approve-btn_wrapper{
+  color: #ccc !important;
 }

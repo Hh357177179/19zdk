@@ -1,7 +1,9 @@
 // pages/game/game.js
 const app = getApp()
 const util = require('../../utils/util.js')
-import { postRequest } from '../../utils/httpRequest.js'
+import {
+  postRequest
+} from '../../utils/httpRequest.js'
 Page({
 
   /**
@@ -19,27 +21,81 @@ Page({
     items: [],
     sort: 'desc',
     keyword: '',
-    visible: false
+    visible: false,
+    likeStatus: false,
+    timeNow: null
   },
 
-  // navGame () {
-  //   let that = this
-  //   if (app.globalData.isVip == '0') {
-  //     that.setData({ visible: true })
-  //   }
-  // },
+  navGame(e) {
+    let that = this
+    if (app.globalData.token == '') {
+      wx.navigateTo({
+        url: '/pages/login/login',
+      })
+    } else {
+      if (app.globalData.isVip < that.data.timeNow) {
+        that.setData({
+          visible: true
+        })
+      } else {
+        that.setData({
+          visible: false
+        })
+        let id = e.currentTarget.dataset.id
+        wx.navigateTo({
+          url: `/pages/detailGame/detailGame?id=${id}`,
+        })
+      }
+    }
+  },
 
-  onClose () {
-    this.setData({ visible: false })
+  // 点赞或者取消
+  collectClick(e) {
+    let that = this
+    let id = e.currentTarget.dataset.id
+    let index = e.currentTarget.dataset.index
+    let status = e.currentTarget.dataset.status
+    let params = {
+      token: app.globalData.token,
+      match_id: id
+    }
+    postRequest('/user/likePublish', params, false).then(res => {
+      let isLike = `items[${index}].is_like`
+      let num = `items[${index}].like_num`
+      that.setData({
+        [isLike]: !status
+      })
+      if (status == false) {
+        that.setData({
+          [num]: that.data.items[index].like_num + 1
+        })
+      } else {
+        that.setData({
+          [num]: that.data.items[index].like_num - 1
+        })
+      }
+      util.showMsg(res, '../../images/successIcon.png')
+    })
+  },
+
+  onClose() {
+    this.setData({
+      visible: false
+    })
   },
 
   // 获取首页列表
   getList() {
     let that = this
     if (app.globalData.token == '') {
-      that.setData({ token: app.globalData.fakeToken })
+      that.setData({
+        token: app.globalData.fakeToken
+      })
     } else {
-      that.setData({ token: app.globalData.token })
+      that.setData({
+        token: app.globalData.token,
+        likeStatus: true
+      })
     }
     let params = {
       page: that.data.page,
@@ -55,6 +111,27 @@ Page({
         count: res.count,
         items: that.data.items.concat(res.list)
       })
+    })
+  },
+
+  clickTrue() {
+    let that = this
+    if (app.globalData.token == '') {
+      wx.navigateTo({
+        url: '/pages/login/login',
+      })
+    } else {
+      if (app.globalData.isVip == 0) {
+        that.setData({
+          visible: false
+        })
+        wx.navigateTo({
+          url: '/pages/vip/vip',
+        })
+      }
+    }
+    that.setData({
+      visible: false
     })
   },
 
@@ -74,6 +151,8 @@ Page({
       searchVal: '',
       showDelete: false,
       page: 1,
+      title: '',
+      keyword: '',
       items: []
     })
     that.getList()
@@ -93,56 +172,65 @@ Page({
         showDelete: false
       })
     }
-    that.setData({ keyword: value, page: 1, items: [] })
+    that.setData({
+      keyword: value,
+      page: 1,
+      items: []
+    })
     that.getList()
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: function(options) {
+    let that = this
+    let date = Date.parse(new Date()) / 1000
+    console.log(date)
+    that.setData({
+      timeNow: date
+    })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-   
+  onReady: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
     this.getList()
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
     let that = this
     if (that.data.page * that.data.pagesize < that.data.count) {
       that.setData({
@@ -157,7 +245,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })

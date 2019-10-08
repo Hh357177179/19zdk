@@ -17,8 +17,16 @@
     "pages/activity/activity",
     "pages/oddsCard/oddsCard",
     "pages/hairStyle/hairStyle",
-    "pages/hairDetail/hairDetail"
+    "pages/hairDetail/hairDetail",
+    "pages/meal/meal",
+    "pages/buyList/buyList"
   ],
+  "plugins": {
+    "brickLayout": {
+      "version": "0.2.0",
+      "provider": "wx3c042630f3cdc175"
+    }
+  },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",

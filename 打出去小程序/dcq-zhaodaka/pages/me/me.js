@@ -14,9 +14,30 @@ Page({
     avatar: ''
   },
 
+  getUser () {
+    let that = this
+    let params = {
+      token: app.globalData.token
+    }
+    postRequest('/user/getMyinfo', params, true).then(res => {
+      console.log('个人信息',res)
+      that.setData({
+        userInfo: res,
+        avatar: res.avatar
+      })
+      app.globalData.userInfo = res
+    })
+  },
+
   meCollect () {
     wx.navigateTo({
       url: '/pages/collect/collect',
+    })
+  },
+
+  navConsider () {
+    wx.navigateTo({
+      url: '/pages/meConsider/meConsider',
     })
   },
 
@@ -24,6 +45,12 @@ Page({
     let that = this
     that.setData({
       visible: false
+    })
+  },
+
+  navJoin () {
+    wx.navigateTo({
+      url: '/pages/meJoin/meJoin',
     })
   },
 
@@ -88,7 +115,8 @@ Page({
     if (app.globalData.userInfo == null) {
       that.setData({ showUserInfo: false })
     } else {
-      that.setData({ showUserInfo: true, userInfo: app.globalData.userInfo, avatar: app.globalData.userInfo.avatar })
+      that.getUser()
+      that.setData({ showUserInfo: true })
     }
   },
 

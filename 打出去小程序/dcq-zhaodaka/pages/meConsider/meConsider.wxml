@@ -1,0 +1,14 @@
+<!--pages/meConsider/meConsider.wxml-->
+<view class="meConsider">
+  <view class="meConsider_main">
+    <block wx:for="{{items}}" wx:key="index">
+      <view class="meConsider_list" bindtap="navApply" data-id="{{item.activity_id}}">{{item.activity_title}}</view>
+    </block>
+    <view class='no_data' wx:if="{{noDataShow}}">
+      <view class='nd_pic'>
+        <image src='../../images/noorder.png'></image>
+      </view>
+      <view class='nd_text'>暂无数据</view>
+    </view>
+  </view>
+</view>

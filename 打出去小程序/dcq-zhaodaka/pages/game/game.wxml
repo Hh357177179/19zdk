@@ -6,7 +6,7 @@
         <image src="../../images/chazhao.png"></image>
       </view>
       <view class="search_input">
-        <input placeholder="Search for" value="{{searchVal}}" bindinput="onSearch"></input>
+        <textarea auto-height placeholder="输入标题中的任意字段搜索" value="{{searchVal}}" bindinput="onSearch"></textarea>
       </view>
       <view class="search_icon">
         <image src="../../images/cancel.png" bindtap="deleteSearch" wx:if="{{showDelete}}"></image>
@@ -58,16 +58,22 @@
             <image class="info_icon" src="../../images/times.png"></image>
             <view class="card_right">时间：{{item.dates}}</view>
           </view>
-          <view class="info_text">
-            <image class="info_icon" src="../../images/heart.png"></image>
+          <view wx:if="{{likeStatus}}" data-status="{{item.is_like}}" class="info_text" catchtap="collectClick" data-index="{{index}}" data-id="{{item.id}}">
+            <image class="info_icon" wx:if="{{item.is_like == true}}" src="../../images/cheart.png"></image>
+            <image class="info_icon" wx:else src="../../images/heart.png"></image>
             <view class="card_right">{{item.like_num}}</view>
           </view>
         </view>
       </view>
     </block>
   </view>
-  <wux-popup hasHeader="false" visible="{{ visible }}" title="提示" bind:close="onClose">
+  <wux-popup hasHeader="{{false}}" closable visible="{{ visible }}" bind:close="onClose">
     <view class="title">提示</view>
+    <view class="tip_main">打出去的工蜂会员可以看到每项赛事最详细的信息。立即加入我们工蜂队伍吗？</view>
+    <view class="tip_btn">
+      <view class="cancel btns" bindtap="onClose">取消</view>
+      <view class="true_btn btns" bindtap="clickTrue">确定</view>
+    </view>
   </wux-popup>
 </view>
 

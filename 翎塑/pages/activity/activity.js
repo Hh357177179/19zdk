@@ -20,6 +20,13 @@ Page({
     id: ''
   },
 
+  searchDetail (e) {
+    let id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: `/pages/meal/meal?id=${id}`
+    })
+  },
+
   cardDetail (e) {
     console.log(e)
     let id = e.currentTarget.dataset.id

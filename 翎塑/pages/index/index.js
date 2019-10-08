@@ -25,6 +25,12 @@ Page({
     })
   },
 
+  navBuy () {
+    wx.navigateTo({
+      url: '/pages/buyList/buyList',
+    })
+  },
+
   // 跳转佣金日志
   navLog() {
     wx.navigateTo({

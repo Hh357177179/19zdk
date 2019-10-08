@@ -4,26 +4,26 @@
   padding: 0 40rpx;
 }
 .odds_card{
-  min-height: 220rpx;
-  background: #333;
+  /* min-height: 220rpx; */
+  color: #333;
+  /* background: #333; */
   margin-top: 20rpx;
   border-top-left-radius: 20rpx;
   border-top-right-radius: 20rpx;
-  padding: 30rpx 30rpx 0;
+  /* padding: 30rpx 30rpx 0; */
 }
 .small_title{
-  color: #fff;
   font-size: 24rpx;
 }
 .card_title{
   font-size: 32rpx;
-  color: #fff;
+  margin-bottom: 20rpx;
   margin-top: 10rpx;
-  height: 80rpx;
+  /* height: 80rpx; */
+  font-weight: bold;
 }
 .card_price{
   font-size: 26rpx;
-  color: #fff;
   margin-top: 20rpx;
 }
 .money_num{
@@ -43,6 +43,9 @@
   background: #f0f0f0;
   border-radius: 10rpx;
   margin-top: 20rpx;
+}
+.detail_info image {
+  width: 100% !important;
 }
 
 .bot{
@@ -71,4 +74,13 @@
 }
 .moneys{
   color: #e47e64;
+}
+.pic_main{
+  width: 100%;
+}
+.pic_main image{
+  width: 100%;
+}
+.times_text{
+  font-size: 28rpx;
 }

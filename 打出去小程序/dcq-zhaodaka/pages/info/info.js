@@ -17,6 +17,8 @@ Page({
     place: '请选择居住地',
     nowDate: '',
     status: '',
+    identityArr: ['监护人'],
+    identity: '请选择身份',
     array: ['中国大陆', '其他国籍'],
     genderArr: ['男', '女'],
     swordsArr: ['花剑', '重剑', '佩剑', '各剑种', '花剑与佩剑', '花剑与重剑', '佩剑与重剑'],
@@ -41,6 +43,7 @@ Page({
     relationship: '', //与选手关系
     phone: '', //联系电话
     email: '', //E-mall
+    states: false
   },
 
   onClose () {
@@ -75,6 +78,15 @@ Page({
           }
         })
       }
+    })
+  },
+
+  bindIdentityChange (e) {
+    console.log(e)
+    let that = this
+    let index = e.detail.value
+    that.setData({
+      identity: that.data.identityArr[index]
     })
   },
 
@@ -207,13 +219,23 @@ Page({
     } else if (params.phone == '') {
       util.showMsg('请输入联系电话', '../../images/warning.png')
     } else {
-      postRequest('/user/updateMyinfo', params, true).then(res => {
-        console.log(res)
-        util.showMsg('修改成功', '../../images/successIcon.png')
-        setTimeout(() => {
-          wx.navigateBack()
-        }, 1500)
-      })
+      if (app.globalData.userInfo.status == 1) {
+        postRequest('/user/authenticationPlayer', params, true).then(res => {
+          console.log(res)
+          util.showMsg('认证成功', '../../images/successIcon.png')
+          setTimeout(() => {
+            wx.navigateBack()
+          }, 1500)
+        })
+      } else {
+        postRequest('/user/updateMyinfo', params, true).then(res => {
+          console.log(res)
+          util.showMsg('修改成功', '../../images/successIcon.png')
+          setTimeout(() => {
+            wx.navigateBack()
+          }, 1500)
+        })
+      }
     }
   },
 
@@ -224,6 +246,7 @@ Page({
     console.log(state)
     if (state == 1) {
       console.log('新增')
+      that.editInfo()
     } else if (state == 2) {
       console.log('编辑')
       that.editInfo()
@@ -336,8 +359,14 @@ Page({
     let status = app.globalData.userInfo.status
     if (status != '1') {
       console.log('调用查看我的信息')
+      that.setData({
+        states: false
+      })
       that.getMeInfo()
     } else {
+      that.setData({
+        states: true
+      })
       console.log('添加')
     }
     that.setData({

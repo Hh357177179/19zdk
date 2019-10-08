@@ -83,6 +83,12 @@
       </view>
       <view>我的收藏</view>
     </view>
+    <view class="list_card"  bindtap='navBuy'>
+      <view class="list_icon">
+        <image src="../../images/buyList.png"></image>
+      </view>
+      <view>我的套餐</view>
+    </view>
   </view>
   <view class='order_bot'>
     <view class="jingx bot_card" bindtap="navHair">

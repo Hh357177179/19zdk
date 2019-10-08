@@ -1,0 +1,85 @@
+<!--pages/groupDetail/groupDetail.wxml-->
+<wxs module="dateFr" src="../../utils/dateFr.wxs"></wxs>
+<view class="group_detail">
+  <view class="title">{{itemObj.title}}</view>
+  <view class="info">
+    <view class="detail_date">时间：{{dateFr.getDate(itemObj.time * 1000,'-','')}}</view>
+    <view class="detail_date" wx:if="{{itemObj.type != 4}}">地点：{{itemObj.address}}</view>
+  </view>
+  <view class="detail_type" wx:if="{{itemObj.type != 4}}">指导/教练：{{itemObj.teacher}}</view>
+  <view class="detail_pic" wx:if="{{itemObj.type != 4}}">
+    <block wx:for="{{image}}" wx:key="index">
+      <view class="pic_list">
+        <image src="{{item}}"></image>
+      </view>
+    </block>
+    <view class="clear"></view>
+  </view>
+  <view wx:if="{{itemObj.type == 3}}">
+    <view class="bigTitle">
+      <view class="title_icon">
+        <image src="../../images/paimingIcon.png"></image>
+      </view>
+      <view class="bigTitle_text">最终排名</view>
+    </view>
+    <view class="paiming">第 {{extra.rank}} 名</view>
+    <block wx:for="{{extra.group}}" wx:key="index">
+      <view class="group_main">
+        <view class="group_title">第 {{index + 1}} 轮小组赛</view>
+        <view class="group_top">
+          <view class="group_top_list">排名</view>
+          <view class="group_top_list">M#</view>
+          <view class="group_top_list">V#</view>
+          <view class="group_top_list">HS</view>
+          <view class="group_top_list">HR</view>
+          <view class="group_top_list">备注</view>
+        </view>
+        <view class="group_second">
+          <view class="group_second_list">{{item.group_rank}}</view>
+          <view class="group_second_list">{{item.group_m}}</view>
+          <view class="group_second_list">{{item.group_v}}</view>
+          <view class="group_second_list">{{item.group_hs}}</view>
+          <view class="group_second_list">{{item.group_hr}}</view>
+          <view class="group_second_list">{{item.group_note}}</view>
+        </view>
+        <view class="group_card">
+          <block wx:for="{{item.rival}}" wx:key="index" wx:for-item="rival">
+            <view class="card_list">
+              <view class="list_name">{{user}}</view>
+              <view class="list_name list_vs">VS</view>
+              <view class="list_name">{{rival.name}}</view>
+            </view>
+            <view class="card_list">
+              <view class="list_name list_vs">{{rival.mescore}}</view>
+              <view class="list_name list_vs">:</view>
+              <view class="list_name list_vs">{{rival.rivalscore}}</view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </block>
+    <block wx:for="{{extra.weed}}" wx:key="index">
+      <view class="group_main">
+        <view class="group_title">第 {{index + 1}} 轮淘汰赛</view>
+        <view class="group_card">
+          <block wx:for="{{item.weedGroup}}" wx:key="index" wx:for-item="weed">
+            <view class="card_list">
+              <view class="list_name">{{user}}</view>
+              <view class="list_name list_vs">VS</view>
+              <view class="list_name">{{weed.weed_name}}</view>
+            </view>
+            <view class="card_list">
+              <view class="list_name list_vs">{{weed.weed_mescore}}</view>
+              <view class="list_name list_vs">:</view>
+              <view class="list_name list_vs">{{weed.weed_rivalscore}}</view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </block>
+  </view>
+  <view class="group_main">
+    <view class="group_title">日记</view>
+    <view class="rj_text">{{itemObj.note}}</view>
+  </view>
+</view>
