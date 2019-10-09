@@ -62,10 +62,10 @@ Page({
 
   // 转账
   navTransfer () {
-    let that = this
-    that.setData({
-      visible: true
-    })
+    // let that = this
+    // that.setData({
+    //   visible: true
+    // })
   },
 
   navHoney () {

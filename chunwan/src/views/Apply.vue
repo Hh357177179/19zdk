@@ -40,13 +40,21 @@
         </div>
       </van-cell-group>
     </div>
+    <van-popup v-model="show" position="bottom">
+      <van-area :area-list="areaList" @cancel="closeArea" @confirm="choPlace"/>
+    </van-popup>
   </div>
 </template>
 
 <script>
+import areaList from '../assets/utils/area.js';
 export default {
+  components: {areaList},
   data() {
     return {
+      areaPlace: [],
+      areaList: null,
+      show: false,
       name: "",
       errorName: "",
       age: "",
@@ -59,9 +67,22 @@ export default {
       errorPlace: ""
     };
   },
+  created () {
+    this.init()
+  },
   methods: {
+    init () {
+      this.areaList = areaList
+    },
     choosePlace () {
-      console.log('请选择地址')
+      this.show = true
+    },
+    closeArea () {
+      this.show = false
+    },
+    choPlace (e) {
+      console.log(e)
+      this.areaPlace = e
     }
   }
 };

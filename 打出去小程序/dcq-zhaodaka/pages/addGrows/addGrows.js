@@ -11,7 +11,7 @@ Page({
    */
   data: {
     num: '3',
-    array: ['训练', '活动', '比赛', '日记'],
+    array: ['训练', '活动', '比赛'],
     title: '',
     time: '事件时间',
     typeTitle: '事件类型',

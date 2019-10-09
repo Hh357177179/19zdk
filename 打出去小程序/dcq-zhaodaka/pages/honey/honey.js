@@ -13,6 +13,26 @@ Page({
     pagesize: 15,
     counts: 0,
     noDataShow: false,
+    honeyNum: 0,
+    showHoney: false,
+    codeSrc: '',
+    btnText: '显示蜂蜜日志'
+  },
+
+  showBtn () {
+    let that = this
+    that.setData({
+      showHoney: !that.data.showHoney
+    })
+    if (that.data.showHoney == true) {
+      that.setData({
+        btnText: '隐藏蜂蜜日志'
+      })
+    } else {
+      that.setData({
+        btnText: '显示蜂蜜日志'
+      })
+    }
   },
 
   getList () {
@@ -39,7 +59,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getList()
+    let that = this
+    that.setData({
+      honeyNum: app.globalData.userInfo.coin,
+      codeSrc: 'https://ssl.zhaodaka.net/dcq/api/user/qcode?token=' + app.globalData.token 
+    })
+    that.getList()
   },
 
   /**

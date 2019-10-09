@@ -1,7 +1,17 @@
 <!--pages/honey/honey.wxml-->
 <view class="honey">
-  <!-- <view class="honey_head"></view> -->
-  <view class="honey_main">
+  <view class="honey_head">
+    我的蜂蜜：{{honeyNum}}
+  </view>
+  <view class="er_code">
+    <view class="code_text">蜂蜜接收二维码</view>
+    <view class="code_pic">
+      <image src="{{codeSrc}}"></image>
+    </view>
+    <view class="code_text">扫描二维码进入转账蜂蜜页面</view>
+    <view class="code_btn" bindtap="showBtn">{{btnText}}</view>
+  </view>
+  <view class="honey_main" wx:if="{{showHoney}}">
     <block wx:for="{{items}}" wx:key="index">
       <view class="honey_list">
         <view>{{item.note}}</view>

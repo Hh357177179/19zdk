@@ -22,9 +22,30 @@ Page({
     }
     postRequest('/user/matchDetail', params, true).then(res => {
       console.log(res)
+      let linkArr = JSON.parse(res.link)
+      console.log(linkArr)
+      let arrs = []
+      for (let i in linkArr) {
+        let obj = {}
+        if (linkArr[i].indexOf('dcqweb.zhaodaka.vip') != -1) {
+          let indexStr = linkArr[i].indexOf('activity_id=')
+          let str = linkArr[i].substr(indexStr + 12, 3)
+          console.log(str)
+          obj.state = 1
+          obj.ids = str
+          obj.path = ''
+          arrs.push(obj)
+        } else {
+          obj.ids = '',
+          obj.path = linkArr[i]
+          obj.state = 0
+          arrs.push(obj)
+        }
+      }
+      console.log(arrs)
       that.setData({
         itemObj: res,
-        link: JSON.parse(res.link)
+        link: arrs
       })
     })
   },
@@ -39,14 +60,31 @@ Page({
     that.getList()
   },
 
+  copyText (e) {
+    console.log(e)
+    let link = e.currentTarget.dataset.link
+    wx.showToast({
+      title: '复制成功',
+    })
+    wx.setClipboardData({
+      data: link,
+      success: function (res) {
+        wx.getClipboardData({
+          success: function(res) {
+            console.log(res.data) // data
+          }
+        })
+      }
+    })
+  },
+
   navApply (e) {
     let that = this
-    let link = e.currentTarget.dataset.link
-    let id = link.split('activity_id=')
+    let id = e.currentTarget.dataset.link
     console.log(id)
-    // wx.navigateTo({
-    //   url: `/pages/apply/apply?id=${id[1]}`,
-    // })
+    wx.navigateTo({
+      url: `/pages/apply/apply?id=${id}`,
+    })
   },
 
   /**

@@ -7,17 +7,20 @@ const fromDate = date => {
 
     let h = Dates.getHours()
     let m = Dates.getMinutes()
-    let s = Dates.getSeconds()
     
-    if (M < 10) M = '0' + M
-    if (D < 10) D = '0' + D
-    if (h < 10) h = '0' + h
-    if (m < 10) m = '0' + m
-    if (s < 10) h = '0' + s
-
+    if (M < 10) {
+      M = '0' + M
+    }
+    if (D < 10) {
+      D = '0' + D
+    }
+    if (h < 10) {
+      h = '0' + h
+    }
+    if (m < 10) {
+      m = '0' + m
+    }
     return `${Y}-${M}-${D} ${h}:${m}`
-
-
   } else {
     return
   }
