@@ -44,11 +44,18 @@
 							"navigationBarTitleText": "咖点"
 						}
         }
+        ,{
+            "path" : "pages/welcome/welcome",
+            "style" : {
+							"titleNView": false,
+							"navigationStyle": "custom"
+						}
+        }
     ],
 
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
+		"navigationBarTitleText": "找大咖",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8",
 		"bounce": "none"

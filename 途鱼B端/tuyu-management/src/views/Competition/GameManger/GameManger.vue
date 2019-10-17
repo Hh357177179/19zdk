@@ -69,10 +69,11 @@
         </el-table-column>
         <el-table-column align="center" prop="name" label="赛事状态" width="120">
           <template slot-scope="scope">
-            <p v-if="scope.row.status == 1">招募中</p>
-            <p v-if="scope.row.status == 2">即将开赛</p>
-            <p v-if="scope.row.status == 3">进行中</p>
-            <p v-if="scope.row.status == 4">已结束</p>
+            <el-tag type="warning" v-if="scope.row.status == 0">已取消</el-tag>
+            <el-tag v-if="scope.row.status == 1">招募中</el-tag>
+            <el-tag type="info" v-if="scope.row.status == 2">即将开赛</el-tag>
+            <el-tag type="success" v-if="scope.row.status == 3">进行中</el-tag>
+            <el-tag type="danger" v-if="scope.row.status == 4">已结束</el-tag>
           </template>
         </el-table-column>
         <el-table-column align="center" label="操作">
@@ -100,7 +101,7 @@
       <div class="detail_main">
         <p>赛事名称：{{detailObj.title}}</p>
         <p>赛事性质：{{detailObj.type_title}}</p>
-        <p>赛事时间：{{detailObj.draw_start_time | fromDate}}—{{detailObj.draw_end_time | fromDate}}</p>
+        <p>赛事时间：{{detailObj.start_time | fromDate}}—{{detailObj.end_time | fromDate}}</p>
         <p>比赛钓场：{{detailObj.pond_province}}-{{detailObj.pond_city}}  {{detailObj.pond_title}}（可用钓台{{detailObj.position_number}}）</p>
         <p>赛事地址：{{detailObj.pond_address}}</p>
         <!-- <p>抽签制：</p> -->
@@ -154,7 +155,11 @@ export default {
         {
           value: "4",
           label: "已结束"
-        }
+        },
+        {
+          value: "5",
+          label: "已取消"
+        },
       ],
       tableData: [],
       detailObj: {}
@@ -165,7 +170,7 @@ export default {
   },
   methods: {
     handlePeopel (ref, row) {
-       if (this.$refs[ref] && row) {
+      if (this.$refs[ref] && row) {
         this.$refs[ref].getParentData(row);
       }
       this.peopleVisible = true;

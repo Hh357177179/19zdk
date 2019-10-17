@@ -9,6 +9,10 @@
 		},
 		onShow: function() {
 			// console.log('App Show')
+			uni.reLaunch({
+				url: '/pages/welcome/welcome'
+			});
+			uni.hideTabBar()
 		},
 		onHide: function() {
 			// console.log('App Hide')

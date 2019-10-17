@@ -23,10 +23,11 @@
     <block wx:for="{{imgs}}" wx:key="index">
       <view class="img_list">
         <image src="{{item}}"></image>
+        <image src="../../images/delete_img.png" class="delete_icon" bindtap="deleteImg" data-index="{{index}}"></image>
       </view>
     </block>
   </view>
-  <view class="upload_pic" bindtap="upLoadPic" wx:if="{{num != 4}}">上传新照片</view>
+  <view class="upload_pic" bindtap="upLoadPic" wx:if="{{num != 4}}">上传新照片（最多4张）</view>
   <view class="grade_main" wx:if="{{num == 3}}">
     <view class="text_title grade_title">我的成绩录入</view>
     <view class="garde_ranking">

@@ -10,6 +10,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    navNum: 1,
     showDelete: false,
     searchVal: '',
     nav: 1,
@@ -23,7 +24,108 @@ Page({
     keyword: '',
     visible: false,
     likeStatus: false,
-    timeNow: null
+    timeNow: null,
+    showGame: true,
+    showReward: false,
+    rewardItems: [],
+    swordsArr: ['花剑', '重剑', '佩剑'],
+    swordsText: '请选择剑种',
+    swords: '',
+    showSwords: false,
+    noDataShow: false
+  },
+
+  deleteSwords () {
+    let that = this
+    that.setData({
+      swordsText: '请选择剑种',
+      swords: '',
+      page: 1,
+      items: [],
+      showSwords: false
+    })
+    that.getList()
+  },
+
+  bindSwordsChange (val) {
+    console.log(val)
+    let that = this
+    that.setData({
+      swordsText: that.data.swordsArr[val.detail.value],
+      swords: that.data.swordsArr[val.detail.value],
+      page: 1,
+      items: [],
+      showSwords: true
+    })
+    that.getList()
+  },
+
+  navTab (e) {
+    let that = this
+    let num = e.currentTarget.dataset.num
+    that.setData({
+      navNum: num,
+      page: 1,
+      count: 0,
+      items: []
+    })
+    if (num == 1) {
+      that.getList()
+      that.setData({
+        showGame: true,
+        showReward: false
+      })
+    } else {
+      that.getRewardList()
+      that.setData({
+        showGame: false,
+        showReward: true
+      })
+    }
+  },
+
+  addDrill () {
+    if (app.globalData.token != '') {
+      if (this.data.navNum == 1) {
+        wx.navigateTo({
+          url: '/pages/addActive/addActive',
+        })
+      } else {
+        wx.navigateTo({
+          url: '/pages/addReward/addReward',
+        })
+      }
+    } else {
+      wx.navigateTo({
+        url: '/pages/login/login',
+      })
+    }
+  },
+
+  // 获取悬赏
+  getRewardList () {
+    let that = this
+    if (app.globalData.token == '') {
+      that.setData({
+        token: app.globalData.fakeToken
+      })
+    } else {
+      that.setData({
+        token: app.globalData.token
+      })
+    }
+    let params = {
+      page: that.data.page,
+      pagesize: that.data.pagesize,
+      token: that.data.token,
+    }
+    postRequest('/user/questionList', params, true).then(res => {
+      console.log('悬赏列表', res)
+      that.setData({
+        count: res.count,
+        rewardItems: that.data.items.concat(res.list)
+      })
+    })
   },
 
   navGame(e) {
@@ -33,7 +135,7 @@ Page({
         url: '/pages/login/login',
       })
     } else {
-      if (app.globalData.isVip < that.data.timeNow) {
+      if (app.globalData.isVip < that.data.timeNow) {x
         that.setData({
           visible: true
         })
@@ -102,11 +204,17 @@ Page({
       pagesize: that.data.pagesize,
       token: that.data.token,
       sort: that.data.sort,
+      swords: that.data.swords,
       keyword: that.data.keyword
     }
     console.log(params)
     postRequest('/user/matchList', params, true).then(res => {
       console.log(res)
+      if (res.count == 0) {
+        that.setData({ noDataShow: true })
+      } else {
+        that.setData({ noDataShow: false })
+      }
       that.setData({
         count: res.count,
         items: that.data.items.concat(res.list)

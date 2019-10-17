@@ -9,7 +9,7 @@
 		</view>
 		<view class="join_tel">
 			<text class="en_area">+86</text>
-			<input maxlength="11" class="input_tel" type="text" placeholder-style="color: #f0f0f0;font-size:30upx;font-weight:300;" placeholder="请输入11位手机号码" />
+			<input maxlength="11" value="" class="input_tel" type="text" placeholder-style="color: #f0f0f0;font-size:30upx;font-weight:300;" placeholder="请输入11位手机号码" />
 		</view>
 		<view class="join_code">
 			获取验证码

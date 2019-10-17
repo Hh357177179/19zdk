@@ -68,7 +68,7 @@
         <el-table-column align="center" prop="user_name" label="持卡人" width="140"></el-table-column>
         <el-table-column align="center" prop="status" label="转账状态" width="100">
           <template slot-scope="scope">
-            <span>{{scope.row.role == 1 ? '待转账' : '已转账'}}</span>
+            <span>{{scope.row.status == 1 ? '待转账' : '已转账'}}</span>
           </template>
         </el-table-column>
         <el-table-column align="center" label="操作" width="200">

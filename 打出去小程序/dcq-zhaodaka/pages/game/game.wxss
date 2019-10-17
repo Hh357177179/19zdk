@@ -5,16 +5,20 @@
   min-height: 100vh;
 }
 .headers{
-  padding-top: 26rpx;
+  padding-top: 10rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .search{
   min-height: 100rpx;
   background: #fff;
   border-radius: 8px;
-  padding: 0 30rpx;
+  padding: 0 10rpx;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-size: 30rpx;
 }
 .search_icon{
   width: 40rpx;
@@ -25,11 +29,12 @@
   height: 100%;
 }
 .search_input{
-  width: 500rpx;
+  width: 300rpx;
 }
 .search_input textarea{
-  width: 500rpx;
+  width: 280rpx;
   padding: 10rpx 0;
+  margin-left: 10rpx;
 }
 .search_card{
   display: flex;
@@ -87,11 +92,11 @@
   color: #fff;
 }
 .game_main{
-  margin-top: 24rpx;
+  margin-top: 10rpx;
   padding-bottom: 20rpx;
 }
 .game_list{
-  margin-top: 24rpx;
+  margin-bottom: 20rpx;
   padding: 50rpx 20rpx;
   background:rgba(255,255,255,1);
   box-shadow:0px 3px 17px 0px rgba(0,0,0,0.06);
@@ -177,4 +182,78 @@
   color: #fff;
   margin-left: 20rpx;
   border: none;
+}
+.tab_nav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 30rpx;
+}
+.tab_list{
+  width: 50%;
+  text-align: center;
+  color: #999;
+}
+.tab_text{
+  width: 80px;
+  margin: 0 auto;
+  padding: 20rpx 0 10rpx;
+}
+.chooseNavText {
+  color: #3E72E0;
+  font-weight: bold;
+  border-bottom: 4rpx solid #3E72E0;
+}
+.add_drill{
+  width: 100rpx;
+  height: 100rpx;
+  position: fixed;
+  right: 10rpx;
+  bottom: 10rpx;
+}
+.add_drill image{
+  width: 100%;
+  height: 100%;
+}
+.swords_title{
+  font-size: 30rpx;
+  height: 100rpx;
+  text-align: center;
+  line-height: 100rpx;
+  background: #fff;
+  width: 280rpx;
+  border-radius: 8rpx;
+  position: relative;
+}
+.defaultText {
+  color: #999;
+}
+.clear_icon{
+  width: 40rpx;
+  height: 40rpx;
+  position: absolute;
+  right: 10rpx;
+  top: 10rpx;
+}
+.clear_icon image{
+  width: 100%;
+  height: 100%;
+}
+.no_data{
+  width: 100%;
+  margin-top: 220rpx;
+}
+.nd_pic{
+  width: 240rpx;
+  height: 240rpx;
+  margin: 0 auto 10rpx;
+}
+.nd_pic image{
+  width: 100%;
+  height: 100%;
+}
+.nd_text{
+  font-size: 30rpx;
+  color:rgba(25,31,37,0.28);
+  text-align: center;
 }

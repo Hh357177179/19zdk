@@ -64,9 +64,9 @@
 
 <style lang="less">
 	.home {
-		min-height: 100vh;
+		// min-height: 100vh;
 		padding: 0 16upx;
-		background: #f0f0f0;
+		// background: #f0f0f0;
 		.status_bar {
 			height: var(--status-bar-height);
 			width: 100%;

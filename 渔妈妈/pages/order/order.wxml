@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <view class="home">
- <view class="search_main">
+  <view class="search_main">
     <view class="search_top">
       <view class="search_top_back">
         <image class="search_icon" src="../../images/searchs.png"></image>
@@ -10,14 +10,15 @@
     </view>
   </view>
   <view class="nav_bar">
-    <view class="nav_list" data-nav="1" bindtap="choNav">
-      <view class="{{nav == 1 ? 'cho_text' : ''}}">学校</view>
-      <view class="nav_bor {{nav == 1 ? 'cho_nav' : ''}}"></view>
-    </view>
     <view class="nav_list" data-nav="2" bindtap="choNav">
       <view class="{{nav == 2 ? 'cho_text' : ''}}">社区</view>
       <view class="nav_bor {{nav == 2 ? 'cho_nav' : ''}}"></view>
     </view>
+    <view class="nav_list" data-nav="1" bindtap="choNav">
+      <view class="{{nav == 1 ? 'cho_text' : ''}}">学校</view>
+      <view class="nav_bor {{nav == 1 ? 'cho_nav' : ''}}"></view>
+    </view>
+
   </view>
   <!-- 学校 -->
   <view style="padding-bottom: 60rpx;" wx:if="{{schoolShow}}">

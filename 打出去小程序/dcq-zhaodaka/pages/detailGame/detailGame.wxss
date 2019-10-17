@@ -57,3 +57,32 @@ page {
   margin-top: 10rpx;
   color: #3E72E0;
 }
+.apply_game{
+  background:linear-gradient(115deg,rgba(72,72,220,1) 0%,rgba(50,166,228,1) 100%);
+  color: #fff;
+  border-radius: 56rpx;
+  text-align: center;
+  width: 500rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  margin: 60rpx auto;
+}
+.note{
+  width: 670rpx;
+  margin: 30rpx auto 0;
+  background: rgba(255,255,255,1);
+  box-shadow: 0px 5px 9px 0px rgba(0,0,0,0.05);
+  border-radius: 10rpx;
+}
+.note textarea{
+  font-size: 26rpx;
+  padding: 30rpx;
+}
+.collect_icon{
+  width: 50rpx;
+  height: 50rpx;
+}
+.collect_icon image{
+  width: 100%;
+  height: 100%;
+}

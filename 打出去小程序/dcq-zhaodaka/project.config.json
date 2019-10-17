@@ -53,7 +53,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 8,
+			"current": -1,
 			"list": [
 				{
 					"id": -1,
@@ -186,6 +186,20 @@
 					"name": "成长详情",
 					"pathName": "pages/groupDetail/groupDetail",
 					"query": "id=3",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "上传比赛",
+					"pathName": "pages/addActive/addActive",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 20,
+					"name": "修改",
+					"pathName": "pages/editGrow/editGrow",
+					"query": "id=828",
 					"scene": null
 				}
 			]

@@ -11,7 +11,72 @@ Page({
     itemObj: {},
     id: '',
     pdfArr: [],
-    link: []
+    link: [],
+    message: ''
+  },
+
+  clickCollect() {
+    let that = this
+    let params = {
+      token: app.globalData.token,
+      relation_id: that.data.itemObj.id,
+      type: 6
+    }
+    postRequest('/mini/collect', params, true).then(res => {
+      console.log(res)
+      let isLike = `itemObj.is_collect`
+      if (res == 1) {
+        util.showMsg('收藏成功', '../../images/successIcon.png')
+        that.setData({ [isLike]: true })
+      } else {
+        util.showMsg('取消收藏', '../../images/successIcon.png')
+        that.setData({ [isLike]: false })
+      }
+    })
+  },
+
+  messageVal (e) {
+    let that = this
+    that.setData({
+      message: e.detail.value
+    })
+  },
+
+  applyGame () {
+    let that = this
+    let params = {
+      token: app.globalData.token,
+      match_id: that.data.itemObj.id,
+      code: '',
+      message: that.data.message
+    }
+    postRequest('/mini/matchOrderCreate', params, true).then(res => {
+      console.log(res)
+      let param = {
+        token: app.globalData.token,
+        order_id: res.order_id
+      }
+      postRequest('/mini/matchOrderPayByMini', param, true).then(res => {
+        let configs = JSON.parse(res.config)
+        wx.requestPayment({
+          timeStamp: configs.timeStamp,
+          nonceStr: configs.nonceStr,
+          package: configs.package,
+          signType: configs.signType,
+          paySign: configs.paySign,
+          'success': function (resSuccess) {
+            util.showMsg('支付成功', '../../images/successIcon.png')
+            setTimeout(() => {
+              wx.navigateBack()
+            }, 1500)
+          },
+          'fail': function (resFail) {
+            console.log(resFail)
+            util.showMsg('支付失败', '../../images/warning.png')
+          },
+        })
+      })
+    })
   },
 
   getList () {

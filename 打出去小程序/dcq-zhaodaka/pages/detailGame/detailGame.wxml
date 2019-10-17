@@ -1,9 +1,17 @@
 <!--pages/detailGame/detailGame.wxml-->
+<wxs module="dateFr" src="../../utils/dateFr.wxs"></wxs>
 <view class="detailGame">
   <view class="banner" wx:if="{{itemObj.logo != ''}}">
     <image src="{{itemObj.logo}}"></image>
   </view>
   <view class="detail_info">
+  <view class="detail_list" bindtap="clickCollect">
+      <view class="name">收藏：</view>
+      <view class="info collect_icon">
+        <image wx:if="{{itemObj.is_collect == false}}" src="../../images/collect.png"></image>
+        <image wx:if="{{itemObj.is_collect == true}}" src="../../images/collectC.png"></image>
+      </view>
+    </view>
     <view class="detail_list">
       <view class="name">赛事名称：</view>
       <view class="info">{{itemObj.name}}</view>
@@ -21,11 +29,16 @@
       <view class="info">{{itemObj.dates}}</view>
     </view>
     <view class="detail_list">
+      <view class="name">截止时间：</view>
+      <view class="info" wx:if="{{itemObj.order_time != 0}}">{{dateFr.getDate(itemObj.order_time * 1000,'-',':')}}</view>
+      <view class="info" wx:else>-</view>
+    </view>
+    <view class="detail_list">
       <view class="name">年龄资格：</view>
       <view class="info">{{itemObj.age}}</view>
     </view>
   </view>
-  <view class="detail_info">
+  <view class="detail_info" wx:if="{{itemObj.money == 0}}">
     <!-- <view class="apply_detail">报名方式以及详情</view>
     <view class="pdf_main">
       <block wx:for="{{pdfArr}}" wx:key="index">
@@ -38,4 +51,8 @@
       <view class="go_text" wx:if="{{item.path != ''}}" bindtap="copyText" data-link="{{item.path}}">点击复制</view>
     </block>
   </view>
+  <view class="note" wx:if="{{itemObj.money > 0}}">
+    <textarea maxlength="-1" auto-height="{{true}}" value="{{message}}" bindinput="messageVal" placeholder="请输入备注"></textarea>
+  </view>
+  <view class="apply_game" bindtap="applyGame" wx:if="{{itemObj.money > 0}}">报 名</view>
 </view>

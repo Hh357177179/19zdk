@@ -9,7 +9,7 @@
   <view class="detail_type" wx:if="{{itemObj.type != 4}}">指导/教练：{{itemObj.teacher}}</view>
   <view class="detail_pic" wx:if="{{itemObj.type != 4}}">
     <block wx:for="{{image}}" wx:key="index">
-      <view class="pic_list">
+      <view class="pic_list" wx:if="{{itemObj.images != ''}}">
         <image src="{{item}}"></image>
       </view>
     </block>
@@ -81,5 +81,10 @@
   <view class="group_main">
     <view class="group_title">日记</view>
     <view class="rj_text">{{itemObj.note}}</view>
+  </view>
+  <view class="bottom_btn">
+    <view wx:if="{{deletes == 0}}" class="edit_btn" bindtap="editBtns">编 辑</view>
+    <view wx:if="{{deletes == 1}}" class="edit_btns" bindtap="editBtns">编 辑</view>
+    <view wx:if="{{deletes == 1}}" class="delete_btn" bindtap="deleteList">删 除</view>
   </view>
 </view>

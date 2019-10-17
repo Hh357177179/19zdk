@@ -12,6 +12,7 @@ const defaultRequest = function ({ uniurl, unimethod, params, visloading } = {})
         method: vmethod,
         data: params,
         success: res => {
+					console.log(res)
           // if (res.data.code == 200) {
           //   uni.hideLoading()
           //   resolve(res.data.data)

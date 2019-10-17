@@ -1,0 +1,125 @@
+<!--pages/addGrows/addGrows.wxml-->
+<view class="addGrows">
+  <view class="add_list">
+    <picker class="pick_time" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+      <view class="picker_time {{typeTitle == '事件类型' ? 'cho_color' : ''}}">{{typeTitle}}</view>
+    </picker>
+  </view>
+  <view class="add_list">
+    <textarea auto-height="{{true}}" placeholder="新的成长事件" value="{{title}}" bindinput="titleVal" placeholder-style="color: #999;"></textarea>
+  </view>
+  <view class="add_list">
+    <picker class="pick_time" mode="date" value="{{time}}" bindchange="bindDateChange">
+      <view class="picker_time {{time == '事件时间' ? 'cho_color' : ''}}">{{time}}</view>
+    </picker>
+  </view>
+  <view class="add_list" wx:if="{{num != 4}}">
+    <textarea auto-height="{{true}}" placeholder="事件地点" value="{{address}}" bindinput="addressVal" placeholder-style="color: #999;"></textarea>
+  </view>
+  <view class="add_list" wx:if="{{num != 4}}">
+    <textarea auto-height="{{true}}" placeholder="教练 / 指导" value="{{teacher}}" bindinput="teacherVal" placeholder-style="color: #999;"></textarea>
+  </view>
+  <view class="img_card" wx:if="{{num != 4}}">
+    <block wx:for="{{imgs}}" wx:key="index">
+      <view class="img_list">
+        <image src="{{item}}"></image>
+        <image src="../../images/delete_img.png" class="delete_icon" bindtap="deleteImg" data-index="{{index}}"></image>
+      </view>
+    </block>
+  </view>
+  <view class="upload_pic" bindtap="upLoadPic" wx:if="{{num != 4}}">上传新照片（最多4张）</view>
+  <view class="grade_main" wx:if="{{num == 3}}">
+    <view class="text_title grade_title">我的成绩录入</view>
+    <view class="garde_ranking">
+      <view>最终排名</view>
+      <view class="ranking_input">
+        <textarea auto-height="{{true}}" placeholder="最终排名" type="number" value="{{extra.rank}}" bindinput="rankVal" placeholder-style="color: #999;"></textarea>
+      </view>
+    </view>
+    <view class="group_main">
+      <block wx:for="{{extra.group}}" wx:key="index">
+        <view class="group_title">第 {{index + 1}} 轮小组赛</view>
+        <view class="group_list">
+          <view class="title">排名</view>
+          <view class="title">M#</view>
+          <view class="title">V#</view>
+          <view class="title">HS</view>
+          <view class="title">HR</view>
+          <view class="title">备注</view>
+        </view>
+        <view class="group_list group_list_input">
+          <view class="title_input">
+            <textarea auto-height="{{true}}" placeholder="排名" data-index="{{index}}" type="number" bindinput="groupRankVal" placeholder-style="color: #999;" value="{{item.group_rank}}"></textarea>
+          </view>
+          <view class="title_input">
+            <textarea auto-height="{{true}}" placeholder="M#" data-index="{{index}}" bindinput="gtoupmVal" placeholder-style="color: #999;" value="{{item.group_m}}"></textarea>
+          </view>
+          <view class="title_input">
+            <textarea auto-height="{{true}}" placeholder="V#" data-index="{{index}}" bindinput="gtoupvVal" placeholder-style="color: #999;" value="{{item.group_v}}"></textarea>
+          </view>
+          <view class="title_input">
+            <textarea auto-height="{{true}}" placeholder="HS" data-index="{{index}}" bindinput="gtoupHsVal" placeholder-style="color: #999;" value="{{item.group_hs}}"></textarea>
+          </view>
+          <view class="title_input">
+            <textarea auto-height="{{true}}" placeholder="HR" data-index="{{index}}" bindinput="gtoupHrVal" placeholder-style="color: #999;" value="{{item.group_hr}}"></textarea>
+          </view>
+          <view class="title_input">
+            <textarea auto-height="{{true}}" placeholder="备注" data-index="{{index}}" bindinput="gtoupNoteVal" placeholder-style="color: #999;" value="{{item.group_note}}"></textarea>
+          </view>
+        </view>
+        <view class="info_desc">说明：详细得分自得分：对手得分</view>
+        <block wx:for="{{item.rival}}" wx:for-item="rival" wx:for-index="smallIndex" wx:key="smallIndex">
+          <view class="lists">
+            <view class="delete_Icon" bindtap="deleteRival" data-index="{{index}}" data-small="{{smallIndex}}" wx:if="{{smallIndex != 0}}">
+              <image src="../../images/shanchu_icon.png"></image>
+            </view>
+            <view class="rival_input {{smallIndex == 0 ? 'firstWidth' : ''}}">
+              <textarea auto-height="{{true}}" placeholder-style="color:#999;" data-small="{{smallIndex}}" data-index="{{index}}" placeholder="对手姓名" value="{{rival.name}}" bindinput="nameVal"></textarea>
+            </view>
+            <view class="num_input">
+              <textarea auto-height="{{true}}" placeholder="得分" data-small="{{smallIndex}}" data-index="{{index}}" placeholder-style="color: #999;" value="{{rival.mescore}}" bindinput="mescoreVal"></textarea>
+            </view>
+            <view class="fg">:</view>
+            <view class="num_input">
+              <textarea auto-height="{{true}}" placeholder="得分" data-small="{{smallIndex}}" data-index="{{index}}" placeholder-style="color:#999;" value="{{rival.rivalscore}}" bindinput="rivalscoreVal"></textarea>
+            </view>
+          </view>
+        </block>
+        <view class="add_rival" bindtap="addRival" data-index="{{index}}">新增对手</view>
+      </block>
+    </view>
+    <view class="add_rival add_group" bindtap="addGroup">新增小组赛</view>
+    <view class="group_main">
+      <block wx:for="{{extra.weed}}" wx:key="index">
+        <view class="group_title">第 {{index + 1}} 轮淘汰赛</view>
+        <view class="info_desc">说明：详细得分自得分：对手得分</view>
+        <block wx:for="{{item.weedGroup}}" wx:for-item="weed" wx:for-index="smallIndex" wx:key="smallIndex">
+          <view class="lists">
+            <view class="delete_Icon" bindtap="deleteWeed" data-index="{{index}}" data-small="{{smallIndex}}" wx:if="{{smallIndex != 0}}">
+              <image src="../../images/shanchu_icon.png"></image>
+            </view>
+            <view class="rival_input {{smallIndex == 0 ? 'firstWidth' : ''}}">
+              <textarea auto-height="{{true}}" placeholder-style="color:#999;" data-small="{{smallIndex}}" data-index="{{index}}" placeholder="对手姓名" value="{{weed.weed_name}}" bindinput="weedNameVal"></textarea>
+            </view>
+            <view class="num_input">
+              <textarea auto-height="{{true}}" placeholder="得分" data-small="{{smallIndex}}" data-index="{{index}}" placeholder-style="color: #999;" value="{{weed.weed_mescore}}" bindinput="weedMescoreVal"></textarea>
+            </view>
+            <view class="fg">:</view>
+            <view class="num_input">
+              <textarea auto-height="{{true}}" placeholder="得分" data-small="{{smallIndex}}" data-index="{{index}}" placeholder-style="color:#999;" value="{{weed.weed_rivalscore}}" bindinput="weedRivalscoreVal"></textarea>
+            </view>
+          </view>
+        </block>
+        <view class="add_rival" bindtap="addWeed" data-index="{{index}}">新增对手</view>
+      </block>
+    </view>
+    <view class="add_rival add_group" bindtap="addWeedGroup">新增淘汰赛</view>
+  </view>
+  <view class="text_main">
+    <view class="text_title">日记</view>
+    <view class="text_area">
+      <textarea class="write" value="{{note}}" bindinput="noteVal" maxlength="-1" auto-height placeholder="写点什么吧..." placeholder-style="color: #999;" />
+    </view>
+  </view>
+  <view class="submit" bindtap="editSubmit">修 改</view>
+</view>

@@ -19,7 +19,10 @@
     "pages/meConsider/meConsider",
     "pages/detailGame/detailGame",
     "pages/addDrill/addDrill",
-    "pages/groupDetail/groupDetail"
+    "pages/groupDetail/groupDetail",
+    "pages/addActive/addActive",
+    "pages/addReward/addReward",
+    "pages/editGrow/editGrow"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -6,6 +6,7 @@ import { postRequest } from '../../utils/httpRequest.js'
 
 Page({
   data: {
+    noDataShow: false,
     showDelete: false,
     searchVal: '',
     nav: 1,
@@ -14,7 +15,144 @@ Page({
     pagesize: 10,
     title: '',
     count: 0,
-    items: []
+    items: [],
+    visible: false,
+    time_min: '',
+    time_max: '',
+    time_mins: '开始时间',
+    time_maxs: '结束时间',
+    typeArr: [],
+    type: '',
+    types: '请选择活动类型',
+    stage: '',
+    stageArr: [
+      { id: '1', name: '正在筹备' },
+      { id: '2', name: '即将开始' },
+      { id: '3', name: '已经结束' },
+    ],
+    swordArr: [],
+    swords: '',
+    swordsId: '0',
+    address: ''
+  },
+  titleVal (e) {
+    let that = this
+    that.setData({
+      title: e.detail.value
+    })
+  },
+  addressVal (e) {
+    let that = this
+    that.setData({
+      address: e.detail.value
+    })
+  },
+  restBtn () {
+    let that = this
+    that.setData({
+      page: 1,
+      stage: '',
+      title: '',
+      swords: '',
+      type: that.data.type,
+      types: '请选择活动类型',
+      time_min: '',
+      time_max: '',
+      time_mins: '开始时间',
+      time_maxs: '结束时间',
+      swordsId: '0',
+      address: ''
+    })
+    that.setData({ items: [], page: 1 })
+    that.getList()
+  },
+
+  trueSearch () {
+    let that = this
+    that.setData({ items: [], page: 1 })
+    that.getList()
+  },
+
+  stageClick (e) {
+    console.log(e)
+    let that = this
+    that.setData({
+      stage: e.currentTarget.dataset.stage_num
+    })
+  },
+  swordsClick (e) {
+    let that = this
+    that.setData({
+      swordsId: e.currentTarget.dataset.swords_num,
+      swords: e.currentTarget.dataset.name
+    })
+  },
+
+  getSwordList () {
+    let that = this
+    let params = {
+      token: that.data.token
+    }
+    postRequest('/activity/swordsList', params, true).then(res => {
+      console.log(res)
+      that.setData({
+        swordArr: res
+      })
+    })
+  },
+
+  bindTypeChange (e) {
+    console.log(e)
+    let that = this
+    that.setData({
+      types: that.data.typeArr[e.detail.value].name,
+      type: that.data.typeArr[e.detail.value].name,
+    })
+  },
+
+  // 获取活动类型
+  getTypeList () {
+    let that = this
+    let params = {
+      token: that.data.token
+    }
+    postRequest('/activity/typeList', params, true).then(res => {
+      console.log(res)
+      that.setData({ typeArr: res })
+    })
+  },
+
+  bindStartChange (e) {
+    console.log(e)
+    let that = this
+    that.setData({
+      time_min: e.detail.value,
+      time_mins: e.detail.value
+    })
+  },
+
+  bindEndChange(e) {
+    console.log(e)
+    let that = this
+    that.setData({
+      time_max: e.detail.value,
+      time_maxs: e.detail.value
+    })
+  },
+
+  onClose () {
+    let that = this
+    that.setData({
+      visible: false
+    })
+  },
+
+  filtratePopu () {
+    console.log('弹出层')
+    let that = this
+    that.setData({
+      visible: true
+    })
   },
 
   // 添加训练
@@ -53,73 +191,64 @@ Page({
       nav: navIndex
     })
   },
-
-  // 清空搜索框
-  deleteSearch () {
-    let that = this
-    that.setData({
-      searchVal: '',
-      showDelete: false,
-      title: '',
-      page: 1,
-      items:[]
-    })
-    that.getList()
-  },
-
-  // 监听搜索框
-  onSearch (e) {
-    console.log(e)
-    let that = this
-    let value = e.detail.value
-    if (value != '') {
-      that.setData({
-        showDelete: true
-      })
-    } else {
-      that.setData({
-        showDelete: false
-      })
-    }
-    that.setData({ title: value, page: 1, items: [] })
-    that.getList()
-  },
   
 
   // 获取首页列表
   getList () {
     let that = this
+    let time_min = ''
+    let time_max = ''
     if (app.globalData.token == '') {
       that.setData({ token: app.globalData.fakeToken })
     } else {
       that.setData({ token: app.globalData.token })
     }
+    if (that.data.time_min == '开始时间') {
+      that.setData({ time_min: '' })
+    } else {
+      time_min = new Date(that.data.time_min) / 1000
+    }
+    if (that.data.time_max == '结束时间') {
+      that.setData({ time_max: '' })
+    } else {
+      time_max = new Date(that.data.time_max) / 1000
+    }
+    if (that.data.type == '请选择活动类型') {
+      that.setData({ type: ''})
+    }
     let params = {
       page: that.data.page,
       pagesize: that.data.pagesize,
       token: that.data.token,
-      stage: '',
+      stage: that.data.stage,
       title: that.data.title,
-      swords: '',
+      swords: that.data.swords,
       format: '',
-      type: '',
-      address: '',
-      time_min: '',
-      time_max: ''
+      type: that.data.type,
+      address: that.data.address,
+      time_min: time_min,
+      time_max: time_max
     }
     console.log(params)
     postRequest('/activity/index', params, true).then(res => {
       console.log(res)
+      if (res.count == 0) {
+        that.setData({ noDataShow: true })
+      } else {
+        that.setData({ noDataShow: false })
+      }
       that.setData({
         count: res.count,
-        items: that.data.items.concat(res.list)
+        items: that.data.items.concat(res.list),
+        visible: false
       })
     })
   },
 
   
   onLoad: function (options) {
-    
+    this.getTypeList()
+    this.getSwordList()
   },
   onShow: function () {
     let that = this

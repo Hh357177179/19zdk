@@ -1,47 +1,59 @@
 <template>
   <div class="home">
     <div class="banner">
-      <img src="../assets/img/banner.jpeg" alt>
+      <van-swipe :autoplay="3000">
+        <van-swipe-item v-for="(item, index) in banner" :key="index" @click="navPath(item.url)">
+          <img :src="item.image" alt="">
+        </van-swipe-item>
+      </van-swipe>
     </div>
     <div class="home_main">
       <div class="main_list" @click="navApply">
         <div class="list_back">少</div>
         <div class="list_text">在线报名</div>
       </div>
-      <div class="main_list">
+      <div class="main_list" @click="navNotice">
         <div class="list_back">儿</div>
         <div class="list_text">赛事通知</div>
       </div>
-      <div class="main_list">
+      <div class="main_list" @click="navDesc">
         <div class="list_back">春</div>
-        <div class="list_text">购买门票</div>
+        <div class="list_text">晚会介绍</div>
       </div>
-      <div class="main_list">
+      <div class="main_list" @click="navActive">
         <div class="list_back">晚</div>
         <div class="list_text">活动图片</div>
       </div>
     </div>
     <div class="entrance">
       <div class="entrance_card">现场直播</div>
-      <div class="entrance_card">直通少儿春晚</div>
+      <div class="entrance_card" @click="navVote">直通少儿春晚</div>
     </div>
     <div class="advertising">
       <div class="advertising_list">
         <van-divider>独家冠名</van-divider>
         <div class="advertising_pic">
-          <img src="../assets/img/car1.jpeg" alt>
+          <van-swipe :autoplay="3000">
+            <van-swipe-item v-for="(item, index) in naming" :key="index" @click="navPath(item.url)">
+              <img :src="item.image" alt="">
+            </van-swipe-item>
+          </van-swipe>
         </div>
       </div>
       <div class="advertising_list">
         <van-divider>特约赞助</van-divider>
         <div class="advertising_pic">
-          <img src="../assets/img/car1.jpeg" alt>
+          <van-swipe :autoplay="3000">
+            <van-swipe-item v-for="(item, index) in sponsor" :key="index" @click="navPath(item.url)">
+              <img :src="item.image" alt="">
+            </van-swipe-item>
+          </van-swipe>
         </div>
       </div>
       <div class="advertising_list">
         <van-divider>新闻动态</van-divider>
-        <div class="advertising_pic">
-          <img src="../assets/img/car1.jpeg" alt>
+        <div class="advertising_pic" v-for="(item, index) in newList" :key="index" @click="newDetail(item.id)">
+          <img :src="item.logo" alt>
         </div>
       </div>
     </div>
@@ -49,14 +61,91 @@
 </template>
 
 <script>
+import { getPicList, getNewList } from '@/api/index.js'
 export default {
   data() {
-    return {};
+    return {
+      banner: [],
+      naming: [],
+      sponsor: [],
+      page: 1,
+      pagesize: 5,
+      newList: [],
+      count: 0
+    };
+  },
+  created () {
+    this.getBanner()
+    this.getNaming()
+    this.getSponsor()
+    this.getNews()
   },
   methods: {
+    navVote () {
+      this.$router.push('vote')
+    },
+    navActive () {
+      this.$router.push('/active')
+    },
+    newDetail (id) {
+      console.log(id)
+      this.$router.push({
+        path: `/new-detail/${id}`,
+      })
+    },
+    navDesc () {
+      window.location.href  = 'https://mp.weixin.qq.com/s?__biz=MzUyMDY5ODY4Nw==&tempkey=MTAzMF9veGNFV0hyL1lueWZPK2NsZzNvaHVTUnpOWXQ2bUJWeTk2TmN5N3NHQWc0b0p1aklmeC1GV0szb3NmYXExRjBxRF94YnZrUlJyUFlISzZLM2kzMjQ3eE1nalFCSlhTdUhVX05IUnFHcGlpbGVZREtYd3psNEJCTXprVzMteE5ZSjZZMzJRTXJQVmpRTjlmblRzTzY3QjFNS0pUdk5UZGkwNkxoSkd3fn4%3D&chksm=79e72f464e90a650507e158d052a17dfcfb07f57d0a6b53de973286d8a900e6c702ea1ad2db4#rd'
+    },
+    // 获取轮播
+    getBanner () {
+      let params = {
+        type: 1
+      }
+      getPicList(params).then(res => {
+        this.banner = res
+      })
+    },
+    // 获取独家冠名
+    getNaming () {
+      let params = {
+        type: 2
+      }
+      getPicList(params).then(res => {
+        console.log(res)
+        this.naming = res
+      })
+    },
+     // 获取赞助
+    getSponsor () {
+      let params = {
+        type: 3
+      }
+      getPicList(params).then(res => {
+        console.log(res)
+        this.sponsor = res
+      })
+    },
+    getNews () {
+      let params = {
+        page: this.page,
+        pagesize: this.pagesize
+      }
+      getNewList(params).then(res => {
+        console.log(res)
+        this.count = res.count
+        this.newList = res.list
+      })
+    },
+    navPath (url) {
+      console.log(url)
+      window.location.href  = url
+    },
     navApply () {
       this.$router.push('/apply')
-    }
+    },
+    navNotice () {
+      this.$router.push('/notice')
+    },
   }
 };
 </script>
@@ -66,6 +155,10 @@ export default {
   .banner {
     width: 100%;
     height: 200px;
+    .van-swipe{
+      width: 100%;
+      height: 100%;
+    }
     img {
       width: 100%;
       height: 100%;
@@ -119,8 +212,14 @@ export default {
       margin-top: 40px;
       .advertising_pic {
         width: 100%;
+        height: 200px;
+        .van-swipe{
+          width: 100%;
+          height: 100%;
+        }
         img {
           width: 100%;
+          height: 100%;
         }
       }
     }

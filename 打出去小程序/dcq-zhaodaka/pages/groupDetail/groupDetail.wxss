@@ -124,3 +124,40 @@ Page{
   font-size: 28rpx;
   line-height: 40rpx;
 }
+.edit_btn{
+  margin: 80rpx auto;
+  width: 500rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  color: #fff;
+  text-align: center;
+  background:linear-gradient(115deg,rgba(72,72,220,1) 0%,rgba(50,166,228,1) 100%);
+  border-radius:28px;
+  font-size: 28rpx;
+}
+.edit_btns{
+  margin: 80rpx auto;
+  width: 300rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  color: #fff;
+  text-align: center;
+  background:linear-gradient(115deg,rgba(72,72,220,1) 0%,rgba(50,166,228,1) 100%);
+  border-radius:28px;
+  font-size: 28rpx;
+}
+.bottom_btn{
+  display: flex;
+  justify-content: center;
+}
+.delete_btn{
+  margin: 80rpx auto;
+  width: 300rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  color: #8F98A8;
+  text-align: center;
+  background: #E8E9EA;
+  border-radius:28px;
+  font-size: 28rpx;
+}

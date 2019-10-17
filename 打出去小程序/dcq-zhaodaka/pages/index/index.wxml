@@ -8,33 +8,40 @@
         <view style="margin-top: 20rpx;">
           <wux-timeline position="alternate">
             <view class="no_dates" wx:if="{{noDates}}">
-              <wux-timeline-item dotStyle="border-color: #33cd5f; color: #33cd5f">
+              <wux-timeline-item dotStyle="border-color: #33cd5f; color: #33cd5f" bindtap="navLogin">
                   <view class="times" style="color: #33cd5f">YYYY-MM-DD</view>
                   <view style="color: #33cd5f">过去事件</view>
                 </wux-timeline-item>
-                <wux-timeline-item custom dotStyle="border-color: #ef473a; color: #ef473a">
+                <wux-timeline-item custom dotStyle="border-color: #ef473a; color: #ef473a" bindtap="navLogin">
                   <wux-icon slot="dot" type="ios-time" size="23" />
                   <view class="times" style="color:#ef473a;">YYYY-MM-DD</view>
                   <view style="color: #ef473a;">今天事件</view>
                 </wux-timeline-item>
-                <wux-timeline-item dotStyle="border-color: #4680ed; color: #4680ed">
+                <wux-timeline-item dotStyle="border-color: #4680ed; color: #4680ed" bindtap="navLogin">
                   <view style="color: #4680ed" class="times">YYYY-MM-DD</view>
                   <view style="color: #4680ed">将来事件</view>
                 </wux-timeline-item>
             </view>
             <view>
               <block wx:for="{{items}}" wx:key="index">
-                <wux-timeline-item wx:if="{{item.formTime > nowTime}}" bindtap="groupDetail" data-id="{{item.id}}">
+                <wux-timeline-item wx:if="{{item.formTime > nowTime}}" bindtap="groupDetail" data-id="{{item.id}}" data-type="{{item.type}}" data-relation_id="{{item.relation_id}}" data-is_complete="{{item.is_complete}}">
                   <view style="color: #4680ed;" class="times">{{dateFr.getDate(item.time * 1000,'-','')}}</view>
-                  <view style="color: #4680ed;">{{item.title}}</view>
+                  <view style="color: #4680ed;" class="list_title">{{item.title}}</view>
+                  <view class="state_text" wx:if="{{item.is_complete == 0 && item.type == 7 || item.type == 8}}">*待完善</view>
                 </wux-timeline-item>
-                <wux-timeline-item bindtap="groupDetail" wx:if="{{item.formTime < nowTime}}" dotStyle="border-color: #33cd5f; color: #33cd5f" data-id="{{item.id}}">
+                <wux-timeline-item bindtap="groupDetail" wx:if="{{item.formTime < nowTime}}" dotStyle="border-color: #33cd5f; color: #33cd5f" data-id="{{item.id}}" data-type="{{item.type}}" data-relation_id="{{item.relation_id}}" data-is_complete="{{item.is_complete}}">
                   <view class="times" style="color: #33cd5f">{{dateFr.getDate(item.time * 1000,'-','')}}</view>
-                  <view style="color: #33cd5f">{{item.title}}</view>
+                  <view style="color: #33cd5f" class="list_title">{{item.title}}</view>
+                  <view class="state_text" wx:if="{{item.is_complete == 0 && item.type == 7 || item.type == 8}}">*待完善</view>
                 </wux-timeline-item>
-                <wux-timeline-item bindtap="groupDetail" wx:if="{{item.formTime == nowTime}}" dotStyle="border-color: #ef473a; color: #ef473a" data-id="{{item.id}}">
+                <wux-timeline-item bindtap="groupDetail" wx:if="{{item.formTime == nowTime && item.states != 0}}" dotStyle="border-color: #ef473a; color: #ef473a" data-id="{{item.id}}" data-type="{{item.type}}" data-relation_id="{{item.relation_id}}" data-is_complete="{{item.is_complete}}">
                   <view style="color: #ef473a" class="times">{{dateFr.getDate(item.time * 1000,'-','')}}</view>
-                  <view style="color: #ef473a">{{item.title}}</view>
+                  <view style="color: #ef473a" class="list_title">{{item.title}}</view>
+                  <view class="state_text" wx:if="{{item.is_complete == 0 && item.type == 7 || item.type == 8}}">*待完善</view>
+                </wux-timeline-item>
+                <wux-timeline-item wx:if="{{item.times == nowTime && item.states == 0}}" dotStyle="border-color: #ef473a; color: #ef473a">
+                  <view style="color: #ef473a" class="times">{{item.times}}</view>
+                  <view style="color: #ef473a" class="list_title">今天</view>
                 </wux-timeline-item>
               </block>
             </view>

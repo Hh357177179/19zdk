@@ -88,7 +88,7 @@ Page({
     })
   },
 
-  addWeed (e) {
+  addWeed(e) {
     let that = this
     let index = e.currentTarget.dataset.index
     let arr = that.data.extra
@@ -121,7 +121,7 @@ Page({
     })
   },
 
-  deleteWeed (e) {
+  deleteWeed(e) {
     let that = this
     let index = e.currentTarget.dataset.index
     let small = e.currentTarget.dataset.small
@@ -148,31 +148,44 @@ Page({
 
   upLoadPic() {
     let that = this
+    let imgArr = []
     wx.chooseImage({
       success(res) {
-        const tempFilePaths = res.tempFilePaths
-        wx.uploadFile({
-          url: `${util.baseUrl}/user/upload`,
-          filePath: tempFilePaths[0],
-          name: 'file',
-          formData: {
-            'file': 'file'
-          },
-          success(res) {
-            console.log(res)
-            const imgs = JSON.parse(res.data)
-            if (that.data.imgs.length < 4) {
-              let arr = []
-              arr.push(imgs.data)
-              that.setData({
-                imgs: that.data.imgs.concat(arr)
-              })
-            } else {
-              util.showMsg('最多上传4张', '../../images/warning.png')
+        imgArr = res.tempFilePaths
+        for (let i in imgArr) {
+          wx.uploadFile({
+            url: `${util.baseUrl}/user/upload`,
+            filePath: imgArr[i],
+            name: 'file',
+            formData: {
+              'file': 'file'
+            },
+            success(res) {
+              console.log(res)
+              const imgs = JSON.parse(res.data)
+              if (that.data.imgs.length < 4) {
+                let arr = []
+                arr.push(imgs.data)
+                that.setData({
+                  imgs: that.data.imgs.concat(arr)
+                })
+              } else {
+                util.showMsg('最多上传4张', '../../images/warning.png')
+              }
             }
-          }
-        })
+          })
+        }
       }
+    })
+  },
+
+  deleteImg(e) {
+    let that = this
+    let index = e.currentTarget.dataset.index
+    let imgs = that.data.imgs
+    imgs.splice(index, 1)
+    that.setData({
+      imgs: imgs
     })
   },
 
@@ -235,7 +248,7 @@ Page({
   },
 
   // 比赛
-  gameAdd () {
+  gameAdd() {
     let that = this
     let params = {
       token: app.globalData.token,

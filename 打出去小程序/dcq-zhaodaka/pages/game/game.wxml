@@ -1,69 +1,66 @@
 <!--pages/game/game.wxml-->
 <view class="game">
-  <view class="headers">
-    <view class="search">
-      <view class="search_icon">
-        <image src="../../images/chazhao.png"></image>
+  <!-- <view class="tab_nav">
+    <view class="tab_list" bindtap="navTab" data-num="1">
+      <view class="tab_text {{navNum == 1 ? 'chooseNavText' : ''}}">比赛</view>
+    </view>
+    <view class="tab_list" bindtap="navTab" data-num="2">
+      <view class="tab_text {{navNum == 2 ? 'chooseNavText' : ''}}">悬赏</view>
+    </view>
+  </view> -->
+  <view wx:if="{{showGame}}">
+    <view class="headers">
+      <view class="search">
+        <view class="search_icon">
+          <image src="../../images/chazhao.png"></image>
+        </view>
+        <view class="search_input">
+          <textarea auto-height placeholder="输入标题搜索" value="{{searchVal}}" bindinput="onSearch"></textarea>
+        </view>
+        <view class="search_icon">
+          <image src="../../images/cancel.png" bindtap="deleteSearch" wx:if="{{showDelete}}"></image>
+        </view>
       </view>
-      <view class="search_input">
-        <textarea auto-height placeholder="输入标题中的任意字段搜索" value="{{searchVal}}" bindinput="onSearch"></textarea>
-      </view>
-      <view class="search_icon">
-        <image src="../../images/cancel.png" bindtap="deleteSearch" wx:if="{{showDelete}}"></image>
+      <view class="swords_title">
+        <picker bindchange="bindSwordsChange" value="{{index}}" range="{{swordsArr}}">
+          <view class="picker {{swordsText == '请选择剑种' ? 'defaultText' : ''}}">{{swordsText}}</view>
+        </picker>
+        <view class="clear_icon">
+          <image src="../../images/cancel.png" bindtap="deleteSwords" wx:if="{{showSwords}}"></image>
+        </view>
       </view>
     </view>
-    <!-- <view class="search_card">
-      <view class="search_list first_card">第一个</view>
-      <view class="search_list second_card">第二个</view>
-      <view class="search_list third_card">第三个</view>
+    <view class="game_main">
+      <block wx:for="{{items}}" wx:key="index">
+        <view class="game_list" bindtap="navGame" data-id="{{item.id}}">
+          <view class="list_info">
+            <view class="list_title">{{item.name}}</view>
+            <view class="info_text">
+              <image class="info_icon" src="../../images/jian.png"></image>
+              <view class="card_right">剑种：{{item.weapon}}</view>
+            </view>
+            <view class="info_text">
+              <image class="info_icon" src="../../images/age.png"></image>
+              <view class="card_right">年龄资格：{{item.age}}</view>
+            </view>
+            <view class="info_text">
+              <image class="info_icon" src="../../images/times.png"></image>
+              <view class="card_right">时间：{{item.dates}}</view>
+            </view>
+            <view wx:if="{{likeStatus}}" data-status="{{item.is_like}}" class="info_text" catchtap="collectClick" data-index="{{index}}" data-id="{{item.id}}">
+              <image class="info_icon" wx:if="{{item.is_like == true}}" src="../../images/cheart.png"></image>
+              <image class="info_icon" wx:else src="../../images/heart.png"></image>
+              <view class="card_right">{{item.like_num}}</view>
+            </view>
+          </view>
+        </view>
+      </block>
     </view>
-    <view class="sort_card">
-      <view class="sort_list {{nav == 1 ? 'chooseNav' : ''}}" bindtap="navSort" data-nav="1">
-        <view class="sort_icon">
-          <image wx:if="{{nav == 1}}" src="../../images/clock.png"></image>
-          <image wx:else src="../../images/clockC.png"></image>
-        </view>
-        <view>时间排序</view>
-      </view>
-      <view class="sort_list {{nav == 2 ? 'chooseNav' : ''}}" bindtap="navSort" data-nav="2">
-        <view class="sort_icon">
-          <image wx:if="{{nav == 2}}" src="../../images/list.png"></image>
-          <image wx:else src="../../images/listC.png"></image>
-        </view>
-        <view>剑种排序</view>
-      </view>
-      <view class="sort_list {{nav == 3 ? 'chooseNav' : ''}}" bindtap="navSort" data-nav="3">
-        <view class="sort_icon">
-          <image wx:if="{{nav == 3}}" src="../../images/date.png"></image>
-          <image wx:else src="../../images/dateC.png"></image>
-        </view>
-        <view>年龄排序</view>
-      </view>
-    </view> -->
   </view>
-  <view class="game_main">
-    <block wx:for="{{items}}" wx:key="index">
-      <view class="game_list" bindtap="navGame" data-id="{{item.id}}">
-        <view class="list_info">
-          <view class="list_title">{{item.name}}</view>
-          <view class="info_text">
-            <image class="info_icon" src="../../images/jian.png"></image>
-            <view class="card_right">剑种：{{item.weapon}}</view>
-          </view>
-          <view class="info_text">
-            <image class="info_icon" src="../../images/age.png"></image>
-            <view class="card_right">年龄资格：{{item.age}}</view>
-          </view>
-          <view class="info_text">
-            <image class="info_icon" src="../../images/times.png"></image>
-            <view class="card_right">时间：{{item.dates}}</view>
-          </view>
-          <view wx:if="{{likeStatus}}" data-status="{{item.is_like}}" class="info_text" catchtap="collectClick" data-index="{{index}}" data-id="{{item.id}}">
-            <image class="info_icon" wx:if="{{item.is_like == true}}" src="../../images/cheart.png"></image>
-            <image class="info_icon" wx:else src="../../images/heart.png"></image>
-            <view class="card_right">{{item.like_num}}</view>
-          </view>
-        </view>
+  <view wx:if="{{showReward}}">
+    <block>
+      <view class="reward_card">
+
       </view>
     </block>
   </view>
@@ -75,5 +72,13 @@
       <view class="true_btn btns" bindtap="clickTrue">确定</view>
     </view>
   </wux-popup>
+  <view class="add_drill" bindtap="addDrill">
+    <image src="../../images/addGroup.png"></image>
+  </view>
+  <view class='no_data' wx:if="{{noDataShow}}">
+      <view class='nd_pic'>
+        <image src='../../images/noorder.png'></image>
+      </view>
+      <view class='nd_text'>暂无数据</view>
+    </view>
 </view>
-

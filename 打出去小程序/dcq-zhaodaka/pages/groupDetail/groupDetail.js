@@ -11,7 +11,15 @@ Page({
     itemObj: {},
     id: '',
     image: [],
-    extra: {}
+    extra: {},
+    deletes: 0
+  },
+
+  editBtns () {
+    let id = this.data.itemObj.id
+    wx.navigateTo({
+      url: `/pages/editGrow/editGrow?id=${id}`,
+    })
   },
 
   getDetail () {
@@ -46,17 +54,36 @@ Page({
     })
   },
 
+  deleteList () {
+    let that = this
+    let params = {
+      id: that.data.itemObj.id,
+      token: app.globalData.token
+    }
+    postRequest('/mini/timeLineDel', params, true).then(res => {
+      console.log(res)
+      if (res) {
+        util.showMsg('删除成功', '../../images/successIcon.png')
+      }
+      setTimeout(() => {
+        wx.navigateBack()
+      }, 1500)
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     let that = this
+    console.log(options)
+    if (options.deletes) {
+      that.setData({ deletes: options.deletes })
+    }
     console.log(options.id)
     that.setData({
       id: options.id
     })
-    that.getDetail()
-    that.getUser()
   },
 
   /**
@@ -70,7 +97,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let that = this
+    that.getDetail()
+    that.getUser()
   },
 
   /**

@@ -18,6 +18,26 @@ Page({
     message: ''
   },
 
+  clickCollect () {
+    let that = this
+    let params = {
+      token: app.globalData.token,
+      relation_id: that.data.itemObj.id,
+      type: 5
+    }
+    postRequest('/mini/collect', params, true).then(res => {
+      console.log(res)
+      let isLike = `itemObj.is_collect`
+      if (res == 1) {
+        util.showMsg('收藏成功', '../../images/successIcon.png')
+        that.setData({ [isLike]: true })
+      } else {
+        util.showMsg('取消收藏', '../../images/successIcon.png')
+        that.setData({ [isLike]: false })
+      }
+    })
+  },
+
   // 报名
   applyBtn () {
     let that = this
@@ -117,7 +137,8 @@ Page({
     if (app.globalData.token != '') {
       that.setData({
         activity_id: options.id,
-        meUserId: app.globalData.userInfo.id
+        meUserId: app.globalData.userInfo.id,
+        token: app.globalData.token
       })
     }
     that.getDetail()

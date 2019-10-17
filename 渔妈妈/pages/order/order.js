@@ -7,7 +7,7 @@ import {
 
 Page({
   data: {
-    nav: 1,
+    nav: 2,
     items: [],
     likeItems: [],
     keyword: '',

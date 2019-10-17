@@ -12,8 +12,9 @@
         :on-success="handleSuccess"
         :before-upload="beforeUpload"
         class="editor-slide-upload"
-        action="https://httpbin.org/post"
+        action="/admin/project/upload"
         list-type="picture-card"
+        :data="tokens"
       >
         <el-button size="small" type="primary">
           点击上传
@@ -42,6 +43,9 @@ export default {
   },
   data() {
     return {
+      tokens: {
+        token: sessionStorage.getItem('token')
+      },
       dialogVisible: false,
       listObj: {},
       fileList: []
@@ -63,17 +67,21 @@ export default {
       this.dialogVisible = false
     },
     handleSuccess(response, file) {
+      console.log(file)
       const uid = file.uid
       const objKeyArr = Object.keys(this.listObj)
+      console.log(objKeyArr)
+      console.log(1111,response)
       for (let i = 0, len = objKeyArr.length; i < len; i++) {
         if (this.listObj[objKeyArr[i]].uid === uid) {
-          this.listObj[objKeyArr[i]].url = response.files.file
+          this.listObj[objKeyArr[i]].url = response.data.url
           this.listObj[objKeyArr[i]].hasSuccess = true
           return
         }
       }
     },
     handleRemove(file) {
+      console.log(file)
       const uid = file.uid
       const objKeyArr = Object.keys(this.listObj)
       for (let i = 0, len = objKeyArr.length; i < len; i++) {

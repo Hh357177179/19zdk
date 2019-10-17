@@ -1,0 +1,74 @@
+<!--pages/addActive/addActive.wxml-->
+<view class="add_active">
+  <view class="title">比赛信息</view>
+  <view class="clear"></view>
+  <view class="list_main">
+    <view class="active_list">
+      <view class="label">
+        <text class="label_text">*</text>赛事名称：</view>
+      <view class="inputs">
+        <textarea auto-height placeholder="请填写赛事名称" bindinput="nameVal" value="{{name}}" placeholder-style="color: #999;"></textarea>
+      </view>
+    </view>
+    <view class="active_list">
+      <view class="label">
+        <text class="label_text">*</text>剑种类型：</view>
+      <view class="inputs">
+        <picker mode="selector" value="{{weapon}}" bindchange="bindWeaponChange" range-key="{{'name'}}" range="{{weaponArr}}">
+          <view class="picker {{weapon == '请选择剑种类型' ? 'noChoColor' : ''}}">{{weapon}}</view>
+        </picker>
+      </view>
+    </view>
+    <view class="active_list">
+      <view class="label">
+        <text class="label_text">*</text>比赛地点：</view>
+      <view class="inputs">
+        <textarea maxlength="-1" auto-height placeholder="请填写比赛地点" bindinput="venueVal" value="{{venue}}" placeholder-style="color: #999;"></textarea>
+      </view>
+    </view>
+    <view class="active_list">
+      <view class="label">
+        <text class="label_text">*</text>开始时间：</view>
+      <view class="inputs">
+        <view class="inputs">
+          <picker mode="date" value="{{addtime}}" bindchange="bindStartChange">
+            <view class="picker {{addtime == '请选择开始时间' ? 'noChoColor' : ''}}">{{addtime}}</view>
+          </picker>
+        </view>
+      </view>
+    </view>
+    <view class="active_list">
+      <view class="label">
+        <text class="label_text">*</text>结束时间：</view>
+      <view class="inputs">
+        <view class="inputs">
+          <picker mode="date" value="{{endtime}}" bindchange="bindEndChange">
+            <view class="picker {{endtime == '请选择结束时间' ? 'noChoColor' : ''}}">{{endtime}}</view>
+          </picker>
+        </view>
+      </view>
+    </view>
+    <view class="active_list">
+      <view class="label">
+        <text class="label_text">*</text>年龄资格：</view>
+      <view class="inputs">
+        <textarea maxlength="-1" auto-height placeholder="请填写年龄资格" bindinput="ageVal" value="{{age}}" placeholder-style="color: #999;"></textarea>
+      </view>
+    </view>
+    <view class="active_list">
+      <view class="label">
+        <text style="color:#fff;">*</text> 活动图片：</view>
+      <view class="photo" bindtap="upLoadPic">
+        <image wx:if="{{logo == ''}}" class="icon_upload" src="../../images/upload.png"></image>
+        <view wx:else class="avatar_pic">
+          <image src="{{logo}}"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="info_text">
+    <view><text style="color: #f00;font-weight: bold;">*</text>请您把比赛信息相关文件上传到如下邮箱：</view>
+    <view>Annie.qiao@gameison.com.cn</view>
+  </view>
+  <view class="send_active" bindtap="sendActive">提 交</view>
+</view>

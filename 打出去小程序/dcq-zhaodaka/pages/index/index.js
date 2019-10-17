@@ -1,7 +1,9 @@
 // pages/grow/grow.js
 const app = getApp()
 const util = require('../../utils/util.js')
-import { postRequest } from '../../utils/httpRequest.js'
+import {
+  postRequest
+} from '../../utils/httpRequest.js'
 Page({
 
   /**
@@ -14,15 +16,39 @@ Page({
     nowTime: ''
   },
 
-  groupDetail (e) {
+  groupDetail(e) {
     let that = this
     let id = e.currentTarget.dataset.id
-    wx.navigateTo({
-      url: `/pages/groupDetail/groupDetail?id=${id}`,
-    })
+    let type = e.currentTarget.dataset.type
+    let relation_id = e.currentTarget.dataset.relation_id
+    let is_complete = e.currentTarget.dataset.is_complete
+    console.log(type)
+    if (type == 1 || type == 2 || type == 3 || type == 4) {
+      wx.navigateTo({
+        url: `/pages/groupDetail/groupDetail?id=${id}&deletes=${1}`,
+      })
+    } else if (type == 5) {
+      wx.navigateTo({
+        url: `/pages/apply/apply?id=${relation_id}`,
+      })
+    } else if (type == 6) {
+      wx.navigateTo({
+        url: `/pages/detailGame/detailGame?id=${relation_id}`,
+      })
+    } else if (type == 7 || type == 8) {
+      if (is_complete == 0) {
+        wx.navigateTo({
+          url: `/pages/editGrow/editGrow?id=${id}`,
+        })
+      } else {
+        wx.navigateTo({
+          url: `/pages/groupDetail/groupDetail?id=${id}`,
+        })
+      }
+    }
   },
 
-  addGroup () {
+  addGroup() {
     if (app.globalData.token != '') {
       wx.navigateTo({
         url: '/pages/addGrows/addGrows',
@@ -34,7 +60,7 @@ Page({
     }
   },
 
-  formDate (date) {
+  formDate(date) {
     let time = new Date(date * 1000)
     let Y = time.getFullYear()
     let M = time.getMonth() + 1
@@ -48,15 +74,25 @@ Page({
     return `${Y}-${M}-${D}`
   },
 
-  getList () {
+  getList() {
     let that = this
     let params = {
       token: that.data.token
     }
     postRequest('/mini/timeLine', params, true).then(res => {
       console.log(res)
+      let obj = {}
       for (let a in res) {
         res[a].formTime = that.formDate(res[a].time)
+      }
+      
+      for (let b = 0; b < res.length; b++) {
+        if (that.data.nowTime > res[b].formTime && (!res[b + 1] || that.data.nowTime < res[b + 1].formTime)) {
+          obj.states = 0
+          obj.times = that.data.nowTime
+          res.splice(b + 1, 0, obj);
+          break;
+        }
       }
       if (res.length == 0) {
         that.setData({
@@ -67,14 +103,16 @@ Page({
           noDates: false
         })
       }
-      that.setData({ items: res})
+      that.setData({
+        items: res
+      })
     })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     let that = this
     let time = new Date()
     let Y = time.getFullYear()
@@ -84,7 +122,7 @@ Page({
       M = '0' + M
     }
     if (D < 10) {
-      D = "0" + D 
+      D = "0" + D
     }
     that.setData({
       nowTime: `${Y}-${M}-${D}`
@@ -94,14 +132,14 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-    
+  onReady: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
     let that = this
     if (app.globalData.token != '') {
       that.setData({
@@ -109,42 +147,44 @@ Page({
       })
       this.getList()
     } else {
-      that.setData({ noDates: true })
+      that.setData({
+        noDates: true
+      })
     }
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })

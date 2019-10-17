@@ -64,7 +64,7 @@ export default {
         token: sessionStorage.getItem('token')
       }
       searchShop(params).then(res => {
-        console.log(res)
+        console.log(res.content)
         this.searchObj = res
       })
     },
@@ -79,7 +79,7 @@ export default {
 };
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
   .search{
     .mains{
       display: flex;
@@ -103,7 +103,11 @@ export default {
       }
     }
     .detialshow{
-      padding: 30rpx;
+      width: 100%;
+      height: 100%;
+      .wscnph{
+        width: 100% !important;
+      }
     }
   }
 </style>
