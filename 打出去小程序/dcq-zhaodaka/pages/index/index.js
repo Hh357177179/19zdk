@@ -13,7 +13,20 @@ Page({
     items: [],
     token: '',
     noDates: false,
-    nowTime: ''
+    nowTime: '',
+    topStatus: 0,
+    topArr: []
+  },
+
+  scrollPosition (e) {
+    let that = this
+    console.log(1)
+    let arrs = []
+    arrs = [...that.data.topArr, ...that.data.items]
+    that.setData({
+      items: arrs,
+      topArr: []
+    })
   },
 
   groupDetail(e) {
@@ -81,6 +94,8 @@ Page({
     }
     postRequest('/mini/timeLine', params, true).then(res => {
       console.log(res)
+      let bigTime = []
+      let smallTime = []
       let obj = {}
       for (let a in res) {
         res[a].formTime = that.formDate(res[a].time)
@@ -90,10 +105,20 @@ Page({
         if (that.data.nowTime > res[b].formTime && (!res[b + 1] || that.data.nowTime < res[b + 1].formTime)) {
           obj.states = 0
           obj.times = that.data.nowTime
+          obj.formTime = that.data.nowTime
           res.splice(b + 1, 0, obj);
           break;
         }
       }
+      console.log(that.data.nowTime)
+      for (let c in res) {
+        if (res[c].formTime >= that.data.nowTime) {
+          bigTime.push(res[c])
+        } else {
+          smallTime.push(res[c])
+        }
+      }
+      console.log(bigTime)
       if (res.length == 0) {
         that.setData({
           noDates: true
@@ -104,7 +129,8 @@ Page({
         })
       }
       that.setData({
-        items: res
+        items: bigTime,
+        topArr: smallTime
       })
     })
   },

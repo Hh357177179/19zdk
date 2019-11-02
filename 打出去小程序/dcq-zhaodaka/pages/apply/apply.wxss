@@ -190,9 +190,19 @@ page{
   text-align: center;
 }
 .small_btn{
-  font-size: 28rpx;
+  /* font-size: 28rpx;
   padding: 10rpx 40rpx;
-  border-radius: 20rpx;
+  border-radius: 20rpx; */
+  text-align: center;
+  margin-top: 34rpx;
+  width: 580rpx;
+  /* background:linear-gradient(115deg,rgba(72,72,220,1) 0%,rgba(50,166,228,1) 100%); */
+  border-radius: 70rpx;
+  margin: 0 auto 40rpx;
+  line-height: 44rpx;
+  padding: 20rpx;
+  color: #fff;
+  font-size: 30rpx;
 }
 .consider_btn{
   background: #3E72E0;

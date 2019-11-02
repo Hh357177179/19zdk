@@ -230,7 +230,7 @@ Page({
       time_max: time_max
     }
     console.log(params)
-    postRequest('/activity/index', params, true).then(res => {
+    postRequest('/mini/activityList', params, true).then(res => {
       console.log(res)
       if (res.count == 0) {
         that.setData({ noDataShow: true })

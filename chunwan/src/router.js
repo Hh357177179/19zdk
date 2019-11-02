@@ -12,7 +12,7 @@ const router = new Router({
       redirect: '/home'
     },
     {
-      path: '/home',
+      path: '/home/:id',
       name: 'home',
       component: Home,
       meta: {
@@ -84,8 +84,12 @@ const router = new Router({
 const auth_url = 'http://cw.zhaodaka.vip/api/wechat/oauth'
 
 router.beforeEach((to, from, next) => {
+  
   const tokenns = localStorage.getItem('tokenns')
   if (!tokenns && to.name !== 'auth') {
+    console.log('地址',to.fullPath)
+    localStorage.setItem('url', window.location.href)
+    localStorage.setItem('paths', to.fullPath)
     console.log('去授权')
     window.location.href = auth_url;
   } else {

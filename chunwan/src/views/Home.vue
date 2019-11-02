@@ -79,10 +79,11 @@ export default {
     this.getNaming()
     this.getSponsor()
     this.getNews()
+    console.log(this.$route.params.id)
   },
   methods: {
     navVote () {
-      this.$router.push('vote')
+      this.$router.push('/vote')
     },
     navActive () {
       this.$router.push('/active')
@@ -94,12 +95,25 @@ export default {
       })
     },
     navDesc () {
-      window.location.href  = 'https://mp.weixin.qq.com/s?__biz=MzUyMDY5ODY4Nw==&tempkey=MTAzMF9veGNFV0hyL1lueWZPK2NsZzNvaHVTUnpOWXQ2bUJWeTk2TmN5N3NHQWc0b0p1aklmeC1GV0szb3NmYXExRjBxRF94YnZrUlJyUFlISzZLM2kzMjQ3eE1nalFCSlhTdUhVX05IUnFHcGlpbGVZREtYd3psNEJCTXprVzMteE5ZSjZZMzJRTXJQVmpRTjlmblRzTzY3QjFNS0pUdk5UZGkwNkxoSkd3fn4%3D&chksm=79e72f464e90a650507e158d052a17dfcfb07f57d0a6b53de973286d8a900e6c702ea1ad2db4#rd'
+      window.location.href  = 'https://mp.weixin.qq.com/s/KrBn2wbdCsjsDPru191eTw'
     },
     // 获取轮播
     getBanner () {
+      let address = ''
+      if (this.$route.params.id == 1) {
+        address = '新疆'
+      } else if (this.$route.params.id ==  2) {
+        address = '江西'
+      } else if (this.$route.params.id ==  3) {
+        address = '辽宁'
+      } else if (this.$route.params.id ==  4) {
+        address = '上海'
+      } else if (this.$route.params.id ==  5) {
+        address = '浙江'
+      }
       let params = {
-        type: 1
+        type: 1,
+        address: address
       }
       getPicList(params).then(res => {
         this.banner = res
@@ -107,8 +121,21 @@ export default {
     },
     // 获取独家冠名
     getNaming () {
+      let address = ''
+      if (this.$route.params.id == 1) {
+        address = '新疆'
+      } else if (this.$route.params.id ==  2) {
+        address = '江西'
+      } else if (this.$route.params.id ==  3) {
+        address = '辽宁'
+      } else if (this.$route.params.id ==  4) {
+        address = '上海'
+      } else if (this.$route.params.id ==  5) {
+        address = '浙江'
+      }
       let params = {
-        type: 2
+        type: 2,
+        address: address
       }
       getPicList(params).then(res => {
         console.log(res)
@@ -117,8 +144,21 @@ export default {
     },
      // 获取赞助
     getSponsor () {
+      let address = ''
+      if (this.$route.params.id == 1) {
+        address = '新疆'
+      } else if (this.$route.params.id ==  2) {
+        address = '江西'
+      } else if (this.$route.params.id ==  3) {
+        address = '辽宁'
+      } else if (this.$route.params.id ==  4) {
+        address = '上海'
+      } else if (this.$route.params.id ==  5) {
+        address = '浙江'
+      }
       let params = {
-        type: 3
+        type: 3,
+        address: address
       }
       getPicList(params).then(res => {
         console.log(res)

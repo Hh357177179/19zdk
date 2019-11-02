@@ -3,7 +3,7 @@ const util = require('../../utils/util.js')
 const app = getApp()
 import { postRequest } from '../../utils/httpRequest.js'
 Page({
-
+  // api/user/isLock
   /**
    * 页面的初始数据
    */
@@ -11,7 +11,45 @@ Page({
     visible: false,
     showUserInfo: false,
     userInfo: {},
-    avatar: ''
+    avatar: '',
+    userName: '',
+    showVip: false
+  },
+
+  // 是否隐藏
+  showOrhide() {
+    let that = this
+    wx.request({
+      url: 'https://ssl.zhaodaka.net/dcq/api/user/isLock',
+      method: 'POST',
+      data: {},
+      success: res => {
+        console.log(res)
+        if (res.data.code == '200') {
+          that.setData({
+            showVip: false
+          })
+        } else {
+          that.setData({
+            showVip: true
+          })
+        }
+      }
+    })
+  },
+
+
+  getMyinfo () {
+    let that = this
+    let params = {
+      token: app.globalData.token
+    }
+    postRequest('/user/myInfo', params, false).then(res => {
+      console.log(res)
+      that.setData({
+        userName: res.name
+      })
+    })
   },
 
   getUser () {
@@ -97,6 +135,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.showOrhide()
   },
 
   /**
@@ -116,6 +155,7 @@ Page({
       that.setData({ showUserInfo: false })
     } else {
       that.getUser()
+      that.getMyinfo()
       that.setData({ showUserInfo: true })
     }
   },

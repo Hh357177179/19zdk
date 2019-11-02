@@ -53,7 +53,7 @@
         <el-table-column align="center" prop="user_card_no" label="会员卡号" width="200"></el-table-column>
         <el-table-column align="center" prop="user_role" label="会员身份" width="100">
           <template slot-scope="scope">
-            <span>{{scope.row.role == 1 ? '会员' : '钓场主'}}</span>
+            <span>{{scope.row.user_role == 1 ? '会员' : '钓场主'}}</span>
           </template>
         </el-table-column>
         <el-table-column align="center" prop="money" label="申请提现金额（元）" width="150"></el-table-column>

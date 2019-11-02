@@ -4,8 +4,8 @@
   <!-- <view class="grow_title">打出去</view> -->
   <view class="mains">
     <view class="grow_main">
-      <scroll-view scroll-y style="height: 100%;">
-        <view style="margin-top: 20rpx;">
+      <scroll-view scroll-y style="height: 100%;" scroll-top="5" upper-threshold="0" bindscrolltoupper="scrollPosition">
+        <view style="margin-top: 25rpx;">
           <wux-timeline position="alternate">
             <view class="no_dates" wx:if="{{noDates}}">
               <wux-timeline-item dotStyle="border-color: #33cd5f; color: #33cd5f" bindtap="navLogin">

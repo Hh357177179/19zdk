@@ -9,6 +9,9 @@
          <el-form-item label="钓场名称" prop="pond_title" class="items">
           <el-input v-model="searchForm.pond_title" placeholder="请输入比赛名称"></el-input>
         </el-form-item>
+        <el-form-item label="赛事ID" class="items" prop="id">
+          <el-input v-model="searchForm.id" placeholder="请输入比赛名称"></el-input>
+        </el-form-item>
         <el-form-item label="赛事状态" prop="type" class="items">
           <el-select v-model="searchForm.type" clearable placeholder="请选择赛事状态">
             <el-option
@@ -50,6 +53,7 @@
         v-loading="loading"
         border
       >
+        <el-table-column align="center" label="赛事ID" prop="id" width="50"></el-table-column>
         <el-table-column align="center" label="赛事名称" prop="title" width="150"></el-table-column>
         <el-table-column align="center" prop="pond_title" label="渔场名称"></el-table-column>
         <el-table-column align="center" prop="address" label="比赛时间" width="300">
@@ -102,9 +106,11 @@
         <p>赛事名称：{{detailObj.title}}</p>
         <p>赛事性质：{{detailObj.type_title}}</p>
         <p>赛事时间：{{detailObj.start_time | fromDate}}—{{detailObj.end_time | fromDate}}</p>
+        <p>报名截止时间：{{detailObj.close_time | fromDate}}</p>
         <p>比赛钓场：{{detailObj.pond_province}}-{{detailObj.pond_city}}  {{detailObj.pond_title}}（可用钓台{{detailObj.position_number}}）</p>
         <p>赛事地址：{{detailObj.pond_address}}</p>
         <!-- <p>抽签制：</p> -->
+        <p>赛事报名最少人数：{{detailObj.participant_min}} 人</p>
         <p>报名人数：{{detailObj.order_num}}/{{detailObj.participant_max}}</p>
         <p>回鱼价格：{{detailObj.return_price}}元/{{detailObj.unit}}</p>
         <p>奖品情况：{{detailObj.awards}}</p>
@@ -135,7 +141,8 @@ export default {
         title: "",
         pond_title: "",
         type: '',
-        times: []
+        times: [],
+        id: ''
       },
       create_time_start: '',
       create_time_end: '',
@@ -251,7 +258,8 @@ export default {
         type: this.searchForm.type,
         start_start_time: this.create_time_start,
         start_end_time: this.create_time_end,
-        token: sessionStorage.getItem('token')
+        token: sessionStorage.getItem('token'),
+        match_id: this.searchForm.id
       }
       console.log(params)
       matchList(params).then(res => {

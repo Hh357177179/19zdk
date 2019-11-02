@@ -28,6 +28,16 @@ const router = new Router({
           }
         },
         {
+          path: '/place-detail/:id',
+          name: 'PlaceDetail',
+          component: () => import('./views/Home/placeDetail.vue'),
+          meta: {
+            title: '地址详情',
+            icon: 'icon-shouye2',
+            un_show: true,
+          }
+        },
+        {
           path: '/task',
           name: 'task',
           component: () => import('./views/TaskManage/taskManage.vue'),
@@ -41,19 +51,19 @@ const router = new Router({
               name: 'taskSign',
               component: () => import('./views/TaskManage/SignManage/signManage.vue'),
               meta: {
-                title: '签到管理',
+                title: '工作管理',
                 icon: 'icon-renwuzhongxin'
               },
             },
-            {
-              path: '/task-flow',
-              name: 'taskFlow',
-              component: () => import('./views/TaskManage/FlowManage/flowManage.vue'),
-              meta: {
-                title: '工作日志',
-                icon: 'icon-liucheng'
-              },
-            }
+            // {
+            //   path: '/task-flow',
+            //   name: 'taskFlow',
+            //   component: () => import('./views/TaskManage/FlowManage/flowManage.vue'),
+            //   meta: {
+            //     title: '工作日志',
+            //     icon: 'icon-liucheng'
+            //   },
+            // }
           ]
         },
         {
@@ -75,14 +85,24 @@ const router = new Router({
               },
             },
             {
-              path: '/elevator-mainte',
-              name: 'elevatorMainte',
-              component: () => import('./views/ElevatorManage/ElevatorMainte/elevatorMainte.vue'),
+              path: '/elevator-map/:id',
+              name: 'elevatorMap',
+              component: () => import('./views/ElevatorManage/ElevatorInfo/positionMap.vue'),
               meta: {
-                title: '日常维保',
-                icon: 'icon-weixiuguanli'
+                title: '编辑位置',
+                icon: 'icon-jieshao',
+                un_show: true,
               },
-            }
+            },
+            // {
+            //   path: '/elevator-mainte',
+            //   name: 'elevatorMainte',
+            //   component: () => import('./views/ElevatorManage/ElevatorMainte/elevatorMainte.vue'),
+            //   meta: {
+            //     title: '日常维保',
+            //     icon: 'icon-weixiuguanli'
+            //   },
+            // }
           ]
         },
         {
@@ -104,12 +124,13 @@ const router = new Router({
               }
             },
             {
-              path: '/organize-person',
+              path: '/organize-person/:id/:type',
               name: 'organizePerson',
               component: () => import('./views/OrganizeManage/OrganizePerson/organizePerson.vue'),
               meta: {
                 title: '角色管理',
-                icon: 'icon-yidongyunkongzhitaiicon45'
+                icon: 'icon-yidongyunkongzhitaiicon45',
+                un_show: true,
               }
             },
             {
@@ -123,15 +144,15 @@ const router = new Router({
             }
           ]
         },
-        {
-          path: '/handlelog',
-          name: 'handleLog',
-          component: () => import('./views/HandleLog/handleLog.vue'),
-          meta: {
-            title: '操作记录',
-            icon: 'icon-cz-jl'
-          }
-        }
+        // {
+        //   path: '/handlelog',
+        //   name: 'handleLog',
+        //   component: () => import('./views/HandleLog/handleLog.vue'),
+        //   meta: {
+        //     title: '操作记录',
+        //     icon: 'icon-cz-jl'
+        //   }
+        // }
       ]
     }
   ]

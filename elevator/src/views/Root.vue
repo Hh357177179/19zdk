@@ -2,8 +2,14 @@
   <div class="root">
     <el-container>
       <el-container>
-        <el-header class="head">电梯维保智慧监管云系统</el-header>
-        <el-aside width="205px" class="slide">
+        <el-header class="head">
+          <div>电梯维保智慧监管云系统</div>
+          <div class="info">
+            <span>{{name}}</span>
+            <el-button type="info" plain class="sign_out" @click="signOut">退出</el-button>
+          </div>
+        </el-header>
+        <el-aside width="205px" class="slide"> 
           <el-menu
             router
             :default-active="$route.path"
@@ -24,7 +30,7 @@
                   v-for="(t,i) in item.children"
                   :index="t.path"
                   :key="i"
-                  v-show="t.path != '*'"
+                  v-show="t.path != '*' && !t.meta.un_show"
                 >
                   <template slot="title">
                     <i class="iconfont icon_nav" :class="t.meta.icon"></i>
@@ -34,7 +40,7 @@
               </el-submenu>
 
               <!-- 一级菜单直接跳转 -->
-              <template v-if="item.path != '*' && !item.children">
+              <template v-if="item.path != '*' && !item.children && !item.meta.un_show">
                 <el-menu-item :index="item.path" :key="index" class="first-menu">
                   <i class="iconfont icon_nav" :class="item.meta.icon"></i>
                   <span slot="title">{{item.meta.title}}</span>
@@ -57,13 +63,20 @@
 export default {
   data() {
     return {
-      navList: []
+      navList: [],
+      name: sessionStorage.getItem('name')
     };
   },
   created() {
     const navList = this.$router.options.routes[1].children;
     // console.log(navList);
     this.navList = navList;
+  },
+  methods: {
+    signOut () {
+      sessionStorage.clear()
+      this.$router.push('/')
+    }
   }
 };
 </script>
@@ -81,6 +94,13 @@ export default {
     color: #fff;
     border-bottom: 1px solid #ccc;
     z-index: 3;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .sign_out{
+      margin-left: 20px;
+      padding: 8px 20px;
+    }
   }
   .slide {
     position: fixed;

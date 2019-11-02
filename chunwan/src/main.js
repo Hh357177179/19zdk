@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
+import Router from 'vue-router'
 import Vant from 'vant';
 import 'vant/lib/index.css';
 import 'lib-flexible'
@@ -9,6 +10,10 @@ import './assets/style.css'
 Vue.use(Vant);
 Vue.config.productionTip = false
 
+const originalPush = Router.prototype.push
+Router.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
 
 // 根据路由设置标题
 router.beforeEach((to, from, next) => {

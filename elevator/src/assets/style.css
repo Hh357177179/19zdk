@@ -83,24 +83,3 @@ button{
 .pagination {
   float: right;
 }
-.inputs{
-  height: 35px;
-}
-.inputs .el-input{
-  height: 35px;
-  font-size: 13px;
-}
-.inputs .el-input__inner{
-  height: 100%;
-}
-.inputs .el-input__icon{
-  line-height: 35px;
-}
-.inputs .el-form-item__label{
-  font-size: 12px;
-}
-.search_btn{
-  line-height: 33px;
-  padding: 0px 15px;
-  font-size: 13px;
-}
