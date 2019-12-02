@@ -15,6 +15,23 @@ Page({
     wxUser: {}
   },
 
+  callMe() {
+    let that = this
+    if (!wx.getStorageSync('phone') && app.globalData.userInfo == null) {
+      wx.navigateTo({
+        url: '/pages/phone/phone',
+      })
+    } else if (wx.getStorageSync('phone') != '' && app.globalData.userInfo == null) {
+      wx.navigateTo({
+        url: '/pages/login/login',
+      })
+    } else if (wx.getStorageSync('phone') != '' && app.globalData.userInfo != null) {
+      wx.navigateTo({
+        url: '/pages/callme/callme',
+      })
+    }
+  },
+
   // 跳转我的预约
   navMeOrder () {
     let that = this

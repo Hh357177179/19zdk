@@ -1,4 +1,5 @@
 // pages/order/order.js
+const app = getApp()
 Page({
 
   /**
@@ -8,6 +9,23 @@ Page({
     showOnline: false
   },
   
+  callMe () {
+    let that = this
+    if (!wx.getStorageSync('phone') && app.globalData.userInfo == null) {
+      wx.navigateTo({
+        url: '/pages/phone/phone',
+      })
+    } else if (wx.getStorageSync('phone') != '' && app.globalData.userInfo == null) {
+      wx.navigateTo({
+        url: '/pages/login/login',
+      })
+    } else if (wx.getStorageSync('phone') != '' && app.globalData.userInfo != null) {
+      wx.navigateTo({
+        url: '/pages/callme/callme',
+      })
+    }
+  },
+
   // 是否隐藏
   showOrhide () {
     let that = this

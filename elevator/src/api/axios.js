@@ -20,7 +20,7 @@ api.interceptors.response.use(
     if (res.data.code) {
       if (res.data.code == 200) {
         return res.data.data
-      } else if (res.data.code == 1100) {
+      } else if (res.data.code == 1101) {
         app.$confirm('您的登录已过期，请重新登录。', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',

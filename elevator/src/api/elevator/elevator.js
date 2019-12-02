@@ -21,3 +21,9 @@ export const editElevator = params => api.post('/admin/user/elevatorEdit', param
 
 // 获取维保单位
 export const getMaintenance = params => api.post('/admin/user/getMaintainUnit', params)
+
+// 获取使用单位
+export const getBaseUnitList = params => api.post('/admin/user/getUseUnit', params)
+
+// 批量上传
+export const upLoadAll = params => api.post('/admin/user/elevatorMultiAdd', params)

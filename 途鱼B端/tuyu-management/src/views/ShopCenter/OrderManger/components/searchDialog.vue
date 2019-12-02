@@ -21,6 +21,7 @@
         <div class="shop_details">
           <el-card class="mt10">
             <p>商品信息：{{searchObj.goods_title}}</p>
+            <p>商品规格：{{searchObj.goods_spec_title}}</p>
             <p>购买数量：{{searchObj.number}}</p>
             <p>商品单价：{{searchObj.coin_total}}</p>
           </el-card>

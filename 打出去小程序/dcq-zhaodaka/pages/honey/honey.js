@@ -40,7 +40,7 @@ Page({
     let params = {
       page: that.data.page,
       pagesize: that.data.pagesize,
-      token: app.globalData.token
+      token: wx.getStorageSync('token')
     }
     postRequest('/user/coinLog', params, true).then(res => {
       console.log(res)
@@ -61,8 +61,8 @@ Page({
   onLoad: function (options) {
     let that = this
     that.setData({
-      honeyNum: app.globalData.userInfo.coin,
-      codeSrc: 'https://ssl.zhaodaka.net/dcq/api/user/qcode?token=' + app.globalData.token 
+      honeyNum: wx.getStorageSync('userInfo').coin,
+      codeSrc: 'https://ssl.zhaodaka.net/dcq/api/user/qcode?token=' + wx.getStorageSync('token')
     })
     that.getList()
   },

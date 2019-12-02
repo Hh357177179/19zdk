@@ -1,0 +1,12 @@
+<!--pages/callme/callme.wxml-->
+<view class="call">
+  <view class="call_main">
+    <view class="phone">
+      <input bindinput="phoneVal" value="{{phone}}" type="number" maxlength="11" placeholder-style="color: #ccc;font-size: 36rpx;" placeholder="请输入手机号码"></input>
+    </view>
+    <view class="content">
+      <textarea bindinput="contentVal" maxlength="-1" auto-height placeholder="请输入留言"  placeholder-style="color: #ccc;font-size: 36rpx;" value="{{content}}"/>
+    </view>
+    <view class="submit_content" bindtap="submitContent">提 交</view>
+  </view>
+</view>

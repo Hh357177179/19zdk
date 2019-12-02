@@ -93,6 +93,7 @@
       </view>
     </view>
   </view>
+  <!-- <view class="lay_out">退 出</view> -->
 </view>
 
 <wux-popup position="bottom" visible="{{ visible }}" bind:close="onClose">

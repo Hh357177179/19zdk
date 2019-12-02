@@ -59,5 +59,8 @@
       </view>
     </view> -->
   </view>
+  <view class="call_me" bindtap="callMe" wx:if="{{showUser}}">
+    <image src="../../images/callme.png"></image>
+  </view>
 </view>
 

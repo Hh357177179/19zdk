@@ -111,7 +111,7 @@ Page({
   getUser() {
     let that = this
     let params = {
-      token: app.globalData.token
+      token: wx.getStorageSync('token')
     }
     postRequest('/user/myInfo', params, false).then(res => {
       that.setData({
@@ -266,7 +266,7 @@ Page({
   editSubmit() {
     let that = this
     let params = {
-      token: app.globalData.token,
+      token: wx.getStorageSync('token'),
       id: that.data.detailObj.id,
       title: that.data.title,
       time: new Date(that.data.time) / 1000,

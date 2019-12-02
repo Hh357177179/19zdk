@@ -28,7 +28,7 @@ Page({
     let params = {
       page: that.data.page,
       pagesize: that.data.pagesize,
-      token: app.globalData.token
+      token: wx.getStorageSync('token')
     }
     postRequest('/user/activityList', params, true).then(res => {
       console.log(res)

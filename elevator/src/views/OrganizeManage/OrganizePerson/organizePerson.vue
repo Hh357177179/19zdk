@@ -2,11 +2,15 @@
   <div class="organize_person">
     <el-card class="cards">
       <div class="titles">
-        <div>
+        <div class="small_titles">
+          <div class="back_prev" @click="backRouters">
+            <i class="el-icon-back"></i>
+            <span>上一页</span>
+          </div>
           <span class="iconfont icon-yidongyunkongzhitaiicon45"></span>
           <span>角色管理</span>
         </div>
-        <div class="rush el-icon-refresh-right"></div>
+        <!-- <div class="rush el-icon-refresh-right"></div> -->
       </div>
       <el-form class="mt40" :inline="true" :model="formInline" size="small">
         <el-form-item>
@@ -77,6 +81,13 @@
                 icon="el-icon-delete"
                 @click="deletePersonal(scope.row)"
               ></el-button>
+              <el-button
+                type
+                size="small"
+                icon="el-icon-refresh-left"
+                @click="rushPerson(scope.row)"
+                circle
+              ></el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -87,7 +98,7 @@
           background
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
-          :current-page="currentPage"
+          :current-page.sync="currentPage"
           :page-sizes="[10, 20, 30]"
           :page-size="10"
           layout="total, sizes, prev, pager, next"
@@ -134,7 +145,7 @@ import EditPersonal from "./components/editPersonal";
 import EditMaintenance from './components/editMaintenance'
 import SafetyPersonal from './components/safetyPersonal'
 import searchDialogPersonal from './components/searchDialog'
-import { getUserList, deletePerson } from "@/api/organize/organize.js";
+import { getUserList, deletePerson, rushFeace } from "@/api/organize/organize.js";
 export default {
   data() {
     return {
@@ -173,7 +184,8 @@ export default {
       groupId: "",
       types: '',
       personDialogShow: false,
-      personDialogTitle: ''
+      personDialogTitle: '',
+      identityState: sessionStorage.getItem('type')
     };
   },
   created() {
@@ -182,6 +194,25 @@ export default {
     this.getList();
   },
   methods: {
+    backRouters () {
+      this.$router.back()
+    },
+    rushPerson (row) {
+      console.log(row)
+      let params = {
+        token: sessionStorage.getItem('token'),
+        user_id: row.id
+      }
+      rushFeace(params).then(res => {
+        console.log(res)
+        if (res) {
+          this.$message({
+            message: '清除人脸成功',
+            type: 'success'
+          });
+        }
+      })
+    },
     personElevator (title, ref, row) {
       this.$refs[ref].getParentData(row);
       this.personDialogTitle = title;
@@ -300,6 +331,15 @@ export default {
       position: absolute;
       top: 0;
       left: 0;
+      .small_titles{
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        .back_prev{
+          margin-right: 20px;
+          cursor: pointer;
+        }
+      }
       .iconfont {
         margin-right: 10px;
       }

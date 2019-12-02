@@ -157,7 +157,7 @@ Page({
 
   // 添加训练
   addDrill () {
-    if (app.globalData.token != '') {
+    if (wx.getStorageSync('token') != '') {
       wx.navigateTo({
         url: '/pages/addDrill/addDrill',
       })
@@ -172,7 +172,7 @@ Page({
   navApply (e) {
     let that = this
     let id = e.currentTarget.dataset.id
-    if (app.globalData.token != '') {
+    if (wx.getStorageSync('token') != '') {
       wx.navigateTo({
         url: `/pages/apply/apply?id=${id}`,
       })
@@ -198,10 +198,10 @@ Page({
     let that = this
     let time_min = ''
     let time_max = ''
-    if (app.globalData.token == '') {
+    if (wx.getStorageSync('token') == '') {
       that.setData({ token: app.globalData.fakeToken })
     } else {
-      that.setData({ token: app.globalData.token })
+      that.setData({ token: wx.getStorageSync('token') })
     }
     if (that.data.time_min == '开始时间') {
       that.setData({ time_min: '' })

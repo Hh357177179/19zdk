@@ -61,4 +61,7 @@
     </view>
     <view class="nodata_text">{{noDataText}}</view>
   </view>
+  <view class="call_me" bindtap="callMe">
+    <image src="../../images/callme.png"></image>
+  </view>
 </view>

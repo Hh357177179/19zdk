@@ -250,3 +250,25 @@
 .bot_img image{
   width: 100%;
 }
+.auth_text{
+  color: #333;
+  padding: 0 30rpx;
+  margin-top: 40rpx;
+  margin-bottom: 40px;
+  text-align: left;
+  font-size: 30rpx;
+  letter-spacing: 2rpx;
+}
+.bot_main{
+  padding-bottom: 60rpx;
+}
+.pop_btn{
+  width: 50%;
+  color: #333;
+  font-size: 30rpx;
+}
+.pop_title{
+  color: #333;
+  padding: 20rpx 0;
+  font-size: 32rpx;
+}

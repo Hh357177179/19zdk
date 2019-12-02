@@ -9,7 +9,7 @@
             <el-button type="info" plain class="sign_out" @click="signOut">退出</el-button>
           </div>
         </el-header>
-        <el-aside width="205px" class="slide"> 
+        <el-aside width="205px" class="slide">
           <el-menu
             router
             :default-active="$route.path"
@@ -30,7 +30,7 @@
                   v-for="(t,i) in item.children"
                   :index="t.path"
                   :key="i"
-                  v-show="t.path != '*' && !t.meta.un_show"
+                  v-show="t.path != '*' && !t.meta.un_show && t.meta.show != false"
                 >
                   <template slot="title">
                     <i class="iconfont icon_nav" :class="t.meta.icon"></i>
@@ -64,18 +64,33 @@ export default {
   data() {
     return {
       navList: [],
-      name: sessionStorage.getItem('name')
+      identityState: sessionStorage.getItem("type"),
+      name: sessionStorage.getItem("name")
     };
   },
   created() {
     const navList = this.$router.options.routes[1].children;
-    // console.log(navList);
+    
+      for (let a in navList) {
+        if (navList[a].name == "organize") {
+          for (let b in navList[a].children) {
+            if (navList[a].children[b].name == "organizeNotice") {
+              if (this.identityState != 1) {
+                navList[a].children[b].meta.show = false;
+              } else {
+                navList[a].children[b].meta.show = true;
+              }
+            }
+          }
+        }
+    }
+    console.log(navList);
     this.navList = navList;
   },
   methods: {
-    signOut () {
-      sessionStorage.clear()
-      this.$router.push('/')
+    signOut() {
+      sessionStorage.clear();
+      this.$router.push("/");
     }
   }
 };
@@ -89,7 +104,7 @@ export default {
     top: 0;
     left: 0;
     right: 0;
-    background:#545c64;
+    background: #545c64;
     line-height: 60px;
     color: #fff;
     border-bottom: 1px solid #ccc;
@@ -97,7 +112,7 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    .sign_out{
+    .sign_out {
       margin-left: 20px;
       padding: 8px 20px;
     }
@@ -120,7 +135,7 @@ export default {
     margin-left: 205px;
     margin-top: 60px;
   }
-  .el-main{
+  .el-main {
     padding: 10px;
   }
 }

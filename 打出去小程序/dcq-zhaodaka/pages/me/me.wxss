@@ -2,6 +2,7 @@
 .me{
   width: 100%;
   min-height: 100vh;
+  position: relative;
 }
 .me_user_info{
   position: relative;
@@ -140,4 +141,19 @@
   padding: 10rpx 0;
   font-size: 28rpx;
   border-radius: 10rpx;
+}
+.lay_out{
+  position: absolute;
+  left: calc(50% - 150rpx);
+  bottom: 40rpx;
+  text-align: center;
+  margin-top: 34rpx;
+  width: 300rpx;
+  background:linear-gradient(115deg,rgba(72,72,220,1) 0%,rgba(50,166,228,1) 100%);
+  border-radius: 70rpx;
+  margin: 0 auto;
+  line-height: 44rpx;
+  padding: 20rpx;
+  color: #fff;
+  font-size: 30rpx;
 }

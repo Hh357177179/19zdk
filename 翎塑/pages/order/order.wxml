@@ -115,7 +115,9 @@
       <scroll-view scroll-y style="width: 100%;height: 100%;">
       <block wx:for="{{teacherItem}}" wx:key="index">
         <view class='teach_list {{teachindex == item.id ? "borderColor" : ""}}' bindtap='choTeach' data-technician="{{item.name}}" data-teachindex='{{item.id}}'>
-          <view class='teach_avatar'></view>
+          <view class='teach_avatar'>
+            <image src="{{item.avatar}}"></image>
+          </view>
           <view class='teach_info'>
             <view class='teach_name'>{{item.name}}</view>
             <view class='teach_desc'>{{item.desc}}</view>

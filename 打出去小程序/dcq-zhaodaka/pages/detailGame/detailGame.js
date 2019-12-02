@@ -18,7 +18,7 @@ Page({
   clickCollect() {
     let that = this
     let params = {
-      token: app.globalData.token,
+      token: wx.getStorageSync('token'),
       relation_id: that.data.itemObj.id,
       type: 6
     }
@@ -45,7 +45,7 @@ Page({
   applyGame () {
     let that = this
     let params = {
-      token: app.globalData.token,
+      token: wx.getStorageSync('token'),
       match_id: that.data.itemObj.id,
       code: '',
       message: that.data.message
@@ -53,7 +53,7 @@ Page({
     postRequest('/mini/matchOrderCreate', params, true).then(res => {
       console.log(res)
       let param = {
-        token: app.globalData.token,
+        token: wx.getStorageSync('token'),
         order_id: res.order_id
       }
       postRequest('/mini/matchOrderPayByMini', param, true).then(res => {
@@ -82,13 +82,19 @@ Page({
   getList () {
     let that = this
     let params = {
-      token: app.globalData.token,
+      token: wx.getStorageSync('token'),
       match_id: that.data.id
     }
     postRequest('/user/matchDetail', params, true).then(res => {
       console.log(res)
-      let linkArr = JSON.parse(res.link)
-      console.log(linkArr)
+      let linkArr = []
+      if (res.link != '') {
+        linkArr = JSON.parse(res.link)
+      }
+      let pdf = []
+      if (res.attachment != '') {
+        pdf = JSON.parse(res.attachment)
+      }
       let arrs = []
       for (let i in linkArr) {
         let obj = {}
@@ -110,8 +116,29 @@ Page({
       console.log(arrs)
       that.setData({
         itemObj: res,
-        link: arrs
+        link: arrs,
+        pdfArr: pdf
       })
+    })
+  },
+
+  searchPdf (e) {
+    console.log(e)
+    let url = `${e.currentTarget.dataset.url}`
+    let urls = url.replace('http://dcq.zhaodaka.vip', 'https://ssl.zhaodaka.net/dcq')
+    console.log(urls)
+    wx.downloadFile({
+      // 示例 url，并非真实存在
+      url: urls,
+      success: function (res) {
+        const filePath = res.tempFilePath
+        wx.openDocument({
+          filePath: filePath,
+          success: function (res) {
+            console.log('打开文档成功')
+          }
+        })
+      }
     })
   },
 
@@ -128,9 +155,9 @@ Page({
   copyText (e) {
     console.log(e)
     let link = e.currentTarget.dataset.link
-    wx.showToast({
-      title: '复制成功',
-    })
+    // wx.showToast({
+    //   title: '复制成功',
+    // })
     wx.setClipboardData({
       data: link,
       success: function (res) {

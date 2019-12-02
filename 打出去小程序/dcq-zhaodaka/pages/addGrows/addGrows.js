@@ -193,7 +193,7 @@ Page({
   drillAdd() {
     let that = this
     let params = {
-      token: app.globalData.token,
+      token: wx.getStorageSync('token'),
       type: that.data.num,
       title: that.data.title,
       time: new Date(that.data.time) / 1000,
@@ -223,7 +223,7 @@ Page({
   diaryAdd() {
     let that = this
     let params = {
-      token: app.globalData.token,
+      token: wx.getStorageSync('token'),
       type: that.data.num,
       title: that.data.title,
       time: new Date(that.data.time) / 1000,
@@ -251,7 +251,7 @@ Page({
   gameAdd() {
     let that = this
     let params = {
-      token: app.globalData.token,
+      token: wx.getStorageSync('token'),
       type: that.data.num,
       title: that.data.title,
       time: new Date(that.data.time) / 1000,

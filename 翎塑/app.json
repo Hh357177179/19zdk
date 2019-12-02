@@ -19,7 +19,8 @@
     "pages/hairStyle/hairStyle",
     "pages/hairDetail/hairDetail",
     "pages/meal/meal",
-    "pages/buyList/buyList"
+    "pages/buyList/buyList",
+    "subPackages/Tobepaid/Tobepaid"
   ],
   "plugins": {
     "brickLayout": {

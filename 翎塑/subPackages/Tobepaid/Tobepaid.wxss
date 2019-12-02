@@ -1,0 +1,170 @@
+/* subPackages/Tobepaid/Tobepaid.wxss */
+Page {
+  background: #f6f6f6;
+}
+.subPackages{
+  padding: 20rpx;
+}
+.card_list{
+  background: #fff;
+  border-radius: 10rpx;
+  padding: 20rpx;
+}
+/* pages/consume/consume.wxss */
+.clear{
+  clear: both;
+}
+.consume{
+  width: 100%;
+  min-height: 100vh;
+  background: #f6f6f6;
+}
+.consume_nav{
+  background: #fff;
+  font-size: 30rpx;
+  color: #999;
+  display: flex;
+  justify-content: space-between;
+  /* border-bottom: 1px solid #f0f0f0; */
+}
+.consume_nav_list{
+  width: 50%;
+  line-height: 80rpx;
+  text-align: center;
+}
+.choose_nav{
+  border-bottom: 2px solid #333;
+  padding: 0 20rpx 14rpx;
+  color: #333;
+  font-weight: 500;
+}
+.order_main, .consume_main{
+  padding: 0 20rpx;
+}
+.order_list{
+  margin-top: 20rpx;
+  padding: 20rpx;
+  border-radius: 4rpx;
+  background: #fff;
+  box-shadow: #f0f0f0 0px 0px 4rpx 4rpx;
+  position: relative;
+}
+.order_info{
+  width: 580rpx;
+}
+.list_title{
+  font-size: 30rpx;
+  margin-bottom: 15rpx;
+}
+.list_time{
+  font-size: 26rpx;
+  color: #666;
+  margin-top: 4rpx;
+}
+.cancel_order{
+  font-size: 30rpx;
+  color: #333;
+  border-top: 1px dashed #eee;
+  margin-top: 30rpx;
+  padding: 20rpx 0 0;
+  text-align: center;
+}
+.list_label{
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 22rpx;
+  padding: 4rpx 14rpx;
+  background: #00b26a;
+  color: #fff;
+}
+.consume_card_list{
+  margin-top: 20rpx;
+  padding: 20rpx 20rpx 0 20rpx;
+  border-radius: 4rpx;
+  background: #fff;
+  box-shadow: #f0f0f0 0px 0px 4rpx 4rpx;
+  position: relative;
+}
+.consume_time_icon{
+  width: 40rpx;
+  height: 40rpx;
+  float: left;
+  margin-right: 10rpx;
+  margin-bottom: 10rpx;
+}
+.consume_time_icon image{
+  width: 100%;
+  height: 100%;
+}
+.tab_icon{
+  width: 40rpx;
+  height: 40rpx;
+  float: left;
+  margin-right: 10rpx;
+}
+.tab_icon image {
+  width: 100%;
+  height: 100%;
+}
+.consume_time_number{
+  float: left;
+  font-size: 28rpx;
+  color: #666;
+}
+.order_text{
+  width: 400rpx;
+  background: #ccc;
+}
+.consume_price{
+  text-align: right;
+}
+.price_icon{
+  font-size: 20rpx;
+  margin-right: 20rpx;
+  color: #666;
+}
+.price_num{
+  color: #e47e64;
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-right: 20rpx;
+}
+.cancel_color{
+  background: #ccc;
+}
+.padding_color{
+  background: #e47e64;
+}
+.state_text{
+  position: absolute;
+  right:0;
+  top:0;
+  font-size:22rpx;
+  padding:4rpx 14rpx;
+  background:#00b26a;
+  color:#fff;
+}
+.noPayColor {
+  background: #e47e64;
+}
+.bom_btn{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 28rpx;
+  margin-top: 20rpx;
+  border-top: 1rpx solid #f0f0f0;
+}
+.pay_btn{
+  width: 50%;
+  text-align: center;
+  line-height: 80rpx;
+  color: #e47e64;
+  font-weight: bold;
+}
+.cancel_btn{
+  color: #666;
+  font-weight: normal;
+  border-left: 1rpx solid #f0f0f0;
+}

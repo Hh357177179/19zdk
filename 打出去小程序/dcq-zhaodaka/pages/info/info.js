@@ -190,7 +190,7 @@ Page({
       relationship: that.data.relationship,
       phone: that.data.phone,
       email: that.data.email,
-      token: app.globalData.token
+      token: wx.getStorageSync('token')
     }
     if (that.data.num == false) {
       util.showMsg('请勾选承诺书', '../../images/warning.png')
@@ -219,7 +219,7 @@ Page({
     } else if (params.phone == '') {
       util.showMsg('请输入联系电话', '../../images/warning.png')
     } else {
-      if (app.globalData.userInfo.status == 1) {
+      if (wx.getStorageSync('userInfo').status == 1) {
         postRequest('/user/authenticationPlayer', params, true).then(res => {
           console.log(res)
           util.showMsg('认证成功', '../../images/successIcon.png')
@@ -242,7 +242,7 @@ Page({
 
   submitForm() {
     let that = this
-    let state = app.globalData.userInfo.status
+    let state = wx.getStorageSync('userInfo').status
     console.log(state)
     if (state == 1) {
       console.log('新增')
@@ -311,7 +311,7 @@ Page({
   getMeInfo() {
     let that = this
     let params = {
-      token: app.globalData.token
+      token: wx.getStorageSync('token')
     }
     postRequest('/user/myInfo', params, true).then(res => {
       console.log(res)
@@ -356,7 +356,7 @@ Page({
     let D = date.getDate()
     if (M < 10) M = '0' + M
     if (D < 10) D = '0' + D
-    let status = app.globalData.userInfo.status
+    let status = wx.getStorageSync('userInfo').status
     if (status != '1') {
       console.log('调用查看我的信息')
       that.setData({

@@ -44,3 +44,6 @@ export const sendNotices = params => api.post('/admin/user/publishNotice', param
 
 // 获取我负责的
 export const getMyElevatorList = params => api.post('/admin/user/myElevatorList', params)
+
+// 刷新人脸
+export const rushFeace = params => api.post('/admin/user/clearFaceInfo', params)

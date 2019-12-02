@@ -56,6 +56,11 @@
             <span>{{scope.row.user_role == 1 ? '会员' : '钓场主'}}</span>
           </template>
         </el-table-column>
+        <el-table-column align="center" label="申请时间" width="150">
+          <template slot-scope="scope">
+            <div>{{scope.row.create_time | fromDate}}</div>
+          </template>
+        </el-table-column>
         <el-table-column align="center" prop="money" label="申请提现金额（元）" width="150"></el-table-column>
         <el-table-column
           align="center"

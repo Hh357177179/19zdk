@@ -4,7 +4,7 @@
   <view class='order_card' style='margin-bottom: 36rpx;' bindtap='navOnline' wx:if="{{showOnline}}">
     <view class='ocard_info'>
       <view class='ocard_title'>在线服务</view>
-      <view class='ocard_desc'>在线一对一辅导，单次辅导时间30分钟 费用80元</view>
+      <view class='ocard_desc'>在线一对一辅导，单次辅导时间45分钟 费用280元</view>
     </view>
     <view class='right_image'>
       <image src='../../images/specialistOrder.png'></image>
@@ -13,7 +13,7 @@
   <view class='order_card' bindtap='navTeacher'>
     <view class='ocard_info'>
       <view class='ocard_title'>老师面对面</view>
-      <view class='ocard_desc'>当面一对一辅导，单次辅导时间为30分钟 费用120元</view>
+      <view class='ocard_desc'>当面一对一辅导，单次辅导时间为45分钟 费用360元</view>
     </view>
     <view class='right_image'>
       <image src='../../images/teacherOrder.png'></image>
@@ -27,5 +27,8 @@
     <view class='right_image'>
       <image src='../../images/specialistOrder.png'></image>
     </view>
+  </view>
+  <view class="call_me" bindtap="callMe">
+    <image src="../../images/callme.png"></image>
   </view>
 </view>

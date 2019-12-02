@@ -32,7 +32,7 @@ Page({
     sendStatus: true,
     cheOnline: false,
     disInput: true,
-    classValue: 120,
+    classValue: 360,
     times: '',
     allTime: {},
     localText: '地址',
@@ -247,7 +247,7 @@ Page({
         other_price: '',
         address: '在线预约',
         beginTime: '开课时间',
-        classValue: 80
+        classValue: 120
       })
     } else {
       that.setData({
@@ -258,7 +258,7 @@ Page({
         address: '',
         localText: '地址',
         beginTime: '开课时间',
-        classValue: 120
+        classValue: 360
       })
     }
   },

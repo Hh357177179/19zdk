@@ -1,0 +1,42 @@
+/* pages/callme/callme.wxss */
+page{
+  background:#EFF1F5;
+}
+.phone{
+  width: 630rpx;
+  height: 100rpx;
+  background:rgba(255,255,255,1);
+  box-shadow:0px 24rpx 24rpx 0px rgba(52,84,122,0.06);
+  border-radius: 20rpx;
+}
+.phone input{
+  width: 100%;
+  height: 100%;
+  padding: 0 30rpx;
+}
+.call_main{
+  width: 630rpx;
+  margin: 100rpx auto 0;
+}
+.content{
+  width: 630rpx;
+  margin-top: 40rpx;
+  background:rgba(255,255,255,1);
+  box-shadow:0px 24rpx 24rpx 0px rgba(52,84,122,0.06);
+  border-radius: 20rpx;
+}
+.content textarea{
+  padding: 30rpx;
+  min-height: 200rpx;
+}
+.submit_content{
+  width: 600rpx;
+  height: 108rpx;
+  background:rgba(102,101,255,1);
+  border-radius: 200rpx;
+  color: #fff;
+  text-align: center;
+  line-height: 108rpx;
+  font-size: 38rpx;
+  margin: 60rpx auto 0;
+}

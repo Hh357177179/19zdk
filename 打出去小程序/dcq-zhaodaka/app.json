@@ -22,7 +22,8 @@
     "pages/groupDetail/groupDetail",
     "pages/addActive/addActive",
     "pages/addReward/addReward",
-    "pages/editGrow/editGrow"
+    "pages/editGrow/editGrow",
+    "pages/previewPdf/previewPdf"
   ],
   "window": {
     "backgroundTextStyle": "light",

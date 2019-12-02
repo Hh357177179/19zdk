@@ -45,7 +45,7 @@ Page({
   getUser () {
     let that = this
     let params = {
-      token: app.globalData.token
+      token: wx.getStorageSync('token')
     }
     postRequest('/user/myInfo', params, false).then(res => {
       that.setData({
@@ -58,7 +58,7 @@ Page({
     let that = this
     let params = {
       id: that.data.itemObj.id,
-      token: app.globalData.token
+      token: wx.getStorageSync('token')
     }
     postRequest('/mini/timeLineDel', params, true).then(res => {
       console.log(res)

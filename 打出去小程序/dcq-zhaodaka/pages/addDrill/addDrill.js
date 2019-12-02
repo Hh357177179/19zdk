@@ -39,7 +39,7 @@ Page({
   sendActive () {
     let that = this
     let params = {
-      token: app.globalData.token,
+      token: wx.getStorageSync('token'),
       type: that.data.types,
       title: that.data.activeTitle,
       address: that.data.address,
@@ -213,7 +213,7 @@ Page({
   getType () {
     let that = this
     let params = {
-      token: app.globalData.token
+      token: wx.getStorageSync('token')
     }
     postRequest('/activity/typeList', params, false).then(res => {
       console.log('类型', res)
@@ -225,7 +225,7 @@ Page({
   getWeapon () {
     let that = this
     let params = {
-      token: app.globalData.token
+      token: wx.getStorageSync('token')
     }
     postRequest('/activity/swordsList', params, false).then(res => {
       console.log('剑种',res)
@@ -237,7 +237,7 @@ Page({
   getFormat () {
     let that = this
     let params = {
-      token: app.globalData.token
+      token: wx.getStorageSync('token')
     }
     postRequest('/activity/formatList', params, false).then(res => {
       console.log('赛制',res)
@@ -249,7 +249,7 @@ Page({
   getPlace () {
     let that = this
     let params = {
-      token: app.globalData.token
+      token: wx.getStorageSync('token')
     }
     postRequest('/activity/addressList', params, false).then(res => {
       console.log('场地',res)

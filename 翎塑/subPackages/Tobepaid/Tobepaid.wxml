@@ -1,0 +1,35 @@
+<!--subPackages/Tobepaid/Tobepaid.wxml-->
+<wxs module="dateFr" src="../../utils/dateFr.wxs"></wxs>
+<view class="subPackages">
+  <block wx:for="{{list}}" wx:key="index">
+      <view class='consume_card_list'>
+        <view class='list_title consume_title'>
+          <view class='tab_icon'>
+            <image src='../../images/tag.png'></image>
+          </view>
+          <view>{{item.cate_title}}</view>
+          <view class='clear'></view>
+        </view>
+        <view class='consume_time'>
+          <view class='consume_time_icon'>
+            <image src='../../images/clock.png'></image>
+          </view>
+          <view class='consume_time_number'>消费时间：</view>
+          <view class='consume_time_number'>{{dateFr.getDate(item.create_time * 1000,'-',':')}}</view>
+          <view class='clear'></view>
+        </view>
+        <view class='consume_time'>
+          <view class='consume_time_icon'>
+            <image src='../../images/dingdan.png'></image>
+          </view>
+          <view class='consume_time_number'>订单编号：</view>
+          <view class='consume_time_number'>{{item.order_no}}</view>
+          <view class='clear'></view>
+        </view>
+        <view class="bom_btn">
+          <view class="pay_btn" bindtap="payOrderAgain" data-id="{{item.id}}">支付</view>
+          <view class="pay_btn cancel_btn" bindtap="cancelOrder" data-id="{{item.id}}">取消</view>
+        </view>
+      </view> 
+    </block>
+</view>

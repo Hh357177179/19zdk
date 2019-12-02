@@ -17,6 +17,14 @@
         <el-form-item label="密码" prop="password" class="change_input">
           <el-input type="password" placeholder="不填写则为不修改" v-model="ruleForm.password" clearable></el-input>
         </el-form-item>
+        <el-form-item label="是否为管理员">
+          <el-switch
+            @change="changeAdmin"
+            v-model="isAdmin"
+            active-color="#13ce66"
+            inactive-color="#ff4949">
+          </el-switch>
+        </el-form-item>
       </el-form>
       <div class="bottom_btn">
         <el-button class="list_btn" @click="handleClose" type="info">取 消</el-button>
@@ -41,13 +49,16 @@ export default {
   },
   data() {
     return {
+      isAdmin: false,
       row: {},
       direction: "ltr",
       ruleForm: {
         name: '',
         phone: '',
-        password: ''
+        password: '',
+        is_admin: ''
       },
+      identity: sessionStorage.getItem('type'),
       rules: {
         name: [
           { required: true, message: '请填写角色姓名', trigger: 'blur' },
@@ -59,6 +70,14 @@ export default {
     };
   },
   methods: {
+    changeAdmin () {
+      console.log(this.isAdmin)
+      if (this.isAdmin == true) {
+        this.ruleForm.is_admin = 1
+      } else {
+        this.ruleForm.is_admin = 0
+      }
+    },
     getDetail (id) {
       let params = {
         token: sessionStorage.getItem('token'),
@@ -69,6 +88,13 @@ export default {
         if (res) {
           this.ruleForm.name = res.name
           this.ruleForm.phone = res.phone
+          if (res.role == 3) {
+            this.isAdmin = true
+            this.ruleForm.is_admin = 1
+          } else {
+            this.isAdmin = false
+            this.ruleForm.is_admin = 0
+          }
         }
       })
     },
@@ -83,7 +109,8 @@ export default {
             token: sessionStorage.getItem('token'),
             user_id: this.row.id,
             name: this.ruleForm.name,
-            password: this.ruleForm.password
+            password: this.ruleForm.password,
+            is_admin: this.ruleForm.is_admin
           }
           updataUser(params).then(res => {
             if (res) {
@@ -104,6 +131,7 @@ export default {
     },
     handleClose() {
       // this.$refs.ruleForm.resetFields()
+      this.isAdmin = false
       this.$nextTick(() => {
         this.$emit("update:visible", false); // 直接修改父组件的属性
       });

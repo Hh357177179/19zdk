@@ -97,8 +97,20 @@ export default {
             type: 'success',
             duration: 1500
           });
-          this.$emit('updateAll')
-          this.handleClose()
+          this.$confirm("继续添加角色, 是否继续?", "提示", {
+            confirmButtonText: "继续",
+            cancelButtonText: "取消",
+            type: "warning"
+          })
+            .then(() => {
+              this.ruleForm.name = ''
+              this.ruleForm.phone = ''
+            })
+            .catch(() => {
+              this.$emit('updateAll')
+             this.handleClose()
+            });
+          
         }
       })
     },

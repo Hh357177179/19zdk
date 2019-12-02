@@ -118,6 +118,8 @@ page{
 .people_title{
   font-weight: bold;
   margin-bottom: 20rpx;
+  font-size: 26rpx;
+  color: #203152;
 }
 .people_list{
   display: flex;
@@ -224,4 +226,45 @@ page{
 }
 .clear{
   clear: both;
+}
+
+.package_text{
+  font-size: 26rpx;
+  padding: 10rpx;
+  border: 2rpx solid #f0f0f0;
+  margin-top: 20rpx;
+  border-radius: 8rpx;
+  color: #999;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.addTextColor {
+  color: #353b50;
+}
+.package_content{
+  color: #353b50;
+  font-size: 26rpx;
+  padding: 10rpx;
+  margin-top: 10rpx;
+  border: 2rpx dashed #f0f0f0;
+  border-radius: 8rpx;
+}
+.pack_cont_list{
+  margin-bottom: 20rpx;
+}
+.contet_price{
+  color: #f00;
+  margin-left:10rpx;
+}
+.remake_message{
+  border: 2rpx solid #f0f0f0;
+  font-size: 26rpx;
+  color: #353b50;
+  margin-top: 10rpx;
+  border-radius: 8rpx;
+}
+.remake_message textarea{
+  padding: 10rpx;
+  min-height: 100rpx;
 }

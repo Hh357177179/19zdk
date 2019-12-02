@@ -59,6 +59,12 @@
       </view>
       <view>消费清单</view>
     </view>
+    <view class="list_card"  bindtap='navPayOrder'>
+      <view class="list_icon">
+        <image src="../../images/paynone.png"></image>
+      </view>
+      <view>待支付</view>
+    </view>
     <view class="list_card"  bindtap='navInvite'>
       <view class="list_icon">
         <image src="../../images/invite.png"></image>
@@ -107,14 +113,6 @@
       <view>特惠活动</view>
     </view>
   </view>
- <wux-popup visible="{{ visible }}" title="需要您的授权">
-    <view class='info_text'>为了提供更好的服务</view>
-    <view class='info_text'>请在稍后的提示框中点击“允许”</view>
-    <view class='author_img'>
-      <image src='../../images/author.png'></image>
-    </view>
-    <button class='author_user' open-type="getUserInfo" bindgetuserinfo="btnGetUserInfo">我知道了</button>
-</wux-popup>
 
 <wux-popup visible="{{ withdrawShow }}" bind:close="onCloseWith" title="提现佣金">
   <view class='with_label'>
@@ -123,7 +121,17 @@
   <view class='with_btn' bindtap='submitWith'>确认提现</view>
 </wux-popup>
 
+<wux-popup visible="{{ phoneShow }}" position="bottom" zIndex="1112" closable bind:close="onClosePhone">
+  <view class="bot_main">
+    <view class="pop_title">授权手机号</view>
+    <view class='auth_text'>
+      您正在使用翎塑 Lnsom 小程序，我们将获取您的手机号码，此授权邀请旨为您提供更优质的服务，我们将妥善保存您的个人信息。
+    </view>
+    <button class='pop_btn' plain="true" open-type='getPhoneNumber' bindgetphonenumber="getPhoneNumber">获取用户手机号</button>
+  </view>
+</wux-popup>
+
 <view class="bot_img">
-  <image src="../../images/bot_img.jpg" mode="widthFix"></image>
+  <image src="../../images/backs.jpg" mode="widthFix"></image>
 </view>
 </view>

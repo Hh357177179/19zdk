@@ -42,7 +42,7 @@ Page({
   getMyinfo () {
     let that = this
     let params = {
-      token: app.globalData.token
+      token: wx.getStorageSync('token')
     }
     postRequest('/user/myInfo', params, false).then(res => {
       console.log(res)
@@ -55,7 +55,7 @@ Page({
   getUser () {
     let that = this
     let params = {
-      token: app.globalData.token
+      token: wx.getStorageSync('token')
     }
     postRequest('/user/getMyinfo', params, true).then(res => {
       console.log('个人信息',res)
@@ -63,7 +63,10 @@ Page({
         userInfo: res,
         avatar: res.avatar
       })
-      app.globalData.userInfo = res
+      wx.setStorage({
+        key: 'userInfo',
+        data: res,
+      })
     })
   },
 
@@ -149,9 +152,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log(app.globalData.userInfo)
+    console.log(wx.getStorageSync('userInfo'))
     let that = this
-    if (app.globalData.userInfo == null) {
+    if (!wx.getStorageSync('userInfo')) {
       that.setData({ showUserInfo: false })
     } else {
       that.getUser()

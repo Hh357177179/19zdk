@@ -63,7 +63,7 @@ Page({
       let second = that.data.endtime.replace(/-/g, '/')
       dates = `${first}-${second}`
       let params = {
-        token: app.globalData.token,
+        token: wx.getStorageSync('token'),
         name: that.data.name,
         weapon: that.data.weapon,
         venue: that.data.venue,
@@ -127,7 +127,7 @@ Page({
   getWeapon() {
     let that = this
     let params = {
-      token: app.globalData.token
+      token: wx.getStorageSync('token')
     }
     postRequest('/activity/swordsList', params, false).then(res => {
       console.log('剑种', res)

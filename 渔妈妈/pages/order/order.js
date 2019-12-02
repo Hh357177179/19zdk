@@ -18,6 +18,24 @@ Page({
     communityShow: true,
     noDataText: '暂无符合条件的学校'
   },
+
+  callMe() {
+    let that = this
+    if (!wx.getStorageSync('phone') && app.globalData.userInfo == null) {
+      wx.navigateTo({
+        url: '/pages/phone/phone',
+      })
+    } else if (wx.getStorageSync('phone') != '' && app.globalData.userInfo == null) {
+      wx.navigateTo({
+        url: '/pages/login/login',
+      })
+    } else if (wx.getStorageSync('phone') != '' && app.globalData.userInfo != null) {
+      wx.navigateTo({
+        url: '/pages/callme/callme',
+      })
+    }
+  },
+  
   addHeart (e) {
     let that = this
     if (!wx.getStorageSync('phone') && app.globalData.userInfo == null) {

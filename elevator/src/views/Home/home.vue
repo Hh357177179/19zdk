@@ -1,24 +1,24 @@
 <template>
-  <div class="home">
+  <div class="home" v-loading="loadings">
     <div id="container" :style="{ width: 100 + '%', height: mapHeight + 'px' }"></div>
     <div class="status_card">
-      <div class="card_list">
+      <div class="card_list" @click="normalClick" :class="colorIndex == 1 ? 'borter1' : ''">
         <p class="four card_color">
-          <img src="http://cdn.zhaodaka.cn/lift/lift_normal.png" alt="">
+          <img src="http://cdn.zhaodaka.cn/lift/lift_normal.png" alt>
         </p>
-        <p class="card_text" style="color: #3a65e3;">正常工作</p>
+        <p class="card_text" style="color: #3a65e3;">正常</p>
       </div>
-      <div class="card_list">
+      <div class="card_list" @click="aboutClick" :class="colorIndex == 2 ? 'borter2' : ''">
         <p class="three card_color">
-          <img src="http://cdn.zhaodaka.cn/lift/lift_warn.png" alt="">
+          <img src="http://cdn.zhaodaka.cn/lift/lift_warn.png" alt>
         </p>
         <p class="card_text" style="color: #eba945;">即将维保</p>
       </div>
-      <div class="card_list">
+      <div class="card_list" @click="overdueClick" :class="colorIndex == 3 ? 'borter3' : ''">
         <p class="three card_color">
-          <img src="http://cdn.zhaodaka.cn/lift/lift_danger.png" alt="">
+          <img src="http://cdn.zhaodaka.cn/lift/lift_danger.png" alt>
         </p>
-        <p class="card_text" style="color: #e95b56;">超期维保</p>
+        <p class="card_text" style="color: #e95b56;">超期未保</p>
       </div>
     </div>
     <!-- <div class="nowa_days_card" @click="addOverlayGroup">
@@ -34,7 +34,7 @@
       <div class="days_list">
         <span class="label_width">总维保工时</span>
         <span class="list_number">10</span>
-      </div> -->
+    </div>-->
     <!-- </div> -->
     <!-- <div class="top_select">
       <div class="choose_top">
@@ -46,7 +46,7 @@
           @change="handleChange"
         ></el-cascader>
       </div>
-    </div> -->
+    </div>-->
   </div>
 </template>
 
@@ -55,10 +55,13 @@
 import { areaList } from "@/minx/area.js";
 import { getHomeList } from "@/api/home/home.js";
 import AMap from "AMap"; // 引入高德地图
+import { setTimeout } from 'timers';
 export default {
   mixins: [areaList],
   data() {
     return {
+      loadings: false,
+      colorIndex: 0,
       mapHeight: 0,
       value: [],
       province: "",
@@ -70,10 +73,12 @@ export default {
       marker: null,
       markers: [],
       viaMarker: null,
+      allElevator: [],
+      cluster: null
     };
   },
   created() {
-    this.getCoordinate()
+    this.getCoordinate(0);
     var h =
       window.innerHeight ||
       document.documentElement.clientHeight ||
@@ -82,24 +87,48 @@ export default {
   },
   mounted() {
     this.map = new AMap.Map("container", {
-      center: [109.814257,19.287232], //海口
+      center: [109.814257, 19.287232], //海口
       resizeEnable: true,
       zoom: 9
     });
   },
   methods: {
-     addMarker(data) {
+    normalClick () {
+      this.colorIndex = 1
+      this.markers = []
+      this.cluster.setMap(null);
+      this.getCoordinate(1)
+    },
+    aboutClick () {
+      this.colorIndex = 2
+      this.markers = []
+      this.cluster.setMap(null);
+      this.getCoordinate(2)
+    },
+    overdueClick () {
+      this.colorIndex = 3
+      this.markers = []
+      this.cluster.setMap(null);
+      this.getCoordinate(3)
+    },
+    addMarker(data) {
       const marker = new window.AMap.Marker({
-        icon: data.type == 1 ? "http://cdn.zhaodaka.cn/lift/lift_normal.png" : (data.type == 2 ?  "http://cdn.zhaodaka.cn/lift/lift_warn.png" : "http://cdn.zhaodaka.cn/lift/lift_danger.png"),
-        position: [data.longitude, data.latitude],
+        icon:
+          data.type == 1
+            ? "http://cdn.zhaodaka.cn/lift/lift_normal.png"
+            : data.type == 2
+            ? "http://cdn.zhaodaka.cn/lift/lift_warn.png"
+            : "http://cdn.zhaodaka.cn/lift/lift_danger.png",
+        position: [data.longitude, data.latitude]
       });
       marker.setMap(this.map);
       marker.type = data.type;
       // marker.id = data.id;
-      marker.on('click', (e) => this.bindEvent(e, data));
+      marker.on("click", e => this.bindEvent(e, data));
       this.markers.push(marker);
     },
-    getCoordinate() {
+    getCoordinate(state) {
+      this.loadings = true
       let params = {
         token: sessionStorage.getItem("token"),
         province: this.province,
@@ -107,15 +136,95 @@ export default {
         area: this.area
       };
       getHomeList(params).then(res => {
-        console.log(res);
-        res.forEach(ele => {
-          this.addMarker(ele)
-        });
+        if (state == 0) {
+          this.allElevator = res
+          res.forEach(ele => {
+            this.addMarker(ele);
+          });
+          this.map.plugin(["AMap.MarkerClusterer"], () => {
+            this.cluster = new AMap.MarkerClusterer(
+              this.map, // 地图实例
+              this.markers, // 海量点组成的数组
+              {
+                maxZoom: 12,
+                styles: [{
+                  url: "http://cdn.zhaodaka.cn/lift/marker-bg.png",
+                  size: new AMap.Size(50, 50)
+                }]
+              }
+            );
+          });
+            this.loadings = false
+          return;
+        } else if (state == 1) {
+          res.forEach(ele => {
+            if (ele.type == 1) {
+              this.addMarker(ele);
+            }
+          });
+          this.map.plugin(["AMap.MarkerClusterer"], () => {
+            this.cluster = new AMap.MarkerClusterer(
+              this.map, // 地图实例
+              this.markers, // 海量点组成的数组
+              {
+                maxZoom: 12,
+                styles: [{
+                  url: "http://cdn.zhaodaka.cn/lift/marker-bg.png",
+                  size: new AMap.Size(50, 50)
+                }]
+              }
+            );
+          });
+          this.loadings = false
+          return;
+        } else if (state == 2) {
+          res.forEach(ele => {
+            if (ele.type == 2) {
+              this.addMarker(ele);
+            }
+          });
+          this.map.plugin(["AMap.MarkerClusterer"], () => {
+            this.cluster = new AMap.MarkerClusterer(
+              this.map, // 地图实例
+              this.markers, // 海量点组成的数组
+              {
+                maxZoom: 12,
+                styles: [{
+                  url: "http://cdn.zhaodaka.cn/lift/marker-bg.png",
+                  size: new AMap.Size(50, 50)
+                }]
+              }
+            );
+          });
+            this.loadings = false
+          return;
+        }else if (state == 3) {
+          res.forEach(ele => {
+            if (ele.type == 3) {
+              this.addMarker(ele);
+            }
+          });
+          this.map.plugin(["AMap.MarkerClusterer"], () => {
+            this.cluster = new AMap.MarkerClusterer(
+              this.map, // 地图实例
+              this.markers, // 海量点组成的数组
+              {
+                maxZoom: 12,
+                styles: [{
+                  url: "http://cdn.zhaodaka.cn/lift/marker-bg.png",
+                  size: new AMap.Size(50, 50)
+                }]
+              }
+            );
+          });
+            this.loadings = false
+          return;
+        }
       });
     },
-    bindEvent (e,data) {
-      console.log(e,data)
-      this.$router.push(`/place-detail/${data.id}`)
+    bindEvent(e, data) {
+      console.log(e, data);
+      this.$router.push(`/place-detail/${data.id}`);
     },
     handleChange(value) {
       this.province = value[0];
@@ -140,7 +249,7 @@ export default {
 
 <style lang="less">
 .home {
-  .amap-icon img{
+  .amap-icon img {
     width: 30px;
     height: 30px;
   }
@@ -155,12 +264,14 @@ export default {
     border-radius: 5px;
     padding: 15px 15px 5px;
     .card_list {
+      border-bottom: 1px solid rgba(0,0,0,0);
       font-size: 13px;
       color: #666;
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 10px;
+      cursor: pointer;
       .card_text {
         width: 52px;
         text-align: left;
@@ -171,7 +282,7 @@ export default {
         height: 30px;
         border-radius: 50%;
         margin-right: 20px;
-        img{
+        img {
           width: 100%;
           height: 100%;
         }
@@ -228,6 +339,19 @@ export default {
         width: 100%;
       }
     }
+  }
+  .borter1 {
+    border-color: rgb(58, 101, 227) !important;
+  }
+  .borter2 {
+    border-color: rgb(235, 169, 69) !important;
+  }
+  .borter3 {
+    border-color: rgb(233, 91, 86) !important;
+  }
+  .amap-marker-content > div{
+    background-size: 100% 100% !important;
+    font-size: 13px !important;
   }
 }
 </style>

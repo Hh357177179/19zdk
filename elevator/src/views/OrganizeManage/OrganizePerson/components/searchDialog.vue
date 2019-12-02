@@ -1,6 +1,30 @@
 <template>
   <div class="calendar">
     <el-dialog :title="title" :visible.sync="visible" width="1100px" :before-close="handleClose">
+      <el-form class="mt40" :inline="true" :model="formInline" size="small">
+        <el-form-item>
+          <el-input v-model="formInline.use_unit" clearable placeholder="请输入使用单位"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-input v-model="formInline.internal_number" clearable placeholder="请输入内部编号"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-select clearable v-model="formInline.position_state" placeholder="请选择是否定位">
+            <el-option
+              v-for="item in options"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value">
+            </el-option>
+          </el-select>
+        </el-form-item>
+        <el-form-item>
+          <el-date-picker v-model="formInline.next_maintain_date" type="date" value-format="yyyy-MM-dd" placeholder="下次维保日期"></el-date-picker>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" icon="el-icon-search" @click="onSubmit">搜索</el-button>
+        </el-form-item>
+      </el-form>
       <el-table
         :data="tableData"
         style="width: 100%"
@@ -94,6 +118,19 @@
           </template>
         </el-table-column>
       </el-table>
+      <div class="clearfix mt10">
+        <el-pagination
+          class="pagination"
+          background
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+          :current-page.sync="currentPage"
+          :page-sizes="[10, 20, 30]"
+          :page-size="10"
+          layout="total, sizes, prev, pager, next"
+          :total="total"
+        ></el-pagination>
+      </div>
     </el-dialog>
   </div>
 </template>
@@ -113,8 +150,26 @@ export default {
   },
   data() {
     return {
+      ids: '',
+      total: 0,
+      currentPage: 1,
+      options: [ {
+          value: '1',
+          label: '已定位'
+        }, {
+          value: '2',
+          label: '未定位'
+        }],
       tableData: [],
-      pdfSrc: ''
+      pdfSrc: '',
+      formInline: {
+        next_maintain_date: '',
+        position_state: '',
+        use_unit: '',
+        internal_number: ''
+      },
+      page: 1,
+      pagesize: 10
     };
   },
   methods: {
@@ -133,22 +188,52 @@ export default {
         // this.dialogVisible = true;
       }
     },
-    getList(id) {
+    getList() {
       let params = {
         token: sessionStorage.getItem("token"),
-        user_id: id
+        user_id: this.ids,
+        next_maintain_date: this.formInline.next_maintain_date,
+        position_state: this.formInline.position_state,
+        use_unit: this.formInline.use_unit,
+        internal_number: this.formInline.internal_number,
+        page: this.page,
+        pagesize: this.pagesize
       };
       getMyElevatorList(params).then(res => {
         console.log(res);
-        this.tableData = res;
+        this.total = res.count
+        this.tableData = res.list;
       });
+    },
+    handleSizeChange(val) {
+      console.log("每页多少条", val);
+      this.currentPage = 1;
+      this.pagesize = val;
+      this.getList();
+    },
+    handleCurrentChange(val) {
+      console.log("多少页", val);
+      this.page = val;
+      this.getList();
+    },
+    onSubmit () {
+      this.page = 1
+      this.currentPage = 1
+      this.getList()
     },
     getParentData(row) {
       console.log("人员详情接收", row);
-      this.getList(row.id);
+      this.ids = row.id
+      this.getList();
     },
     handleClose() {
       this.tableData = [];
+      this.page = 1
+      this.currentPage = 1
+      this.formInline.next_maintain_date = ''
+      this.formInline.position_state = ''
+      this.formInline.use_unit = ''
+      this.formInline.internal_number = ''
       this.$nextTick(() => {
         this.$emit("update:visible", false); // 直接修改父组件的属性
       });

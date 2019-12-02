@@ -26,7 +26,8 @@
     "pages/historyList/historyList",
     "pages/evaluating/evaluating",
     "pages/allplace/allplace",
-    "pages/teacherAndTime/teacherAndTime"
+    "pages/teacherAndTime/teacherAndTime",
+    "pages/callme/callme"
   ],
   "window": {
     "backgroundTextStyle": "light",

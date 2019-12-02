@@ -13,7 +13,7 @@
 		"checkInvalidKey": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.8.3",
+	"libVersion": "2.9.2",
 	"appid": "wxc714074e9b00c3d2",
 	"projectname": "%E7%BF%8E%E5%A1%91",
 	"debugOptions": {
@@ -184,6 +184,12 @@
 					"name": "我购买的套餐",
 					"pathName": "pages/buyList/buyList",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "待支付",
+					"pathName": "subPackages/Tobepaid/Tobepaid",
 					"scene": null
 				}
 			]

@@ -139,7 +139,8 @@ const router = new Router({
               component: () => import('./views/OrganizeManage/OrganizeNotice/organizeNotice.vue'),
               meta: {
                 title: '组织公告',
-                icon: 'icon-gonggao'
+                icon: 'icon-gonggao',
+                show: true
               }
             }
           ]

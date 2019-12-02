@@ -1,7 +1,7 @@
 <template>
   <div class="login">
     <div class="login_card">
-      <p class="login_title">电梯维保智慧监管云系统</p>
+      <p class="login_title">互联网+电梯监管智慧平台</p>
       <div class="user_main">
         <el-form :model="loginForm" ref="loginForm" status-icon :rules="rules">
           <el-form-item class="user_input" prop="username">
@@ -37,8 +37,8 @@ export default {
   data() {
     return {
       loginForm: {
-        username: "admin",
-        password: "654321"
+        username: "",
+        password: ""
       },
       rules: {
         username: [{ required: true, message: "请输入账号", trigger: "blur" }],

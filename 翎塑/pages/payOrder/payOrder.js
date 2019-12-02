@@ -186,10 +186,12 @@ Page({
     let that = this
     if (that.data.couponid != e.currentTarget.dataset.couponid) {
       let items = e.currentTarget.dataset.items
-      console.log(items)
+      console.log('传递',items)
       that.setData({
         min_pay_amout: items.min_pay_amout
       })
+      console.log(1232)
+      console.log(that.data.consumeVal)
       if (Number(items.min_pay_amout) <= Number(that.data.consumeVal)) {
         that.setData({
           couponid: e.currentTarget.dataset.couponid
@@ -397,13 +399,6 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
 
   }
 })

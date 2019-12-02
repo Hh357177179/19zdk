@@ -33,7 +33,7 @@ Page({
   honeyVip() {
     let that = this
     let params = {
-      token: app.globalData.token
+      token: wx.getStorageSync('token')
     }
     postRequest('/user/vipStartByHoney', params, true).then(res => {
       console.log(res)
@@ -46,12 +46,12 @@ Page({
   rmbVip() {
     let that = this
     let params = {
-      token: app.globalData.token
+      token: wx.getStorageSync('token')
     }
     postRequest('/user/vipStartByMoney', params, true).then(res => {
       console.log(res)
       let param = {
-        token: app.globalData.token,
+        token: wx.getStorageSync('token'),
         order_id: res.order_id
       }
       postRequest('/mini/vipOrderPayByMini', param, true).then(res => {
@@ -79,11 +79,17 @@ Page({
   getUserAgain() {
     let that = this
     let params = {
-      token: app.globalData.token
+      token: wx.getStorageSync('token')
     }
     postRequest('/user/getMyinfo', params, false).then(res => {
-      app.globalData.userInfo = res
-      app.globalData.isVip = res.vip_time
+      wx.setStorage({
+        key: 'isVip',
+        data: res.vip_time,
+      })
+      wx.setStorage({
+        key: 'userInfo',
+        data: res,
+      })
       setTimeout(() => {
         wx.navigateBack()
       }, 1000)
@@ -92,7 +98,7 @@ Page({
 
   buyVip() {
     let that = this
-    if (app.globalData.token != '') {
+    if (wx.getStorageSync('token') != '') {
       wx.showModal({
         title: '提示',
         content: '确认使用当前方式支付吗？',
@@ -123,9 +129,9 @@ Page({
    */
   onLoad: function(options) {
     let that = this
-    if (app.globalData.isVip != 0) {
+    if (wx.getStorageSync('isVip') != 0) {
       that.setData({
-        time: app.globalData.isVip,
+        time: wx.getStorageSync('isVip'),
         showVip: true
       })
     } else {

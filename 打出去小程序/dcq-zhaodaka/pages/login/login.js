@@ -47,6 +47,10 @@ Page({
                         success: resUserInfo => {
                           // console.log(resUserInfo.data.data)
                           app.globalData.token = resUserInfo.data.data.unionid
+                          wx.setStorage({
+                            key: 'token',
+                            data: resUserInfo.data.data.unionid
+                          })
                           that.getUserInfo(resUserInfo.data.data.unionid)
                           wx.hideLoading()
                         }
@@ -58,6 +62,10 @@ Page({
             } else {
               console.log('直接保存用户信息', resLogin)
               app.globalData.token = resLogin.data.data.unionid
+              wx.setStorage({
+                key: 'token',
+                data: resLogin.data.data.unionid
+              })
               that.getUserInfo(resLogin.data.data.unionid)
               wx.hideLoading()
             }
@@ -75,6 +83,14 @@ Page({
     postRequest('/user/getMyinfo',params, false).then(res => {
       app.globalData.userInfo = res
       app.globalData.isVip = res.vip_time
+      wx.setStorage({
+        key: 'userInfo',
+        data: res,
+      })
+      wx.setStorage({
+        key: 'isVip',
+        data: res.vip_time,
+      })
       wx.navigateBack()
     })
   },

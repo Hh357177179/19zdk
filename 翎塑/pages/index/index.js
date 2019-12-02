@@ -15,68 +15,146 @@ Page({
     withdrawShow: false,
     withVal: '',
     pids: '',
-    scene: ''
+    scene: '',
+    phoneShow: false
+  },
+
+  getPhoneNumber(e) {
+    let that = this
+    if (e.detail.iv) {
+      wx.login({
+        success: phone => {
+          let params = {
+            code: phone.code,
+            encryptedData: e.detail.encryptedData,
+            iv: e.detail.iv
+          }
+          postRequest('/user/authPhone', params, true).then(res => {
+            util.showMsg('绑定成功')
+            that.setData({
+              phoneShow: false
+            })
+          })
+        }
+      })
+    } else {
+      util.showMsg('获取手机失败', '../../image/warning.png')
+    }
+  },
+
+  onClosePhone () {
+    let that = this
+    that.setData({
+      phoneShow: false
+    })
   },
 
   // 发起预约
   sendOrder () {
-    wx.navigateTo({
-      url: '/pages/order/order',
-    })
+    if (app.globalData.unionid == '') {
+      util.showMsg('请先登录！')
+    } else {
+      wx.navigateTo({
+        url: '/pages/order/order',
+      })
+    }
+  },
+
+  // 待支付
+  navPayOrder () {
+    if (app.globalData.unionid == '') {
+      util.showMsg('请先登录！')
+    } else {
+      wx.navigateTo({
+        url: '/subPackages/Tobepaid/Tobepaid',
+      })
+    }
   },
 
   navBuy () {
-    wx.navigateTo({
-      url: '/pages/buyList/buyList',
-    })
+    if (app.globalData.unionid == '') {
+      util.showMsg('请先登录！')
+    } else {
+      wx.navigateTo({
+        url: '/pages/buyList/buyList',
+      })
+    }
   },
 
   // 跳转佣金日志
   navLog() {
-    wx.navigateTo({
-      url: '/pages/journal/journal',
-    })
+    if (app.globalData.unionid == '') {
+      util.showMsg('请先登录！')
+    } else {
+      wx.navigateTo({
+        url: '/pages/journal/journal',
+      })
+    }
   },
 
   // 跳转预约服务
   navOrder() {
-    wx.navigateTo({
-      url: `/pages/consume/consume?nav=1`,
-    })
+    if (app.globalData.unionid == '') {
+      util.showMsg('请先登录！')
+    } else {
+      wx.navigateTo({
+        url: `/pages/consume/consume?nav=1`,
+      })
+    }
   },
 
   // 跳转我的特惠卡
   navpPreference () {
-    wx.navigateTo({
-      url: '/pages/preference/preference',
-    })
+    if (app.globalData.unionid == '') {
+      util.showMsg('请先登录！')
+    } else {
+      wx.navigateTo({
+        url: '/pages/preference/preference',
+      })
+    }
   },
 
   // 我的收藏
   navCollect () {
-    wx.navigateTo({
-      url: '/pages/collect/collect',
-    })
+    if (app.globalData.unionid == '') {
+      util.showMsg('请先登录！')
+    } else {
+      wx.navigateTo({
+        url: '/pages/collect/collect',
+      })
+    }
   },
 
   // 精选发型
   navHair () {
-    wx.navigateTo({
-      url: '/pages/hairStyle/hairStyle',
-    })
+    if (app.globalData.unionid == '') {
+      util.showMsg('请先登录！')
+    } else {
+      wx.navigateTo({
+        url: '/pages/hairStyle/hairStyle',
+      })
+    }
   },
 
   // 特惠活动
   navActivity () {
-    wx.navigateTo({
-      url: '/pages/activity/activity',
-    })
+    if (app.globalData.unionid == '') {
+      util.showMsg('请先登录！')
+    } else {
+      wx.navigateTo({
+        url: '/pages/activity/activity',
+      })
+    }
   },
   
   navRecharge () {
-    wx.navigateTo({
-      url: `/pages/recharge/recharge`
-    })
+    if (app.globalData.unionid == '') {
+      util.showMsg('请先登录！')
+    } else {
+      wx.navigateTo({
+        url: `/pages/recharge/recharge`
+      })
+    }
   },
 
   onCloseWith () {
@@ -89,31 +167,47 @@ Page({
 
   // 跳转消费清单
   navList() {
-    wx.navigateTo({
-      url: '/pages/consume/consume?nav=2',
-    })
+    if (app.globalData.unionid == '') {
+      util.showMsg('请先登录！')
+    } else {
+      wx.navigateTo({
+        url: '/pages/consume/consume?nav=2',
+      })
+    }
   },
 
   // 跳转Vip介绍
   navVip() {
-    wx.navigateTo({
-      url: '/pages/vipInfo/vipInfo',
-    })
+    if (app.globalData.unionid == '') {
+      util.showMsg('请先登录！')
+    } else {
+      wx.navigateTo({
+        url: '/pages/vipInfo/vipInfo',
+      })
+    }
   },
 
   // 跳转优惠券
   navCoupon() {
-    wx.navigateTo({
-      url: '/pages/coupon/coupon',
-    })
+    if (app.globalData.unionid == '') {
+      util.showMsg('请先登录！')
+    } else {
+      wx.navigateTo({
+        url: '/pages/coupon/coupon',
+      })
+    }
   },
 
   // 跳转邀请好友
 
   navInvite() {
-    wx.navigateTo({
-      url: '/pages/invite/invite',
-    })
+    if (app.globalData.unionid == '') {
+      util.showMsg('请先登录！')
+    } else {
+      wx.navigateTo({
+        url: '/pages/invite/invite',
+      })
+    }
   },
 
   logins() {
@@ -184,7 +278,7 @@ Page({
         } else {
           console.log('未授权')
           that.setData({
-            visible: true
+            // visible: true
           })
         }
       }
@@ -257,7 +351,12 @@ Page({
       token: unionid
     }
     postRequest('/user/getInfo', params, true).then(res => {
-      console.log('获取到用户基本信息',res)
+      console.log('获取到用户基本信息', res)
+      if (res.phone == '') {
+        that.setData({
+          phoneShow: true
+        })
+      }
       that.getUser()
       app.globalData.level = res.level
       that.setData({
@@ -305,12 +404,13 @@ Page({
     // that.logins()
   },
   /**
-  * 用户点击右上角分享
-  */
-  onShareAppMessage: function (res) {
+ * 用户点击右上角分享
+ */
+  onShareAppMessage: function () {
     return {
       title: '翎塑',
-      path: 'pages/index/index?pid=' + app.globalData.id
+      path: 'pages/index/index',
+      imageUrl: '../../images/share.jpg'
     }
   }
 })

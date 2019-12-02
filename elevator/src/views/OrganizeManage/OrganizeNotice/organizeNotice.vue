@@ -9,6 +9,14 @@
         <div class="rush el-icon-refresh-right"></div>
       </div>
       <div class="mt40 clearfix">
+      <!-- <el-form class="mt40" style="float: left;" :inline="true" :model="formInline" size="small">
+          <el-form-item>
+            <el-input clearable placeholder="请输入使用单位"></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" icon="el-icon-search" @click="onSubmit">搜索</el-button>
+          </el-form-item>
+        </el-form> -->
         <el-button
           size="small"
           style="float:right;"
@@ -55,7 +63,7 @@
           background
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
-          :current-page="currentPage"
+          :current-page.sync="currentPage"
           :page-sizes="[10, 20, 30]"
           :page-size="10"
           layout="total, sizes, prev, pager, next"

@@ -49,7 +49,7 @@
         <view class="labels">形式主题：</view>
         <view class="infos">{{itemObj.format}}</view>
       </view>
-      <view class="apply_list">
+      <view class="apply_list" wx:if="{{packageItem.length == 0}}">
         <view class="labels">活动费用：</view>
         <view class="infos">{{itemObj.money}}</view>
       </view>
@@ -104,6 +104,20 @@
     </view>
   </view>
   <view class="apply_remark" wx:if="{{itemObj.note != ''}}">{{itemObj.note}}</view>
+  <view class="info_card choose_package" wx:if="{{packageItem.length != 0}}">
+    <view class="people_title">套餐选择</view>
+    <picker bindchange="bindPickerPackage" value="{{index}}" range="{{packageItem}}" range-key="{{'title'}}">
+      <view class="package_text {{packageText == '请选择您要购买的套餐' ? '' : 'addTextColor'}}">{{packageText}}</view>
+    </picker>
+    <view class="remake_message">
+      <textarea bindinput="textAreaVal" value="{{message}}" auto-height placeholder="请输入备注" placeholder-style="color: #999;"/>
+    </view>
+    <view class="package_content" wx:if="{{showContent}}">
+      <view class="pack_cont_list">{{packageObj.title}}</view>
+      <view class="pack_cont_list">价格<text class="contet_price">{{packageObj.money}}</text></view>
+      <view class="pack_cont_list">{{packageObj.content}}</view>
+    </view>
+  </view>
   <view class="apply_btn" bindtap="applyBtn">我要报名</view>
   <view class="small_main">
     <!-- <view class="consider_btn small_btn" bindtap="clickConsider">考虑中</view> -->

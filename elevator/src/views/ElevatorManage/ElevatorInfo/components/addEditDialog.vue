@@ -5,7 +5,7 @@
       :visible.sync="visible"
       :direction="direction"
       :before-close="handleClose"
-      size="500px"
+      size="560px"
     >
       <div class="add_edit_main">
         <!-- <el-scrollbar style="height: 100%;"> -->
@@ -13,72 +13,91 @@
             :model="aeForm"
             :rules="rules"
             ref="aeForm"
-            label-width="120px"
+            label-width="180px"
             class="demo_ruleForm"
           >
-            <el-form-item label="单位区域" prop="valText" class="change_input">
-              <el-cascader
+            <div class="draw_titles">设备基本情况</div>
+            <el-form-item label="设备注册代码" prop="device_code" class="change_input">
+              <el-input v-model="aeForm.device_code" size="small" placeholder="请输入设备注册代码"></el-input>
+            </el-form-item>
+            <el-form-item label="出厂编号" prop="elevator_model" class="change_input">
+              <el-input v-model="aeForm.elevator_model" size="small" placeholder="请输入出厂编号"></el-input>
+            </el-form-item>
+            <el-form-item label="设备类别" prop="elevator_type" class="change_input">
+              <el-input v-model="aeForm.elevator_type" size="small" placeholder="请输入设备类别"></el-input>
+            </el-form-item>
+            <el-form-item label="制造单位" prop="factory" class="change_input">
+              <el-input v-model="aeForm.factory" size="small" placeholder="请输入制造单位"></el-input>
+            </el-form-item>
+
+            <div class="draw_titles">使用登记与监督管理</div>
+            <el-form-item label="使用证编号" prop="registration_number" class="change_input">
+              <el-input v-model="aeForm.registration_number" size="small" placeholder="请输入使用证编号"></el-input>
+            </el-form-item>
+            <el-form-item label="使用地点" prop="use_address" class="change_input">
+              <el-input v-model="aeForm.use_address" size="small" placeholder="请输入使用地点"></el-input>
+            </el-form-item>
+            <el-form-item label="设备内部编号" prop="internal_number" class="change_input">
+              <el-input v-model="aeForm.internal_number" size="small" placeholder="请输入设备内部编号"></el-input>
+            </el-form-item>
+            <el-form-item label="注册登记机构" prop="device_mechanism" class="change_input">
+              <el-input v-model="aeForm.device_mechanism" size="small" placeholder="请输入注册登记机构"></el-input>
+            </el-form-item>
+             <el-form-item label="电梯所在区域" prop="valText" class="change_input">
+               <el-cascader
                   size="small"
                   v-model="aeForm.valText"
-                  placeholder="请选择单位区域"
+                  placeholder="请选择电梯所在区域"
+                  :props="{ checkStrictly: true }"
                   :options="areaData"
-                  :props="{ expandTrigger: 'hover' }"
+                  clearable
                 @change="handleChange"
                 >
               </el-cascader>
             </el-form-item>
-            <el-form-item label="使用单位" prop="use_unit" class="change_input">
-              <el-input v-model="aeForm.use_unit" size="small" placeholder="请输入使用单位"></el-input>
-            </el-form-item>
-            <el-form-item label="维保单位" prop="maintain_group_id" class="change_input">
-              <el-select @change="chanmaintainGroup" size="small" v-model="aeForm.maintain_group_id" placeholder="请选择维保单位">
+
+            <div class="draw_titles">设备使用单位情况</div>
+            <el-form-item label="使用单位" prop="use_group_id" class="change_input">
+              <el-select @change="chanUseGroup" filterable size="small" v-model="aeForm.use_group_id" placeholder="请选择使用单位">
                 <el-option
-                  v-for="item in maintainGroup"
+                  v-for="item in userUnit"
                   :key="item.id"
                   :label="item.title"
                   :value="item.id">
                 </el-option>
               </el-select>
             </el-form-item>
-            <el-form-item label="维保人员" prop="maintain_user1_id" class="change_input">
-              <el-select @change="chanmaintainUsero" size="small" v-model="aeForm.maintain_user1_id" placeholder="请选择维保人员">
-                <el-option
-                  v-for="item in maintainUser"
-                  :key="item.id"
-                  :label="item.name"
-                  :value="item.id">
-                </el-option>
-              </el-select>
+            <el-form-item label="使用单位法定代表人" prop="use_leader_name" class="change_input">
+              <el-input v-model="aeForm.use_leader_name" size="small" placeholder="请输入使用单位法定代表人"></el-input>
             </el-form-item>
-            <el-form-item label="维保人员" prop="maintain_user2_id" class="change_input">
-              <el-select @change="chanmaintainUserT" size="small" v-model="aeForm.maintain_user2_id" placeholder="请选择维保人员">
-                <el-option
-                  v-for="item in maintainUser"
-                  :key="item.id"
-                  :label="item.name"
-                  :value="item.id">
-                </el-option>
-              </el-select>
-            </el-form-item>
-            <el-form-item label="内部编号" prop="internal_number" class="change_input">
-              <el-input v-model="aeForm.internal_number" size="small" placeholder="请输入内部编号"></el-input>
-            </el-form-item>
-            <el-form-item label="电梯地址" prop="use_address" class="change_input">
-              <el-input v-model="aeForm.use_address" size="small" placeholder="请输入电梯地址"></el-input>
-            </el-form-item>
-            <el-form-item label="负责人姓名" prop="use_leader_name" class="change_input">
-              <el-input v-model="aeForm.use_leader_name" size="small" placeholder="请输入负责人姓名"></el-input>
-            </el-form-item>
-            <el-form-item label="负责人电话" prop="use_leader_phone" class="change_input">
+            <el-form-item label="使用单位法定代表人手机" prop="use_leader_phone" class="change_input">
               <el-input
                 v-model="aeForm.use_leader_phone"
                 maxlength="11"
                 size="small"
-                placeholder="请输入负责人电话"
+                placeholder="请输入使用单位法定代表人手机"
+              ></el-input>
+            </el-form-item>
+            <el-form-item label="使用单位联系人" prop="use_contact_name" class="change_input">
+              <el-input v-model="aeForm.use_contact_name" size="small" placeholder="请输入使用单位联系人"></el-input>
+            </el-form-item>
+            <el-form-item label="联系电话" prop="use_contact_phone" class="change_input">
+              <el-input
+                v-model="aeForm.use_contact_phone"
+                maxlength="11"
+                size="small"
+                placeholder="请输入联系电话"
               ></el-input>
             </el-form-item>
             <el-form-item label="安全管理员姓名" prop="use_manager_name" class="change_input">
-              <el-input v-model="aeForm.use_manager_name" size="small" placeholder="请输入安全管理员姓名"></el-input>
+               <el-select @change="changeSafety" size="small" v-model="aeForm.use_manager_name" placeholder="请选择安全管理员姓名">
+                <el-option
+                  v-for="item in safetyArr"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id">
+                </el-option>
+              </el-select>
             </el-form-item>
             <el-form-item label="安全管理员电话" prop="use_manager_phone" class="change_input">
               <el-input
@@ -87,6 +106,62 @@
                 size="small"
                 placeholder="请输入管理员电话"
               ></el-input>
+            </el-form-item>
+            <el-form-item label="部门名称" prop="use_department" class="change_input">
+              <el-input v-model="aeForm.use_department" size="small" placeholder="请输入部门名称"></el-input>
+            </el-form-item>
+
+            <div class="draw_titles">设备检验情况</div>
+            <el-form-item label="检验部门" prop="check_department" class="change_input">
+              <el-input v-model="aeForm.check_department" size="small" placeholder="请输入检验部门"></el-input>
+            </el-form-item>
+            <el-form-item label="检验日期" prop="check_date" class="change_input">
+              <el-date-picker
+                v-model="aeForm.check_date"
+                type="date"
+                size="small"
+                placeholder="选择检验日期"
+                value-format="yyyy-MM-dd"
+              ></el-date-picker>
+            </el-form-item>
+            <el-form-item label="下检日期" prop="next_year_check_date" class="change_input">
+              <el-date-picker
+                v-model="aeForm.next_year_check_date"
+                type="date"
+                size="small"
+                placeholder="选择下检日期"
+                value-format="yyyy-MM-dd"
+              ></el-date-picker>
+            </el-form-item>
+           
+            <div class="draw_titles">设备维保单位情况</div>
+            <el-form-item label="维保单位名称" prop="maintain_group_id" class="change_input">
+              <el-select @change="chanmaintainGroup" filterable size="small" v-model="aeForm.maintain_group_id" placeholder="请选择维保单位">
+                <el-option
+                  v-for="item in maintainGroup"
+                  :key="item.id"
+                  :label="item.title"
+                  :value="item.id">
+                </el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="维保单位详细地址" prop="maintain_group_address" class="change_input">
+              <el-input v-model="aeForm.maintain_group_address" size="small" placeholder="请输入维保单位详细地址"></el-input>
+            </el-form-item>
+            <el-form-item label="维保单位社会信用代码" prop="maintain_group_credit_code" class="change_input">
+              <el-input v-model="aeForm.maintain_group_credit_code" size="small" placeholder="请输入维保单位社会信用代码"></el-input>
+            </el-form-item>
+            <el-form-item label="维保许可证编号" prop="maintain_group_license_number" class="change_input">
+              <el-input v-model="aeForm.maintain_group_license_number" size="small" placeholder="请输入维保许可证编号"></el-input>
+            </el-form-item>
+            <el-form-item label="维保许可证有效期" prop="maintain_group_license_expire" class="change_input">
+               <el-date-picker
+                v-model="aeForm.maintain_group_license_expire"
+                size="small"
+                type="date"
+                placeholder="维保许可证有效期"
+                value-format="yyyy-MM-dd">
+              </el-date-picker>
             </el-form-item>
             <el-form-item label="维保合同" prop="agreement" class="change_input">
               <el-upload
@@ -104,40 +179,7 @@
                 <el-button size="small" type="primary">点击上传</el-button>
               </el-upload>
             </el-form-item>
-            <el-form-item label="电梯类型" prop="elevator_type" class="change_input">
-              <el-input v-model="aeForm.elevator_type" size="small" placeholder="请输入电梯类型"></el-input>
-            </el-form-item>
-            <el-form-item label="设备代码" prop="device_code" class="change_input">
-              <el-input v-model="aeForm.device_code" size="small" placeholder="请输入设备代码"></el-input>
-            </el-form-item>
-            <el-form-item label="登记编号" prop="registration_number" class="change_input">
-              <el-input v-model="aeForm.registration_number" size="small" placeholder="请输入登记编号"></el-input>
-            </el-form-item>
-            <el-form-item label="电梯品牌" prop="brand" class="change_input">
-              <el-input v-model="aeForm.brand" size="small" placeholder="请输入品牌"></el-input>
-            </el-form-item>
-            <el-form-item label="生产厂家" prop="factory" class="change_input">
-              <el-input v-model="aeForm.factory" size="small" placeholder="请输入生产厂家"></el-input>
-            </el-form-item>
-            <el-form-item label="下次年检日期" prop="next_year_check_date" class="change_input">
-              <el-date-picker
-                v-model="aeForm.next_year_check_date"
-                type="date"
-                size="small"
-                placeholder="选择下次年检日期"
-                value-format="yyyy-MM-dd"
-              ></el-date-picker>
-            </el-form-item>
-            <el-form-item label="合同起始时间" prop="maintain_start_date" class="change_input">
-              <el-date-picker
-                v-model="aeForm.maintain_start_date"
-                type="date"
-                size="small"
-                placeholder="维保开始时间"
-                value-format="yyyy-MM-dd"
-              ></el-date-picker>
-            </el-form-item>
-            <el-form-item label="合同终止时间" prop="maintain_end_date" class="change_input">
+            <el-form-item label="维保合同有效期" prop="maintain_end_date" class="change_input">
               <el-date-picker
                 v-model="aeForm.maintain_end_date"
                 type="date"
@@ -146,6 +188,69 @@
                 value-format="yyyy-MM-dd"
               ></el-date-picker>
             </el-form-item>
+            <el-form-item label="维保单位负责人" prop="maintain_leader_name" class="change_input">
+              <el-input v-model="aeForm.maintain_leader_name" size="small" placeholder="请输入维保单位负责人"></el-input>
+            </el-form-item>
+            <el-form-item label="维保单位负责人电话" prop="maintain_leader_phone" class="change_input">
+              <el-input v-model="aeForm.maintain_leader_phone" size="small" placeholder="请输入维保单位负责人电话"></el-input>
+            </el-form-item>
+            <el-form-item label="维保人员1姓名" prop="maintain_user1_id" class="change_input">
+              <el-select @change="chanmaintainUsero" size="small" v-model="aeForm.maintain_user1_id" placeholder="请选择维保人员">
+                <el-option
+                  v-for="item in maintainUser"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id">
+                </el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="维保人员1电话" prop="maintain_user1_phone" class="change_input">
+              <el-input v-model="aeForm.maintain_user1_phone" size="small" placeholder="请输入维保人员1电话"></el-input>
+            </el-form-item>
+            <el-form-item label="维保人员1身份证号" prop="maintain_user1_idcard" class="change_input">
+              <el-input v-model="aeForm.maintain_user1_idcard" size="small" placeholder="请输入维保人员1身份证号"></el-input>
+            </el-form-item>
+            <el-form-item label="维保人员1证书号" prop="maintain_user1_cert_no" class="change_input">
+              <el-input v-model="aeForm.maintain_user1_cert_no" size="small" placeholder="请输入维保人员1证书号"></el-input>
+            </el-form-item>
+            <el-form-item label="维保人员2姓名" prop="maintain_user2_id" class="change_input">
+              <el-select @change="chanmaintainUserT" size="small" v-model="aeForm.maintain_user2_id" placeholder="请选择维保人员">
+                <el-option
+                  v-for="item in maintainUser"
+                  :key="item.id"
+                  :label="item.name"
+                  :value="item.id">
+                </el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="维保人员2电话" prop="maintain_user2_phone" class="change_input">
+              <el-input v-model="aeForm.maintain_user2_phone" size="small" placeholder="请输入维保人员2电话"></el-input>
+            </el-form-item>
+            <el-form-item label="维保人员2身份证号" prop="maintain_user2_idcard" class="change_input">
+              <el-input v-model="aeForm.maintain_user2_idcard" size="small" placeholder="请输入维保人员2身份证号"></el-input>
+            </el-form-item>
+            <el-form-item label="维保人员2证书号" prop="maintain_user2_cert_no" class="change_input">
+              <el-input v-model="aeForm.maintain_user2_cert_no" size="small" placeholder="请输入维保人员2证书号"></el-input>
+            </el-form-item>
+            <!-- <el-form-item label="上次维保时间" prop="last_maintain_date" class="change_input">
+              <el-date-picker
+                v-model="aeForm.last_maintain_date"
+                type="date"
+                size="small"
+                placeholder="请选择上次维保时间"
+                value-format="yyyy-MM-dd"
+              ></el-date-picker>
+            </el-form-item>
+            <el-form-item label="下次维保时间" prop="next_maintain_date" class="change_input">
+              <el-date-picker
+                v-model="aeForm.next_maintain_date"
+                type="date"
+                size="small"
+                placeholder="请选择下次维保时间"
+                value-format="yyyy-MM-dd"
+              ></el-date-picker>
+            </el-form-item> -->
+            
           </el-form>
         <!-- </el-scrollbar>  -->
       </div>
@@ -164,9 +269,10 @@ import {
   createdElevator,
   getDetails,
   editElevator,
-  getMaintenance
+  getMaintenance,
+  getBaseUnitList
 } from "@/api/elevator/elevator.js";
-import { getUserList } from '@/api/organize/organize.js'
+import { getUserList, searchPerson } from '@/api/organize/organize.js'
 import { regionData, CodeToText, TextToCode } from "element-china-area-data";
 import AreaJson from "../../../../data/area.json"
 export default {
@@ -183,6 +289,42 @@ export default {
   data() {
     return {
       rules: {
+        check_date:[
+          { required: true, message: "请填写检验日期", trigger: "blur" }
+        ],
+        check_department:[
+          { required: true, message: "请填写检验部门", trigger: "blur" }
+        ],
+        elevator_model: [
+          { required: true, message: "请填写出厂编号", trigger: "blur" }
+        ],
+        device_mechanism: [
+          { required: true, message: "请填写注册登记机构", trigger: "blur" }
+        ],
+        maintain_user1_id:[
+          { required: true, message: "请选择维保人员1", trigger: "change" }
+        ],
+         maintain_user2_id:[
+          { required: true, message: "请选择维保人员2", trigger: "change" }
+        ],
+        maintain_user1_cert_no: [
+          { required: true, message: "请填写维保人员1证书号", trigger: "blur" }
+        ],
+        maintain_user2_cert_no: [
+          { required: true, message: "请填写维保人员2证书号", trigger: "blur" }
+        ],
+        maintain_user1_phone: [
+          { required: true, message: "请填写维保人员1电话", trigger: "blur" }
+        ],
+        maintain_user2_phone: [
+          { required: true, message: "请填写维保人员2电话", trigger: "blur" }
+        ],
+        maintain_user1_idcard: [
+          { required: true, message: "请填写维保人员1身份证号", trigger: "blur" }
+        ],
+        maintain_user2_idcard: [
+          { required: true, message: "请填写维保人员2身份证号", trigger: "blur" }
+        ],
         valText: [
           {
             type: "array",
@@ -191,8 +333,42 @@ export default {
             trigger: "change"
           }
         ],
-        use_unit: [
-          { required: true, message: "请填写使用单位", trigger: "blur" }
+        maintain_group_id: [
+          {
+            required: true,
+            message: "请选择维保单位",
+            trigger: "change"
+          }
+        ],
+        maintain_leader_phone: [
+          { required: true, message: "请填写维保单位负责人电话", trigger: "blur" }
+        ],
+        maintain_leader_name: [
+          { required: true, message: "请填写维保单位负责人姓名", trigger: "blur" }
+        ],
+        maintain_group_license_expire: [
+          { required: true, message: "请填写维保许可证有效期", trigger: "blur" }
+        ],
+        maintain_group_license_number: [
+          { required: true, message: "请填写维保许可证编号", trigger: "blur" }
+        ],
+        maintain_group_credit_code: [
+          { required: true, message: "请填写维保单位社会信用代码", trigger: "blur" }
+        ],
+        maintain_group_address: [
+          { required: true, message: "请填写维保单位地址", trigger: "blur" }
+        ],
+        use_department: [
+          { required: true, message: "请填写部门名称", trigger: "blur" }
+        ],
+        use_contact_name: [
+          { required: true, message: "请填写联系人姓名", trigger: "blur" }
+        ],
+        use_contact_phone: [
+          { required: true, message: "请填写联系人电话", trigger: "blur" }
+        ],
+        use_group_id: [
+          { required: true, message: "请选择使用单位", trigger: "change" }
         ],
         internal_number: [
           { required: true, message: "请填写内部编号", trigger: "blur" }
@@ -216,7 +392,7 @@ export default {
           { required: true, message: "请上传维保合同", trigger: "blur" }
         ],
         elevator_type: [
-          { required: true, message: "请填写elevator_type", trigger: "blur" }
+          { required: true, message: "请填写设备类别", trigger: "blur" }
         ],
         device_code: [
           { required: true, message: "请填写设备代码", trigger: "blur" }
@@ -236,6 +412,12 @@ export default {
         ],
         maintain_end_date: [
           { required: true, message: "请选择合同终止日期", trigger: "blur" }
+        ],
+        last_maintain_date: [
+          { required: true, message: "请选择上次维保时间", trigger: "blur" }
+        ],
+        next_maintain_date: [
+          { required: true, message: "请选择下次维保时间", trigger: "blur" }
         ]
       },
       token: {
@@ -246,12 +428,36 @@ export default {
       direction: "ltr",
       options: regionData,
       aeForm: {
+        last_maintain_date: '',
+        next_maintain_date: '',
+        use_user_id: '',
+        use_group_id: '',
+        maintain_user1_name: '',
+        maintain_user1_phone: '',
+        maintain_user1_idcard: '',
+        maintain_user1_cert_no: '',
+        maintain_user2_name: '',
+        maintain_user2_phone: '',
+        maintain_user2_idcard: '',
+        maintain_user2_cert_no: '',
+        maintain_leader_name: '',
+        maintain_leader_phone: '',
+        maintain_group_license_expire: '',
+        maintain_group_license_number: '',
+        maintain_group_credit_code: '',
+        maintain_group_address: '',
+        check_date: '',
+        check_department: '',
+        use_department: '',
+        use_contact_name: '',
+        use_contact_phone: '',
+        device_mechanism: '',
+        elevator_model: '',
+    
         maintain_group_id: '',
         maintain_group_title: '',
         maintain_user1_id: '',
-        maintain_user1_name: '',
         maintain_user2_id: '',
-        maintain_user2_name: '',
         province: "",
         city: "",
         area: "",
@@ -277,29 +483,102 @@ export default {
       row: {},
       state: 0,
       fileList: [],
-      areaData: []
+      areaData: [],
+      userUnit: [],
+      personalDetail: {},
+      safetyArr: []
     };
   },
   created () {
     this.areaData = AreaJson
     this.getMaintenanceList()
+    this.getBaseUnitLists()
   },
   methods: {
+
+    changeSafety (val) {
+      let arrs = this.safetyArr.filter(x => x.id == val)
+      console.log(arrs)
+      this.aeForm.use_manager_phone = arrs[0].phone
+      this.aeForm.use_manager_name =  arrs[0].name
+      this.aeForm.use_user_id =  arrs[0].id
+    },
     chanmaintainUserT (val) {
       console.log(val)
+      console.log('维保人员2',val)
       let arr = []
       arr = this.maintainUser.filter(x => x.id == val)
       console.log(arr)
-      this.aeForm.maintain_user1_name = arr[0].name
+      this.getWbPersonal(val)
+      this.aeForm.maintain_user2_name = arr[0].name
+      this.aeForm.maintain_user2_phone = arr[0].phone
+      this.aeForm.maintain_user2_idcard = arr[0].maintain_user_idcard
+      this.aeForm.maintain_user2_cert_no = arr[0].maintain_user_cert_no
     },
     chanmaintainUsero (val) {
-      console.log(val)
+      console.log('维保人员1',val)
       let arr = []
       arr = this.maintainUser.filter(x => x.id == val)
       console.log(arr)
-      this.aeForm.maintain_user2_name = arr[0].name
+      this.getWbPersonal(val)
+      this.aeForm.maintain_user1_name = arr[0].name
+      this.aeForm.maintain_user1_phone = arr[0].phone
+      this.aeForm.maintain_user1_idcard = arr[0].maintain_user_idcard
+      this.aeForm.maintain_user1_cert_no = arr[0].maintain_user_cert_no
+    },
+    // 查看人员信息
+    // getPersonDetail (id) {
+    //   let params = {
+    //     token: sessionStorage.getItem('token'),
+    //     user_id: id
+    //   }
+    //   searchPerson(params).then(res => {
+    //     console.log('人员详情',res)
+    //     this.personalDetail = res
+    //     this.aeForm.use_manager_name = res.name
+    //     this.aeForm.use_manager_phone = res.phone
+    //     this.aeForm.use_user_id = res.id
+    //   })
+    // },
+    getWbPersonal (id) {
+       let params = {
+        token: sessionStorage.getItem('token'),
+        user_id: id
+      }
+      searchPerson(params).then(res => {
+        console.log('维保详情',res)
+      })
+    },
+
+    // 获取组织下人员列表
+    getPersonalList (val) {
+      let params = {
+        token: sessionStorage.getItem('token'),
+        page: 1,
+        pagesize: 1000,
+        group_id: val,
+        role: 2,
+        keyword: ''
+      }
+      getUserList(params).then(res => {
+        console.log('组织下人员列表',res)
+        this.safetyArr = res.list
+      })
+    },
+    chanUseGroup (val) {
+      console.log('使用单位', val)
+      this.aeForm.use_manager_phone = ''
+      this.aeForm.use_manager_name = ''
+      this.aeForm.use_user_id = ''
+      let arr = []
+      arr = this.userUnit.filter(x => x.id == val)
+      console.log(arr)
+      this.aeForm.use_unit = arr[0].title
+      this.getPersonalList(val)
+      // this.getPersonDetail(val)
     },
     chanmaintainGroup (val) {
+      console.log(val)
       this.maintainUser = []
       this.aeForm.maintain_user1_id = ''
       this.aeForm.maintain_user2_id = ''
@@ -309,6 +588,11 @@ export default {
       let arr = []
       arr = this.maintainGroup.filter(x => x.id == val)
       console.log(arr)
+      if (arr[0].area != '') {
+        this.aeForm.maintain_group_address = `${arr[0].province}/${arr[0].city}/${arr[0].area}`
+      } else {
+        this.aeForm.maintain_group_address = `${arr[0].province}/${arr[0].city}`
+      }
       this.aeForm.maintain_group_title = arr[0].title
     },
     getUserList (id) {
@@ -330,8 +614,17 @@ export default {
         token: sessionStorage.getItem('token')
       }
       getMaintenance(params).then(res => {
-        console.log(res)
+        console.log('维保单位',res)
         this.maintainGroup = res
+      })
+    },
+    getBaseUnitLists () {
+      let params = {
+        token: sessionStorage.getItem('token')
+      }
+      getBaseUnitList(params).then(res => {
+        console.log('使用单位',res)
+        this.userUnit = res
       })
     },
     uploadError(file) {
@@ -353,21 +646,33 @@ export default {
       console.log(file, fileList);
       this.aeForm.agreement = ''
     },
-    handleChange(value) {
+  handleChange(value) {
       console.log(value)
-      console.log(this.areaData)
       let provinceArr = []
       let cityArr = []
       let areaArr = []
-      provinceArr = this.areaData.filter(pro => value[0] == pro.value)
-      this.aeForm.province = provinceArr[0].label
-      cityArr = provinceArr[0].children.filter(cit => value[1] == cit.value)
-      this.aeForm.city = cityArr[0].label
-      areaArr = cityArr[0].children.filter(are => value[2] == are.value)
-      this.aeForm.area = areaArr[0].label
+      if (value.length == 3) {
+        provinceArr = this.areaData.filter(pro => value[0] == pro.value)
+        this.aeForm.province = provinceArr[0].label
+        cityArr = provinceArr[0].children.filter(cit => value[1] == cit.value)
+        this.aeForm.city = cityArr[0].label
+        areaArr = cityArr[0].children.filter(are => value[2] == are.value)
+        this.aeForm.area = areaArr[0].label
+      } else if (value.length == 2) {
+        provinceArr = this.areaData.filter(pro => value[0] == pro.value)
+        this.aeForm.province = provinceArr[0].label
+        cityArr = provinceArr[0].children.filter(cit => value[1] == cit.value)
+        this.aeForm.city = cityArr[0].label
+        this.aeForm.area = ''
+      } else if (value.length == 1) {
+        provinceArr = this.areaData.filter(pro => value[0] == pro.value)
+        this.aeForm.province = provinceArr[0].label
+        this.aeForm.city = ''
+        this.aeForm.area = ''
+      }
 
       console.log(this.aeForm.province, this.aeForm.city, this.aeForm.area)
-    },
+  },
     submitEdit() {
       this.$refs.aeForm.validate(valid => {
         if (valid) {
@@ -398,7 +703,31 @@ export default {
             maintain_user1_id: this.aeForm.maintain_user1_id,
             maintain_user1_name: this.aeForm.maintain_user1_name,
             maintain_user2_id: this.aeForm.maintain_user2_id,
-            maintain_user2_name: this.aeForm.maintain_user2_name
+            maintain_user2_name: this.aeForm.maintain_user2_name,
+
+            use_user_id: this.aeForm.use_user_id,
+            use_group_id: this.aeForm.use_group_id,
+            maintain_user1_phone: this.aeForm.maintain_user1_phone,
+            maintain_user1_idcard: this.aeForm.maintain_user1_idcard,
+            maintain_user1_cert_no: this.aeForm.maintain_user1_cert_no,
+            maintain_user2_phone: this.aeForm.maintain_user2_phone,
+            maintain_user2_idcard: this.aeForm.maintain_user2_idcard,
+            maintain_user2_cert_no: this.aeForm.maintain_user2_cert_no,
+            maintain_leader_name: this.aeForm.maintain_leader_name,
+            maintain_leader_phone: this.aeForm.maintain_leader_phone,
+            maintain_group_license_expire: this.aeForm.maintain_group_license_expire,
+            maintain_group_license_number: this.aeForm.maintain_group_license_number,
+            maintain_group_credit_code: this.aeForm.maintain_group_credit_code,
+            maintain_group_address: this.aeForm.maintain_group_address,
+            check_date: this.aeForm.check_date,
+            check_department: this.aeForm.check_department,
+            use_department: this.aeForm.use_department,
+            use_contact_name: this.aeForm.use_contact_name,
+            use_contact_phone: this.aeForm.use_contact_phone,
+            device_mechanism: this.aeForm.device_mechanism,
+            elevator_model: this.aeForm.elevator_model,
+            // last_maintain_date: this.aeForm.last_maintain_date,
+            // next_maintain_date: this.aeForm.next_maintain_date,
           };
           console.log(params);
           editElevator(params).then(res => {
@@ -448,7 +777,32 @@ export default {
             maintain_user1_id: this.aeForm.maintain_user1_id,
             maintain_user1_name: this.aeForm.maintain_user1_name,
             maintain_user2_id: this.aeForm.maintain_user2_id,
-            maintain_user2_name: this.aeForm.maintain_user2_name
+            maintain_user2_name: this.aeForm.maintain_user2_name,
+
+            use_user_id: this.aeForm.use_user_id,
+            use_group_id: this.aeForm.use_group_id,
+            maintain_user1_phone: this.aeForm.maintain_user1_phone,
+            maintain_user1_idcard: this.aeForm.maintain_user1_idcard,
+            maintain_user1_cert_no: this.aeForm.maintain_user1_cert_no,
+            maintain_user2_phone: this.aeForm.maintain_user2_phone,
+            maintain_user2_idcard: this.aeForm.maintain_user2_idcard,
+            maintain_user2_cert_no: this.aeForm.maintain_user2_cert_no,
+            maintain_leader_name: this.aeForm.maintain_leader_name,
+            maintain_leader_phone: this.aeForm.maintain_leader_phone,
+            maintain_group_license_expire: this.aeForm.maintain_group_license_expire,
+            maintain_group_license_number: this.aeForm.maintain_group_license_number,
+            maintain_group_credit_code: this.aeForm.maintain_group_credit_code,
+            maintain_group_address: this.aeForm.maintain_group_address,
+            check_date: this.aeForm.check_date,
+            check_department: this.aeForm.check_department,
+            use_department: this.aeForm.use_department,
+            use_contact_name: this.aeForm.use_contact_name,
+            use_contact_phone: this.aeForm.use_contact_phone,
+            device_mechanism: this.aeForm.device_mechanism,
+            elevator_model: this.aeForm.elevator_model,
+            // last_maintain_date: this.aeForm.last_maintain_date,
+            // next_maintain_date: this.aeForm.next_maintain_date,
+            
           };
           console.log(params);
           createdElevator(params).then(res => {
@@ -502,27 +856,68 @@ export default {
           this.aeForm.maintain_group_title = res.maintain_group_title
           this.aeForm.maintain_user1_name = res.maintain_user1_name
           this.aeForm.maintain_user2_name = res.maintain_user2_name
-          this.aeForm.maintain_user1_id = res.maintain_user1_id
-          this.aeForm.maintain_user2_id = res.maintain_user2_id
+          if (res.maintain_user1_id != 0) {
+            this.aeForm.maintain_user1_id = res.maintain_user1_id
+          }
+          if (res.maintain_user2_id != 0) {
+            this.aeForm.maintain_user2_id = res.maintain_user2_id
+          }
+
+          this.aeForm.use_user_id = res.use_user_id
+
+          if (res.use_group_id != 0) {
+            this.aeForm.use_group_id = res.use_group_id
+          }
+          this.aeForm.maintain_user1_phone = res.maintain_user1_phone
+          this.aeForm.maintain_user1_idcard = res.maintain_user1_idcard
+          this.aeForm.maintain_user1_cert_no = res.maintain_user1_cert_no
+          this.aeForm.maintain_user2_phone = res.maintain_user2_phone
+          this.aeForm.maintain_user2_idcard = res.maintain_user2_idcard
+          this.aeForm.maintain_user2_cert_no = res.maintain_user2_cert_no
+          this.aeForm.maintain_leader_name = res.maintain_leader_name
+          this.aeForm.maintain_leader_phone = res.maintain_leader_phone
+          this.aeForm.maintain_group_license_expire = res.maintain_group_license_expire
+          this.aeForm.maintain_group_license_number = res.maintain_group_license_number
+          this.aeForm.maintain_group_credit_code = res.maintain_group_credit_code
+          this.aeForm.maintain_group_address = res.maintain_group_address
+          this.aeForm.check_date = res.check_date
+          this.aeForm.check_department = res.check_department
+          this.aeForm.use_department = res.use_department
+          this.aeForm.use_contact_name = res.use_contact_name
+          this.aeForm.use_contact_phone = res.use_contact_phone
+          this.aeForm.device_mechanism = res.device_mechanism
+          this.aeForm.elevator_model = res.elevator_model
+
+          // this.aeForm.last_maintain_date = res.last_maintain_date
+          // this.aeForm.next_maintain_date = res.next_maintain_date
+
+
           let obj = {}
           obj.name = '维保合同'
           obj.url = res.agreement
-          this.fileList.push(obj)
+          if (res.agreement != '') {
+            this.fileList.push(obj)
+          }
           let provinceArr = []
           let cityArr = []
           let areaArr = []
+          let placeArrs = []
           provinceArr = this.areaData.filter(pro => res.province == pro.label)
           let provinceCode = ''
           provinceCode = provinceArr[0].value
           cityArr = provinceArr[0].children.filter(cit => res.city == cit.label)
           let cityCode = ''
           cityCode = cityArr[0].value
-          areaArr = cityArr[0].children.filter(are => res.area == are.label)
-          let areaCode = ''
-          areaCode = areaArr[0].value
-          let placeArrs = []
-          placeArrs.push(provinceCode,cityCode,areaCode)
+          if (res.area != '') {
+            areaArr = cityArr[0].children.filter(are => res.area == are.label)
+            let areaCode = ''
+            areaCode = areaArr[0].value
+            placeArrs.push(provinceCode,cityCode,areaCode)
+          } else {
+            placeArrs.push(provinceCode,cityCode)
+          }
           this.aeForm.valText = placeArrs
+          console.log(provinceCode)
           console.log(this.aeForm.valText);
         }
       });
@@ -564,6 +959,28 @@ export default {
         this.maintain_user2_id = ''
         this.maintain_user2_name = ''
         this.groupState = 0
+
+        this.aeForm.use_user_id = ''
+        this.aeForm.use_group_id = ''
+        this.aeForm.maintain_user1_phone = ''
+        this.aeForm.maintain_user1_idcard = ''
+        this.aeForm.maintain_user1_cert_no = ''
+        this.aeForm.maintain_user2_phone = ''
+        this.aeForm.maintain_user2_idcard = ''
+        this.aeForm.maintain_user2_cert_no = ''
+        this.aeForm.maintain_leader_name = ''
+        this.aeForm.maintain_leader_phone = ''
+        this.aeForm.maintain_group_license_expire = ''
+        this.aeForm.maintain_group_license_number = ''
+        this.aeForm.maintain_group_credit_code = ''
+        this.aeForm.maintain_group_address = ''
+        this.aeForm.check_date = ''
+        this.aeForm.check_department = ''
+        this.aeForm.use_department = ''
+        this.aeForm.use_contact_name = ''
+        this.aeForm.use_contact_phone = ''
+        this.aeForm.device_mechanism = ''
+        this.aeForm.elevator_model = ''
       this.$nextTick(() => {
         this.$emit("update:visible", false); // 直接修改父组件的属性
       });
@@ -576,9 +993,15 @@ export default {
 .add_edit_main {
   height: 550px;
   overflow-y: auto;
+  .draw_titles{
+    margin-left: 20px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #333;
+  }
 }
 .change_input {
-  width: 430px;
+  width: 500px;
   .el-input {
     width: 100%;
   }

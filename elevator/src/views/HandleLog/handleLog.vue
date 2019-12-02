@@ -6,7 +6,7 @@
           <span class="iconfont icon-yidongyunkongzhitaiicon45"></span>
           <span>操作记录</span>
         </div>
-        <div class="rush el-icon-refresh-right"></div>
+        <!-- <div class="rush el-icon-refresh-right"></div> -->
       </div>
       <el-form class="mt40" :inline="true" :model="formInline">
         <el-form-item label="" class="inputs">
@@ -39,7 +39,7 @@
           background
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
-          :current-page="currentPage"
+          :current-page.sync="currentPage"
           :page-sizes="[10, 20, 30]"
           :page-size="10"
           layout="total, sizes, prev, pager, next"

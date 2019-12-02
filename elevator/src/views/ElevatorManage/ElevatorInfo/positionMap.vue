@@ -111,17 +111,21 @@ export default {
         let provinceArr = []
         let cityArr = []
         let areaArr = []
+        let placeArrs = []
         provinceArr = this.areaData.filter(pro => res.province == pro.label)
         let provinceCode = ''
         provinceCode = provinceArr[0].value
         cityArr = provinceArr[0].children.filter(cit => res.city == cit.label)
         let cityCode = ''
         cityCode = cityArr[0].value
-        areaArr = cityArr[0].children.filter(are => res.area == are.label)
-        let areaCode = ''
-        areaCode = areaArr[0].value
-        let placeArrs = []
-        placeArrs.push(provinceCode,cityCode,areaCode)
+        if (res.area != '') {
+          areaArr = cityArr[0].children.filter(are => res.area == are.label)
+          let areaCode = ''
+          areaCode = areaArr[0].value
+          placeArrs.push(provinceCode,cityCode,areaCode)
+        } else {
+          placeArrs.push(provinceCode,cityCode)
+        }
         this.ruleForm.valText = placeArrs
         console.log(this.ruleForm.valText);
         let address = `${res.province}${res.city}${res.area}`
@@ -131,7 +135,12 @@ export default {
         this.params.longitude = res.longitude
         this.params.latitude = res.latitude
         if (Number(res.longitude) == 0) {
-          this.geoCode(address)
+          if (res.city != '洋浦经济开发区') {
+            this.geoCode(address)
+          } else {
+            this.params.longitude = 109.184706
+            this.params.latitude = 19.766825
+          }
         }
         this.addMarker(this.params)
       })

@@ -43,3 +43,17 @@
   width: 100%;
   height: 100%;
 }
+.call_me{
+  width: 60rpx;
+  height: 60rpx;
+  position: fixed;
+  right: 20rpx;
+  bottom: 20rpx;
+  background: #6665FF;
+  padding: 10rpx;
+  border-radius: 50%;
+}
+.call_me image{
+  width: 100%;
+  height: 100%;
+}

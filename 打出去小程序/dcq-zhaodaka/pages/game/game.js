@@ -85,7 +85,7 @@ Page({
   },
 
   addDrill () {
-    if (app.globalData.token != '') {
+    if (wx.getStorageSync('token') != '') {
       if (this.data.navNum == 1) {
         wx.navigateTo({
           url: '/pages/addActive/addActive',
@@ -105,13 +105,13 @@ Page({
   // 获取悬赏
   getRewardList () {
     let that = this
-    if (app.globalData.token == '') {
+    if (wx.getStorageSync('token') == '') {
       that.setData({
         token: app.globalData.fakeToken
       })
     } else {
       that.setData({
-        token: app.globalData.token
+        token: wx.getStorageSync('token')
       })
     }
     let params = {
@@ -130,12 +130,12 @@ Page({
 
   navGame(e) {
     let that = this
-    if (app.globalData.token == '') {
+    if (wx.getStorageSync('token') == '') {
       wx.navigateTo({
         url: '/pages/login/login',
       })
     } else {
-      if (app.globalData.isVip < that.data.timeNow) {x
+      if (wx.getStorageSync('isVip') < that.data.timeNow) {x
         that.setData({
           visible: true
         })
@@ -158,7 +158,7 @@ Page({
     let index = e.currentTarget.dataset.index
     let status = e.currentTarget.dataset.status
     let params = {
-      token: app.globalData.token,
+      token: wx.getStorageSync('token'),
       match_id: id
     }
     postRequest('/user/likePublish', params, false).then(res => {
@@ -189,13 +189,13 @@ Page({
   // 获取首页列表
   getList() {
     let that = this
-    if (app.globalData.token == '') {
+    if (wx.getStorageSync('token') == '') {
       that.setData({
         token: app.globalData.fakeToken
       })
     } else {
       that.setData({
-        token: app.globalData.token,
+        token: wx.getStorageSync('token'),
         likeStatus: true
       })
     }
@@ -224,12 +224,12 @@ Page({
 
   clickTrue() {
     let that = this
-    if (app.globalData.token == '') {
+    if (wx.getStorageSync('token') == '') {
       wx.navigateTo({
         url: '/pages/login/login',
       })
     } else {
-      if (app.globalData.isVip == 0) {
+      if (wx.getStorageSync('isVip') == 0) {
         that.setData({
           visible: false
         })

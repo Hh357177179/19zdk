@@ -62,7 +62,7 @@ Page({
   },
 
   addGroup() {
-    if (app.globalData.token != '') {
+    if (wx.getStorageSync('token') != '') {
       wx.navigateTo({
         url: '/pages/addGrows/addGrows',
       })
@@ -167,9 +167,9 @@ Page({
    */
   onShow: function() {
     let that = this
-    if (app.globalData.token != '') {
+    if (wx.getStorageSync('token') != '') {
       that.setData({
-        token: app.globalData.token
+        token: wx.getStorageSync('token')
       })
       this.getList()
     } else {

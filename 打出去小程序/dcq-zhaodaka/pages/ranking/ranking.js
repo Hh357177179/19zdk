@@ -28,7 +28,7 @@ Page({
       area = that.data.place
     }
     let params = {
-      token: app.globalData.token,
+      token: wx.getStorageSync('token'),
       area: area
     }
     postRequest('/user/ranking', params, true).then(res => {
@@ -42,7 +42,7 @@ Page({
   getArea () {
     let that = this
     let params = {
-      token: app.globalData.token
+      token: wx.getStorageSync('token')
     }
     postRequest('/user/getMyRanking', params, false).then(res => {
       console.log(res)

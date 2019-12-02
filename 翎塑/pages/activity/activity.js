@@ -142,12 +142,5 @@ Page({
     } else {
       util.showMsg('已经到底了')
     }
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
   }
 })
