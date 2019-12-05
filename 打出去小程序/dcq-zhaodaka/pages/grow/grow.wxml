@@ -24,10 +24,10 @@
             {{dateFr.getDate(item.addtime * 1000,'-',':')}} ~ {{dateFr.getDate(item.endtime * 1000,'-',':')}}
           </view>
           <view class="info_text">
-            <image class="info_icon" src="../../images/localIcon.png"></image>
-            <text wx:if="{{item.stage == 1}}">正在筹备</text>
-            <text wx:if="{{item.stage == 2}}">即将开始</text>
-            <text wx:if="{{item.stage == 3}}">已经结束</text>
+            <image class="info_icon" src="{{ (item.stage == 1) ? '../../images/status-build.png' : ((item.stage == 2) ? '../../images/status-begin.png' : '../../images/status-over.png')}}"></image>
+            <text wx:if="{{item.stage == 1}}" class="info_status_build ">正在筹备</text>
+            <text wx:if="{{item.stage == 2}}" class="info_status_begin">即将开始</text>
+            <text wx:if="{{item.stage == 3}}" class="info_status_over">已经结束</text>
           </view>
         </view>
       </view>
@@ -97,9 +97,9 @@
     </view>
   </wux-popup>
   <view class='no_data' wx:if="{{noDataShow}}">
-      <view class='nd_pic'>
-        <image src='../../images/noorder.png'></image>
-      </view>
-      <view class='nd_text'>暂无数据</view>
+    <view class='nd_pic'>
+      <image src='../../images/noorder.png'></image>
     </view>
+    <view class='nd_text'>暂无数据</view>
+  </view>
 </view>

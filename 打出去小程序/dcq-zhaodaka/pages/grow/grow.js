@@ -247,8 +247,8 @@ Page({
 
   
   onLoad: function (options) {
-    this.getTypeList()
-    this.getSwordList()
+    this.getTypeList();
+    this.getSwordList();
   },
   onShow: function () {
     let that = this
