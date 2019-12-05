@@ -189,6 +189,8 @@ export default {
         let provinceCode = "";
         let cityCode = "";
         let areaCode = "";
+        console.log(this.province, this.city, this.area)
+        console.log(provinceArr)
         if (
           this.provinceSession != "" &&
           this.citySession == "" &&
@@ -213,6 +215,9 @@ export default {
           this.areaSession != ""
         ) {
           provinceCode = provinceArr[0].value;
+          cityArr = provinceArr[0].children.filter(
+            cit => this.citySession == cit.label
+          );
           cityCode = cityArr[0].value;
           areaArr = cityArr[0].children.filter(
             are => this.areaSession == are.label
