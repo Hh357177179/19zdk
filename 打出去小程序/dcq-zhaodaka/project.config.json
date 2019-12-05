@@ -1,215 +1,215 @@
 {
-	"description": "项目配置文件",
-	"packOptions": {
-		"ignore": []
-	},
-	"setting": {
-		"urlCheck": true,
-		"es6": true,
-		"postcss": true,
-		"minified": true,
-		"newFeature": true,
-		"coverView": true,
-		"nodeModules": false,
-		"autoAudits": false,
-		"checkInvalidKey": true,
-		"checkSiteMap": true,
-		"uploadWithSourceMap": true,
-		"babelSetting": {
-			"ignore": [],
-			"disablePlugins": [],
-			"outputPath": ""
-		}
-	},
-	"compileType": "miniprogram",
-	"libVersion": "2.8.3",
-	"appid": "wx573ee2e6a905576d",
-	"projectname": "dachuqu",
-	"debugOptions": {
-		"hidedInDevtools": []
-	},
-	"isGameTourist": false,
-	"simulatorType": "wechat",
-	"simulatorPluginLibVersion": {},
-	"condition": {
-		"search": {
-			"current": -1,
-			"list": []
-		},
-		"conversation": {
-			"current": -1,
-			"list": []
-		},
-		"plugin": {
-			"current": -1,
-			"list": []
-		},
-		"game": {
-			"currentL": -1,
-			"list": []
-		},
-		"gamePlugin": {
-			"current": -1,
-			"list": []
-		},
-		"miniprogram": {
-			"current": -1,
-			"list": [
-				{
-					"id": -1,
-					"name": "训练",
-					"pathName": "pages/index/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 1,
-					"name": "报名",
-					"pathName": "pages/apply/apply",
-					"query": "id=297",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "我的",
-					"pathName": "pages/me/me",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "资源",
-					"pathName": "pages/other/other",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 4,
-					"name": "成长",
-					"pathName": "pages/grow/grow",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "转账",
-					"pathName": "pages/transfer/transfer",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "授权",
-					"pathName": "pages/login/login",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "比赛",
-					"pathName": "pages/game/game",
-					"query": "id=287",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "我的信息",
-					"pathName": "pages/info/info",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "我的蜂蜜",
-					"pathName": "pages/honey/honey",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "会员服务",
-					"pathName": "pages/vip/vip",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "剑手排名",
-					"pathName": "pages/ranking/ranking",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "我的收藏",
-					"pathName": "pages/collect/collect",
-					"query": "id=285",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "新增成长",
-					"pathName": "pages/addGrows/addGrows",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "我参与的",
-					"pathName": "pages/meJoin/meJoin",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "正在考虑",
-					"pathName": "pages/meConsider/meConsider",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 16,
-					"name": "比赛详情",
-					"pathName": "pages/detailGame/detailGame",
-					"query": "id=117",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "添加训练",
-					"pathName": "pages/addDrill/addDrill",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 18,
-					"name": "成长详情",
-					"pathName": "pages/groupDetail/groupDetail",
-					"query": "id=3",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "上传比赛",
-					"pathName": "pages/addActive/addActive",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 20,
-					"name": "修改",
-					"pathName": "pages/editGrow/editGrow",
-					"query": "id=828",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "pages/apply/apply",
-					"pathName": "pages/apply/apply",
-					"query": "id=318",
-					"scene": null
-				}
-			]
-		}
-	}
+  "description": "项目配置文件",
+  "packOptions": {
+    "ignore": []
+  },
+  "setting": {
+    "urlCheck": true,
+    "es6": true,
+    "postcss": true,
+    "minified": true,
+    "newFeature": true,
+    "coverView": true,
+    "nodeModules": false,
+    "autoAudits": false,
+    "checkInvalidKey": true,
+    "checkSiteMap": true,
+    "uploadWithSourceMap": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    }
+  },
+  "compileType": "miniprogram",
+  "libVersion": "2.8.3",
+  "appid": "wx573ee2e6a905576d",
+  "projectname": "dachuqu",
+  "debugOptions": {
+    "hidedInDevtools": []
+  },
+  "isGameTourist": false,
+  "simulatorType": "wechat",
+  "simulatorPluginLibVersion": {},
+  "condition": {
+    "search": {
+      "current": -1,
+      "list": []
+    },
+    "conversation": {
+      "current": -1,
+      "list": []
+    },
+    "plugin": {
+      "current": -1,
+      "list": []
+    },
+    "game": {
+      "currentL": -1,
+      "list": []
+    },
+    "gamePlugin": {
+      "current": -1,
+      "list": []
+    },
+    "miniprogram": {
+      "current": -1,
+      "list": [
+        {
+          "id": -1,
+          "name": "训练",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 1,
+          "name": "报名",
+          "pathName": "pages/apply/apply",
+          "query": "id=297",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "我的",
+          "pathName": "pages/me/me",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "资源",
+          "pathName": "pages/other/other",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 4,
+          "name": "成长",
+          "pathName": "pages/grow/grow",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "转账",
+          "pathName": "pages/transfer/transfer",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "授权",
+          "pathName": "pages/login/login",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "比赛",
+          "pathName": "pages/game/game",
+          "query": "id=287",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "我的信息",
+          "pathName": "pages/info/info",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "我的蜂蜜",
+          "pathName": "pages/honey/honey",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "会员服务",
+          "pathName": "pages/vip/vip",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "剑手排名",
+          "pathName": "pages/ranking/ranking",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "我的收藏",
+          "pathName": "pages/collect/collect",
+          "query": "id=285",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "新增成长",
+          "pathName": "pages/addGrows/addGrows",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "我参与的",
+          "pathName": "pages/meJoin/meJoin",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "正在考虑",
+          "pathName": "pages/meConsider/meConsider",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 16,
+          "name": "比赛详情",
+          "pathName": "pages/detailGame/detailGame",
+          "query": "id=117",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "添加训练",
+          "pathName": "pages/addDrill/addDrill",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 18,
+          "name": "成长详情",
+          "pathName": "pages/groupDetail/groupDetail",
+          "query": "id=3",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "上传比赛",
+          "pathName": "pages/addActive/addActive",
+          "query": "",
+          "scene": null
+        },
+        {
+          "id": 20,
+          "name": "修改",
+          "pathName": "pages/editGrow/editGrow",
+          "query": "id=828",
+          "scene": null
+        },
+        {
+          "id": -1,
+          "name": "pages/apply/apply",
+          "pathName": "pages/apply/apply",
+          "query": "id=318",
+          "scene": null
+        }
+      ]
+    }
+  }
 }

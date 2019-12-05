@@ -15,7 +15,8 @@ Page({
     noDates: false,
     nowTime: '',
     topStatus: 0,
-    topArr: []
+    topArr: [],
+    intoView:''
   },
 
   scrollPosition (e) {
@@ -85,6 +86,19 @@ Page({
       D = "0" + D
     }
     return `${Y}-${M}-${D}`
+  },
+
+  returnToday() {
+    let that = this;
+    wx.createSelectorQuery().selectAll('.today-flag').boundingClientRect(function (rects) {
+      rects.forEach(function (rect) {
+        console.log(rect);
+        console.log("view" + rect.dataset.indexid);
+       that.setData({
+         intoView: "view" + rect.dataset.indexid
+       });
+      })
+    }).exec()
   },
 
   getList() {
