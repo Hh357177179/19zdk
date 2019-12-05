@@ -190,8 +190,8 @@ export default {
     getDetail() {
       let params = {
         token: sessionStorage.getItem("token"),
-        elevator_id: 157,
-        handle_time: "2019-11-30"
+        elevator_id: this.row.elevator_id,
+        handle_time: this.row.handle_time
       };
       detailLog(params).then(res => {
         console.log(res);

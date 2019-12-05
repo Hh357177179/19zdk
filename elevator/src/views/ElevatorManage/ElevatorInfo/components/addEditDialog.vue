@@ -472,7 +472,7 @@ export default {
         elevator_type: "",
         device_code: "",
         registration_number: "",
-        brand: "",
+        brand: "1",
         factory: "",
         next_year_check_date: "",
         maintain_start_date: "",
@@ -847,7 +847,7 @@ export default {
           this.aeForm.elevator_type = res.elevator_type;
           this.aeForm.device_code = res.device_code;
           this.aeForm.registration_number = res.registration_number;
-          this.aeForm.brand = res.brand;
+          this.aeForm.brand = '1';
           this.aeForm.factory = res.factory;
           this.aeForm.next_year_check_date = res.next_year_check_date;
           this.aeForm.maintain_start_date = res.maintain_start_date;
