@@ -60,7 +60,10 @@
     </view> -->
   </view>
   <view class="call_me" bindtap="callMe" wx:if="{{showUser}}">
-    <image src="../../images/callme.png"></image>
+    <view class="call_meImg">
+      <image src="../../images/callme.png"></image>
+    </view>
+    <view class="call_text">客服</view>
   </view>
 </view>
 

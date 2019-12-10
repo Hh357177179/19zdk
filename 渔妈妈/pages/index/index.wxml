@@ -29,6 +29,9 @@
     </view>
   </view>
   <view class="call_me" bindtap="callMe">
-    <image src="../../images/callme.png"></image>
+    <view class="call_meImg">
+      <image src="../../images/callme.png"></image>
+    </view>
+    <view class="call_text">客服</view>
   </view>
 </view>

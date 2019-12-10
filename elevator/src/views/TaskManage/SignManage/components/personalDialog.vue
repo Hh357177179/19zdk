@@ -12,7 +12,7 @@
             <el-table-column align="center" prop="maintain_type" label="维保类型" width="120"></el-table-column>
             <el-table-column
               align="center"
-              prop="elevator_use_unit"
+              prop="maintain_group_title"
               label="维保单位"
               show-overflow-tooltip
             ></el-table-column>

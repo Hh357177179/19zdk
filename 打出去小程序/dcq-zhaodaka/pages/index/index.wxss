@@ -61,11 +61,11 @@
 }
 
 .today-icon {
-  width: 50rpx;
-  height: 50rpx;
+  width: 60rpx;
+  height: 60rpx;
   position: absolute;
-  right: 35rpx;
-  bottom: 120rpx;
+  right: 25rpx;
+  bottom: 150rpx;
 }
 
 .today-icon image {

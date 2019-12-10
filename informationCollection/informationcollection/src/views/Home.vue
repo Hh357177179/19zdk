@@ -28,7 +28,7 @@
             placeholder="请选择性别"
             @click="showPicker = true"
           />
-          <p class="tip_text">阴历、阳历二选一填写</p>
+          <p class="tip_text">阳历、阴历二选一填写</p>
           <van-field
             readonly
             clickable
@@ -128,76 +128,96 @@
           <p class="face_pic">
             <img src="../assets/img/face.jpg" alt="">
           </p>
-          <div class="up_load">
-            <van-uploader
-              @delete="deletePic1"
-              :after-read="faceRead"
-              v-model="faceList"
-              :max-count="3"
-            />
+            <div class="upload_main">
+            <div v-for="(item, index) in faceArr" :key="index">
+              <div class="searchImg">
+                <img :src="item" alt="">
+                <van-icon name="clear" class="clear_icons" @click="deletePic1(index)"/>
+              </div>
+            </div>
+            <div class="up_load_btn" v-if="this.faceArr.length != 3">
+              <van-icon name="plus" />
+              <input class="up_btn" id="faceImg" type="file" accept="image/png, image/jpeg, image/gif, image/jpg" @change="upLoadImgRote($event, 1)">
+            </div>
           </div>
           <p class="tip_text" style="margin-top:10px;">请上传您的手掌照片，先左后右（确保手纹清晰可见）</p>
           <p class="face_pic">
             <img src="../assets/img/hand.jpg" alt="">
           </p>
-          <div class="up_load">
-            <van-uploader
-            @delete="deletePic2"
-            :after-read="handRead"
-              v-model="handList"
-              :max-count="2"
-            />
+          <div class="upload_main">
+            <div v-for="(item, index) in handArr" :key="index">
+              <div class="searchImg">
+                <img :src="item" alt="">
+                <van-icon name="clear" class="clear_icons" @click="deletePic2(index)"/>
+              </div>
+            </div>
+            <div class="up_load_btn" v-if="this.handArr.length != 2">
+              <van-icon name="plus" />
+              <input class="up_btn" id="handImg" type="file" accept="image/png, image/jpeg, image/gif, image/jpg" @change="upLoadImgRote($event, 2)">
+            </div>
           </div>
           <p class="tip_text" style="margin-top:10px;">请上传全身照片</p>
           <p class="face_pic">
             <img src="../assets/img/person.jpg" alt="">
           </p>
-          <div class="up_load">
-            <van-uploader
-            @delete="deletePic3"
-            :after-read="personRead"
-              v-model="personList"
-              :max-count="1"
-            />
+          <div class="upload_main">
+            <div class="searchImg" v-if="this.form.body_img != ''">
+              <img :src="this.form.body_img" alt="">
+              <van-icon name="clear" class="clear_icons" @click="deletePic3"/>
+            </div>
+            <div class="up_load_btn" v-if="this.form.body_img == ''">
+              <van-icon name="plus" />
+              <input class="up_btn" id="bodyImg" type="file" accept="image/png, image/jpeg, image/gif, image/jpg" @change="upLoadImgRote($event, 3)">
+            </div>
           </div>
           <p class="tip_text" style="margin-top:10px;">请上传舌诊照片</p>
           <p class="small_infos">拍照前不吃有色素残留的食物，需拍摄舌头本色照片</p>
           <p class="face_pic">
             <img src="../assets/img/st.jpg" alt="">
           </p>
-          <div class="up_load">
-            <van-uploader
-            @delete="deletePic4"
-            :after-read="tongueRead"
-              v-model="tongueList"
-              :max-count="1"
-            />
+          <div class="upload_main">
+            <div class="searchImg" v-if="this.form.tongue_img != ''">
+              <img :src="this.form.tongue_img" alt="">
+              <van-icon name="clear" class="clear_icons" @click="deletePic4"/>
+            </div>
+            <div class="up_load_btn" v-if="this.form.tongue_img == ''">
+              <van-icon name="plus" />
+              <input class="up_btn" id="tongueImg" type="file" accept="image/png, image/jpeg, image/gif, image/jpg" @change="upLoadImgRote($event, 4)">
+            </div>
           </div>
           <p class="tip_text" style="margin-top:10px;">请上传家宅房型图</p>
           <p class="small_infos">提供户型图或示意图（没有的可以中介网站上搜索自家小区找房型图），标注出房屋朝向、大门、窗户、阳台、卧室、卫生间等位置信息及所在城市地区小区名称。</p>
           <p class="face_pic">
             <img src="../assets/img/room.jpg" alt="">
           </p>
-          <div class="up_load">
-            <van-uploader
-            @delete="deletePic5"
-              v-model="homeList"
-              :after-read="homeRead"
-              :max-count="3"
-            />
+          <div class="upload_main">
+            <div v-for="(item, index) in roomArr" :key="index">
+              <div class="searchImg">
+                <img :src="item" alt="">
+                <van-icon name="clear" class="clear_icons" @click="deletePic5(index)"/>
+              </div>
+            </div>
+            <div class="up_load_btn" v-if="this.roomArr.length != 3">
+              <van-icon name="plus" />
+              <input class="up_btn" id="roomImg" type="file" accept="image/png, image/jpeg, image/gif, image/jpg" @change="upLoadImgRote($event, 5)">
+            </div>
           </div>
           <p class="tip_text" style="margin-top:10px;">请上传办公室房型图</p>
           <p class="small_infos">提供户型图或示意图，标注出办公室朝向、大门、窗户、办公桌所在位置。</p>
           <p class="face_pic">
             <img src="../assets/img/rooms.png" alt="">
           </p>
-          <div class="up_load">
-            <van-uploader
-              @delete="deletePic6"
-              v-model="officeList"
-              :after-read="officeRead"
-              :max-count="2"
-            />
+          <div class="upload_main">
+            <div v-for="(item, index) in companyArr" :key="index">
+              <div class="searchImg">
+                <img :src="item" alt="">
+                <van-icon name="clear" class="clear_icons" @click="deletePic6(index)"/>
+              </div>
+            </div>
+            <div class="up_load_btn" v-if="this.companyArr.length != 2">
+              <van-icon name="plus" />
+              <input class="up_btn" id="companyImg" type="file" accept="image/png, image/jpeg, image/gif, image/jpg" @change="upLoadImgRote($event, 6)">
+            </div>
           </div>
         </van-cell-group>
       </div>
@@ -255,15 +275,69 @@
     <van-popup v-model="showBirthPlace" position="bottom">
       <van-area :area-list="areaList" :value="birthPlace" @cancel="showBirthPlace = false" @confirm="onConfirmBirthPlace"/>
     </van-popup>
+    <van-dialog
+      v-model="imgShow"
+      title="编辑图片"
+      show-cancel-button
+      @confirm="finish"
+      @cancel="cancel"
+    >
+      <p class="tip_text">温馨提示：如果上传照片是横版，请您旋转照片至正常竖版，之后再提交信息。</p>
+      <div class="dialog_image">
+        <vueCropper
+        ref="cropper"
+        :img="option.img"
+        :outputSize="option.size"
+        :outputType="option.outputType"
+        :info="true"
+        :full="option.full"
+        :canMove="option.canMove"
+        :canMoveBox="option.canMoveBox"
+        :original="option.original"
+        :autoCrop="option.autoCrop"
+        :autoCropWidth="option.autoCropWidth"
+        :autoCropHeight="option.autoCropHeight"
+        :fixedBox="option.fixedBox"
+      ></vueCropper>
+      </div>
+      <div class="btn_rotate">
+        <van-button size="small" type="info" @click="rotateLeft">逆时针旋转</van-button>
+        <van-button size="small" type="info" @click="rotateRight">顺时针旋转</van-button>
+      </div>
+    </van-dialog>
   </div>
 </template>
 <script>
 import areaList from '../data/area.js'
 import { uploadPic, routeUrl, submitForm } from '@/api/index.js' 
 import { setTimeout } from 'timers';
+import {VueCropper} from 'vue-cropper'
 export default {
   data () {
     return {
+
+      previews: {},
+        option: {
+          img: '',
+          outputSize:1, //剪切后的图片质量（0.1-1）
+          full: false,//输出原图比例截图 props名full
+          outputType: 'png',
+          canMove: false, 
+          original: false, 
+          canMoveBox: false, 
+          autoCrop: false, 
+          autoCropWidth: 150, 
+          autoCropHeight: 150, 
+          fixedBox: true 
+        }, 
+      imgShow: false,
+      files: {
+        name: "",
+        type: ""
+      },
+      headerImage: null,
+      picValue: null,
+
       phone1: '',
       year1: '',
       phone2: '',
@@ -327,14 +401,28 @@ export default {
       handArr: [],
       roomArr: [],
       companyArr: [],
-      url: ''
+      url: '',
+      personReadFlie: null,
+      fileName: '',
+      upIndex: 0
     }
+  },
+  components: { 
+    VueCropper
   },
   created () {
     this.areaList = areaList
     this.getUrl()
   },
   methods: {
+    rotateLeft () {
+      // 向左旋转
+      this.$refs.cropper.rotateLeft();
+    },
+    rotateRight () {
+      // 向右旋转
+      this.$refs.cropper.rotateRight();
+    },
     getUrl () {
       let params = {}
       routeUrl(params).then(res => {
@@ -420,123 +508,105 @@ export default {
       }
       
     },
-    deletePic1 (file, detail) {
-      this.faceArr.splice(detail.index, 1)
+    deletePic1 (index) {
+      this.faceArr.splice(index, 1)
     },
-    deletePic2 (file, detail) {
-      this.handArr.splice(detail.index, 1)
+    deletePic2 (index) {
+      this.handArr.splice(index, 1)
     },
-    deletePic3 (file, detail) {
+    deletePic3 () {
       this.form.body_img = ''
     },
-    deletePic4 (file, detail) {
+    deletePic4 () {
       this.form.tongue_img = ''
     },
-    deletePic5 (file, detail) {
-      this.roomArr.splice(detail.index, 1)
+    deletePic5 (index) {
+      this.roomArr.splice(index, 1)
     },
-    deletePic6 (file, detail) {
-      this.companyArr.splice(detail.index, 1)
-      // this.form.company_house_plan = ''
+    deletePic6 (index) {
+      this.companyArr.splice(index, 1)
     },
-    uploadImg (file) {
-      this.$toast.loading({
-        message: '正在上传...',
-        forbidClick: true,
-        duration: 0
-      });
-      uploadPic(file).then(res => {
-        console.log(res)
-        if (res) {
-          this.faceArr.push(res.url)
-          this.$toast.clear()
+
+    cancel () {
+      if (this.upIndex == 1) {
+        document.getElementById('faceImg').value = null
+      } else if (this.upIndex == 2) {
+        document.getElementById('handImg').value = null;
+      } else if (this.upIndex == 3) {
+        document.getElementById('bodyImg').value = null;
+      } else if (this.upIndex == 4) {
+        document.getElementById('tongueImg').value = null
+      } else if (this.upIndex == 5) {
+        document.getElementById('roomImg').value = null
+      } else if (this.upIndex == 6) {
+        document.getElementById('companyImg').value = null
+      }
+    },
+
+
+     //选择本地图片
+      upLoadImgRote(e, num) {
+        console.log(num)
+        this.upIndex = num
+        var _this = this;
+        //上传图片 
+        var file = e.target.files[0]
+        _this.fileName = file.name;
+        var reader = new FileReader(); 
+        reader.onload =(e) => {
+         let data = window.URL.createObjectURL(new Blob([e.target.result]))
+          console.log('转换地址',data)
+          _this.option.img = data
         }
-      })
-    },
-    officeRead (file) {
-      let params = new FormData(); //创建form对象
-      params.append("file", file.file); //通过append向form对象添加数据//第一个参数字符串可以填任意命名，第二个根据对象属性来找到file
-      this.$toast.loading({
-        message: '正在上传...',
-        forbidClick: true,
-        duration: 0
-      });
-      uploadPic(params).then(res => {
-        console.log(res)
-        if (res) {
-          this.companyArr.push(res.url)
-          this.$toast.clear()
-        }
-      })
-    },
-    homeRead (file) {
-      let params = new FormData(); //创建form对象
-      params.append("file", file.file); //通过append向form对象添加数据//第一个参数字符串可以填任意命名，第二个根据对象属性来找到file
-      this.$toast.loading({
-        message: '正在上传...',
-        forbidClick: true,
-        duration: 0
-      });
-      uploadPic(params).then(res => {
-        console.log(res)
-        if (res) {
-          // this.form.home_house_plan = res.url
-          this.roomArr.push(res.url)
-          this.$toast.clear()
-        }
-      })
-    },
-    tongueRead (file) {
-      let params = new FormData(); //创建form对象
-      params.append("file", file.file); //通过append向form对象添加数据//第一个参数字符串可以填任意命名，第二个根据对象属性来找到file
-      this.$toast.loading({
-        message: '正在上传...',
-        forbidClick: true,
-        duration: 0
-      });
-      uploadPic(params).then(res => {
-        console.log(res)
-        if (res) {
-          this.form.tongue_img = res.url
-          this.$toast.clear()
-        }
-      })
-    },
-    personRead (file) {
-      console.log(file.file)
-      let params = new FormData(); //创建form对象
-      params.append("file", file.file); //通过append向form对象添加数据//第一个参数字符串可以填任意命名，第二个根据对象属性来找到file
-      console.log(params)
-      this.$toast.loading({
-        message: '正在上传...',
-        forbidClick: true,
-        duration: 0
-      });
-      uploadPic(params).then(res => {
-        console.log(res)
-        if (res) {
-          this.form.body_img = res.url
-          this.$toast.clear()
-        }
-      })
-    },
-    handRead (file) {
-      let params = new FormData(); //创建form对象
-      params.append("file", file.file); //通过append向form对象添加数据//第一个参数字符串可以填任意命名，第二个根据对象属性来找到file
-      this.$toast.loading({
-        message: '正在上传...',
-        forbidClick: true,
-        duration: 0
-      });
-      uploadPic(params).then(res => {
-        console.log(res)
-        if (res) {
-          this.handArr.push(res.url)
-          this.$toast.clear()
-        }
-        console.log(this.handArr)
-      })
-    },
+        reader.readAsArrayBuffer(file);
+        this.$nextTick(() => {
+          this.imgShow = true
+        })
+      },
+
+      //上传图片（点击上传按钮）
+      finish() {
+        let _this = this;
+        let params = new FormData(); //创建form对象
+        // 输出 
+        this.$refs.cropper.getCropBlob((data) => { 
+          let img = window.URL.createObjectURL(data) 
+          console.log(data)
+          let files = new window.File([data], this.fileName, {type: data.type})
+          console.log('转成file',files)
+          params.append("file", files);
+          this.$toast.loading({
+            message: '正在上传...',
+            forbidClick: true,
+            duration: 0
+          });
+          uploadPic(params).then(res => {
+            if (res) {
+              console.log(res.url)
+              if (this.upIndex == 1) {
+                this.faceArr.push(res.url)
+                document.getElementById('faceImg').value = null;
+              } else if (this.upIndex == 2) {
+                this.handArr.push(res.url)
+                document.getElementById('handImg').value = null;
+              } else if (this.upIndex == 3) {
+                this.form.body_img = res.url
+                document.getElementById('bodyImg').value = null;
+              } else if (this.upIndex == 4) {
+                this.form.tongue_img = res.url
+                document.getElementById('tongueImg').value = null
+              } else if (this.upIndex == 5) {
+                this.roomArr.push(res.url)
+                document.getElementById('roomImg').value = null
+              } else if (this.upIndex == 6) {
+                this.companyArr.push(res.url)
+                document.getElementById('companyImg').value = null
+              }
+              this.$toast.clear()
+            }
+          })
+        })
+      },
     faceRead (file) {
       let params = new FormData(); //创建form对象
       params.append("file", file.file); //通过append向form对象添加数据//第一个参数字符串可以填任意命名，第二个根据对象属性来找到file
@@ -666,6 +736,64 @@ export default {
       font-size: 15px;
       text-align: center;
       margin: 40px auto 0;
+    }
+    .imgDialog{
+      width: 100%;
+    }
+    .tip_text{
+        font-size: 12px;
+        color: #f00;
+        padding: 5px;
+      }
+    .dialog_image{
+      width: 100%;
+      height: 400px;
+    }
+    .upload_main{
+      display: flex;
+      justify-content:flex-start;
+    }
+    .searchImg{
+      width: 80px;
+      height: 80px;
+      margin: 5px 0 0 15px;
+      position: relative;
+      img{
+        width: 100%;
+        height: 100%;
+      }
+      .clear_icons{
+        font-size: 20px;
+        position: absolute;
+        color: #ccc;
+        right: -10px;
+        top: -10px;
+      }
+    }
+    .up_load_btn{
+      width: 80px;
+      height: 80px;
+      border-radius: 5px;
+      border: 1px dashed #ccc;
+      margin: 5px 0 0 15px;
+      font-size: 20px;
+      text-align: center;
+      line-height: 80px;
+      position: relative;
+      background: #fff;
+    }
+    .up_btn{
+      width: 80px;
+      height: 80px;
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .btn_rotate{
+      display: flex;
+      justify-content: space-around;
+      margin: 10px 0;
     }
   }
 </style>

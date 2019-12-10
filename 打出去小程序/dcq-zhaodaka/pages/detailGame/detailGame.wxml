@@ -43,7 +43,7 @@
       <view class="pdfBtn" bindtap="searchPdf" data-url="{{item.url}}">预览附件{{index+1}}</view>
     </block>
   </view>
-  <view class="detail_info" wx:if="{{itemObj.money == 0}}">
+  <view class="detail_info" wx:if="{{itemObj.money == '0.00' && itemObj.package.length == 0}}">
     <!-- <view class="apply_detail">报名方式以及详情</view> -->
     <view class="apply_detail">详细信息/报名链接</view>
     <block wx:for="{{link}}" wx:key="index">
@@ -51,8 +51,33 @@
       <view class="go_text" wx:if="{{item.path != ''}}" bindtap="copyText" data-link="{{item.path}}">点击复制</view>
     </block>
   </view>
-  <view class="note" wx:if="{{itemObj.money > 0}}">
+  <view class="info_card choose_package" wx:if="{{packageItem.length != 0}}">
+    <view class="people_title">套餐选择</view>
+    <picker bindchange="bindPickerPackage" value="{{index}}" range="{{packageItem}}" range-key="{{'title'}}">
+      <view class="package_text {{packageText == '请选择您要购买的套餐' ? '' : 'addTextColor'}}">{{packageText}}</view>
+    </picker>
+    <view class="remake_message">
+      <textarea bindinput="messageVal" value="{{message}}" auto-height placeholder="请输入备注" placeholder-style="color: #999;"/>
+    </view>
+    <view class="package_content" wx:if="{{showContent}}">
+      <view class="pack_cont_list">{{packageObj.title}}</view>
+      <view class="pack_cont_list">价格<text class="contet_price">{{packageObj.money}}</text></view>
+      <view class="pack_cont_list">{{packageObj.content}}</view>
+    </view>
+  </view>
+  <view class="note" wx:if="{{itemObj.money != '0.00'}}">
     <textarea maxlength="-1" auto-height="{{true}}" value="{{message}}" bindinput="messageVal" placeholder="请输入备注"></textarea>
   </view>
-  <view class="apply_game" bindtap="applyGame" wx:if="{{itemObj.money > 0}}">报 名</view>
+  <view class="apply_game" bindtap="applyGame" wx:if="{{itemObj.money != '0.00' || packageItem.length != 0}}">报 名</view>
+  <view class="apply_game created_img" bindtap="createdImg">生成海报</view>
+</view>
+
+<view class="mask" wx:if="{{showMask}}">
+  <view class="close_mask" bindtap="closeMask">
+    <image src="../../images/closeMask.png"></image>
+  </view>
+  <view class="iconfonts">
+    <image src="../../images/web-browser.png"></image>
+  </view>
+  <view class="mask_text">复制成功，请用浏览器打开。</view>
 </view>

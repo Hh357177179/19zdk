@@ -222,7 +222,7 @@ Page({
         showOther: false,
         other_price: '',
         disInput: true,
-        classValue: 120,
+        classValue: 360,
         timeArr: []
       })
     }
@@ -247,7 +247,7 @@ Page({
         other_price: '',
         address: '在线预约',
         beginTime: '开课时间',
-        classValue: 120
+        classValue: 280
       })
     } else {
       that.setData({

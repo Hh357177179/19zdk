@@ -159,15 +159,15 @@
 }
 
 .info_status_build {
-   color: #1afa29;
+   color: #3E72E0;
 }
 
 .info_status_begin {
- color: #f4ea2a;
+ color: #f5cb45;
 }
 
 .info_status_over {
-  color: #d81e06;
+  color: #FE5955;
 }
 
 .add_drill {

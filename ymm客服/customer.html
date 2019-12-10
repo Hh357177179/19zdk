@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>渔妈妈客服</title>
+  <link rel="stylesheet" href="customer.css">
+</head>
+<body>
+  <div class="customer">
+    <div style="padding-top: 100px;">
+      <div class="customer_phoen">
+        <input class="phoneVal" type="tel" placeholder="请输入手机号码" maxlength="11">
+      </div>
+      <div class="customer_desc">
+        <textarea class="descVal" type="text" placeholder="请输入留言"></textarea>
+      </div>
+      <div class="customer_submit">提 交</div>
+    </div>
+    <div class="error_mask">
+      <div class="error_mask_text"></div>
+    </div>
+  </div>
+</body>
+</html>
+<script src="./jquery-1.10.2.js"></script>
+
+<script>
+  $(document).ready(function() {
+    function errorFun (text) {
+      $('.error_mask').fadeIn()
+      $('.error_mask_text').text(text)
+      setTimeout(() => {
+        $('.error_mask').fadeOut()
+      }, 1500)
+    }
+    $('.customer_submit').click(() => {
+      let phone = $('.phoneVal').val()
+      let desc = $('.descVal').val()
+      if (phone == '') {
+        errorFun('请输入手机号码请输入手机号码请输入手机号码请输入手机号码')
+      } else if (desc == '') {
+        errorFun('请输入留言')
+      } else {
+        $.ajax({
+          url:'',
+          type:'post',
+          dataType:'json',
+          data:{
+            token: '',
+            phone: phone,
+            content: desc
+          },
+          success: function(data){
+            console.log(data)
+            errorFun('提交成功')
+            $('.phoneVal').val('')
+            $('.descVal').val('')
+          },
+          error: function (err) {
+            console.log(err)
+            errorFun('提交失败，请重试')
+          },
+        })
+      }
+    })
+  });
+</script>

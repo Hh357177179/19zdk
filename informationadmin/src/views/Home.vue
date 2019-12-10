@@ -13,8 +13,8 @@
             <el-table-column prop="name" show-overflow-tooltip label="姓名" width="100"></el-table-column>
             <el-table-column prop="before_name" show-overflow-tooltip label="曾用名" width="100"></el-table-column>
             <el-table-column prop="sex" show-overflow-tooltip label="性别" width="100"></el-table-column>
-            <el-table-column prop="lunar_date" show-overflow-tooltip label="阴历出生日期" width="130"></el-table-column>
             <el-table-column prop="solar_date" show-overflow-tooltip label="阳历出生日期" width="130"></el-table-column>
+            <el-table-column prop="lunar_date" show-overflow-tooltip label="阴历出生日期" width="130"></el-table-column>
             <el-table-column prop="birth_time" show-overflow-tooltip label="出生时间" width="130"></el-table-column>
             <el-table-column prop="phones" show-overflow-tooltip label="手机号以及使用时长" width="180"></el-table-column>
             <el-table-column prop="height" show-overflow-tooltip label="身高(cm)" width="90"></el-table-column>

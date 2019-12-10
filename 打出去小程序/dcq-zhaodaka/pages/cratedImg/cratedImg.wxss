@@ -1,0 +1,54 @@
+/* pages/cratedImg/cratedImg.wxss */
+.choose_back{
+  width: 600rpx;
+  height: 1066rpx;
+  margin: 0 auto;
+}
+.swiper{
+  width: 100%;
+  height: 100%;
+}
+.swiper-item{
+  width: 600rpx;
+  height: 1066rpx;
+}
+.swiper-item image{
+  width: 100%;
+  height: 100%;
+}
+.top_text{
+  width: 600rpx;
+  font-size: 24rpx;
+  color: #f00;
+  margin: 10rpx auto;
+  font-weight: bold;
+}
+.dialog_main{
+  margin-top: 80rpx;
+}
+.popup-index--wux-popup{
+  width: 100% !important;
+}
+.popup_main{
+  margin-top: 80rpx;
+}
+.canvas_pic{
+  width: 500rpx;
+  margin: 0 auto;
+}
+.canvas_none{
+  display: none;
+}
+.canvas_show{
+  display: block;
+}
+.save_img{
+  font-size: 30rpx;
+  width: 450rpx;
+  height: 80rpx;
+  background:linear-gradient(115deg,rgba(72,72,220,1) 0%,rgba(50,166,228,1) 100%);
+  border-radius: 56rpx;
+  margin: 40rpx auto;
+  color: #fff;
+  line-height: 80rpx;
+}

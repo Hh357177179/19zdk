@@ -23,7 +23,8 @@
     "pages/addActive/addActive",
     "pages/addReward/addReward",
     "pages/editGrow/editGrow",
-    "pages/previewPdf/previewPdf"
+    "pages/previewPdf/previewPdf",
+    "pages/cratedImg/cratedImg"
   ],
   "window": {
     "backgroundTextStyle": "light",

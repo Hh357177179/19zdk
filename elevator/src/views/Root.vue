@@ -3,7 +3,7 @@
     <el-container>
       <el-container>
         <el-header class="head">
-          <div>电梯维保智慧监管云系统</div>
+          <div>互联网+电梯监管智慧平台</div>
           <div class="info">
             <span>{{name}}</span>
             <el-button type="info" plain class="sign_out" @click="signOut">退出</el-button>

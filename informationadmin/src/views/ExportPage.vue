@@ -2,7 +2,7 @@
   <div class="detail">
     <div class="detail_mains">
       <div class="titles clearfix">
-        <div>五忧采集</div>
+        <div>五优采集</div>
         <span class="input_time">{{obj.create_time | fromDate}}</span>
       </div>
       <div class="d_body">
@@ -20,10 +20,10 @@
           </div>
           <div class="infos info_t">
             <p>
-              <span>{{obj.lunar_date}}</span>
+              <span>{{obj.solar_date}}</span>
             </p>
             <p>
-              <span>{{obj.solar_date}}</span>
+              <span>{{obj.lunar_date}}</span>
             </p>
             <p>
               <span>{{obj.birth_time}}</span>
@@ -259,7 +259,6 @@ export default {
       width: 25%;
       .imgCard {
         width: 260px;
-        height: 260px;
         margin: 10px auto 0;
         img {
           width: 100%;
