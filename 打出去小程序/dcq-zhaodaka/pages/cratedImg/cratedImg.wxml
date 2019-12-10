@@ -4,12 +4,12 @@
 <view class="top_text">请选择一张图片，作为生成海报模板。</view>
   <view class="choose_back">
     <swiper class="swiper" indicator-dots="{{indicatorDots}}" indicator-color="#fff" indicator-active-color="#3E72E0">
-      <swiper-item class="swiper-item" bindtap="clickImg" data-img="https://ssl.zhaodaka.net/dcq/static/bannerO.jpeg">
+      <swiper-item class="swiper-item" bindtap="clickImg" data-index="1" data-img="https://ssl.zhaodaka.net/dcq/static/bannerO.jpeg">
         <view class="swiper-item">
           <image src="https://ssl.zhaodaka.net/dcq/static/bannerO.jpeg"></image>
         </view>
       </swiper-item>
-      <swiper-item class="swiper-item" bindtap="clickImg" data-img="https://ssl.zhaodaka.net/dcq/static/bannerT.jpeg">
+      <swiper-item class="swiper-item" bindtap="clickImg" data-index="2"  data-img="https://ssl.zhaodaka.net/dcq/static/bannerT.jpeg">
         <view class="swiper-item">
           <image src="https://ssl.zhaodaka.net/dcq/static/bannerT.jpeg"></image>
         </view>

@@ -137,7 +137,7 @@
             </div>
             <div class="up_load_btn" v-if="this.faceArr.length != 3">
               <van-icon name="plus" />
-              <input class="up_btn" id="faceImg" type="file" accept="image/png, image/jpeg, image/gif, image/jpg" @change="upLoadImgRote($event, 1)">
+              <input class="up_btn" id="faceImg" type="file" accept="image/*" @change="upLoadImgRote($event, 1)">
             </div>
           </div>
           <p class="tip_text" style="margin-top:10px;">请上传您的手掌照片，先左后右（确保手纹清晰可见）</p>
@@ -153,7 +153,7 @@
             </div>
             <div class="up_load_btn" v-if="this.handArr.length != 2">
               <van-icon name="plus" />
-              <input class="up_btn" id="handImg" type="file" accept="image/png, image/jpeg, image/gif, image/jpg" @change="upLoadImgRote($event, 2)">
+              <input class="up_btn" id="handImg" type="file" accept="image/*" @change="upLoadImgRote($event, 2)">
             </div>
           </div>
           <p class="tip_text" style="margin-top:10px;">请上传全身照片</p>
@@ -167,7 +167,7 @@
             </div>
             <div class="up_load_btn" v-if="this.form.body_img == ''">
               <van-icon name="plus" />
-              <input class="up_btn" id="bodyImg" type="file" accept="image/png, image/jpeg, image/gif, image/jpg" @change="upLoadImgRote($event, 3)">
+              <input class="up_btn" id="bodyImg" type="file" accept="image/*" @change="upLoadImgRote($event, 3)">
             </div>
           </div>
           <p class="tip_text" style="margin-top:10px;">请上传舌诊照片</p>
@@ -182,7 +182,7 @@
             </div>
             <div class="up_load_btn" v-if="this.form.tongue_img == ''">
               <van-icon name="plus" />
-              <input class="up_btn" id="tongueImg" type="file" accept="image/png, image/jpeg, image/gif, image/jpg" @change="upLoadImgRote($event, 4)">
+              <input class="up_btn" id="tongueImg" type="file" accept="image/*" @change="upLoadImgRote($event, 4)">
             </div>
           </div>
           <p class="tip_text" style="margin-top:10px;">请上传家宅房型图</p>
@@ -199,7 +199,7 @@
             </div>
             <div class="up_load_btn" v-if="this.roomArr.length != 3">
               <van-icon name="plus" />
-              <input class="up_btn" id="roomImg" type="file" accept="image/png, image/jpeg, image/gif, image/jpg" @change="upLoadImgRote($event, 5)">
+              <input class="up_btn" id="roomImg" type="file" accept="image/*" @change="upLoadImgRote($event, 5)">
             </div>
           </div>
           <p class="tip_text" style="margin-top:10px;">请上传办公室房型图</p>
@@ -216,7 +216,7 @@
             </div>
             <div class="up_load_btn" v-if="this.companyArr.length != 2">
               <van-icon name="plus" />
-              <input class="up_btn" id="companyImg" type="file" accept="image/png, image/jpeg, image/gif, image/jpg" @change="upLoadImgRote($event, 6)">
+              <input class="up_btn" id="companyImg" type="file" accept="image/*" @change="upLoadImgRote($event, 6)">
             </div>
           </div>
         </van-cell-group>

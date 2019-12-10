@@ -92,8 +92,8 @@ Page({
     let that = this;
     wx.createSelectorQuery().selectAll('.today-flag').boundingClientRect(function (rects) {
       rects.forEach(function (rect) {
-        console.log(rect);
-        console.log("view" + rect.dataset.indexid);
+        // console.log(rect);
+        // console.log("view" + rect.dataset.indexid);
        that.setData({
          intoView: "view" + rect.dataset.indexid
        });
@@ -125,14 +125,14 @@ Page({
         }
       }
       console.log(that.data.nowTime)
-      for (let c in res) {
-        if (res[c].formTime >= that.data.nowTime) {
-          bigTime.push(res[c])
-        } else {
-          smallTime.push(res[c])
-        }
-      }
-      console.log(bigTime)
+      // for (let c in res) {
+      //   if (res[c].formTime >= that.data.nowTime) {
+      //     bigTime.push(res[c])
+      //   } else {
+      //     smallTime.push(res[c])
+      //   }
+      // }
+      // console.log(bigTime)
       if (res.length == 0) {
         that.setData({
           noDates: true
@@ -143,9 +143,10 @@ Page({
         })
       }
       that.setData({
-        items: bigTime,
-        topArr: smallTime
+        items: res,
+        // topArr: smallTime
       })
+      that.returnToday()
     })
   },
 
@@ -178,7 +179,50 @@ Page({
 
   // 获取比赛列表
   getGameList () {
-    
+    let that = this
+    let params = {
+      page: 1,
+      pagesize: 20,
+      token: that.data.token,
+      sort: 'desc',
+      swords: '',
+      keyword: ''
+    }
+    console.log(params)
+    postRequest('/user/matchList', params, true).then(res => {
+      console.log('比赛列表',res)
+      if (wx.getStorageSync('newGame') < res.list[0].id) {
+        wx.showTabBarRedDot({
+          index: 1
+        })
+      }
+    })
+  },
+
+  // 获取训练列表
+  getTraining () {
+    let that = this
+    let params = {
+      page: 1,
+      pagesize: 20,
+      token: that.data.token,
+      stage: '',
+      title: '',
+      swords: '',
+      format: '',
+      type: '',
+      address: '',
+      time_min: '',
+      time_max: ''
+    }
+    postRequest('/mini/activityList', params, true).then(res => {
+      console.log('训练列表',res)
+      if (wx.getStorageSync('newTraining') < res.list[0].id) {
+        wx.showTabBarRedDot({
+          index: 2
+        })
+      }
+    })
   },
 
   /**
@@ -191,6 +235,8 @@ Page({
         token: wx.getStorageSync('token')
       })
       this.getList()
+      this.getGameList()
+      this.getTraining()
     } else {
       that.setData({
         noDates: true

@@ -29,6 +29,27 @@ Page({
 
   clickImg (e) {
     let that = this
+    let option = {
+      bigX: 10,
+      bigY: 65,
+      dateX: 132,
+      dateY: 415,
+      contentX: 350
+    }
+    let index = e.currentTarget.dataset.index
+    if (index == 1) {
+      option.bigX = 10
+      option.bigY = 65
+      option.dateX = 132
+      option.dateY = 415
+      option.contentX = 350
+    } else {
+      option.bigX = 12
+      option.bigY = 245
+      option.dateX = 132
+      option.dateY = 405
+      option.contentX = 330
+    }
     wx.showToast({ title: '海报绘制中', icon: 'loading', duration: 10000 });
     let scene = `id=${that.data.id}`
     let params = {
@@ -40,7 +61,9 @@ Page({
       console.log(resCode)
       let dates = that.data.obj.dates
       let img = e.currentTarget.dataset.img
+      
       let name = that.data.name
+      let context = that.data.obj.name
       let qrCodeImg = `https://ssl.zhaodaka.net/dcq${resCode.src}`
       that.setData({
         visible: true
@@ -60,13 +83,64 @@ Page({
               ctx.setTextAlign('center') // 文字居中
               ctx.setFillStyle('#ffffff') // 文字颜色：黑色
               ctx.setFontSize(10) // 文字字号：22px
-              ctx.fillText(dates, 132, 415)
+              ctx.fillText(dates, option.dateX, option.dateY)
               // ctx.save()
 
+             if (index == 2) {
+               ctx.setStrokeStyle('#fff')
+               ctx.setLineWidth(1)
+               ctx.moveTo(12, 310)
+               ctx.lineTo(230, 310)
+
+               ctx.moveTo(12, 360)
+               ctx.lineTo(230, 360)
+             }
+
               ctx.setTextAlign('left')
-              ctx.setFontSize(13)
-              ctx.font = 'normal bold 13px sans-serif'
-              ctx.fillText(name, 10, 65)
+              ctx.font = 'normal bold 14px sans-serif'
+              ctx.fillText(name, option.bigX, option.bigY)
+              
+              var chr = context.split("");
+              var temp = "";
+              var row = [];
+              ctx.font = 'normal bold 11px sans-serif'
+              ctx.setFillStyle('#fff')
+
+              for (var a = 0; a < chr.length; a++) {
+                if (ctx.measureText(temp).width < 250) {
+                  temp += chr[a];
+                }
+                else {
+                  a--; //这里添加了a-- 是为了防止字符丢失，效果图中有对比
+                  row.push(temp);
+                  temp = "";
+                }
+              }
+              row.push(temp);
+
+
+              if (row.length > 2) {
+                var rowCut = row.slice(0, 2);
+                var rowPart = rowCut[1];
+                var test = "";
+                var empty = [];
+                for (var a = 0; a < rowPart.length; a++) {
+                  if (ctx.measureText(test).width < 250) {
+                    test += rowPart[a];
+                  }
+                  else {
+                    break;
+                  }
+                }
+                empty.push(test);
+                var group = empty[0] + "..."//这里只显示两行，超出的用...表示
+                rowCut.splice(1, 1, group);
+                row = rowCut;
+              }
+              for (var b = 0; b < row.length; b++) {
+                ctx.fillText(row[b], 10, option.contentX + b * 15, 220);
+              }
+
 
               const qrImgSize = 60
               console.log('小程序码', qrCodeImg)

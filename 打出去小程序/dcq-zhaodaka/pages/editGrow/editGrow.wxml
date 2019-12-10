@@ -1,5 +1,6 @@
 <!--pages/addGrows/addGrows.wxml-->
 <view class="addGrows">
+  <view class="back_game" bindtap="backGame">查看比赛</view>
   <view class="add_list">
     <picker class="pick_time" bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
       <view class="picker_time {{typeTitle == '事件类型' ? 'cho_color' : ''}}">{{typeTitle}}</view>

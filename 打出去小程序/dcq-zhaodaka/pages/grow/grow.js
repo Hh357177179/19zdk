@@ -237,6 +237,12 @@ Page({
       } else {
         that.setData({ noDataShow: false })
       }
+      if (wx.getStorageSync('token')) {
+        wx.setStorageSync("newTraining", res.list[0].id)
+        wx.hideTabBarRedDot({
+          index: 2
+        })
+      }
       that.setData({
         count: res.count,
         items: that.data.items.concat(res.list),

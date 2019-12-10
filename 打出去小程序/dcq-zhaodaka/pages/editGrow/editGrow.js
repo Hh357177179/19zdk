@@ -48,6 +48,12 @@ Page({
     }
   },
 
+  backGame () {
+    wx.navigateTo({
+      url: `/pages/detailGame/detailGame?id=${this.data.detailObj.id}`,
+    })
+  },
+
   getDetail() {
     let that = this
     let params = {

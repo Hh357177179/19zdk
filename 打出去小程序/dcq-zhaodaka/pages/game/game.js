@@ -215,6 +215,12 @@ Page({
       } else {
         that.setData({ noDataShow: false })
       }
+      if (wx.getStorageSync('token')) {
+        wx.setStorageSync("newGame", res.list[0].id)
+        wx.hideTabBarRedDot({
+          index: 1
+        })
+      }
       that.setData({
         count: res.count,
         items: that.data.items.concat(res.list)
@@ -300,10 +306,8 @@ Page({
     })
   },
 
-  init () {
-    wx.showTabBarRedDot({
-      index: 1
-    })
+  getDotList () {
+    let that = this
   },
 
   /**

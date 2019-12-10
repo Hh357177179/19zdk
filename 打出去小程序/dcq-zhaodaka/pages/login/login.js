@@ -75,7 +75,7 @@ Page({
     })
   },
 
-  getUserInfo (token) {
+   getUserInfo (token) {
     let that = this
     let params = {
       token: token
@@ -91,6 +91,58 @@ Page({
         key: 'isVip',
         data: res.vip_time,
       })
+      that.getGameList(token)
+    })
+  },
+
+  // 获取比赛列表
+  getGameList(token) {
+    let that = this
+    let params = {
+      page: 1,
+      pagesize: 20,
+      token: token,
+      sort: 'desc',
+      swords: '',
+      keyword: ''
+    }
+    console.log(params)
+    postRequest('/user/matchList', params, true).then(res => {
+      console.log('比赛列表', res)
+      if (wx.getStorageSync('newGame') < res.list[0].id) {
+        console.log(123)
+        wx.showTabBarRedDot({
+          index: 1
+        })
+      }
+      that.getTraining(token)
+    })
+  },
+
+  // 获取训练列表
+  getTraining(token) {
+    let that = this
+    let params = {
+      page: 1,
+      pagesize: 20,
+      token: token,
+      stage: '',
+      title: '',
+      swords: '',
+      format: '',
+      type: '',
+      address: '',
+      time_min: '',
+      time_max: ''
+    }
+    postRequest('/mini/activityList', params, true).then(res => {
+      console.log('训练列表', res)
+      if (wx.getStorageSync('newTraining') < res.list[0].id) {
+        console.log(123)
+        wx.showTabBarRedDot({
+          index: 2
+        })
+      }
       wx.navigateBack()
     })
   },
