@@ -76,6 +76,8 @@
             <img :src="obj.face_right" alt>
           </div>
         </div>
+      </div>
+      <div class="man_pic">
         <div class="pic_list" v-if="obj.hand_left != ''">
           <div class="imgCard">
             <img :src="obj.hand_left" alt>
@@ -96,6 +98,8 @@
             <img :src="obj.home_house_plan1" alt>
           </div>
         </div>
+      </div>
+      <div class="man_pic">
         <div class="pic_list" v-if="obj.home_house_plan2 != ''">
           <div class="imgCard">
             <img :src="obj.home_house_plan2" alt>
@@ -148,7 +152,7 @@ export default {
         this.obj = res;
         if (res) {
           this.$nextTick(() => {
-            window.print();
+            // window.print();
           });
         }
       });
@@ -254,11 +258,14 @@ export default {
   }
   .man_pic {
     margin-top: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
     .pic_list {
-      float: left;
       width: 25%;
       .imgCard {
-        width: 260px;
+        width: 100%;
         margin: 10px auto 0;
         img {
           width: 100%;

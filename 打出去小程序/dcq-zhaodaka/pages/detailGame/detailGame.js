@@ -24,7 +24,7 @@ Page({
 
   createdImg () {
     wx.navigateTo({
-      url: '/pages/cratedImg/cratedImg?id=' + this.data.id,
+      url: `/pages/cratedImg/cratedImg?id=${this.data.id}&type=2`,
     })
   },
 
@@ -224,10 +224,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
     let that = this
-    that.setData({id: options.id})
-    that.getList()
+    console.log('接收到的参数',options)
+    if (options.scene) {
+      that.setData({ id: options.scene })
+    } else {
+      that.setData({ id: options.id })
+    }
   },
 
   copyText (e) {
@@ -270,7 +273,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let that = this
+    if (wx.getStorageSync('token')) {
+      that.getList()
+    } else {
+      wx.navigateTo({
+        url: '/pages/login/login',
+      })
+    }
   },
 
   /**

@@ -86,7 +86,7 @@ export default {
     exportExcel() {
       let params = {
         page: 1,
-        pagesize: 1000,
+        pagesize: 1000000,
         name: this.searchForm.name,
         phone: this.searchForm.phone,
         card_no: this.searchForm.card_no,

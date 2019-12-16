@@ -268,3 +268,20 @@ page{
   padding: 10rpx;
   min-height: 100rpx;
 }
+.apply_game{
+  background:linear-gradient(115deg,rgba(72,72,220,1) 0%,rgba(50,166,228,1) 100%);
+  color: #fff;
+  border-radius: 56rpx;
+  text-align: center;
+  width: 500rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  margin: 60rpx auto 0;
+}
+.created_img{
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+}
+.create_btn{
+  background:linear-gradient(115deg,rgba(72,72,220,1) 0%,rgba(50,166,228,1) 100%);
+}

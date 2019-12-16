@@ -119,9 +119,11 @@
     </view>
   </view>
   <view class="apply_btn" bindtap="applyBtn">我要报名</view>
+  
   <view class="small_main">
     <!-- <view class="consider_btn small_btn" bindtap="clickConsider">考虑中</view> -->
     <!-- <view class="voluntary_btn small_btn">认领志愿者</view> -->
     <view class="player_btn small_btn" bindtap="signIn">选手签到</view>
+    <view class="create_btn small_btn " bindtap="createdImg">生成海报</view>
   </view>
 </view>

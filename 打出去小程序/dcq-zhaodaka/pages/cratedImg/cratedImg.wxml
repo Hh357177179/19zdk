@@ -25,4 +25,11 @@
       <view bindtap="createImage" class="save_img">保存图片</view>
     </view>
   </wux-popup>
+
+  <wux-popup closable visible="{{ visibleSetting }}" bind:close="onCloseSet">
+    <view class="set_main">
+      <view>请手动打开相册授权！</view>
+      <view class="open_set" bindtap="openSetting">去授权</view>
+    </view>
+  </wux-popup>
 </view>

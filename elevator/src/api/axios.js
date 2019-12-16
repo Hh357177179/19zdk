@@ -3,7 +3,7 @@ import app from '@/main'
 
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 let api = axios.create({
-  baseURL: '/admin',
+  baseURL: '/api',
   timeout: 8000
 })
 

@@ -68,6 +68,7 @@
               v-model="year1"
               label="使用年限"
               placeholder="请输入使用年限1"
+              type="tel"
             />
             <van-field
               v-model="phone2"
@@ -80,6 +81,7 @@
               v-model="year2"
               label="使用年限"
               placeholder="请输入使用年限2"
+              type="tel"
             />
           </van-cell-group>
           <van-field
@@ -295,8 +297,6 @@
         :canMoveBox="option.canMoveBox"
         :original="option.original"
         :autoCrop="option.autoCrop"
-        :autoCropWidth="option.autoCropWidth"
-        :autoCropHeight="option.autoCropHeight"
         :fixedBox="option.fixedBox"
       ></vueCropper>
       </div>
@@ -325,9 +325,7 @@ export default {
           canMove: false, 
           original: false, 
           canMoveBox: false, 
-          autoCrop: false, 
-          autoCropWidth: 150, 
-          autoCropHeight: 150, 
+          autoCrop: false,
           fixedBox: true 
         }, 
       imgShow: false,

@@ -49,7 +49,7 @@
             </p>
           </div>
           <div class="infos info_t">
-            <p>{{strs}}</p>
+            <p>{{obj.phones}}</p>
           </div>
           <div class="infos info_th border_none">
             <p>{{obj.number_plate}}</p>
@@ -57,85 +57,49 @@
         </div>
         <div class="man_pic clearfix">
           <div class="pic_list" v-if="obj.body_img != ''">
-            <el-image
-              style="width: 260px;"
-              :src="obj.body_img"
-              :preview-src-list="srcList"
-            ></el-image>
+            <el-image style="width: 100%;" :src="obj.body_img" :preview-src-list="srcList"></el-image>
           </div>
           <div class="pic_list" v-if="obj.face_left != ''">
-            <el-image
-              style="width: 260px;"
-              :src="obj.face_left"
-              :preview-src-list="srcList"
-            ></el-image>
+            <el-image style="width: 100%;" :src="obj.face_left" :preview-src-list="srcList"></el-image>
           </div>
           <div class="pic_list" v-if="obj.face_front != ''">
-            <el-image
-              style="width: 260px;"
-              :src="obj.face_front"
-              :preview-src-list="srcList"
-            ></el-image>
+            <el-image style="width: 100%;" :src="obj.face_front" :preview-src-list="srcList"></el-image>
           </div>
           <div class="pic_list" v-if="obj.face_right != ''">
-            <el-image
-              style="width: 260px;"
-              :src="obj.face_right"
-              :preview-src-list="srcList"
-            ></el-image>
+            <el-image style="width: 100%;" :src="obj.face_right" :preview-src-list="srcList"></el-image>
           </div>
+        </div>
+        <div class="man_pic clearfix">
           <div class="pic_list" v-if="obj.hand_left != ''">
-            <el-image
-              style="width: 260px;"
-              :src="obj.hand_left"
-              :preview-src-list="srcList"
-            ></el-image>
+            <el-image style="width: 100%;" :src="obj.hand_left" :preview-src-list="srcList"></el-image>
           </div>
           <div class="pic_list" v-if="obj.hand_right != ''">
-            <el-image
-              style="width: 260px;"
-              :src="obj.hand_right"
-              :preview-src-list="srcList"
-            ></el-image>
+            <el-image style="width: 100%;" :src="obj.hand_right" :preview-src-list="srcList"></el-image>
           </div>
           <div class="pic_list" v-if="obj.tongue_img != ''">
-            <el-image
-              style="width: 260px;"
-              :src="obj.tongue_img"
-              :preview-src-list="srcList"
-            ></el-image>
+            <el-image style="width: 100%;" :src="obj.tongue_img" :preview-src-list="srcList"></el-image>
           </div>
           <div class="pic_list" v-if="obj.home_house_plan1 != ''">
-            <el-image
-              style="width: 260px;"
-              :src="obj.home_house_plan1"
-              :preview-src-list="srcList"
-            ></el-image>
+            <el-image style="width: 100%;" :src="obj.home_house_plan1" :preview-src-list="srcList"></el-image>
           </div>
+        </div>
+        <div class="man_pic clearfix">
           <div class="pic_list" v-if="obj.home_house_plan2 != ''">
-            <el-image
-              style="width: 260px;"
-              :src="obj.home_house_plan2"
-              :preview-src-list="srcList"
-            ></el-image>
+            <el-image style="width: 100%;" :src="obj.home_house_plan2" :preview-src-list="srcList"></el-image>
           </div>
           <div class="pic_list" v-if="obj.home_house_plan3 != ''">
-            <el-image
-              style="width: 260px;"
-              :src="obj.home_house_plan3"
-              :preview-src-list="srcList"
-            ></el-image>
+            <el-image style="width: 100%;" :src="obj.home_house_plan3" :preview-src-list="srcList"></el-image>
           </div>
           <div class="pic_list" v-if="obj.company_house_plan != ''">
             <el-image
-              style="width: 260px;"
+              style="width: 100%;"
               :src="obj.company_house_plan"
               :preview-src-list="srcList"
             ></el-image>
           </div>
           <div class="pic_list" v-if="obj.company_house_plan2 != ''">
             <el-image
-              style="width: 260px;"
+              style="width: 100%;"
               :src="obj.company_house_plan2"
               :preview-src-list="srcList"
             ></el-image>
@@ -209,7 +173,7 @@ export default {
       text-align: center;
       font-size: 18px;
       font-weight: bold;
-      .input_time{
+      .input_time {
         font-weight: normal;
         float: right;
         font-size: 15px;
@@ -245,7 +209,12 @@ export default {
           font-weight: normal;
         }
       }
-      .info_wh{
+      .info_t{
+        display: flex;
+        align-items: center;
+        line-height: 0;
+      }
+      .info_wh {
         display: flex;
         justify-content: space-around;
       }
@@ -292,10 +261,14 @@ export default {
   }
   .man_pic {
     margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    flex-wrap: wrap;
     .pic_list {
-      float: left;
       width: 25%;
       margin-bottom: 10px;
+      background: #f0f0f0;
       .imgCard {
         width: 280px;
         height: 280px;

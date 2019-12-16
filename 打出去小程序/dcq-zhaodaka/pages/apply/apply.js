@@ -24,6 +24,12 @@ Page({
     showContent: false
   },
 
+  createdImg() {
+    wx.navigateTo({
+      url: `/pages/cratedImg/cratedImg?id=${this.data.itemObj.id}&type=1`,
+    })
+  },
+
   textAreaVal(e) {
     let that = this
     that.setData({
@@ -210,14 +216,19 @@ Page({
    */
   onLoad: function(options) {
     let that = this
+    console.log('接收到的参数', options)
+    if (options.scene) {
+      that.setData({ activity_id: options.scene })
+    } else {
+      that.setData({ activity_id: options.id })
+    }
+
     if (wx.getStorageSync('token') != '') {
       that.setData({
-        activity_id: options.id,
         meUserId: wx.getStorageSync('userInfo').id,
         token: wx.getStorageSync('token')
       })
     }
-    that.getDetail()
   },
 
   /**
@@ -231,7 +242,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    let that = this
+    if (wx.getStorageSync('token')) {
+      that.getDetail()
+    } else {
+      wx.navigateTo({
+        url: '/pages/login/login',
+      })
+    }
   },
 
   /**

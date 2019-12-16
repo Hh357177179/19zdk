@@ -15,8 +15,16 @@ Page({
     id: '',
     indicatorDots: true,
     visible: false,
+    visibleSetting: false,
     qrCode: '',
-    name: ''
+    name: '',
+  },
+
+  onCloseSet () {
+    let that = this
+    that.setData({
+      visibleSetting: false
+    })
   },
 
   onClose () {
@@ -50,12 +58,18 @@ Page({
       option.dateY = 405
       option.contentX = 330
     }
+    let pagePath = ''
+    if (this.type == 1) {
+      pagePath = 'pages/detailGame/detailGame'
+    } else {
+      pagePath = 'pages/apply/apply'
+    }
     wx.showToast({ title: '海报绘制中', icon: 'loading', duration: 10000 });
-    let scene = `id=${that.data.id}`
+    let scene = `${that.data.id}`
     let params = {
       token: wx.getStorageSync('token'),
       scene: scene,
-      page: 'pages/detailGame/detailGame'
+      page: pagePath
     }
     postRequest('/mini/makeMiniCode', params, false).then(resCode => {
       console.log(resCode)
@@ -65,6 +79,7 @@ Page({
       let name = that.data.name
       let context = that.data.obj.name
       let qrCodeImg = `https://ssl.zhaodaka.net/dcq${resCode.src}`
+      // let qrCodeImg = `https://ssl.zhaodaka.net/dcq/static/mini/minicode_15.png`
       that.setData({
         visible: true
       })
@@ -158,6 +173,7 @@ Page({
   },
 
   createImage() {
+    let that = this
     wx.canvasToTempFilePath({ //将canvas生成图片
       canvasId: 'shareCanvas',
       x: 0,
@@ -174,11 +190,32 @@ Page({
               title: "海报保存成功！",
               duration: 2000
             })
+          },
+          fail: err => {
+            console.log(err)
+            if (err.errMsg == "saveImageToPhotosAlbum:fail auth deny") {
+              that.setData({
+                visibleSetting: true
+              })
+            }
           }
         })
       }
     })
-  },   
+  },
+
+  openSetting () {
+    wx.openSetting({
+      success(settingdata) {
+        console.log(settingdata)
+        if (settingdata.authSetting['scope.writePhotosAlbum']) {
+          util.showMsg('获取权限成功', '../../images/successIcon.png')
+        } else {
+          util.showMsg('获取权限失败', '../../images/warning.png')
+        }
+      }
+    })
+  },
 
   getList() {
     let that = this
@@ -189,7 +226,9 @@ Page({
     postRequest('/user/matchDetail', params, true).then(res => {
       console.log(res)
       let names = res.name
-      names = names.substring(names.indexOf('【') + 1, names.indexOf('】'))
+      if (names.indexOf('【') != -1 && names.indexOf('】') != -1) {
+        names = names.substring(names.indexOf('【') + 1, names.indexOf('】'))
+      }
       console.log(names)
       that.setData({
         obj: res,
@@ -198,16 +237,61 @@ Page({
     })
   },
 
+  getTraining () {
+    let that = this
+    let params = {
+      activity_id: that.data.id,
+      token: wx.getStorageSync('token')
+    }
+    postRequest('/activity/detail', params, true).then(res => {
+      console.log('训练',res)
+      const start = that.formatDate(res.addtime)
+      const end = that.formatDate(res.endtime)
+      let names = res.title
+      if (names.indexOf('【') != -1 && names.indexOf('】') != -1) {
+        names = names.substring(names.indexOf('【') + 1, names.indexOf('】'))
+      }
+      res.dates = `${start}-${end}`
+      res.name = res.title
+      that.setData({
+        obj: res,
+        name: names
+      })
+      console.log(res.dates)
+    })
+  },
+
+  formatDate (time) {
+    let date = new Date(time * 1000)
+    let addY = date.getFullYear()
+    let addM = date.getMonth() + 1
+    let addD = date.getDate()
+    console.log(addY, addM, addD)
+    if (addM < 10) {
+      addM = '0' + addM
+    }
+    if (addD < 10) {
+      addD = '0' + addD
+    }
+    console.log(addY, addM, addD)
+    return `${addY}/${addM}/${addD}`
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log(options.id)
+    console.log(options)
     let that = this
     that.setData({
       id: options.id
     })
-    that.getList()
+    if (options.type == 2) {
+      that.getList()
+    } else {
+      console.log('训练')
+      that.getTraining()
+    }
   },
 
   /**

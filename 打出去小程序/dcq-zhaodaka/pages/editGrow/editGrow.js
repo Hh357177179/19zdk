@@ -50,7 +50,7 @@ Page({
 
   backGame () {
     wx.navigateTo({
-      url: `/pages/detailGame/detailGame?id=${this.data.detailObj.id}`,
+      url: `/pages/detailGame/detailGame?id=${this.data.detailObj.relation_id}`,
     })
   },
 

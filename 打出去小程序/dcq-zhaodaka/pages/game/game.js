@@ -215,11 +215,13 @@ Page({
       } else {
         that.setData({ noDataShow: false })
       }
-      if (wx.getStorageSync('token')) {
-        wx.setStorageSync("newGame", res.list[0].id)
-        wx.hideTabBarRedDot({
-          index: 1
-        })
+      if (that.data.keyword == '') {
+        if (wx.getStorageSync('token')) {
+          wx.setStorageSync("newGame", res.list[0].id)
+          wx.hideTabBarRedDot({
+            index: 1
+          })
+        }
       }
       that.setData({
         count: res.count,
@@ -321,6 +323,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    let that = this
+    that.setData({
+      items: []
+    })
     this.getList()
   },
 

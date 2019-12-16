@@ -52,3 +52,13 @@
   color: #fff;
   line-height: 80rpx;
 }
+.open_set{
+  width: 300rpx;
+  height: 60rpx;
+  font-size: 24rpx;
+  line-height: 60rpx;
+  color: #fff;
+  border-radius: 10rpx;
+  background:linear-gradient(115deg,rgba(72,72,220,1) 0%,rgba(50,166,228,1) 100%);
+  margin: 40rpx auto 0;
+}
