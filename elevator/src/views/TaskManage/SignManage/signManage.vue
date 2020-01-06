@@ -2,6 +2,10 @@
   <div class="sign_manage">
     <el-card class="cards" style="padding-bottom: 15px;">
       <div class="titles">
+        <div class="back_prev" @click="backRouters">
+          <i class="el-icon-back"></i>
+          <span>上一页</span>
+        </div>
         <div>
           <span class="iconfont icon-renwuzhongxin"></span>
           <span>维保工作管理</span>
@@ -11,7 +15,7 @@
         <el-form-item>
           <el-input v-model="formInline.name" clearable placeholder="请输入使用单位"></el-input>
         </el-form-item>
-        <el-form-item>
+        <!-- <el-form-item>
           <el-select v-model="formInline.order" placeholder="请选择排序">
             <el-option
               v-for="item in options"
@@ -20,7 +24,7 @@
               :value="item.value">
             </el-option>
           </el-select>
-        </el-form-item>
+        </el-form-item> -->
         <el-form-item>
           <el-button
             type="primary"
@@ -42,25 +46,29 @@
           :header-cell-style="{background:'#f0f0f0',color: '#666'}"
         >
           <el-table-column align="center" prop="elevator_use_unit" label="使用单位" width="240"></el-table-column>
-          <el-table-column align="center" prop="elevator_use_address" label="电梯位置" width="200"></el-table-column>
+          <el-table-column align="center" prop="elevator_use_address" label="电梯位置" width="250"></el-table-column>
           <!-- <el-table-column align="center" prop="" label="打卡位置"></el-table-column> -->
           <el-table-column align="center" prop="elevator_internal_number" label="电梯内部编号" width="200"></el-table-column>
-          <el-table-column align="center" prop="handle_time" label="上次维保日期" width="130"></el-table-column>
-          <el-table-column align="center" label="下次维保日期" width="130">
+          <el-table-column align="center" prop="handle_time" label="本次维保时间" width="130"></el-table-column>
+          <!-- <el-table-column align="center" label="下次维保时间" width="130">
             <template slot-scope="scope">
               <div>{{scope.row.next_handle_time}}</div>
             </template>
-          </el-table-column>
-          <el-table-column align="center" prop="handle_time" label="离下次维保天数">
+          </el-table-column> -->
+          <!-- <el-table-column align="center" prop="handle_time" label="离下次维保天数">
             <template slot-scope="scope">
               <div>{{scope.row.distance_handle_time}}</div>
             </template>
-          </el-table-column>
-          <el-table-column align="center" prop="distance_texts" label="是否超保"></el-table-column>
-          <el-table-column align="center" prop="expired_day" label="已超保日期"></el-table-column>
-          <el-table-column align="center" label="维保工作日志">
+          </el-table-column> -->
+          <!-- <el-table-column align="center" prop="distance_texts" label="是否超保"></el-table-column> -->
+          <el-table-column align="center" prop="expired_day" label="超期天数">
             <template slot-scope="scope">
-              <i class="el-icon-document" @click="handleClick('维保工作详情', 'refPerson',scope.row)"></i>
+              <div :class="scope.row.expired_day == 0 ? '' : 'more_color'">{{scope.row.expired_day}}</div>
+            </template>
+          </el-table-column>
+          <el-table-column align="center" label="维保工作照片">
+            <template slot-scope="scope">
+              <i class="el-icon-document" @click="handleClick('维保工作照片', 'refPerson',scope.row)"></i>
             </template>
           </el-table-column> -->
         </el-table>
@@ -116,12 +124,18 @@ export default {
       total: 0,
       activeName: "first",
       tableData: [],
+      elevator_id: ''
     };
   },
   created () {
+    this.elevator_id = this.$route.query.id
     this.getList()
   },
   methods: {
+
+    backRouters () {
+      this.$router.back()
+    },
     
     exportExcel () {
       let params = {
@@ -129,7 +143,8 @@ export default {
         page: 1,
         pagesize: 10000,
         unit: this.formInline.name,
-        order: this.formInline.order
+        order: this.formInline.order,
+        elevator_id: this.elevator_id
       }
       maintainList(params).then(res => {
         console.log(res)
@@ -152,9 +167,9 @@ export default {
           if (distanceDate > 0) {
             ele.distance_handle_time = parseInt(distanceDate)
             ele.distance_texts = '否'
-            ele.expired_day = '—'
+            ele.expired_day = '0'
           } else {
-            ele.distance_handle_time = '—'
+            ele.distance_handle_time = '0'
             ele.distance_texts = '是'
             ele.expired_day = Math.abs(parseInt(distanceDate))
           }
@@ -174,11 +189,10 @@ export default {
               "使用单位",
               "电梯位置",
               "电梯内部编号",
-              "上次维保日期",
-              "下次维保日期",
+              "本次维保时间",
+              "下次维保时间",
               "离下次维保天数",
-              "是否超保",
-              "已超保日期"
+              "超期天数"
             ];
             // 上面设置Excel的表格第一行的标题
             // const role = ''
@@ -188,8 +202,6 @@ export default {
               "elevator_internal_number",
               "handle_time",
               "next_handle_time",
-              "distance_handle_time",
-              "distance_texts",
               "expired_day"
             ];
             const data = this.formatJson(filterVal, res.list);
@@ -213,7 +225,8 @@ export default {
         page: this.page,
         pagesize: this.pagesize,
         unit: this.formInline.name,
-        order: this.formInline.order
+        order: this.formInline.order,
+        elevator_id: this.elevator_id
       }
       maintainList(params).then(res => {
         console.log(res)
@@ -236,9 +249,9 @@ export default {
           if (distanceDate > 0) {
             ele.distance_handle_time = parseInt(distanceDate)
             ele.distance_texts = '否'
-            ele.expired_day = '—'
+            ele.expired_day = '0'
           } else {
-            ele.distance_handle_time = '—'
+            ele.distance_handle_time = '0'
             ele.distance_texts = '是'
             ele.expired_day = Math.abs(parseInt(distanceDate))
           }
@@ -312,17 +325,20 @@ export default {
       color: #e6a23c;
       font-size: 14px;
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-start;
       align-items: center;
       position: absolute;
       top: 0;
       left: 0;
       .iconfont {
-        margin-right: 10px;
+        margin-right: 5px;
       }
       .rush {
         font-size: 20px;
         cursor: pointer;
+      }
+      .back_prev{
+        margin-right: 10px;
       }
     }
     .el-form-item {
@@ -338,6 +354,9 @@ export default {
       font-weight: bold;
       font-size: 18px;
     }
+  }
+  .more_color{
+    color: #f00;
   }
 }
 </style>

@@ -11,10 +11,11 @@
         <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px">
           <el-form-item label="单位区域" prop="valText" class="change_input">
             <el-cascader
+              filterable
               v-if="states == 0"
               :disabled="states == 1"
               v-model="ruleForm.valText"
-              placeholder="请选择单位区域"
+              placeholder="请搜索单位区域"
               :props="{ checkStrictly: true }"
               :options="areaData"
               clearable
@@ -24,16 +25,33 @@
           </el-form-item>
           <el-form-item label="单位类型" prop="type" class="change_input">
             <el-select
+              @change="chooseUnit"
               v-model="ruleForm.type"
               placeholder="请选择单位类型"
               clearable
-              :disabled="states == 1"
+              :disabled="states == 1 || identityState == 2"
             >
               <el-option
                 v-for="item in typeArr"
                 :key="item.value"
                 :label="item.label"
                 :value="item.value"
+              ></el-option>
+            </el-select>
+          </el-form-item>
+          <el-form-item label="维保单位" required class="change_input" v-if="identityState == 1 && types == 1">
+            <el-select
+              filterable
+              @change="changeWb"
+              v-model="ruleForm.appoint_maintain_id"
+              placeholder="请选择维保单位"
+              clearable
+            >
+              <el-option
+                v-for="item in maintainGroup"
+                :key="item.id"
+                :label="item.title"
+                :value="item.id"
               ></el-option>
             </el-select>
           </el-form-item>
@@ -66,6 +84,7 @@
 <script>
 import { regionData, CodeToText, TextToCode } from "element-china-area-data";
 import { addGroups, editGroups } from "@/api/organize/organize.js";
+import { getMaintenance } from "@/api/elevator/elevator.js";
 import AreaJson from "../../../../data/area.json";
 export default {
   props: {
@@ -80,6 +99,7 @@ export default {
   },
   data() {
     return {
+      identityState: sessionStorage.getItem('type'),
       radio: "1",
       createLoading: false,
       direction: "ltr",
@@ -109,6 +129,9 @@ export default {
       rowObj: {},
       states: 0,
       areaData: [],
+      maintainGroup: [],
+      types: 0,
+      
 
       provinceSession: sessionStorage.getItem("province"),
       citySession: sessionStorage.getItem("city"),
@@ -120,6 +143,21 @@ export default {
   },
 
   methods: {
+    changeWb (val) {
+      console.log(val)
+      this.$forceUpdate()
+      this.ruleForm.appoint_maintain_id = val
+    },
+    chooseUnit (val) {
+      console.log(val)
+      if (val == 3) {
+        this.getMaintenanceList()
+        this.types = 1
+      } else {
+        this.types = 0
+        this.ruleForm.appoint_maintain_id = ''
+      }
+    },
     changeNav(val) {
       console.log(val);
     },
@@ -130,7 +168,8 @@ export default {
           let params = {
             token: sessionStorage.getItem("token"),
             group_id: this.rowObj.id,
-            title: this.ruleForm.title
+            title: this.ruleForm.title,
+            appoint_maintain_id: this.ruleForm.appoint_maintain_id
           };
           editGroups(params)
             .then(res => {
@@ -154,7 +193,20 @@ export default {
         }
       });
     },
+    getMaintenanceList () {
+      let params = {
+        token: sessionStorage.getItem('token')
+      }
+      getMaintenance(params).then(res => {
+        console.log('维保单位',res)
+        this.maintainGroup = res
+      })
+    },
     getParentData(row, states) {
+      this.getMaintenanceList()
+      if (this.identityState == 2) {
+        this.ruleForm.type = 3
+      }
       if (states == 1) {
         console.log(row, states);
         let arr = [];
@@ -173,8 +225,14 @@ export default {
         this.ruleForm.placeText = place.join(" / ");
         this.ruleForm.title = row.title;
         this.ruleForm.type = row.type;
+        // this.ruleForm.appoint_maintain_id = row.
         this.rowObj = row;
         this.states = states;
+        if (row.type == 3) {
+          console.log('客休', row)
+          this.types = 1
+          this.ruleForm.appoint_maintain_id = row.pid
+        }
       } else {
         this.province = this.provinceSession;
         this.city = this.citySession;
@@ -241,7 +299,8 @@ export default {
             city: this.city,
             area: this.area,
             type: this.ruleForm.type,
-            title: this.ruleForm.title
+            title: this.ruleForm.title,
+            appoint_maintain_id: this.ruleForm.appoint_maintain_id
           };
           console.log(params);
           addGroups(params)
@@ -282,6 +341,8 @@ export default {
       this.ruleForm.title = "";
       this.ruleForm.type = "";
       this.ruleForm.valText = [];
+      this.ruleForm.appoint_maintain_id = ''
+      this.types = 0
       this.createLoading = false;
       this.$nextTick(() => {
         this.$emit("update:visible", false); // 直接修改父组件的属性

@@ -25,6 +25,9 @@
     <view wx:if="{{nav == 1}}">
       <block wx:for="{{items}}" wx:key="index">
         <view class="card_list" bindtap='navCourse' data-channel_id="{{item.channel_id}}">
+          <view class="card_image">
+            <image src="../../images/xuexiao@2x.png"></image>
+          </view>
           <view class='list_main'>
             <view class='list_title'>{{item.title}}</view>
             <view class='list_desc'>{{item.desc}}</view>
@@ -42,6 +45,9 @@
       <view wx:if="{{nav == 2}}">
         <block wx:for="{{items}}" wx:key="index">
           <view class="card_list" bindtap="navCourse" data-channel_id="{{item.channel_id}}">
+            <view class="card_image">
+              <image src="../../images/shequ@2x.png"></image>
+            </view>
             <view class='list_main'>
               <view class='list_title'>{{item.title}}</view>
               <view class='list_desc'>{{item.desc}}</view>

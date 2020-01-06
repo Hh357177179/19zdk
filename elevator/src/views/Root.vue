@@ -65,7 +65,9 @@ export default {
     return {
       navList: [],
       identityState: sessionStorage.getItem("type"),
-      name: sessionStorage.getItem("name")
+      name: sessionStorage.getItem("name"),
+      titles: sessionStorage.getItem('title'),
+      roles: sessionStorage.getItem('role')
     };
   },
   created() {
@@ -83,8 +85,15 @@ export default {
             }
           }
         }
+        if (navList[a].name == "System") {
+          if (this.titles == '系统平台' && this.roles == '系统管理员') {
+            navList[a].meta.un_show = false
+          } else {
+            navList[a].meta.un_show = true
+          }
+        }
+        console.log('所有路由',navList)
     }
-    console.log(navList);
     this.navList = navList;
   },
   methods: {

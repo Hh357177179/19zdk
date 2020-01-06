@@ -33,7 +33,7 @@
     </el-card>
     <el-card class="mt10">
       <el-button
-        v-if="identityState == 1"
+        v-if="identityState == 1 || identityState == 2"
         icon="el-icon-plus"
         size="small"
         type="primary"
@@ -63,8 +63,8 @@
           <el-table-column align="center" label="操作" width="300px">
             <template slot-scope="scope">
               <el-button size="mini" icon="el-icon-plus" circle @click="addPerson(scope.row)"></el-button>
-              <el-button size="mini" icon="el-icon-edit" v-if="identityState == 1" circle @click="editGroup('编辑组织部门', 'refAddDep', scope.row)"></el-button>
-              <el-button size="mini" icon="el-icon-delete" v-if="identityState == 1"  circle @click="deleteGroup(scope.row)"></el-button>
+              <el-button size="mini" icon="el-icon-edit" v-if="identityState == 1 || identityState == 2" circle @click="editGroup('编辑组织部门', 'refAddDep', scope.row)"></el-button>
+              <el-button size="mini" icon="el-icon-delete" v-if="identityState == 1 || identityState == 2"  circle @click="deleteGroup(scope.row)"></el-button>
             </template>
           </el-table-column>
         </el-table>

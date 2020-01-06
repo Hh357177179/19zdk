@@ -37,35 +37,27 @@ const router = new Router({
             un_show: true,
           }
         },
-        {
-          path: '/task',
-          name: 'task',
-          component: () => import('./views/TaskManage/taskManage.vue'),
-          meta: {
-            title: '维保管理',
-            icon: 'icon-renwu'
-          },
-          children: [
-            {
-              path: '/task-sign',
-              name: 'taskSign',
-              component: () => import('./views/TaskManage/SignManage/signManage.vue'),
-              meta: {
-                title: '工作管理',
-                icon: 'icon-renwuzhongxin'
-              },
-            },
-            // {
-            //   path: '/task-flow',
-            //   name: 'taskFlow',
-            //   component: () => import('./views/TaskManage/FlowManage/flowManage.vue'),
-            //   meta: {
-            //     title: '工作日志',
-            //     icon: 'icon-liucheng'
-            //   },
-            // }
-          ]
-        },
+        // {
+        //   path: '/task',
+        //   name: 'task',
+        //   component: () => import('./views/TaskManage/taskManage.vue'),
+        //   meta: {
+        //     title: '维保管理',
+        //     icon: 'icon-renwu'
+        //   },
+        //   children: [
+            
+        //     // {
+        //     //   path: '/task-flow',
+        //     //   name: 'taskFlow',
+        //     //   component: () => import('./views/TaskManage/FlowManage/flowManage.vue'),
+        //     //   meta: {
+        //     //     title: '工作日志',
+        //     //     icon: 'icon-liucheng'
+        //     //   },
+        //     // }
+        //   ]
+        // },
         {
           path: '/elevator',
           name: 'elevator',
@@ -91,6 +83,16 @@ const router = new Router({
               meta: {
                 title: '编辑位置',
                 icon: 'icon-jieshao',
+                un_show: true,
+              },
+            },
+            {
+              path: '/task-sign',
+              name: 'taskSign',
+              component: () => import('./views/TaskManage/SignManage/signManage.vue'),
+              meta: {
+                title: '工作管理',
+                icon: 'icon-renwuzhongxin',
                 un_show: true,
               },
             },
@@ -145,6 +147,16 @@ const router = new Router({
             }
           ]
         },
+         {
+          path: '/system',
+          name: 'System',
+          component: () => import('./views/System/system.vue'),
+          meta: {
+            title: '系统设置',
+            icon: 'icon-cz-jl',
+            un_show: true
+          }
+        }
         // {
         //   path: '/handlelog',
         //   name: 'handleLog',
@@ -154,8 +166,26 @@ const router = new Router({
         //     icon: 'icon-cz-jl'
         //   }
         // }
-      ]
-    }
+      ],
+    },
+    {
+      path: '/weibao-info',
+      name: 'weibaoUnitInfo',
+      component: () => import('./views/prefectInfo/weibaoUnitInfo/weibaoUnitInfo.vue'),
+      meta: {
+        title: '维保单位完善信息',
+        icon: 'icon-renwuzhongxin',
+      },
+    },
+    {
+      path: '/userUnit-info',
+      name: 'userUnitInfo',
+      component: () => import('./views/prefectInfo/userUnitInfo/userUnitInfo.vue'),
+      meta: {
+        title: '使用单位完善信息',
+        icon: 'icon-renwuzhongxin',
+      },
+    },
   ]
 })
 

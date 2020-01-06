@@ -34,20 +34,28 @@
   justify-content: space-between;
   align-items: center;
 }
-.list_main{
+/* .list_main{
   width: 500rpx;
-}
+} */
 .list_title{
   line-height: 46rpx;
   color: #1F314A;
   font-size: 40rpx;
   font-weight: 500;
+  width: 300rpx;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
 }
 .list_desc{
   margin-top: 5rpx;
   font-size: 28rpx;
   line-height: 44rpx;
   color: #666;
+  width: 400rpx;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
 }
 .heart_icon{
   width: 40rpx;
@@ -137,4 +145,12 @@
   font-size: 22rpx;
   color: #fff;
   text-align: center;
+}
+.card_image{
+  width: 90rpx;
+  height: 80rpx;
+}
+.card_image image{
+  width: 100%;
+  height: 100%;
 }

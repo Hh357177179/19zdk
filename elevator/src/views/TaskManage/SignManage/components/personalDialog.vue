@@ -73,7 +73,7 @@
                 </div>
               </template>
             </el-table-column>
-            <el-table-column align="center" prop="address" label="电梯厢桥内使用登机牌">
+            <el-table-column align="center" prop="address" label="电梯轿厢内使用登记牌">  
               <template slot-scope="scope">
                 <div class="demo-image__preview">
                   <el-image
@@ -112,7 +112,7 @@
                 </div>
               </template>
             </el-table-column>
-            <el-table-column align="center" prop="address" label="地坑环境">
+            <el-table-column align="center" prop="address" label="底坑环境">
               <template slot-scope="scope">
                 <div class="demo-image__preview">
                   <el-image

@@ -2,41 +2,46 @@
 <view class='detail'>
   <view style='padding-bottom: 120rpx;'>
     <view class='detail_info'>
-      <view class='detail_title'>{{detailObj.title}}</view>
-      <view class='detail_list'>
-        <view class='dlist_icon'>
-          <image src='../../images/duoren.png'></image>
-        </view>
-        <view class='dlist_text'>
-          <text>讲座/辅导老师：</text>
-          <text class='dlist_infos'>{{detailObj.teacher_name}}</text>
-        </view>
+      <view class="detail_image">
+        <image src="../../images/bg@2x.png"></image>
       </view>
-      <view class='detail_list'>
-        <view class='dlist_icon'>
-          <image src='../../images/time.png'></image>
+      <view class="card_main">
+        <view class='detail_title'>{{detailObj.title}}</view>
+        <view class='detail_list'>
+          <view class='dlist_icon'>
+            <image src='../../images/duoren.png'></image>
+          </view>
+          <view class='dlist_text'>
+            <text>讲座/辅导老师：</text>
+            <text class='dlist_infos'>{{detailObj.teacher_name}}</text>
+          </view>
         </view>
-        <view class='dlist_text'>
-          <text>讲座/辅导时间：</text>
-          <text class='dlist_infos'>{{detailObj.start_time}}</text>
+        <view class='detail_list'>
+          <view class='dlist_icon'>
+            <image src='../../images/time.png'></image>
+          </view>
+          <view class='dlist_text'>
+            <text>讲座/辅导时间：</text>
+            <text class='dlist_infos'>{{detailObj.start_time}}</text>
+          </view>
         </view>
-      </view>
-      <view class='detail_list'>
-        <view class='dlist_icon'>
-          <image src='../../images/place.png'></image>
+        <view class='detail_list'>
+          <view class='dlist_icon'>
+            <image src='../../images/place.png'></image>
+          </view>
+          <view class='dlist_text'>
+            <text>讲座/辅导地点：</text>
+            <text class='dlist_infos'>{{detailObj.address}}</text>
+          </view>
         </view>
-        <view class='dlist_text'>
-          <text>讲座/辅导地点：</text>
-          <text class='dlist_infos'>{{detailObj.address}}</text>
-        </view>
-      </view>
-      <view class='detail_list'>
-        <view class='dlist_icon'>
-          <image src='../../images/shalou.png'></image>
-        </view>
-        <view class='dlist_text'>
-          <text>讲座/辅导时长：</text>
-          <text class='dlist_infos'>{{detailObj.duration}}</text>
+        <view class='detail_list'>
+          <view class='dlist_icon'>
+            <image src='../../images/shalou.png'></image>
+          </view>
+          <view class='dlist_text'>
+            <text>讲座/辅导时长：</text>
+            <text class='dlist_infos'>{{detailObj.duration}}</text>
+          </view>
         </view>
       </view>
     </view>

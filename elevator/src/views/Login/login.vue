@@ -1,5 +1,9 @@
 <template>
   <div class="login">
+    <div class="down_pic">
+      <img src="../../assets/img/downApp.png" alt="">
+      <div class="down_text">扫码下载app</div>
+    </div>
     <div class="login_card">
       <p class="login_title">互联网+电梯监管智慧平台</p>
       <div class="user_main">
@@ -10,6 +14,7 @@
               type="text"
               v-model="loginForm.username"
               placeholder="请输入账号"
+              @keyup.enter.native="submitForm('loginForm')"
             ></el-input>
           </el-form-item>
           <el-form-item prop="password" class="user_input">
@@ -18,6 +23,7 @@
               prefix-icon="el-icon-unlock"
               v-model="loginForm.password"
               placeholder="请输入密码"
+              @keyup.enter.native="submitForm('loginForm')"
             ></el-input>
           </el-form-item>
           <el-form-item>
@@ -54,7 +60,7 @@ export default {
         token: token
       }
       getInfo(params).then(res => {
-        console.log(res)
+        console.log('获取管理员信息',res)
         sessionStorage.setItem("area", res.group_area);
         sessionStorage.setItem("city", res.group_city);
         sessionStorage.setItem("province", res.group_province);
@@ -62,6 +68,7 @@ export default {
         sessionStorage.setItem("title", res.group_title);
         sessionStorage.setItem("name", res.name);
         sessionStorage.setItem("type", res.group_type);
+        sessionStorage.setItem("is_complete", res.is_complete)
         this.loading = false;
         this.$router.push("/home");
       })
@@ -78,7 +85,6 @@ export default {
           };
           Login(params)
             .then(res => {
-              console.log(res);
               sessionStorage.setItem("token", res.token);
               this.userInfo(res.token)
             })
@@ -102,6 +108,21 @@ export default {
   border: 1px solid rgba(0, 0, 0, 0);
   background: #000c17 url("~@/assets/img/background.svg") no-repeat 50%;
   background-size: 100% 100%;
+  position: relative;
+  .down_pic{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    img{
+      width: 150px;
+      height: 150px;
+    }
+    .down_text{
+      color: #fff;
+      text-align: center;
+      margin-top: 5px;
+    }
+  }
   .login_card {
     margin: 150px auto 0;
     .login_title {

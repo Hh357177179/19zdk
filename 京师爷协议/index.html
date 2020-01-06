@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    input[type="checkbox"] {
+      width: 12px;
+      height: 12px;
+      display: inline-block;
+      text-align: center;
+      vertical-align: middle;
+      line-height: 12px;
+      position: relative;
+      border: none;
+      outline:medium;
+    }
+
+    input[type="checkbox"]::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: #fff;
+      width: 100%;
+      height: 100%;
+      border: 1px solid #CACDCF
+    }
+
+    input[type="checkbox"]:checked::before {
+      content: "\2713";
+      background-color: #2196F3;
+      color: #fff;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      border: 1px solid #2196F3;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    .toast_mask{
+      position: fixed;
+      z-index: 111;
+      background: rgba(0,0,0,0);
+      width: 100%;
+      height: 100vh;
+      display: none;
+    }
+    .toast_text{
+      width: 150px;
+      text-align: center;
+      margin: 50% auto 0;
+      line-height: 40px;
+      font-size: 14px;
+      color: #fff;
+      background: rgba(0,0,0,.7);
+      border-radius: 3px;
+    }
+    .protocol{
+      margin-top: 15px;
+      display: flex;
+      justify-content: flex-start;
+      font-size: 13px;
+      align-items: center;
+    }
+    .protocol_text{
+      margin-left: 5px;
+    }
+    .protocol_card{
+      position: fixed;
+      z-index: 1111;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      background: rgba(0,0,0,.6);
+      display: none;
+    }
+    .protocol_main{
+      width: 85%;
+      height: 80vh;
+      margin: 5vh auto 0;
+      background: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 13px;
+      overflow-y: auto;
+      position: relative;
+    }
+    .close_icon{
+      position: absolute;
+      right: 15px;
+      top: 5px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #999;
+    }
+    .protocol_doc{
+      color: #3e91f7;
+      font-weight: bold;
+    }
+    .big_title{
+      font-size: 15px;
+      color: #000;
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .protocol_desc{
+      line-height: 20px;
+    }
+    .letter_space{
+      line-height: 20px;
+      margin-top: 5px;
+      text-indent: 26px;
+    }
+    .small_title{
+      font-size: 13px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    .know_btn{
+      width: 120px;
+      text-align: center;
+      margin: 30px auto 20px;
+      line-height: 35px;
+      border-radius: 5px;
+      background: #3e91f7;
+      color: #fff;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="submit_btn">点击提交</div>
+  <div class="protocol">
+    <input class="checks" name="Fruit" type="checkbox" checked value="" />
+    <div class="protocol_text">注册即同意<span class="protocol_doc">《京师爷自创客顾问合作协议》</span>，请仔细阅读</div>
+  </div>
+  <div class="toast_mask">
+    <div class="toast_text">请先勾选协议</div>
+  </div>
+  <div class="protocol_card">
+    <div class="protocol_main">
+      <div class="close_icon">X</div>
+      <p class="big_title">京师爷自创客顾问合作协议</p>
+      <p class="protocol_desc">甲方：上海京师网络技术有限公司</p>
+      <p class="protocol_desc">乙方： 支付99元的二维码经办人为乙方</p>
+      <p class="letter_space">根据《中华人民共和国合同法》有关规定，经甲，乙双方友好协商，本着长期平等合作，互利互惠，资源共享的原则，创造良好经济效益和社会效益，达成以下协议:</p>
+      <p class="small_title">一、合作宗旨：</p>
+      <p class="letter_space">促进互联网产业快速发展，充分利用甲乙双方广泛市场资源优势和投资运营管理能力，实现资源、产业园质效的最大化。</p>
+      <p class="small_title">二、合作范围：</p>
+      <p class="letter_space">1、双方确认的合作项目：京师爷自创客项目。</p>
+      <p class="letter_space">2、项目介绍：随着现代互联网的广泛应用，个性化自由职业者大量涌现，企业“零雇工”成为时代的必然，（例如：咨询顾问、自媒体、法律顾问、直播达人等自由职业者大规模涌现）。企业运行模式由传统的雇佣和劳务关系转化为共创和合作关系。“平台+小微组织”必然是未来商业的新形态。</p>
+      <p class="letter_space">京师爷自创客平台本着为企业在组织创新、结构优化、共享资源、风险控制等方面率先提出互联网解决方案。打通平台、企业、小微组织合作和共创关系下的便捷电子政务服务通道（工商、税务、财政、银行等），创建新型的互联网产业园。</p>
+      <p class="small_title">三、甲乙双方的权利与义务</p>
+      <p class="letter_space">1、甲方负责整个项目的市场运营、资金投入，资质文件，运营管理，客户服务工作，所涉及的资金成本、人员成本、管理成本由甲方自行独立承担。</p>
+      <p class="letter_space">2、甲方委托乙方进行市场拓展工作，授权乙方使用甲方企业相关资质进行宣传。具体业务根据甲方要求开展，乙方自行组建运营管理团队，客户服务工作全部由甲方完成。</p>
+      <p class="letter_space">3、甲方有义务对乙方提出有关项目的问题进行解答，保障乙方顺利开展工作。</p>
+      <p class="letter_space">4、甲方须按合同要求给客户提供保质保量的服务，否则因此造成的损失由甲方自行独立负责。</p>
+      <p class="letter_space">5、乙方在拓展业务的过程中，必须拓展符合自创客服务范围的客户。严格把控业务的真实性，不可以弄虚作假，虚开发票，否则相关法律责任由乙方承担。</p>
+      <p class="letter_space">6、乙方以熟悉甲方项目为基础，熟知项目所涉及的法律法规及政策文件。</p>
+      <p class="letter_space">7、若因乙方操作违规造成的损失，法律责任由乙方自行承担，与甲方无关。</p>
+      <p class="letter_space">8.乙方负责市场推广、发展服务顾问、开发客户渠道，发生的相关费用由乙方自行独立承担。</p>
+      <p class="letter_space">9、甲方为乙方提供业务二维码推广入口，推广码使用费99元/年。乙方进行业务宣传和市场推广工作，因乙方宣传推广而成交的客户业绩均属于乙方，甲方应按照合作协议支付乙方的服务费。</p>
+      <p class="letter_space">10、若乙方在一个年内无业务订单产生，则甲方有权取消合作关系并收回作废二维码入口。</p>
+      <p class="small_title">五、服务费结算</p>
+      <p class="letter_space">1.乙方的服务费为自己开发的客户每月开票金额1%的服务费的20%，自己拓展的服务顾问月开票额的服务费的4%-6%,200万以内为4%，超出200万开票额的奖励为服务费的6%，自己开发的服务顾问在开发的服务顾问月开票额服务费的0.5%的关系。甲方支付给乙方的服务费打到乙方指定账户。</p>
+      <p class="letter_space">2.月度结算，每月结束甲方提供业务合作报表经乙方审核确认后进行结算。</p>
+      <p class="letter_space">3.结算流程：乙方需提供业务返款单申请表和对应金额的增值税普通发票，开票内容：市场推广服务费，按时上传至甲方指定邮箱sdzckgs@126.com。</p>
+      <p class="small_title">六、保密条款</p>
+      <p class="letter_space">1.甲、乙双方所提供给对方的专项技术应严格保密,并只能在双方公司业务合作范围内使用。</p>
+      <p class="letter_space">2.凡涉及由甲、乙双方提供项目、资金有关所有材料，包括但不限于资本营运计划，财资情报，客户名单，经营决策，项目设计，技术数据，项目商业计划书等均属保密内容。</p>
+      <p class="letter_space">3.凡未经双方书面同意而直接、间接、口头或书面形式向第三方提供涉及保密内容的行为均属泄密。</p>
+      <p class="small_title">七、其它</p>
+      <p class="letter_space">1.甲、乙双方执行本合同发生争议时，通过双方友好协商解决，若经双方调解无效，可向有关仲裁机构提出仲裁或在甲方公司注册地通过诉讼方式解决。</p>
+      <p class="letter_space">2.本协议未尽事宜,双方协议订补充协议，补充协议同样具有同等法律效应。</p>
+      <div class="know_btn">知道了</div>
+    </div>
+  </div>
+</body>
+
+</html>
+
+<script src="./jquery-3.2.1.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    // 点击提交
+    $('.submit_btn').click(function () {
+      if (!$(".checks").is(':checked')) {
+        $('.toast_mask').fadeIn();
+        setTimeout(function (){
+          $('.toast_mask').fadeOut();
+        }, 1500);
+      } else {
+        // 发请求
+      }
+    })
+
+    // 查看协议
+    $('.protocol_doc').click(function () {
+      $('.protocol_card').fadeIn();
+    })
+
+    // 关闭协议
+    $('.know_btn, .close_icon').click(function () {
+      $('.protocol_card').fadeOut('fast');
+    })
+  });
+
+</script>

@@ -233,6 +233,14 @@
 					"id": -1,
 					"name": "留言",
 					"pathName": "pages/callme/callme",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/detail/detail",
+					"pathName": "pages/detail/detail",
+					"query": "id=3818",
 					"scene": null
 				}
 			]

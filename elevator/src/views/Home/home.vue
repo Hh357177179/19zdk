@@ -7,59 +7,169 @@
           <img src="http://cdn.zhaodaka.cn/lift/lift_normal.png" alt>
         </p>
         <p class="card_text" style="color: #3a65e3;">正常</p>
+        <p style="color: #3a65e3;" class="numbers">{{oneNum}}</p>
       </div>
       <div class="card_list" @click="aboutClick" :class="colorIndex == 2 ? 'borter2' : ''">
         <p class="three card_color">
           <img src="http://cdn.zhaodaka.cn/lift/lift_warn.png" alt>
         </p>
         <p class="card_text" style="color: #eba945;">即将维保</p>
+        <p style="color: #eba945;" class="numbers">{{twoNum}}</p>
       </div>
       <div class="card_list" @click="overdueClick" :class="colorIndex == 3 ? 'borter3' : ''">
         <p class="three card_color">
           <img src="http://cdn.zhaodaka.cn/lift/lift_danger.png" alt>
         </p>
         <p class="card_text" style="color: #e95b56;">超期未保</p>
+        <p style="color: #e95b56;" class="numbers">{{threeNum}}</p>
       </div>
     </div>
-    <!-- <div class="nowa_days_card" @click="addOverlayGroup">
-      <p class="days_title">今日维保工作</p>
-      <div class="days_list">
-        <span class="label_width">维保电梯数量</span>
-        <span class="list_number">10</span>
+    <!-- 使用单位去完善 -->
+    <el-dialog
+      title="完善信息"
+      :visible.sync="perfectDialogVisible"
+      width="600px"
+      :show-close="false"
+      :before-close="perfecthandleClose"
+    >
+      <div style="padding: 0 100px;">
+        <el-form
+          :model="perfectUserFrom"
+          :rules="rules"
+          ref="perfectUserFrom"
+        >
+          <el-form-item prop="use_leader_name">
+            <el-input v-model="perfectUserFrom.use_leader_name" clearable placeholder="使用单位法定代表人姓名"></el-input>
+          </el-form-item>
+          <el-form-item prop="use_leader_phone">
+            <el-input v-model.number="perfectUserFrom.use_leader_phone" clearable maxlength="11" placeholder="使用单位法定代表人电话"></el-input>
+          </el-form-item>
+          <el-form-item prop="use_contact_name">
+            <el-input v-model="perfectUserFrom.use_contact_name" clearable placeholder="电梯联系人姓名"></el-input>
+          </el-form-item>
+          <el-form-item prop="use_contact_phone">
+            <el-input v-model.number="perfectUserFrom.use_contact_phone" clearable maxlength="11" placeholder="电梯联系人电话"></el-input>
+          </el-form-item>
+        </el-form>
       </div>
-      <div class="days_list">
-        <span class="label_width">维保打卡人数</span>
-        <span class="list_number">10</span>
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="goPerfect" size="small">确 定</el-button>
+      </span>
+    </el-dialog>
+
+    <!-- 维保单位 -->
+    <el-dialog
+      title="完善信息"
+      :visible.sync="wbDialogVisible"
+      width="600px"
+      :show-close="false"
+      :before-close="wbhandleClose"
+    >
+      <div style="padding: 0 100px;">
+        <el-form
+          :model="wbFrom"
+          :rules="wbRules"
+          ref="wbFrom"
+        >
+          <el-form-item prop="maintain_group_address">
+            <el-input v-model="wbFrom.maintain_group_address" clearable placeholder="维保单位地址"></el-input>
+          </el-form-item>
+          <el-form-item prop="maintain_group_credit_code">
+            <el-input v-model="wbFrom.maintain_group_credit_code" clearable placeholder="维保单位社会信用代码"></el-input>
+          </el-form-item>
+          <el-form-item prop="maintain_group_license_number">
+            <el-input v-model="wbFrom.maintain_group_license_number" clearable placeholder="维保许可证编号"></el-input>
+          </el-form-item>
+          <el-form-item prop="maintain_group_license_expire">
+            <el-date-picker
+              class="date_picker"
+              v-model="wbFrom.maintain_group_license_expire"
+              type="date"
+              clearable
+              format="yyyy 年 MM 月 dd 日"
+              value-format="yyyy-MM-dd"
+              placeholder="维保许可证有效期">
+            </el-date-picker>
+          </el-form-item>
+          <el-form-item prop="maintain_leader_name">
+            <el-input v-model.number="wbFrom.maintain_leader_name" clearable placeholder="维保单位负责人姓名"></el-input>
+          </el-form-item>
+          <el-form-item prop="maintain_leader_phone">
+            <el-input v-model.number="wbFrom.maintain_leader_phone" clearable placeholder="维保单位负责人电话"></el-input>
+          </el-form-item>
+        </el-form>
       </div>
-      <div class="days_list">
-        <span class="label_width">总维保工时</span>
-        <span class="list_number">10</span>
-    </div>-->
-    <!-- </div> -->
-    <!-- <div class="top_select">
-      <div class="choose_top">
-        <el-cascader
-          v-model="value"
-          clearable
-          placeholder="请选择地区进行筛选"
-          :options="options"
-          @change="handleChange"
-        ></el-cascader>
-      </div>
-    </div>-->
+      <span slot="footer" class="dialog-footer">
+        <el-button type="primary" @click="goWb" size="small">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
 <script>
 // import { regionData, CodeToText, TextToCode } from "element-china-area-data";
+import { useUnitInfo, weibaoUnitInfo } from '@/api/perfect/perfect.js'
+import { getInfo } from "@/api/user/user.js";
 import { areaList } from "@/minx/area.js";
 import { getHomeList } from "@/api/home/home.js";
 import AMap from "AMap"; // 引入高德地图
-import { setTimeout } from 'timers';
+import { setTimeout } from "timers";
 export default {
   mixins: [areaList],
   data() {
     return {
+      wbDialogVisible: false,
+      wbFrom: {
+        maintain_group_address: '',
+        maintain_group_credit_code: '',
+        maintain_group_license_number: '',
+        maintain_group_license_expire: '',
+        maintain_leader_name: '',
+        maintain_leader_phone: ''
+      },
+      wbRules: {
+        maintain_group_address: [
+          { required: true, message: '请输入维保单位地址', trigger: 'blur' },
+        ],
+        maintain_group_credit_code: [
+          { required: true, message: '请输入维保单位社会信用代码', trigger: 'blur' },
+        ],
+        maintain_group_license_number: [
+          { required: true, message: '请输入维保许可证编号', trigger: 'blur' },
+        ],
+        maintain_group_license_expire: [
+          { required: true, message: '请选择维保许可证有效期', trigger: 'blur' },
+        ],
+        maintain_leader_name: [
+          { required: true, message: '维保单位负责人姓名', trigger: 'blur' },
+        ],
+        maintain_leader_phone: [
+          { required: true, message: '维保单位负责人电话', trigger: 'blur' },
+        ]
+      },
+      perfectUserFrom: {
+        use_leader_name: "",
+        use_leader_phone: "",
+        use_contact_name: "",
+        use_contact_phone: ""
+      },
+      rules: {
+        use_leader_name: [
+          { required: true, message: '请输入使用单位法定代表人姓名', trigger: 'blur' },
+        ],
+        use_leader_phone: [
+          { required: true, message: '请输入使用单位法定代表人电话', trigger: 'blur' },
+          { type: 'number', message: '请输入正确手机号码'}
+        ],
+        use_contact_name: [
+          { required: true, message: '请输入电梯联系人姓名', trigger: 'blur' },
+        ],
+        use_contact_phone: [
+          { required: true, message: '请输入电梯联系人电话', trigger: 'blur' },
+          { type: 'number', message: '请输入正确手机号码'}
+        ]
+      },
+      perfectDialogVisible: false,
       loadings: false,
       colorIndex: 0,
       mapHeight: 0,
@@ -74,10 +184,29 @@ export default {
       markers: [],
       viaMarker: null,
       allElevator: [],
-      cluster: null
+      cluster: null,
+      oneNum: '',
+      twoNum: '',
+      threeNum: ''
     };
   },
   created() {
+    if (sessionStorage.getItem("type") == 3) {
+      console.log("信息是否完整", sessionStorage.getItem("is_complete"));
+      let statePer = sessionStorage.getItem("is_complete");
+      if (statePer == 0) {
+        this.perfectDialogVisible = true;
+      } else {
+        this.perfectDialogVisible = false;
+      }
+    } else if (sessionStorage.getItem("type") == 2) {
+      let statePer = sessionStorage.getItem("is_complete");
+      if (statePer == 0) {
+        this.wbDialogVisible = true;
+      } else {
+        this.wbDialogVisible = false;
+      }
+    }
     this.getCoordinate(0);
     var h =
       window.innerHeight ||
@@ -91,25 +220,107 @@ export default {
       resizeEnable: true,
       zoom: 9
     });
+    let province = sessionStorage.getItem("province");
+    let city = sessionStorage.getItem("city");
+    console.log(city);
+    if (province != "海南省" && province != "") {
+      this.map.setCity(city);
+    }
   },
   methods: {
-    normalClick () {
-      this.colorIndex = 1
-      this.markers = []
-      this.cluster.setMap(null);
-      this.getCoordinate(1)
+    wbhandleClose () {},
+        // 获取用户信息
+    userInfo () {
+      let params = {
+        token: sessionStorage.getItem('token')
+      }
+      getInfo(params).then(res => {
+        console.log('获取管理员信息',res)
+        sessionStorage.setItem("is_complete", res.is_complete)
+        this.perfectDialogVisible = false
+        this.wbDialogVisible = false
+      })
     },
-    aboutClick () {
-      this.colorIndex = 2
-      this.markers = []
-      this.cluster.setMap(null);
-      this.getCoordinate(2)
+    goWb () {
+      this.$refs.wbFrom.validate((valid) => {
+          if (valid) {
+            let params = {
+              token: sessionStorage.getItem('token'),
+              maintain_group_address: this.wbFrom.maintain_group_address,
+              maintain_group_credit_code: this.wbFrom.maintain_group_credit_code,
+              maintain_group_license_number: this.wbFrom.maintain_group_license_number,
+              maintain_group_license_expire: this.wbFrom.maintain_group_license_expire,
+              maintain_leader_name: this.wbFrom.maintain_leader_name,
+              maintain_leader_phone: this.wbFrom.maintain_leader_phone,
+            }
+            console.log(params)
+            weibaoUnitInfo(params).then(res => {
+              console.log('认证返回',res)
+              if (res) {
+                this.$message({
+                  message: '信息填写成功',
+                  type: 'success'
+                });
+                this.userInfo()
+              }
+            })
+          } else {
+            console.log('error submit!!');
+            return false;
+          }
+        });
     },
-    overdueClick () {
-      this.colorIndex = 3
-      this.markers = []
-      this.cluster.setMap(null);
-      this.getCoordinate(3)
+    goPerfect() {
+      this.$refs.perfectUserFrom.validate((valid) => {
+          if (valid) {
+            let params = {
+              token: sessionStorage.getItem('token'),
+              use_leader_name: this.perfectUserFrom.use_leader_name,
+              use_leader_phone: this.perfectUserFrom.use_leader_phone,
+              use_contact_name: this.perfectUserFrom.use_contact_name,
+              use_contact_phone: this.perfectUserFrom.use_contact_phone
+            }
+            console.log(params)
+            useUnitInfo(params).then(res => {
+              console.log('认证返回',res)
+              if (res) {
+                this.$message({
+                  message: '信息填写成功',
+                  type: 'success'
+                });
+                this.userInfo()
+              }
+            })
+          } else {
+            console.log('error submit!!');
+            return false;
+          }
+        });
+    },
+    perfecthandleClose() {},
+    normalClick() {
+      this.$router.push({
+        name: "elevatorInfo",
+        params: {
+          status: 1
+        }
+      });
+    },
+    aboutClick() {
+      this.$router.push({
+        name: "elevatorInfo",
+        params: {
+          status: 2
+        }
+      });
+    },
+    overdueClick() {
+      this.$router.push({
+        name: "elevatorInfo",
+        params: {
+          status: 3
+        }
+      });
     },
     addMarker(data) {
       const marker = new window.AMap.Marker({
@@ -128,7 +339,7 @@ export default {
       this.markers.push(marker);
     },
     getCoordinate(state) {
-      this.loadings = true
+      this.loadings = true;
       let params = {
         token: sessionStorage.getItem("token"),
         province: this.province,
@@ -136,90 +347,37 @@ export default {
         area: this.area
       };
       getHomeList(params).then(res => {
-        if (state == 0) {
-          this.allElevator = res
-          res.forEach(ele => {
-            this.addMarker(ele);
-          });
-          this.map.plugin(["AMap.MarkerClusterer"], () => {
-            this.cluster = new AMap.MarkerClusterer(
-              this.map, // 地图实例
-              this.markers, // 海量点组成的数组
-              {
-                maxZoom: 12,
-                styles: [{
+        this.allElevator = res;
+        console.log(res)
+        let oneArr = []
+        let twoArr = []
+        let threeArr = []
+        oneArr = res.filter(x => x.type == 1)
+        console.log(oneArr)
+        twoArr = res.filter(x => x.type == 2)
+        threeArr = res.filter(x => x.type == 3)
+        this.oneNum = oneArr.length
+        this.twoNum = twoArr.length
+        this.threeNum = threeArr.length
+        res.forEach(ele => {
+          this.addMarker(ele);
+        });
+        this.map.plugin(["AMap.MarkerClusterer"], () => {
+          this.cluster = new AMap.MarkerClusterer(
+            this.map, // 地图实例
+            this.markers, // 海量点组成的数组
+            {
+              maxZoom: 12,
+              styles: [
+                {
                   url: "http://cdn.zhaodaka.cn/lift/marker-bg.png",
                   size: new AMap.Size(50, 50)
-                }]
-              }
-            );
-          });
-            this.loadings = false
-          return;
-        } else if (state == 1) {
-          res.forEach(ele => {
-            if (ele.type == 1) {
-              this.addMarker(ele);
+                }
+              ]
             }
-          });
-          this.map.plugin(["AMap.MarkerClusterer"], () => {
-            this.cluster = new AMap.MarkerClusterer(
-              this.map, // 地图实例
-              this.markers, // 海量点组成的数组
-              {
-                maxZoom: 12,
-                styles: [{
-                  url: "http://cdn.zhaodaka.cn/lift/marker-bg.png",
-                  size: new AMap.Size(50, 50)
-                }]
-              }
-            );
-          });
-          this.loadings = false
-          return;
-        } else if (state == 2) {
-          res.forEach(ele => {
-            if (ele.type == 2) {
-              this.addMarker(ele);
-            }
-          });
-          this.map.plugin(["AMap.MarkerClusterer"], () => {
-            this.cluster = new AMap.MarkerClusterer(
-              this.map, // 地图实例
-              this.markers, // 海量点组成的数组
-              {
-                maxZoom: 12,
-                styles: [{
-                  url: "http://cdn.zhaodaka.cn/lift/marker-bg.png",
-                  size: new AMap.Size(50, 50)
-                }]
-              }
-            );
-          });
-            this.loadings = false
-          return;
-        }else if (state == 3) {
-          res.forEach(ele => {
-            if (ele.type == 3) {
-              this.addMarker(ele);
-            }
-          });
-          this.map.plugin(["AMap.MarkerClusterer"], () => {
-            this.cluster = new AMap.MarkerClusterer(
-              this.map, // 地图实例
-              this.markers, // 海量点组成的数组
-              {
-                maxZoom: 12,
-                styles: [{
-                  url: "http://cdn.zhaodaka.cn/lift/marker-bg.png",
-                  size: new AMap.Size(50, 50)
-                }]
-              }
-            );
-          });
-            this.loadings = false
-          return;
-        }
+          );
+        });
+        this.loadings = false;
       });
     },
     bindEvent(e, data) {
@@ -264,7 +422,7 @@ export default {
     border-radius: 5px;
     padding: 15px 15px 5px;
     .card_list {
-      border-bottom: 1px solid rgba(0,0,0,0);
+      border-bottom: 1px solid rgba(0, 0, 0, 0);
       font-size: 13px;
       color: #666;
       display: flex;
@@ -349,9 +507,25 @@ export default {
   .borter3 {
     border-color: rgb(233, 91, 86) !important;
   }
-  .amap-marker-content > div{
+  .amap-marker-content > div {
     background-size: 100% 100% !important;
     font-size: 13px !important;
+  }
+  .perfect_title {
+    color: #333;
+    margin-bottom: 20px;
+  }
+  .perfect_list {
+    margin-left: 50px;
+    line-height: 30px;
+  }
+  .numbers{
+    margin-left: 20px;
+    min-width: 50px;
+    text-align: center;
+  }
+  .date_picker{
+    width: 100% !important;
   }
 }
 </style>
