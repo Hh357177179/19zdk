@@ -1,37 +1,56 @@
 <!--pages/order/order.wxml-->
 <view class='order'>
   <view class='orderTitle'>请选择你的预约</view>
-  <view class='order_card' style='margin-bottom: 36rpx;' bindtap='navOnline' wx:if="{{showOnline}}">
-    <view class='ocard_info'>
-      <view class='ocard_title'>在线服务</view>
-      <view class='ocard_desc'>在线一对一辅导，单次辅导时间45分钟 费用280元</view>
+  <view class="all_order">
+    <view class='order_card' bindtap='navOnline' wx:if="{{showOnline}}">
+      <view class='ocard_info'>
+        <view class='ocard_title'>在线服务</view>
+      </view>
+      <view class="card_infos">
+        <view class='ocard_desc'>在线一对一辅导，单次辅导时间45分钟 费用280元</view>
+        <view class='right_image'>
+          <image src='../../images/specialistOrder.png'></image>
+        </view>
+      </view>
     </view>
-    <view class='right_image'>
-      <image src='../../images/specialistOrder.png'></image>
+    <view class='order_card' bindtap='navTeacher'>
+      <view class='ocard_info'>
+        <view class='ocard_title'>老师面对面</view>
+      </view>
+      <view class="card_infos">
+        <view class='ocard_desc'>当面一对一辅导，单次辅导时间为45分钟 费用360元</view>
+        <view class='right_image'>
+          <image src='../../images/teacherOrder.png'></image>
+        </view>
+      </view>
     </view>
-  </view>
-  <view class='order_card' bindtap='navTeacher'>
-    <view class='ocard_info'>
-      <view class='ocard_title'>老师面对面</view>
-      <view class='ocard_desc'>当面一对一辅导，单次辅导时间为45分钟 费用360元</view>
+    <view class='order_card' bindtap="navSpecialist">
+      <view class='ocard_info'>
+        <view class='ocard_title'>专家面对面</view>
+      </view>
+      <view class="card_infos">
+        <view class='ocard_desc'>当面一对一辅导，单次辅导时间为90分钟 费用600元起</view>
+        <view class='right_image'>
+        <image src='../../images/specialistOrder.png'></image>
+      </view>
+      </view>
     </view>
-    <view class='right_image'>
-      <image src='../../images/teacherOrder.png'></image>
+    <view class='order_card' bindtap="navWork">
+      <view class='ocard_info'>
+        <view class='ocard_title'>专家工作坊</view>
+      </view>
+      <view class="card_infos">
+        <view class='ocard_desc'>专家当面辅导，暨专家带领小型团体</view>
+        <view class='right_image'>
+        <image src='../../images/teacherOrder.png'></image>
+      </view>
+      </view>
     </view>
-  </view>
-  <view class='order_card' style='margin-top: 36rpx;' bindtap="navSpecialist">
-    <view class='ocard_info'>
-      <view class='ocard_title'>专家面对面</view>
-      <view class='ocard_desc'>当面一对一辅导，单次辅导时间为90分钟 费用600元起</view>
+    <view class="call_me" bindtap="callMe">
+      <view class="call_meImg">
+        <image src="../../images/callme.png"></image>
+      </view>
+      <view class="call_text">客服</view>
     </view>
-    <view class='right_image'>
-      <image src='../../images/specialistOrder.png'></image>
-    </view>
-  </view>
-  <view class="call_me" bindtap="callMe">
-    <view class="call_meImg">
-      <image src="../../images/callme.png"></image>
-    </view>
-    <view class="call_text">客服</view>
   </view>
 </view>

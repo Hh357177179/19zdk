@@ -14,6 +14,18 @@ Page({
     userInfos: {},
     wxUser: {}
   },
+  
+  navWorkMe () {
+    wx.navigateTo({
+      url: '/pages/applyWork/applyWork',
+    })
+  },
+
+  navWorkList () {
+    wx.navigateTo({
+      url: '/pages/sendWork/sendWork',
+    })
+  },
 
   callMe() {
     let that = this
@@ -29,6 +41,20 @@ Page({
       wx.navigateTo({
         url: '/pages/callme/callme',
       })
+    }
+  },
+
+  // 跳转发布专家工坊
+  navWorkShop () {
+    let that = this
+    console.log(app.globalData.role)
+    let statusVal = app.globalData.role
+    if (statusVal) {
+      wx.navigateTo({
+        url: '/pages/workShop/workShop',
+      })
+    } else {
+      util.showMsg('请先登录', '../../images/warning.png')
     }
   },
 

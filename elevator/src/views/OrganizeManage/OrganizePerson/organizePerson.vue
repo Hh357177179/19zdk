@@ -195,7 +195,12 @@ export default {
   },
   methods: {
     backRouters () {
-      this.$router.back()
+      this.$router.push({
+        name: 'organizePrty',
+        params: {
+          page: sessionStorage.getItem('organizePage')
+        }
+      })
     },
     rushPerson (row) {
       console.log(row)

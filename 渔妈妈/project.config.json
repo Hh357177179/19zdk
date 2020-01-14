@@ -242,6 +242,27 @@
 					"pathName": "pages/detail/detail",
 					"query": "id=3818",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "发布专家工坊",
+					"pathName": "pages/workShop/workShop",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "专家工坊列表",
+					"pathName": "pages/workList/workList",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 29,
+					"name": "工坊详情",
+					"pathName": "pages/workDetail/workDetail",
+					"query": "id=3",
+					"scene": null
 				}
 			]
 		}

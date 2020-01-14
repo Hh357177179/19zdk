@@ -41,7 +41,7 @@
   line-height: 72rpx;
 }
 .me_list{
-  margin-top: 60rpx;
+  margin-top: 40rpx;
   background: #fff;
   padding: 0 40rpx;
 }

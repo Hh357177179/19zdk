@@ -48,10 +48,15 @@ Page({
     })
   },
 
+  navWork () {
+    wx.navigateTo({
+      url: `/pages/workList/workList`
+    })
+  },
+
   navTeacher () {
     wx.navigateTo({
-      url: `/pages/allplace/allplace`,
-      // url: `/pages/teacherList/teacherList?type=0&line=0`,
+      url: `/pages/allplace/allplace`
     })
   },
 
@@ -63,7 +68,7 @@ Page({
 
   navOnline () {
     wx.navigateTo({
-      url: '/pages/teacherList/teacherList?type=0&line=1',
+      url: '/pages/teacherList/teacherList?type=0&line=1'
     })
   },
 

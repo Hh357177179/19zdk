@@ -60,3 +60,9 @@
   color:rgba(25,31,37,0.28);
   text-align: center;
 }
+.teacher_info{
+  width: 400rpx;
+}
+.choTime{
+  width: 200rpx;
+}

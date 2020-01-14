@@ -1,0 +1,33 @@
+<!--pages/workShop/workShop.wxml-->
+<view class="workShop">
+  <view class="workShop_title" wx:if="{{id == ''}}">发布专家工作坊</view>
+  <view class="workShop_title" wx:if="{{id != ''}}">修改专家工作坊</view>
+  <view class="work_main">
+    <view bindtap="timeList" class="local_list {{beginTime == '请选择开课时间' ? 'addClass' : ''}}">{{beginTime}}</view>
+    <view class="local_list">
+      <input class="list_input" value="{{address}}" bindinput="addressVal" placeholder="请输入地址" placeholder-style="color: #ccc;"/>
+    </view>
+    <view class="special_list">
+      <view class="local_list money_list">
+        <input class="list_input" value="{{money}}" bindinput="moneyVal" type="number" placeholder="请输入报名费用" placeholder-style="color: #ccc;"/>
+      </view>
+      <view style="margin-top: 30rpx;">元/人</view>
+    </view>
+    <view class="local_list">
+      <input class="list_input" type="number" value="{{number}}" bindinput="numberVal" placeholder="请输入可报名人数" placeholder-style="color: #ccc;"/>
+    </view>
+    <view class="local_list desc_list">
+      <textarea auto-height value="{{desc}}" bindinput="descVal" placeholder="请输入描述" placeholder-style="color: #ccc;"/>
+    </view>
+    <view class="submit_btn" bindtap="submitBtn" wx:if="{{id == ''}}">发 布</view>
+    <view class="submit_btn" bindtap="editBtn" wx:if="{{id != ''}}">修 改</view>
+  </view>
+  <wux-popup visible="{{ timePopup }}" position="bottom" bind:close="timeClose">
+    <view class="place_top">
+      <view bindtap="timeClose" class="cancel_btn">取消</view>
+      <view>选择时间</view>
+      <view class="true_btn" bindtap="timeTrue">确定</view>
+    </view>
+    <wux-date-picker-view minuteStep='30' mode="datetime" lang="{{ lang }}" value="{{ value6 }}" data-index="6" bind:valueChange="onValueChange" />
+  </wux-popup>
+</view>

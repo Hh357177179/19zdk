@@ -61,9 +61,10 @@
             </template>
           </el-table-column> -->
           <!-- <el-table-column align="center" prop="distance_texts" label="是否超保"></el-table-column> -->
-          <el-table-column align="center" prop="expired_day" label="超期天数">
+          <el-table-column align="center" label="维保状态" prop="status_text"></el-table-column>
+          <el-table-column align="center" prop="overdue" label="超期天数">
             <template slot-scope="scope">
-              <div :class="scope.row.expired_day == 0 ? '' : 'more_color'">{{scope.row.expired_day}}</div>
+              <div :class="scope.row.overdue == 0 ? '' : 'more_color'">{{scope.row.overdue}}</div>
             </template>
           </el-table-column>
           <el-table-column align="center" label="维保工作照片">
@@ -134,7 +135,12 @@ export default {
   methods: {
 
     backRouters () {
-      this.$router.back()
+      this.$router.push({
+        name: 'elevatorInfo',
+        params: {
+          page: sessionStorage.getItem('elevatorPage')
+        }
+      })
     },
     
     exportExcel () {
@@ -149,31 +155,20 @@ export default {
       maintainList(params).then(res => {
         console.log(res)
         res.list.forEach(ele => {
-          let oldDate = new Date(ele.handle_time).getTime() / 1000
-          let newDate = oldDate + (15 * 24 * 60 * 60)
-          let newDates = new Date(newDate * 1000)
-          let Y = newDates.getFullYear()
-          let M = newDates.getMonth() + 1
-          let D = newDates.getDate()
-          if (M < 10) {
-            M = '0' + M
-          }
-          if (D < 10) {
-            D = '0' + D
-          }
-          ele.next_handle_time = `${Y}-${M}-${D}`
-          let nowDate = parseInt(new Date().getTime()/1000)
-          let distanceDate = (newDate - nowDate) / 60 / 60 / 24
-          if (distanceDate > 0) {
-            ele.distance_handle_time = parseInt(distanceDate)
-            ele.distance_texts = '否'
-            ele.expired_day = '0'
+          if (ele.status == 3) {
+            ele.status_text = '完成'
           } else {
-            ele.distance_handle_time = '0'
-            ele.distance_texts = '是'
-            ele.expired_day = Math.abs(parseInt(distanceDate))
+            ele.status_text = '进行中'
           }
-          let dateTime = new Date();
+          let moreDay = ''
+          moreDay = this.formDate(ele.handle_time) - this.formDate(ele.claim_time)
+          if (moreDay > 0) {
+            ele.overdue = parseInt(moreDay / 60 / 60 / 24)
+          } else {
+            ele.overdue = 0
+          }
+        });
+        let dateTime = new Date();
           let y = dateTime.getFullYear();
           let m = dateTime.getMonth() + 1;
           let d = dateTime.getDate();
@@ -190,8 +185,7 @@ export default {
               "电梯位置",
               "电梯内部编号",
               "本次维保时间",
-              "下次维保时间",
-              "离下次维保天数",
+              "维保状态",
               "超期天数"
             ];
             // 上面设置Excel的表格第一行的标题
@@ -201,17 +195,21 @@ export default {
               "elevator_use_address",
               "elevator_internal_number",
               "handle_time",
-              "next_handle_time",
-              "expired_day"
+              "status_text",
+              "overdue"
             ];
             const data = this.formatJson(filterVal, res.list);
             export_json_to_excel(tHeader, data, `工作管理(${time})`);
           });
-        });
       })
     },
     formatJson(filterVal, jsonData) {
       return jsonData.map(v => filterVal.map(j => v[j]));
+    },
+
+    formDate (str) {
+      let date = new Date(str).getTime() / 1000
+      return date
     },
 
 
@@ -230,51 +228,20 @@ export default {
       }
       maintainList(params).then(res => {
         console.log(res)
-        res.list.forEach(ele => {
-          let oldDate = new Date(ele.handle_time).getTime() / 1000
-          let newDate = oldDate + (15 * 24 * 60 * 60)
-          let newDates = new Date(newDate * 1000)
-          let Y = newDates.getFullYear()
-          let M = newDates.getMonth() + 1
-          let D = newDates.getDate()
-          if (M < 10) {
-            M = '0' + M
-          }
-          if (D < 10) {
-            D = '0' + D
-          }
-          ele.next_handle_time = `${Y}-${M}-${D}`
-          let nowDate = parseInt(new Date().getTime()/1000)
-          let distanceDate = (newDate - nowDate) / 60 / 60 / 24
-          if (distanceDate > 0) {
-            ele.distance_handle_time = parseInt(distanceDate)
-            ele.distance_texts = '否'
-            ele.expired_day = '0'
+        res.list.forEach(item => {
+          if (item.status == 3) {
+            item.status_text = '完成'
           } else {
-            ele.distance_handle_time = '0'
-            ele.distance_texts = '是'
-            ele.expired_day = Math.abs(parseInt(distanceDate))
+            item.status_text = '进行中'
+          }
+          let moreDay = ''
+          moreDay = this.formDate(item.handle_time) - this.formDate(item.claim_time)
+          if (moreDay > 0) {
+            item.overdue = parseInt(moreDay / 60 / 60 / 24)
+          } else {
+            item.overdue = 0
           }
         });
-        //   let allArr = JSON.stringify(res.list)
-        //   let oldArr = JSON.parse(allArr)
-        //   let newArr = JSON.parse(allArr)
-        //   let arrs = []
-        //   for (let a in oldArr) {
-        //     for (let b in newArr) {
-        //       if (oldArr[a].elevator_id == newArr[b].elevator_id && oldArr[a].handle_time == newArr[b].handle_time) {
-        //         oldArr[a].ids = newArr[b].id
-        //         arrs.push(oldArr[a])
-        //       }
-        //     }
-        //   }
-        //   let arrss = []
-        //   for (let c in arrs) {
-        //     if (arrs[c].id != arrs[c].ids) {
-        //       arrss.push(arrs[c])
-        //     }
-        //   }
-        // console.log(arrss)
         this.tableData = res.list
         this.total = res.count
         this.loading = false
@@ -339,6 +306,7 @@ export default {
       }
       .back_prev{
         margin-right: 10px;
+        cursor: pointer;
       }
     }
     .el-form-item {

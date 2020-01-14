@@ -44,7 +44,7 @@
         <el-form-item class="mb10">
           <el-input v-model="formInline.internal_number" clearable placeholder="请输入内部编号"></el-input>
         </el-form-item>
-        <el-form-item class="mb10">
+        <!-- <el-form-item class="mb10">
           <el-select clearable v-model="formInline.deadline_state" placeholder="请选择是否超期">
             <el-option
               v-for="item in deadlineOptions"
@@ -53,8 +53,8 @@
               :value="item.value"
             ></el-option>
           </el-select>
-        </el-form-item>
-        <!-- <el-form-item class="mb10">
+        </el-form-item> -->
+        <el-form-item class="mb10">
           <el-select clearable v-model="formInline.position_state" placeholder="请选择是否定位">
             <el-option
               v-for="item in options"
@@ -63,7 +63,7 @@
               :value="item.value"
             ></el-option>
           </el-select>
-        </el-form-item> -->
+        </el-form-item>
         <!-- <el-form-item>
           <el-date-picker v-model="formInline.next_maintain_date" type="date" value-format="yyyy-MM-dd" placeholder="下次维保日期"></el-date-picker>
         </el-form-item>-->
@@ -807,11 +807,16 @@ export default {
     if (this.$route.params.status) {
       this.status = `${this.$route.params.status}`
     }
+    if (this.$route.params.page) {
+      this.page = this.$route.params.page
+      this.currentPage = Number(this.$route.params.page)
+    }
     this.getList();
   },
   methods: {
     searchLog (row) {
-      console.log(row)
+      console.log(this.page)
+      sessionStorage.setItem('elevatorPage', this.page)
       this.$router.push({
         path: '/task-sign',
         query: {

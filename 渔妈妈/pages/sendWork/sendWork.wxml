@@ -1,0 +1,25 @@
+<wxs module="dateFr" src="../../utils/dateFr.wxs"></wxs>
+<view class="me_order">
+  <view class="order_title">我发布的专家工作坊</view>
+  <block wx:for="{{items}}" wx:key="index">
+    <view class="order_list">
+      <view class="olist_time">时间：{{dateFr.getDate(item.start_time * 1000,'-',':')}}</view>
+      <view class="olist_time">地点：{{item.address}}</view>
+      <view class="olist_time">费用：{{item.money}} 元/人</view>
+      <view class="olist_time">人数：{{item.order_num}}/{{item.number}} 人</view>
+      <view class="olist_time">简介：{{item.desc}}</view>
+      <view class="clear"></view>
+      <view class="delete_btn">
+        <view class="delete_card" bindtap="editCard" data-id="{{item.id}}" wx:if="{{item.order_num == 0}}" style="margin-left: 20rpx;">修改</view>
+        <view class="delete_card" bindtap="deleteCard" data-id="{{item.id}}" wx:if="{{item.order_num == 0}}">删除</view>
+        <view class="clear"></view>
+      </view>
+    </view>
+  </block>
+  <view class="noData" wx:if="{{noDataShow}}">
+    <view class="noData_img">
+      <image src="../../images/nodata.png"></image>
+    </view>
+    <view class="nodata_text">暂无发布的专家工作坊</view>
+  </view>
+</view>

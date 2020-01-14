@@ -1,0 +1,20 @@
+<!--pages/workList/workList.wxml-->
+<wxs module="dateFr" src="../../utils/dateFr.wxs"></wxs>
+<view class="workList">
+  <block wx:for="{{items}}" wx:key="index">
+    <view class="work_card" bindtap="navDetail" data-id="{{item.id}}">
+      <view class="work_title">{{item.user_name}}</view>
+      <view class="work_info"><text class="info_label">时间：</text>{{dateFr.getDate(item.start_time * 1000,'-',':')}}</view>
+      <view class="work_info"><text class="info_label">地点：</text>{{item.address}}</view>
+      <view class="work_info"><text class="info_label">费用：</text>{{item.money}} <text style="margin-left: 10rpx;">元/人</text></view>
+      <view class="work_info"><text class="info_label">报名人数：</text>{{item.order_num}}/{{item.number}} 人</view>
+      <view class="work_info"><text class="info_label">描述：</text>{{item.desc}}</view>
+    </view>
+  </block>
+  <view class="noData" wx:if="{{noDataShow}}">
+    <view class="noData_img">
+      <image src="../../images/nodata.png"></image>
+    </view>
+    <view class="nodata_text">暂无数据</view>
+  </view>
+</view>

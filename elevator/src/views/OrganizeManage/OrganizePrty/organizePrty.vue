@@ -122,6 +122,11 @@ export default {
     };
   },
   created() {
+    console.log(this.$route)
+    if (this.$route.params.page) {
+      this.page = this.$route.params.page
+      this.currentPage = Number(this.$route.params.page)
+    }
     this.getList();
   },
   methods: {
@@ -207,6 +212,7 @@ export default {
     },
     addPerson (row) {
       console.log(row)
+      sessionStorage.setItem('organizePage', this.page)
       this.$router.push(`/organize-person/${row.id}/${row.type}`)
     },
     deleteGroup(row) {

@@ -49,9 +49,17 @@ Page({
   },
 
   backGame () {
-    wx.navigateTo({
-      url: `/pages/detailGame/detailGame?id=${this.data.detailObj.relation_id}`,
-    })
+    if (this.data.detailObj.type == 7) {
+      console.log('训练报名')
+      wx.navigateTo({
+        url: `/pages/apply/apply?id=${this.data.detailObj.relation_id}`,
+      })
+    } else if (this.data.detailObj.type == 8) {
+      console.log('比赛报名')
+      wx.navigateTo({
+        url: `/pages/detailGame/detailGame?id=${this.data.detailObj.relation_id}`,
+      })
+    }
   },
 
   getDetail() {

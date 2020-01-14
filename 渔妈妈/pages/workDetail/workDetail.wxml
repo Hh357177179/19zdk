@@ -1,0 +1,50 @@
+<!--pages/workDetail/workDetail.wxml-->
+<wxs module="dateFr" src="../../utils/dateFr.wxs"></wxs>
+<view class="work_detail">
+  <view class="detail_card">
+    <view class="detail_name">{{detail.user_name}}</view>
+    <view class="detail_phone">
+      <view class="label_img">
+        <image src="../../images/phone.png"></image>
+      </view>
+      <view class="detail_list">{{detail.user_phone}}</view>
+    </view>
+    <view class="detail_phone">
+      <view class="label_img">
+        <image src="../../images/place.png"></image>
+      </view>
+      <view class="detail_list">{{detail.address}}</view>
+    </view>
+    <view class="detail_phone">
+      <view class="label_img">
+        <image src="../../images/noorder.png"></image>
+      </view>
+      <view class="detail_list">{{dateFr.getDate(detail.start_time * 1000,'-',':')}}</view>
+    </view>
+    <view class="detail_phone">
+      <view class="label_img" style="width: 50rpx;height: 50rpx;">
+        <image src="../../images/bming.png"></image>
+      </view>
+      <view class="detail_list">{{detail.order_num}}/{{detail.number}} 人</view>
+    </view>
+    <view class="detail_phone">
+      <view class="label_img">
+        <image src="../../images/feiyng.png"></image>
+      </view>
+      <view class="detail_list">{{detail.money}} 元/人</view>
+    </view>
+  </view>
+  <view class="detail_card">
+    <view class="desc_title">课程介绍</view>
+    <view class="desc_info">{{detail.desc}}</view>
+  </view>
+  <view class="apply_btn" bindtap="applyBtn" wx:if="{{statePay == 0}}">
+    <view class="apply_icon">
+      <image src="../../images/apply.png"></image>
+    </view>
+    <view>点击报名</view>
+  </view>
+  <view class="apply_btn no_apply" bindtap="applyBtn" wx:if="{{statePay == 1}}">
+    报名人数已达到上限
+  </view>
+</view>

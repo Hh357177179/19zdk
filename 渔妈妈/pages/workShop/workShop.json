@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "wux-popup": "../../dist/popup/index",
+    "wux-segmented-control": "../../dist/segmented-control/index",
+    "wux-date-picker-view": "../../dist/date-picker-view/index"
+  }
+}

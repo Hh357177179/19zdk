@@ -31,12 +31,30 @@
         <image class='right_img' src='../../images/rightss.png'></image>
       </view>
     </view>
+    <view class='list_info' bindtap="navWorkMe" wx:if="{{userInfos.role == 1}}">
+      <view class='list_left_icon'>
+        <image src='../../images/worklist_icon.png'></image>
+      </view>
+      <view class='right_info'>
+        <text>我的专家工作坊</text>
+        <image class='right_img' src='../../images/rightss.png'></image>
+      </view>
+    </view>
     <view class='list_info' bindtap="sendTeacher" wx:if="{{userInfos.role == 2}}">
       <view class='list_left_icon'>
         <image src='../../images/sendTeacher.png'></image>
       </view>
       <view class='right_info'>
         <text>发布预约</text>
+        <image class='right_img' src='../../images/rightss.png'></image>
+      </view>
+    </view>
+    <view class='list_info' bindtap="navWorkShop" wx:if="{{userInfos.role == 2}}">
+      <view class='list_left_icon'>
+        <image src='../../images/gf.png'></image>
+      </view>
+      <view class='right_info'>
+        <text>发布专家工作坊</text>
         <image class='right_img' src='../../images/rightss.png'></image>
       </view>
     </view>
@@ -49,15 +67,15 @@
         <image class='right_img' src='../../images/rightss.png'></image>
       </view>
     </view>
-    <!-- <view class='list_info' bindtap="navEvaluating" wx:if="{{userInfos.role}}">
+    <view class='list_info' bindtap="navWorkList" wx:if="{{userInfos.role == 2}}">
       <view class='list_left_icon'>
-        <image src='../../images/pc.png'></image>
+        <image src='../../images/sendWork.png'></image>
       </view>
       <view class='right_info'>
-        <text>在线评测</text>
+        <text>我发布的专家工作坊</text>
         <image class='right_img' src='../../images/rightss.png'></image>
       </view>
-    </view> -->
+    </view>
   </view>
   <view class="call_me" bindtap="callMe" wx:if="{{showUser}}">
     <view class="call_meImg">

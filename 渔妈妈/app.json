@@ -27,7 +27,12 @@
     "pages/evaluating/evaluating",
     "pages/allplace/allplace",
     "pages/teacherAndTime/teacherAndTime",
-    "pages/callme/callme"
+    "pages/callme/callme",
+    "pages/workShop/workShop",
+    "pages/workList/workList",
+    "pages/workDetail/workDetail",
+    "pages/sendWork/sendWork",
+    "pages/applyWork/applyWork"
   ],
   "window": {
     "backgroundTextStyle": "light",
